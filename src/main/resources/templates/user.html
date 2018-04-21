@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Spring Boot Thymeleaf Hello World Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+	<link rel="stylesheet" type="text/css"
+		  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<link rel="stylesheet" th:href="@{/css/main.css}"
+		  href="../../css/main.css"/>
+	<link rel="stylesheet" th:href="@{/css/simplePagination.css}"
+		  href="../../css/simplePagination.css"/>
+	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript"
+	src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script th:src="@{/js/jquery.simplePagination.js}"></script>
+	<script th:src="@{/js/user.js}"></script>
+</head>
+<body>
+
+<div class="main-container">
+	<div class="user-table-container">
+	</div>
+	<div class="pagination-container">
+		<ul class="pagination-holder"></ul>
+
+		<a href="" th:text="${users.nickName}"> </a>
+		  <p th:text="${welcome}"></p>
+
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//loadUsers(1);
+	});
+</script>
+
+</body>
+</html>
