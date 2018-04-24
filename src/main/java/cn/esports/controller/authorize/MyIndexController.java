@@ -1,4 +1,4 @@
-package cn.esports.controller;
+package cn.esports.controller.authorize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,28 +16,27 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import cn.esports.cache.Cache;
+import cn.esports.controller.BaseController;
 import cn.esports.entity.User;
 import cn.esports.entity.UserInfo;
-import cn.esports.security.MyShiroRealm;
-
+/**
+ * 
+* <p>Title: MyIndexController</p>  
+* <p>Description: </p>  
+* @author zhimin.hu  
+* @date 2018年4月24日
+ */
 @RestController
-public class UserController {
+public class MyIndexController extends BaseController {
 
 	@Autowired
-	public static Cache cache;
-
-	@RequestMapping("/hello")
-	public UserInfo hello() {
-		UserInfo user = new UserInfo();
-		user.setPassword("123");
-		user.setUserName("sdfsf");
-		return user;
-	}
-
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public  Cache cache;
+	
+	@RequestMapping(value = "/user/user", method = RequestMethod.GET)
 	public ModelAndView getUsers() {
 		ModelAndView mView=new ModelAndView();
 		try {
+			if(SecurityUtils.getSubject()!=null) {
 			UserInfo user= (UserInfo)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 			//model.addAttribute("users", user);
 			
@@ -48,6 +44,7 @@ public class UserController {
 			mView.addObject("users",user);
 			mView.addObject(user);
 			mView.addObject("welcome", "恭喜你登录成功，这个页面需要登录才可以");
+			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -68,7 +65,7 @@ public class UserController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		return new ModelAndView(new RedirectView( "user"));
+		return new ModelAndView(new RedirectView( "user/user"));
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -76,7 +73,7 @@ public class UserController {
 		return new ModelAndView("login");
 	}
 
-	@RequestMapping("user/user-table")
+	@RequestMapping("/user/user/user-table")
 	public String getUsersByPage(Map<String, Object> model, @RequestParam("page") Integer page) {
 
 		List<User> users = new ArrayList<>();
@@ -90,5 +87,4 @@ public class UserController {
 		model.put("users", users);
 		return "user-table";
 	}
-
 }

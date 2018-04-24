@@ -1,0 +1,64 @@
+/**赛事***/
+
+.color-glod{color:#efefef}
+.color-orange{color:#ffc000}
+.table_head {line-height: 65px;background-color: #2e3035;padding-right: 30px;}
+.table_head .left label{vertical-align: top;display: inline-block;line-height: 65px;padding: 0px 40px;font-size: 20px;}
+.table_head .left label.active{color:#ffc000; background-color: #31363a;}
+
+.table_head .right label{margin-left: 20px;;line-height: 35px; border: 1px solid transparent;border-color:initial;text-align: center; border-radius: 8px;width:100px; font-size: 18px;}
+.table_head .right label.active{border-color:#ffc000;color:#ffc000} 
+
+.list_item { overflow: hidden;border-bottom: 1px solid #454c55;padding: 15px 0;line-height: 45px; height: 45px; height: 70px;}
+.list_item  .left{line-height: 1; ;vertical-align: top;float: left;padding: 0px 40px; font-size: 18px;width: 250px; display:table-cell;}
+.list_item  .left span.max{display: inline-block;width: 200px;}
+.list_item  .center{vertical-align: top;;width: 460px;float: left;}
+.list_item  .right{vertical-align: top;float:left; text-align: center;}
+.list_item .leftBorder{border-left: 1px solid #454c55;}
+.list_item  .center .leftP i{display: inline-block;padding-right: 25px;}
+.list_item  .center .rightP i{display: inline-block;padding-left: 25px;}
+.list_item  .center .score{display: inline-block;width: 100px;}
+.list_item  .center .score b{color:#ffc000}
+.list_item  .center .score *{padding: 0px 5px;}
+.list_item  .right{text-align: center;font-size: 18px; color:#ffc000;width: 250px;}
+.list_item  .center.min {width: 248px;}
+.list_item  .max{width: 355px!important;}
+
+.list_item  .left img{display: inline-block;vertical-align: middle;margin-right: 10px;}
+.list_item  .left span{display: inline-block;max-width: 220px;white-space: normal;vertical-align: middle;max-height: 36px; }
+.list_item  .left.max{white-space: nowrap;}
+
+.list_item  .center .first img{ margin-right: 10px;display: inline-block;vertical-align: middle;}
+.list_item  .center .second img{margin-right: 10px;display: inline-block;vertical-align: middle;}
+.list_item  .center .three img{margin-right: 10px;display: inline-block;vertical-align: middle;}
+
+.no_data_holder{font-size: 18px;}
+.no_data_holder:before{height: 120px!important;}
+
+.fenye{padding: 70px 25px; text-align: center;}
+.fenye *{display: inline-block;box-sizing: content-box;line-height: 40px; height: 42px;cursor: pointer;}
+.fenye button{font-size: 20px;padding:0 15px;border:1px solid #393f46; background-color: #393f46; color:#efefef; border-radius: 6px; margin: 0px 2px;}
+.fenye button.nol{margin-right: 0;}
+.fenye button.noR{margin-left: 0;}
+.fenye  a{display: inline-block; font-size: 20px;width: 45px;border:1px solid #393f46; background-color: #393f46; color:#efefef; border-radius: 6px; margin: 0px 2px;}
+.fenye  a.active{color:#ffc000; border-color:#ffc000}
+.fenye .overflow_hide{padding-bottom: 2px;}
+
+.table_box{display: none;}
+.table_box.show{display: block;} 
+
+.table_title{font-size: 0;}
+.table_title *{font-size: 18px;display: inline-block;}
+.sub_table_item *{display: inline-block;}
+.sub_table_item{line-height: 70px;}
+.table_item3.item .match_name{height: 210px;vertical-align: top;}
+.match_name{padding: 0px 40px;width: 230px;position: relative;}
+.match_name span{position: absolute;left:40px;top:50%; width: 150px;;transform: translateY(-50%);}
+.curr_lunci{width: 120px; text-align: center;}
+.team_name{width: 160px; text-align: center;}
+.team_name img{margin-right: 5px;}
+.at_xiaozu{width: 120px; text-align: center;}
+.curr_score{width: 120px; text-align: center;}
+.curr_status{width: 200px; text-align: left;padding-left: 30px;}
+.table_title {line-height: 65px; border-bottom: 1px solid #454c55;}
+.table_item3{border-bottom: 1px solid #454c55;}

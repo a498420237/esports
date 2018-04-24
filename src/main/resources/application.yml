@@ -1,6 +1,11 @@
 server:
     port: 8081
-    
-    spring: 
-    thymeleaf: 
-    mode: LEGACYHTML5
+
+httpClient:
+    maxTotalConnect:0
+    connectTimeout:20000
+    readTimeout:30000
+baseConfig: 
+      httpUrl: http://39.106.145.173:8087
+      httpMethod: get
+      httpResultType: JSON

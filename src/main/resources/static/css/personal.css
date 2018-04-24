@@ -1,0 +1,437 @@
+
+header{
+	height: 80px;
+	color: #fff;
+	background: #2f3035;
+}
+header nav{
+	width: 1400px;
+	margin: 0 auto;
+}
+header nav .logo{
+	margin-top: 25px;
+}
+header nav .list{
+	margin-top: 26px;
+	margin-left: 42px;
+	width: 703px;
+}
+header nav .list a{
+	display: flex;
+	flex: 2;
+	text-align: center;
+	transition: all .5s;
+}
+header nav .list a{
+	width: 100%；
+	display: flex;
+	flex-direction: column;
+	color: #ccc;
+	font-size: 18px;
+}
+header nav .list a:hover{
+	color: #ffc000;
+	text-decoration: none;
+}
+header nav .list span{
+	font-size: 10px;
+}
+header .rt{
+	width: 98px;
+	margin-top: 30px;
+	display: flex;
+}
+header .rt .login{
+	width: 40px;
+	height: 20px;
+	line-height: 20px;
+	text-align:center;
+	background: #fa4a4a;
+	border-radius: 3px;
+}
+header .rt .regist{
+	width: 40px;
+	height: 20px;
+	line-height: 20px;
+	text-align:center;
+	background: #434343;
+	border-radius: 3px;
+}
+header .rt a:hover{
+	color: #fff;
+}
+.data{
+	height: 1488px;
+	background: url(../img/home_bg.jpg) center center;
+	background-size:1920px 100%; 
+	overflow: hidden;
+}
+.data .content{
+	width: 1400px;
+	margin: 40px auto 0;
+}
+.data .content>.tit{
+	font-size: 22px;
+	color: #fff;
+	padding-left: 87px;
+	line-height: 80px;
+	background: #2e3035;
+	box-shadow: 0px 5px 10px #2e3035;
+}
+.data .cont{
+	display: flex;
+	justify-content: space-between;
+}
+.data .cont .lt{
+	width: 420px;
+}
+.data .lt ul{
+	display: flex;
+	flex-direction: column;
+	font-size: 18px;
+}
+.data .lt li{
+	height: 80px;
+	background: #393f46;
+}
+.data .lt li:nth-child(2n){
+	background: #31363a;
+}
+.data .lt li a{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.data .lt li a:hover{
+	color: #fff;
+}
+.data .lt li .select{
+	color: #ffc000;
+}
+.data .lt li:nth-child(1) .ic{
+	width: 25px;
+	height: 23px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -6px -6px;
+	margin-left: 36px;
+	margin-right: 25px;
+}
+.data .lt li:nth-child(1) .select .ic{
+	width: 25px;
+	height: 23px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -47px -6px;
+	margin-left: 36px;
+	margin-right: 25px;
+}
+.data .lt li:nth-child(2) .ic{
+	width: 32px;
+	height: 29px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -2px -82px;
+	margin-left: 33px;
+	margin-right: 22px;
+}
+.data .lt li:nth-child(3) .ic{
+	width: 25px;
+	height: 26px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -6px -163px;
+	margin-left: 37px;
+	margin-right: 24px;
+}
+.data .lt li:nth-child(4) .ic{
+	width: 27px;
+	height: 29px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -5px -242px;
+	margin-left: 35px;
+	margin-right: 24px;
+}
+.data .lt li:nth-child(5) .ic{
+	width: 29px;
+	height: 31px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -4px -320px;
+	margin-left: 34px;
+	margin-right: 24px;
+}
+.data .lt li:nth-child(6) .ic{
+	width: 25px;
+	height: 27px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -6px -402px;
+	margin-left: 36px;
+	margin-right: 25px;
+}
+.data .lt li:nth-child(7) .ic{
+	width: 29px;
+	height: 29px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -5px -480px;
+	margin-left: 35px;
+	margin-right: 23px;
+}
+.data .lt li:nth-child(8) .ic{
+	width: 24px;
+	height: 27px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -6px -561px;
+	margin-left: 37px;
+	margin-right: 24px;
+}
+.data .lt li:nth-child(9) .ic{
+	width: 22px;
+	height: 21px;
+	background: url(../img/person_iconall.png) no-repeat;
+	background-position: -8px -643px;
+	margin-left: 36px;
+	margin-right: 26px;
+}
+.data .rt{
+	width: 960px;
+	height: 1275px;
+	background: #31363a;
+	margin-top: 20px;
+}
+.data .detail{
+	margin-top: 40px;
+	margin-left: 50px;
+	color: #fff;
+	line-height: 1em;
+}
+.data .detail input{
+	border: none;
+	background: #464a4d;
+	height: 30px;
+	padding-left: 5px;
+	border-radius: 3px;
+	font-size: 18px;
+	color: #999;
+	margin-right: 5px;
+}
+.data .detail .timg{
+	margin-bottom: 40px;
+}
+.data .detail p{
+	margin-bottom: 34px;
+	font-size: 20px;
+}
+.data .detail em{
+	color: #999;
+}
+.data .detail .editor{
+	width: 78px;
+	height: 32px;
+	line-height: 32px;
+	color: #fff;
+	text-align: center;
+	color: #fff;
+	background: #ff3d3d;
+	border-radius: 3px;
+	font-size: 18px;
+	cursor: pointer;
+}
+.data .line{
+	height: 10px;
+	background: #393f46;
+}
+.data .bind .ln{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+	color: #fff;
+	margin-left: 40px;
+	line-height: 79px;
+	font-size: 20px;
+}
+.data .bind em{
+	color: #999;
+}
+.data .bind .ln:nth-child(1){
+	border-bottom:1px solid #414649;
+}
+.data .bind .btns{
+	width: 100px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: #fff;
+	border-radius: 3px;
+	color: #fff;
+	background: #ff3d3d;
+	font-size: 18px;
+	margin-right: 42px;
+}
+.data .file {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    background: url(../img/person_selpicgrey.png) no-repeat;
+    transition: all .3s;
+}
+.data .file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.data .file:hover {
+    background: url(../img/person_selpic.png) no-repeat;
+}
+.data .up-img{
+	margin-left: 40px;
+	border-bottom: 1px solid #414649;
+}
+.data .up-img p{
+	font-size: 20px;
+	color: #999;
+	line-height: 76px;
+}
+.data .up-img .nr{
+	display: flex;
+}
+.data .up-img .img{
+	position: relative;
+	margin-right: 40px;
+}
+.data .up-img .ic{
+	position: absolute;
+	right: 10px;
+	top: 7px;
+	z-index: 999;
+}
+.data .save{
+	font-size: 18px;
+	width: 78px;
+	height: 32px;
+	line-height: 32px;
+	background: #ff3d3d;
+	color: #fff;
+	border-radius: 3px;
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+.data .game{
+	margin-left: 40px;
+}
+.data .game>p{
+	font-size: 20px;
+	color: #999;
+	line-height: 76px;
+}
+.data .account{
+	display: flex;
+}
+.data .account .ry{
+	width: 420px;
+	height: 156px;
+	border-radius: 7px;
+	background: url(../img/person_bindpic.png) no-repeat;
+	margin-right: 37px;
+}
+.data .account .qs{
+	width: 420px;
+	height: 156px;
+	border-radius: 7px;
+	background: url(../img/news_piclist.png) no-repeat;
+	background-size: cover;
+	margin-right: 37px;
+}
+.data .account .info{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	color: #fff;
+	position: relative;
+}
+.data .account .info .tit{
+	font-size: 22px;
+	line-height: 1em;
+	margin-bottom: 25px;
+	margin-top: 15px;
+}
+.data .account .info p{
+	font-size: 18px;
+	margin-bottom: 16px;
+	line-height: 1em;
+}
+.data .account .info .set{
+	width: 26px;
+	height: 26px;
+	background: url(../img/person_set.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 9px;
+	right: 8px;
+}
+.data .account .pro{
+	position: absolute;
+	bottom: -61px;
+	left: 0;
+	right: 0;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+	background: rgba(0,0,0,.8);
+}
+.data .account .chain{
+	width: 15px;
+	height: 33px;
+	background: url(../img/person_bindacc.png)no-repeat;
+	margin: 0 auto;
+}
+footer{
+	height: 413px;
+	background: #2e3035;
+	overflow: hidden;
+}
+footer .content{
+	width: 1400px;
+	display: flex;
+	justify-content: space-between;
+	margin: 75px auto 0;
+	border-bottom:1px solid #43454a;
+	padding-bottom: 20px;
+}
+footer .list{
+	display: flex;
+	flex-direction: column;
+	font-size: 16px;
+	width: 185px;
+}
+footer .list a{
+	line-height: 1em;
+	margin-bottom: 44px;
+	transition: all .5s;
+}
+footer .list a:hover{
+	color: #ffc000;
+}
+footer .bot{
+	font-size: 14px;
+	text-align: center;
+	color: rgba(255,255,255,.3);
+	padding-top: 28px;
+}
+footer .bot p{
+	line-height: 1em;
+	margin-bottom: 25px;
+}
+footer .bot span{
+	padding-right: 20px;
+	border-right: 1px solid #828386;
+	padding-left: 20px;
+}
+footer .bot span:last-child{
+	border:none;
+}
