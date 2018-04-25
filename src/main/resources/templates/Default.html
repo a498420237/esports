@@ -1,49 +1,94 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>指尖上行-首页</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="renderer" content="webkit" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<link rel="stylesheet" type="text/css"  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-	<link rel="stylesheet" th:href="@{/layui/css/layui.css}"  href="../../layui/css/layui.css" media="all" />
-	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script th:src="@{/layui/layui.all.js}"></script>
+<title>指尖上行-首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- 	<link rel="stylesheet" type="text/css"  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}"  href="../../layui/css/layui.css" media="all" /> 
+	 <script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script th:src="@{/layui/layui.all.js}"></script> -->
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" media="all" />
+<link rel="stylesheet" th:href="@{/css/personal.css}"
+	href="../../css/personal.css" media="all" />
+<script th:src="@{/js/jquery.1.11.3.min.js}"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<!-- <script th:src="@{/js/bootstrap-paginator.min.js}"></script> -->
+<!-- <script th:src="@{/js/CompetitionTroops/default.js}"></script> -->
+<!-- <script th:src="@{/js/common.js}"></script> -->
 </head>
 <body>
-<div class="layui-header header header-doc">
-<div class="layui-main">
-<ul class="layui-nav" lay-filter="">
-  <li class="layui-nav-item"><a href="">首页</a></li>
-  <li class="layui-nav-item layui-this"><a href="">新闻</a></li>
-  <li class="layui-nav-item"><a href="#">赛季</a></li>
-  <li class="layui-nav-item">  <a href="/user/user">登陆</a>
-  </li>
-  <li class="layui-nav-item"><a href="#">社区</a></li>
-</ul>
+<textarea id="itemTemplate" style="display:none;">
+	<div><p>$id$</p>
+			<p>$gameType$</p>
+			<p>$troopsName$</p>
+			<p>$troopsName$</p>
+			<p>$troopsManifesto$</p>
+			<p>$troopsNumbers$</p>
+		</div>
+</textarea>
 
+<div  class="table table-striped table-bordered">
+		<div>
+		<div>
+			<p>id</p>
+			<p>游戏类型</p>
+			<p>位置</p>
+			<p>战队名称</p>
+			<p>战队宣言</p>
+			<p>战队人数</p>
+			</div>
+		</div>
+		<div id="conttent">
+		
+		</div>
 </div>
-</div>
-首页访问
-<br />
-下面是列表
-<br />
- <table class="table table-striped table-bordered">
-                 <tr>
-                     <td>作者</td>
-                     <td>教程名称</td>
-                     <td>地址</td>
-                </tr>
-                 <!--/*@thymesVar id="learnList" type=""*/-->
-                 <tr th:each="learn : ${zxlist}" class="text-info">
-                     <td th:text="${learn.troopsName}"></td>
-                     <td th:text="${learn.troopsManifesto}"></td>
-                     <td><a href="#" th:href="${learn.troopsManifesto}" class="btn btn-search btn-green" target="_blank"><span></span></a>
-                     </td>
-                 </tr>
-             </table>
 
+	
+	
+             
+             	<div style="text-align:center">
+						<ul id="pageContainer" class="ft">
+						</ul>
+					</div>
+          
+     <script th:src="@{/vendor/sea/sea.js}"></script>
+<script th:src="@{/scripts/config/seajs-config.js}"></script>
+<script type="text/javascript">
+	//seajs.use('/scripts/controller/test/index');
+</script>      
+           
+
+		<!-- <table class="table table-striped table-bordered">
+		<tr>
+			<td>id</td>
+			<td>游戏类型</td>
+			<td>位置</td>
+			<td>战队名称</td>
+			<td>战队宣言</td>
+			<td>战队人数</td>
+		</tr>
+		<tr th:each="learn : ${zxlist}" class="text-info">
+			<td th:text="${learn.id}"></td>
+			<td th:text="${learn.gameType}"></td>
+			<td th:text="${learn.troopsName}"></td>
+			<td th:text="${learn.troopsName}"></td>
+			<td><a href="#" th:href="${learn.troopsManifesto}" class="btn btn-search btn-green" target="_blank"><span></span></a></td>
+			<td th:text="${learn.troopsNumbers}"></td>
+		</tr>
+             </table>	 -->	
+		
 
 </body>
 </html>

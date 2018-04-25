@@ -1,6 +1,13 @@
 server:
     port: 8081
-
+spring: 
+    thymeleaf: 
+        cache: false  
+        prefix: classpath:/templates/  
+        suffix: .html  
+        encoding: UTF-8  
+        content-type: text/html  
+        mode: LEGACYHTML5  
 httpClient:
     maxTotalConnect:0
     connectTimeout:20000

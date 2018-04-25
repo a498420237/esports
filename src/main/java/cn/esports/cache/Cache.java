@@ -5,17 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.esports.entity.Permission;
-import cn.esports.entity.Role;
 import cn.esports.entity.UserInfo;
 
 public class Cache {
 	private Map<String, UserInfo> userMap = new HashMap<String, UserInfo>();
-	private Map<UserInfo, List<Role>> userAndRolesMap = new HashMap<UserInfo, List<Role>>();
-	private Map<Role, List<Permission>> roleAndRolesMap = new HashMap<Role, List<Permission>>();
+/*	private Map<UserInfo, List<Role>> userAndRolesMap = new HashMap<UserInfo, List<Role>>();
+	private Map<Role, List<Permission>> roleAndRolesMap = new HashMap<Role, List<Permission>>();*/
 
 	public Cache() {
-		UserInfo user = new UserInfo();
+		/*UserInfo user = new UserInfo();
 		user.setUserName("admin");
 		user.setNickName("张山");
 		user.setPassword( "123456");
@@ -38,7 +36,7 @@ public class Cache {
 		userAndRolesMap.put(user2, roles);
 		roleAndRolesMap.put(role, permissions);
 		userMap.put(user.getUserName(), user);
-		userMap.put(user2.getUserName(), user2);
+		userMap.put(user2.getUserName(), user2);*/
 	}
 
 	public UserInfo findByUserName(String userName) {

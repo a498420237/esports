@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>指尖上行</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" type="text/css"  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}"  href="../../layui/css/layui.css" media="all" />
+	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script th:src="@{/layui/layui.all.js}"></script>
+</head>
+<body>
+<div class="layui-header header header-doc">
+<div class="layui-main">
+<ul class="layui-nav" lay-filter="">
+  <li class="layui-nav-item"><a href="#">首页</a></li>
+  <li class="layui-nav-item layui-this"><a href="">新闻</a></li>
+  <li class="layui-nav-item"><a href="#">赛季</a></li>
+  <li class="layui-nav-item">  <a href="javascript:;">小糊涂</a>
+    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+      <dd><a href="#">充值</a></dd>
+      <dd><a href="#">个人中心</a></dd>
+      <dd><a href="#">退出登录</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item"><a href="#">社区</a></li>
+</ul>
+
+</div>
+</div>
+
+<div class=" layui-main">
+<div style="margin-top: 20px;">
+  <legend>登录</legend>
+</div>
+<form class="layui-form layui-form-pane" action="loginIn" method="post">
+  <div class="layui-form-item">
+    <label class="layui-form-label">手机号码</label>
+    <div class="layui-input-inline">
+      <input type="text" name="userName" required="required"  lay-verify="required" placeholder="请输入账号" autocomplete="off" value="13642620726" class="layui-input" />
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">密码框</label>
+    <div class="layui-input-inline">
+      <input type="password" name="code" required="required" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" />
+    </div>
+    <div class="layui-form-mid layui-word-aux"></div>
+  </div> 
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="lay-submit" lay-filter="formDemo">登录</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+</div>
+
+
+
+<div class="main-container">
+	
+	<div class="pagination-container">
+		<ul class="pagination-holder"></ul>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//loadUsers(1);
+	});
+	
+	;!function(){
+	  //无需再执行layui.use()方法加载模块，直接使用即可
+	  var form = layui.form
+	  ,layer = layui.layer;
+	  var element = layui.element;
+	  
+	//监听提交
+	  form.on('submit(formDemo)', function(data){
+	    //layer.msg(JSON.stringify(data.field));
+	    
+	    //return false;
+	  });
+	  //…
+	  form.render();
+	  element.init();
+	}();
+
+</script>
+
+</body>
+</html>

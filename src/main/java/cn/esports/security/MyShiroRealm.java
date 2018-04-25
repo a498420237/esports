@@ -11,8 +11,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.esports.cache.Cache;
-import cn.esports.entity.Permission;
-import cn.esports.entity.Role;
 import cn.esports.entity.UserInfo;
 
 public class MyShiroRealm extends AuthorizingRealm {
@@ -25,12 +23,12 @@ public class MyShiroRealm extends AuthorizingRealm {
 			PrincipalCollection principals) {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		UserInfo user = (UserInfo) principals.getPrimaryPrincipal();
-		for (Role role : user.getRoles()) {
+		/*for (Role role : user.getRoles()) {
 			authorizationInfo.addRole(role.getRoleName());
 			for (Permission permission : role.getPermissions()) {
 				authorizationInfo.addStringPermission(permission.getPath());
 			}
-		}
+		}*/
 		return authorizationInfo;
 	}
 
@@ -43,7 +41,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 			return null;
 		}
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-				userInfo, userInfo.getPassword(), getName());
+				userInfo, userInfo.getCode(), getName());
 		return authenticationInfo;
 	}
 }

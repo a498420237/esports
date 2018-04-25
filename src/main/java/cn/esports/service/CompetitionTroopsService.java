@@ -25,9 +25,9 @@ public class CompetitionTroopsService extends BaseService {
 	 * 站队列表数据
 	 * @return
 	 */
-	public  String GetTroopsList() {
-		//List<Troops.TBean.ResultBean> list = new ArrayList<Troops.TBean.ResultBean>();
-		String result="";
+	public  List<Troops.TBean.ResultBean> GetTroopsList() {
+		List<Troops.TBean.ResultBean> list = new ArrayList<Troops.TBean.ResultBean>();
+		//String result="";
 		try {
 			/*ResponseEntity<String> responseEntity = restTemplate
 					.getForEntity(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", String.class);
@@ -35,11 +35,12 @@ public class CompetitionTroopsService extends BaseService {
 			//Troops models=restTemplate.getForEntity(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", Troops.class);
 			Troops models=restTemplate.getForObject(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", Troops.class);
 			//String jString=restTemplate.getForObject(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", String.class);
-			//list = models.getT().getResult();
-			result=JSON.toJSONString( models.getT().getResult());
+			list = models.getT().getResult();
+			//result=JSON.toJSONString( models.getT().getResult());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return list;
 	}
 }
