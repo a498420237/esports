@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -631,7 +631,7 @@
 		<div class="bottcon">
 			<div class="btnav">
 				<div class="dyl">
-					<a class="current" href="#">关于我们</a>
+					<a class="current" th:href="@{/infos/aboutUs}">关于我们</a>
 					<a href="#">媒体报道</a>
 					<a href="#">投资方&顾问</a>
 				</div>
