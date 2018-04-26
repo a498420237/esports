@@ -16,7 +16,8 @@
 			itemTemplateId : '', // 条目模版Id
 			pageNavId : '', // 分页导航id
 			ajaxFuc : null, // 获取数据
-			ele : ele
+			ele : ele,
+			usepager:true
 		};
 		this.settings = $.extend({}, this.defaults, opt);
 	};
@@ -31,12 +32,15 @@
   				data.list.forEach(function(obj) {
   					controlHtml += itemHtml.repalceVars(obj);
       			});
+  				debugger;
   				obj.settings.ele.html(controlHtml);
+  				if(obj.settings.usepager){
                 var total = data.total; //取到pageCount的值(把返回数据转成object类型)
                 var currentPage = data.page; //得到urrentPage
   	            if (currentPage && total) {
   	            	obj.render(obj,currentPage, total);
   	            }
+  				}
 			});
 			
 		},
@@ -59,6 +63,22 @@
                         case "page":
                             return page;
                     }
+                },
+                tooltipTitles: function (type, page, current) {
+                	// 如果想要去掉页码数字上面的预览功能，则在此操作。例如：可以直接return。
+                	switch (type) {
+                	case "first":
+                		return "跳转到首页";
+                	case "prev":
+                		return "跳转到前一页";
+                	case "next":
+                		return "跳转到后一页";
+                	case "last":
+                		return "跳转到尾页";
+                	case "page":
+                		return (page === current) ? "当前页面是 " + page : "转到页面 "
+                				+ page;
+                	}
                 },
                 shouldShowPage: function (type, page, current) {
                     var result = true;
@@ -109,8 +129,9 @@
                     }
                 }
 			};
-			
-	        $('#'+obj.settings.pageNavId).bootstrapPaginator(options);
+			if(obj.settings.usepager){
+				$('#'+obj.settings.pageNavId).bootstrapPaginator(options);
+			}
 		}
 	};
 	$.fn.paginator=function(options){
