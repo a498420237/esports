@@ -1,11 +1,11 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery','pagePlugin','utilService'], function($,pagePlugin,util) {
-		$("#conttent").paginator({
+		$("#list_content").paginator({
 			itemTemplateId:'itemTemplate',
 			pageNavId:'pageContainer',
 			ajaxFuc:function(curentPage,renderHtml){
 				$.ajax({
-                	url : "/list",
+                	url : "/forecast/list",
                     datatype: 'json',
                     type: "get",
                     data : {"page" : curentPage},

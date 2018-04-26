@@ -14,10 +14,14 @@ public class ForecastService extends BaseService{
 	 * 
 	 * @return
 	 */
-	public List<ForecastInfo.TBean.ResultBean> GetForecastList(int pageIndex,int size) {
+	public List<ForecastInfo.TBean.ResultBean> GetForecastList(int pageIndex,int pagesize,int gameId) {
 		List<ForecastInfo.TBean.ResultBean> tBean = new ArrayList<ForecastInfo.TBean.ResultBean>();
 		try {
-			String url = baseConfig.getHttpUrl() + "/quiz/list.json?offset=0&limit=2";
+			
+			String url = baseConfig.getHttpUrl() + "/quiz/list.json?offset="+pageIndex+"&limit="+pagesize+"";
+			if(gameId>=0) {
+				url+="&gameId="+gameId;
+			}
 			ForecastInfo models = restTemplate.getForObject(url, ForecastInfo.class);
 			tBean=models.getT().getResult();
 		} catch (Exception e) {

@@ -12,10 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.esports.controller.BaseController;
 import cn.esports.entity.ForecastInfo;
-import cn.esports.entity.Troops;
-import cn.esports.entity.UserLogin;
 import cn.esports.service.ForecastService;
-import cn.esports.service.UserInfoService;
 
 @RestController
 public class ForecastController extends BaseController {
@@ -31,15 +28,13 @@ public class ForecastController extends BaseController {
 	}
 	
 	@RequestMapping(value="/forecast/list")
-	public Map<String, Object> GetList(Integer page,Integer size){
+	public Map<String, Object> GetList(Integer page,Integer size,int gameId){
 		if(page==null)page=1;
-		if(size==null)size=15;
-		int pages=page;
-		int sizes=size;
-		int total=30;
-		List<ForecastInfo.TBean.ResultBean> resultBeans=fService.GetForecastList(pages,sizes);
+		if(size==null)size=10;
+		int total=50;
+		List<ForecastInfo.TBean.ResultBean> resultBeans=fService.GetForecastList(page.intValue(),size.intValue(),gameId);
 		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("zxlist", resultBeans);
+		map.put("resultlist", resultBeans);
 		map.put("total", total);
 		map.put("page", page);
 		map.put("size", size);
