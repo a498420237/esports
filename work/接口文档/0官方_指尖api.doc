@@ -1,0 +1,6047 @@
+
+        <html xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:w="urn:schemas-microsoft-com:office:word"
+        xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta http-equiv=Content-Type content="text/html;  
+        charset=utf-8">
+        <style type="text/css">
+            table  
+            {  
+                border-collapse: collapse;
+                border: none;  
+                width: 100%;  
+            }  
+            td  
+            {  
+                border: solid #CCC 1px;  
+            }  
+            .codestyle{
+                word-break: break-all;
+                background:silver;mso-highlight:silver;
+            }
+        </style>
+        <meta name=ProgId content=Word.Document>
+        <meta name=Generator content="Microsoft Word 11">
+        <meta name=Originator content="Microsoft Word 11">
+        <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+        <body><h1>1、个人中心</h1><div style="margin-left:20px;"><h2>1.1、注册登录</h2><div style="margin-left:20px;"><h3>1.1.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户注册登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8080/api/index/login.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机号码</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 2,  用户Id（long）
+        &quot;userName&quot;: &quot;YH1539&quot;,   用户名（String）
+        &quot;sex&quot;: 1, 性别（int）（1：男，2：女，3：保密）
+        &quot;age&quot;: 24,    年龄（int）
+        &quot;status&quot;: 1,  用户状态（int）（1:正常 2：禁止登录 3：禁言 4：禁止Ip登录'）
+        &quot;mobile&quot;: &quot;15202117928&quot;,    手机号码（String）
+        &quot;mobileBound&quot;: true,  是否绑定手机（boolean）
+        &quot;emailBound&quot;: false,  是否绑定邮箱（boolean）
+        &quot;email&quot;:              邮箱（String）
+        &quot;avatar&quot;:             用户头像（String）
+        &quot;signature&quot;: &quot;只想遇见那个她&quot;,     签名（String）
+        &quot;area&quot;:               地区(String)
+        &quot;registerType&quot;: 1,        注册类型（int）
+        &quot;imToken&quot;: &quot;63e8a4107b266b1c0e6a00f745d07e8e&quot;,      网易云信token（String）
+        &quot;token&quot;: &quot;C945202F54EAE13CB522370CF63E69652DE0B742&quot;         token号（String）
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功; 20017：手机号码不能为空; 20011：验证码不能为空，请输入验证码继续; 20012：验证码错误; 20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>注册后返回的信息，成功返回“OK”，失败返回错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">t</td>
+<td style="text-align: left;">T</td>
+<td>用户对象(错误情况下没有)</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.2、退出登录</h2><div style="margin-left:20px;"><h3>1.2.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>退出登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8080/api/index/logout.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>仅返回状态码</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.3、发送手机验证码</h2><div style="margin-left:20px;"><h3>1.3.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>发送手机验证码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8080/api/msg/sendMobileCode.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机号码</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>发送类型（登录注册：login 绑定手机号：bindMobile  更换手机号：resetBindMobile  更换邮箱：resetBindEamil 转移队长：transferaptain 创建战队：createTroop）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>仅返回状态码</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功; 20023：请输入正确的手机号; 20017：手机号码不能为空; 400：参数错误; 20018：发送消息太频繁；20019：发送信息错误；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>注册后返回的信息，成功返回“OK”，失败返回错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.4、自动登录</h2><div style="margin-left:20px;"><h3>1.4.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>自动登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8080/api/index/isLogin.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>仅返回状态吗</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：登录成功；20024：用户未登录；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.5、获取用户个人信息</h2><div style="margin-left:20px;"><h3>1.5.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取用户信息接口接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/user/getUserInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 1,  用户Id（long）
+        &quot;userName&quot;: &quot;御龙归宇月&quot;,    昵称（String）
+        &quot;sex&quot;: 1, 性别（int）（1：男，2：女，3：保密）
+        &quot;age&quot;: 24,    年龄（int）
+        &quot;mobile&quot;: &quot;15202117928&quot;,    手机号码（String）
+        &quot;mobileBound&quot;: true,  是否绑定手机号（boolean）
+        &quot;email&quot;: &quot;603498287@qq.com&quot;,    邮箱（String）
+        &quot;emailBound&quot;: true,   是否绑定邮箱（boolean）
+        &quot;signature&quot;: &quot;只想遇见那个她&quot;,     签名（String）
+        &quot;area&quot;: &quot;安徽&quot;,   地区（String）
+        &quot;imToken&quot;: &quot;63e8a4107b266b1c0e6a00f745d07e8e&quot;,      网易云信token（String）
+        &quot;avatar&quot;: &quot;http://p3.gexing.com/shaitu/20120814/2322/502a6d183fad8.jpg&quot;,    头像（String）
+        &quot;registerType&quot;: 1,    注册类型（int）
+        &quot;imagePrefix&quot;: &quot;http://192.168.1.12:8094&quot;,  图片前缀（String）
+        &quot;gold&quot;: 0,    金币（double）
+        &quot;diamond&quot;: 0, 钻石（doible）
+        &quot;userPictures&quot;: [
+            {
+                &quot;id&quot;: 1,  图片Id（long）
+                &quot;uid&quot;: 1, 用户Id（long）
+                &quot;picture&quot;: &quot;http://p2.gexing.com/shaitu/20120814/2321/502a6d05cf996.jpg&quot;,   照片（String）
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;uid&quot;: 1,
+                &quot;picture&quot;: &quot;http://p2.gexing.com/shaitu/20120814/2321/502a6d10724dc.jpg&quot;,
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20015：用户不存在；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.6、用户个人资料修改</h2><div style="margin-left:20px;"><h3>1.6.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户个人资料修改接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/user/completeUserInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">userName</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">String</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>性别</td>
+</tr>
+<tr>
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>年龄</td>
+</tr>
+<tr>
+<td style="text-align: left;">signature</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>签名</td>
+</tr>
+<tr>
+<td style="text-align: left;">area</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>地区</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>头像</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;操作成功&quot;
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：操作成功；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.7、发送邮箱验证码</h2><div style="margin-left:20px;"><h3>1.7.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>发送邮箱验证码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8180/api/msg/sendEmailCode.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>发送类型（绑定邮箱：bindEmail  更换邮箱：resetBindEamil  更换手机号：resetBindMobile）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功; 20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>注册后返回的信息，成功返回“OK”，失败返回错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.8、校验验证码</h2><div style="margin-left:20px;"><h3>1.8.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>校验验证码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.117:8180/api/msg/verifySecurityCode.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">principal</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>账号</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>发送类型</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: &quot;8C2600E4FE2F28E31FAE651D0AA592CCE93BB019&quot;     更换手机号或者邮箱唯一码
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功; 20011：验证码不能为空，请输入验证码继续; 20012：验证码错误; 20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>注册后返回的信息，成功返回“OK”，失败返回错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">t</td>
+<td style="text-align: left;">T</td>
+<td>用户对象(错误情况下没有)</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.9、绑定更换手机号</h2><div style="margin-left:20px;"><h3>1.9.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>绑定更换手机号接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/user/bindMobile.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>操作类型（1：绑定 2：更换）</td>
+</tr>
+<tr>
+<td style="text-align: left;">oldAccount</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>更换手机号传送，上一步验证的账号</td>
+</tr>
+<tr>
+<td style="text-align: left;">verifyCode</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>更换手机号传送，上一步验证账号返回的唯一码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;OK&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；400：参数错误!；20017：手机号码不能为空；20023：请输入正确的手机号；20011：验证码不能为空，请输入验证码继续；20012：验证码错误；20031：请验证原手机号错误；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.10、绑定更换邮箱</h2><div style="margin-left:20px;"><h3>1.10.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>绑定更换手机号接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/user/bindEmail.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>操作类型（1：绑定 2：更换）</td>
+</tr>
+<tr>
+<td style="text-align: left;">oldAccount</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>更换邮箱传送，上一步验证的账号</td>
+</tr>
+<tr>
+<td style="text-align: left;">verifyCode</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>更换邮箱传送，上一步验证账号返回的唯一码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;OK&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；400：参数错误!；20025：邮箱不能为空；20026：请输入正确的邮箱；20011：验证码不能为空，请输入验证码继续；20012：验证码错误；20030：请验证原邮箱错误；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.11、添加用户照片</h2><div style="margin-left:20px;"><h3>1.11.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>保存更换用户照片接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.12:8180/api/user/userPicture.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">url</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>照片url</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 39, 图片Id（long）
+        &quot;uid&quot;: 1, 用户Id（long）
+        &quot;picture&quot;: &quot;https://b-ssl.duitang.com/uploads/item/201508/22/20150822212443_xm5cd.png&quot;      图片（String）
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20032：保存照片失败；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.12、删除用户照片</h2><div style="margin-left:20px;"><h3>1.12.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除用户照片接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/user/deleteUserPicture.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>图片Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>仅返回状态码</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20043：删除失败；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.13、拉取游戏信息</h2><div style="margin-left:20px;"><h3>1.13.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取游戏信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/gameAccount/getGameInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;gameInfos&quot;: [
+            {
+                &quot;id&quot;: 1,  游戏类型（long）
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,     游戏名（String）
+                &quot;appLogo&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/crop_image_1515726086808.jpg&quot;,    游戏logo（String）
+                &quot;shortName&quot;: &quot;王者荣耀&quot;,    游戏简称（String）
+                &quot;gameAbout&quot;: &quot;手机5v5竞技游戏&quot;,   游戏描述（String）
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;gameName&quot;: &quot;绝地求生&quot;,
+                &quot;shortName&quot;: &quot;吃鸡&quot;,
+                &quot;gameAbout&quot;: &quot;枪战游戏&quot;,
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.14、拉取大区信息</h2><div style="margin-left:20px;"><h3>1.14.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取游戏大区接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/gameAccount/getGameArea.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>游戏类型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;gameAreas&quot;: [
+            {
+                &quot;id&quot;: 1,  大区Id（long）
+                &quot;gameId&quot;: 1,  游戏类型（long）
+                &quot;areaName&quot;: &quot;手Q大区&quot;,     大区名称（String）
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;gameId&quot;: 1,
+                &quot;areaName&quot;: &quot;微信大区&quot;,
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.15、获取游戏段位信息</h2><div style="margin-left:20px;"><h3>1.15.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取游戏段位信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.12:8180/api/gameAccount/getGameRanks.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>游戏Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;gameRanks&quot;: [
+            {
+                &quot;id&quot;: 1,  段位Id（long）
+                &quot;rankName&quot;: &quot;匹配&quot;,   段位名（String）
+                &quot;gameId&quot;: 1,  游戏Id（long）
+                &quot;areaId&quot;: 1,  大区Id（long）
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:06:02 PM&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;rankName&quot;: &quot;倔强青铜&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:10:21 PM&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;rankName&quot;: &quot;秩序白银&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:10:50 PM&quot;
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;rankName&quot;: &quot;荣耀黄金&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:11:20 PM&quot;
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;rankName&quot;: &quot;尊贵铂金&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:11:39 PM&quot;
+            },
+            {
+                &quot;id&quot;: 6,
+                &quot;rankName&quot;: &quot;永恒钻石&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:11:54 PM&quot;
+            },
+            {
+                &quot;id&quot;: 7,
+                &quot;rankName&quot;: &quot;至尊星耀&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:12:41 PM&quot;
+            },
+            {
+                &quot;id&quot;: 8,
+                &quot;rankName&quot;: &quot;王者1-10星&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:13:04 PM&quot;
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;rankName&quot;: &quot;王者11-20星&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:13:22 PM&quot;
+            },
+            {
+                &quot;id&quot;: 10,
+                &quot;rankName&quot;: &quot;王者21星及以上&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 2, 2018 2:13:40 PM&quot;
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.16、绑定游戏账号</h2><div style="margin-left:20px;"><h3>1.16.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>绑定游戏接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/gameAccount/bind.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>游戏Id</td>
+</tr>
+<tr>
+<td style="text-align: left;">areaId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">long</td>
+<td>大区Id（有大区需选择传入）</td>
+</tr>
+<tr>
+<td style="text-align: left;">gameRank</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>游戏段位或者排名</td>
+</tr>
+<tr>
+<td style="text-align: left;">role</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>游戏角色</td>
+</tr>
+<tr>
+<td style="text-align: left;">printscreen</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>角色截图</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>仅返回状态码</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20038：绑定游戏失败；20039：你已绑定过该游戏账号；20040：游戏角色不能为空；20041：请选择绑定游戏；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.17、获取用户绑定游戏账号</h2><div style="margin-left:20px;"><h3>1.17.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取用户绑定游戏账号接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/gameAccount/getUserBindGame.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">long</td>
+<td>游戏Id（需要根据用户和游戏Id查询时传）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;gameAccountInfos&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;gameId&quot;: 2,
+                &quot;role&quot;: &quot;战神&quot;,
+                &quot;userId&quot;: 1,
+                &quot;gameName&quot;: &quot;绝地求生&quot;
+            },
+            {
+                &quot;id&quot;: 1,  账号Id（long）
+                &quot;gameId&quot;: 1,  游戏Id（long）
+                &quot;areaId&quot;: 1,  大区Id（long）
+                &quot;role&quot;: &quot;狄仁杰&quot;,  角色（String）
+                &quot;userId&quot;: 1,  用户Id（long）
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,     游戏名称（String）
+                &quot;areaName&quot;: &quot;手Q大区&quot;      大区名（String）
+                &quot;gameLogo&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/crop_image_1515726086808.jpg&quot;    游戏图片（String）
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.18、三方登录</h2><div style="margin-left:20px;"><h3>1.18.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>三方登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/third/login.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">loginType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>登录类型（4：微信 5：QQ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">accessToken</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>accessToken</td>
+</tr>
+<tr>
+<td style="text-align: left;">openId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>openId</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> 用户信息</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.19、钻石兑换金币</h2><div style="margin-left:20px;"><h3>1.19.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>钻石兑换金币接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/user/convertDiamondToGold.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">diamond</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>兑换钻石数（必须是整数）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20015：用户不存在!；20037：钻石不足，请充值；20045：兑换失败；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.20、消费记录查询天数</h2><div style="margin-left:20px;"><h3>1.20.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>消费记录查询天数</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/index/getSelectDate.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;selectDates&quot;: [
+            {
+                &quot;id&quot;: 377,        配置Id（long）
+                &quot;description&quot;: &quot;本周&quot;     配置描述（String）
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.21、查询用户消费记录</h2><div style="margin-left:20px;"><h3>1.21.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查询用户消费记录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/user/getPersonalWealthInfo.json?offset=0&amp;limit=3</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">dateId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">long</td>
+<td>配置Id （查询全部传0）</td>
+</tr>
+<tr>
+<td style="text-align: left;">currency</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>币种（0：全部 1：金币 2：钻石）</td>
+</tr>
+<tr>
+<td style="text-align: left;">offset</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>查询下标</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>查询一页数量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,  下标（long）
+        &quot;total&quot;: 23,  总数（long）
+        &quot;limit&quot;: 3,       查询数量（int）
+        &quot;result&quot;: [
+            {
+                &quot;id&quot;: 71, 财富变化Id（long）
+                &quot;detailtype&quot;: 7,  财富变化详细类型（int）
+                &quot;value&quot;: 1,       财富变化数量（double）
+                &quot;operationType&quot;: 4,       财富变化操作类型（int）（1，2 ：金币  3，4：钻石）
+                &quot;afterGold&quot;: 110, 财富变化后的金币数（double）
+                &quot;afterDiamond&quot;: 4,        财富变化后钻石数（double）
+                &quot;userId&quot;: 5,  用户Id（long）
+                &quot;remark&quot;: &quot;钻石兑换金币&quot;,     财富变化详细描述（String）
+                &quot;createTime&quot;: &quot;Jan 17, 2018 3:30:42 PM&quot;     财富变化时间（String）
+            },
+            {
+                &quot;id&quot;: 72,
+                &quot;detailtype&quot;: 7,
+                &quot;value&quot;: 1,
+                &quot;operationType&quot;: 1,
+                &quot;afterGold&quot;: 110,
+                &quot;afterDiamond&quot;: 4,
+                &quot;userId&quot;: 5,
+                &quot;remark&quot;: &quot;钻石兑换金币&quot;,
+                &quot;createTime&quot;: &quot;Jan 17, 2018 3:30:42 PM&quot;
+            },
+            {
+                &quot;id&quot;: 67,
+                &quot;detailtype&quot;: 7,
+                &quot;value&quot;: 1,
+                &quot;operationType&quot;: 4,
+                &quot;afterGold&quot;: 100,
+                &quot;afterDiamond&quot;: 0,
+                &quot;userId&quot;: 5,
+                &quot;remark&quot;: &quot;钻石兑换金币&quot;,
+                &quot;createTime&quot;: &quot;Jan 17, 2018 10:14:46 AM&quot;
+            }
+        ],
+        &quot;filter&quot;: {
+            &quot;uid&quot;: 5
+        },
+        &quot;totalPage&quot;: 8,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.22、根据用户Id获取用户基本信息（网易云信）</h2><div style="margin-left:20px;"><h3>1.22.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据用户Id获取用户基本信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/index/getUserBasicInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">account</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>网易云信账号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;userAccount&quot;: 4,     云信账号（long）
+        &quot;userName&quot;: &quot;卢彦仲&quot;,      云信昵称 （String）
+        &quot;sex&quot;: 0, 性别（1：男，2：女，3：保密）（int）
+        &quot;age&quot;: 0, 年龄（int）
+        &quot;userPictures&quot;: [
+            {
+                &quot;id&quot;: 5,  用户照片Id（long）
+                &quot;picture&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/137****6192-1515652202.655714.png&quot;,   用户照片（String）
+            },
+            {
+                &quot;id&quot;: 6,
+                &quot;picture&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/137****6192-1515724054.553211.png&quot;,
+            },
+            {
+                &quot;id&quot;: 7,
+                &quot;picture&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/137****6192-1515724098.882653.png&quot;,
+            }
+        ],
+        &quot;gameAccountInfos&quot;: [
+            {
+                &quot;id&quot;: 4,  绑定游戏账号Id（long）
+                &quot;gameId&quot;: 1,  游戏Id(long)
+                &quot;areaId&quot;: 1,  大区Id（long）
+                &quot;gameRank&quot;: &quot;匹配&quot;,   排名段位（String）
+                &quot;role&quot;: &quot;Asdfs&quot;,    游戏角色（String）
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,     游戏名（String）
+                &quot;areaName&quot;: &quot;手Q大区&quot;,     游戏大区名（String）
+                &quot;gameLogo&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/crop_image_1515726086808.jpg&quot;        游戏logo（String）
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.23、邀请用户加入战队拉取用户</h2><div style="margin-left:20px;"><h3>1.23.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>邀请用户加入战队拉取用户接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/user/getGameUsers.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>游戏Id</td>
+</tr>
+<tr>
+<td style="text-align: left;">account</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>搜索账号（昵称或者手机号）</td>
+</tr>
+<tr>
+<td style="text-align: left;">offset</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>搜索偏移量</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>查询数量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 1,
+        &quot;limit&quot;: 10,
+        &quot;result&quot;: [
+            {
+                &quot;userId&quot;: 4,  用户Id（long）
+                &quot;gameAccount&quot;: &quot;Nnjj&quot;,  游戏账号（String）
+                &quot;nickName&quot;: &quot;大腿你懂吗&quot;,    用户名（String）
+                &quot;serverType&quot;: &quot;手Q大区&quot;,   大区（String）
+                &quot;level&quot;: &quot;匹配&quot;,  段位排名（String）
+                &quot;headUrl&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/137****6192-1516246659.775312.png&quot; 用户头像（String）
+            }
+        ],
+        &quot;filter&quot;: {
+            &quot;gameId&quot;: 1,
+            &quot;mobile&quot;: [
+                &quot;137&quot;
+            ],
+            &quot;userName&quot;: [
+                &quot;大腿&quot;
+            ]
+        },
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；400：参数错误!；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>1.24、获取官方账号</h2><div style="margin-left:20px;"><h3>1.24.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取官方账号接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173 :8087/api/user/getOfficialUser.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 39,
+        &quot;userName&quot;: &quot;大胖子&quot;,
+        &quot;leveling&quot;: 1,
+        &quot;sex&quot;: 1,
+        &quot;age&quot;: 27,
+        &quot;status&quot;: 1,
+        &quot;mobile&quot;: &quot;13613326654&quot;,
+        &quot;mobileBound&quot;: true,
+        &quot;emailBound&quot;: false,
+        &quot;signature&quot;: &quot;ii就看看&quot;,
+        &quot;area&quot;: &quot;上海市&quot;,
+        &quot;avatar&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516605473400.jpg&quot;,
+        &quot;registerType&quot;: 1,
+        &quot;imToken&quot;: &quot;b37c6e1fddb0e059fb1040545aa0bc30&quot;,
+        &quot;isOfficial&quot;: true,
+        &quot;createTime&quot;: &quot;Jan 22, 2018 3:17:22 PM&quot;,
+        &quot;updateTime&quot;: &quot;Jan 22, 2018 3:17:22 PM&quot;,
+        &quot;gold&quot;: 0,
+        &quot;diamond&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div></div><h1>2、竞猜</h1><div style="margin-left:20px;"><h2>2.1、根据直播id获取直播详情</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据直播id获取直播详情</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/live/liveInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">liveId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>直播id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;liveInfo&quot;: {
+            &quot;id&quot;: 2,   //直播id（long）
+                &quot;name&quot;: &quot;hyh&quot;, //直播名称（string）
+                &quot;anchorName&quot;: &quot;主播一&quot;,//主播姓名（string）
+                &quot;gameId&quot;: 1, //游戏类型（long）
+                &quot;streamUrl&quot;: &quot;sfgdsfgsd&quot;, //直播流（string）
+                &quot;sortId&quot;: 2, //排序权重
+                &quot;isShow&quot;: 2, //是否显示（1：不显示  2：显示）（int）
+                &quot;liveImg&quot;: &quot;sfdgsdfg&quot;,（直播图片）
+                &quot;concernType&quot;: 1, //关联内容（1.外部链接 2.内部链接-资讯 3.内部链接-代练 5.内部链接-赛事 6.内部链接-竞猜）（int）
+                &quot;concernId&quot;: 1,//关联内容id（long）
+                &quot;createTime&quot;: &quot;Dec 21, 2017 4:02:30 PM&quot;,
+                &quot;updateTime&quot;: &quot;Dec 26, 2017 3:10:41 PM
+                &quot;viewNum&quot;: &quot;4&quot;,//string(观看人数)
+                &quot;handicapListInfo&quot;: {
+                    &quot;handicapId&quot;: 96,//盘口id（long）
+                    &quot;lotteryId&quot;: 81,//竞猜id（long）
+                    &quot;handicapType&quot;: &quot;1&quot;,//竞猜类型（string）
+                    &quot;redOdd&quot;: 1.2,//红方赔率（double）
+                    &quot;blueOdd&quot;: 1.2,//蓝方赔率（double）
+                    &quot;status&quot;: 0,//状态（int）（0：竞猜中 3：流盘  4：已结算）
+                    &quot;quizEndDate&quot;: &quot;Jan 26, 2018 9:44:49 AM&quot;,
+                    &quot;quizEndTime&quot;: 1813329952,//结束竞猜时间戳（long）
+                    &quot;maxQuiz&quot;: 2000,//竞猜上限（int）
+                    &quot;minQuiz&quot;: 1000,//竞猜下线（int）
+                    &quot;isShow&quot;: 1,//是否显示（int）（0：不显示   1：显示）
+                    &quot;goldType&quot;: 1,//金币类型（int）（0：金币 1：钻石）
+                    &quot;fromType&quot;: 1,//盘口运营方（int）（0：三方  1：自营）
+                    &quot;redQuiz&quot;: &quot;红方3&quot;,//红方名称（string）
+                    &quot;blueQuiz&quot;: &quot;蓝方3&quot;,//蓝方名称（string）
+                    &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,//红方图片（string）
+                    &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;//蓝方图片（string）
+            }
+        }
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20020：直播不存在；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功为"OK"，失败则为错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功返回对象</td>
+</tr>
+</tbody>
+</table></div><h2>2.2、根据盘口id更新盘口信息</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据盘口id更新盘口信息</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/quiz/handicapInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">handicapId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>盘口id</td>
+</tr>
+<tr>
+<td style="text-align: left;">fromType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>盘口运营方0：三方  1：自营</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;handicapInfo&quot;: {
+             &quot;handicapId&quot;: 96, //盘口id(long)
+             &quot;lotteryId&quot;: 81, //竞猜id(long)
+             &quot;handicapType&quot;: &quot;1&quot;,  //竞猜类型(string)
+             &quot;redOdd&quot;: 1.2, //红方赔率（double）
+             &quot;blueOdd&quot;: 1.2,//蓝方赔率（double）
+             &quot;status&quot;: 1,//状态（0：竞猜中 3：流盘  4：已结算）（int）
+             &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;, //竞猜结束时间(date)
+             &quot;quizEndTime&quot;: 1512524689000,//竞猜结束时间戳（long）
+             &quot;handicapNowTime&quot;: 1512524689000,//当前时间戳（long）
+             &quot;maxQuiz&quot;: 2000, //竞猜上限(int)
+             &quot;minQuiz&quot;: 1000, //竞猜下线(int)
+             &quot;isShow&quot;: 1  //是否显示（0：不显示   1：显示）(int)
+             &quot;goldType&quot;: 1 //下注类型 （0：金币 1：钻石）（int）
+             &quot;fromType&quot;: 1,//盘口运营方（0：三方  1：自营）（int）
+             &quot;redQuiz&quot;: &quot;红方1&quot;,//红方下注名（string）
+            &quot;blueQuiz&quot;: &quot;蓝方1&quot;,//蓝方下注名（string）
+            &quot;quizName&quot;: &quot;赛事一&quot;//竞猜名称（string）
+            &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,//红队图片（string）
+            &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;//蓝队图片（string）
+        }
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20019：竞猜不存在；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功为"OK"，失败则为错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td>成功返回对象</td>
+</tr>
+</tbody>
+</table></div><h2>2.3、获取推荐直播列表接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取推荐直播列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/live/recommendLive.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;liveInfo&quot;: [
+            {
+                &quot;id&quot;: 1,  //id（long）
+                &quot;name&quot;: &quot;lolo&quot;,//直播名称（string）
+                &quot;anchorName&quot;: &quot;主播一&quot;,//主播名称（string）
+                &quot;gameId&quot;: 2, //游戏类型（long）
+                &quot;streamUrl&quot;: &quot;sdfgsdfgsdfg&quot;, //直播流（string）
+                &quot;sortId&quot;: 1, //排序id（int）
+                &quot;isShow&quot;: 2, //是否显示（1：不显示  2：显示）
+                &quot;liveImg&quot;: &quot;http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg&quot;,//直播图片（string）
+                &quot;concernType&quot;: 6,//关联类型（1.外部链接 2.内部链接-资讯 3.内部链接-代练 5.内部链接-赛事 6.内部链接-竞猜）（string）
+                &quot;concernId&quot;: 96,//关联id
+                &quot;createTime&quot;: &quot;Dec 20, 2017 4:01:53 PM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 5, 2018 10:09:50 AM&quot;,
+                &quot;viewNum&quot;: &quot;4&quot;,//观看人数（string）
+                &quot;handicapListInfo&quot;: {
+                    &quot;handicapId&quot;: 96, //盘口id*（long）
+                    &quot;lotteryId&quot;: 81,//赛事id（long）
+                    &quot;handicapType&quot;: &quot;1&quot;,//竞猜类型（string）
+                    &quot;redOdd&quot;: 1.2, //红队赔率（double）
+                    &quot;blueOdd&quot;: 1.2,//蓝队赔率（double）
+                    &quot;status&quot;: 0,//状态（0：竞猜中 3：流盘  4：已结算）
+                    &quot;quizEndDate&quot;: &quot;Jan 26, 2018 9:44:49 AM&quot;,
+                    &quot;quizEndTime&quot;: 1812775139,//结束时间（long）
+                    &quot;maxQuiz&quot;: 2000,//投注上限（int）
+                    &quot;minQuiz&quot;: 1000,//投注下线（int）
+                    &quot;isShow&quot;: 1,//是否显示（0：不显示   1：显示）（int）
+                    &quot;goldType&quot;: 1,//金币类型（0：金币 1：钻石）（int）
+                    &quot;fromType&quot;: 1,//盘口运营方（0：三方  1：自营）（int）
+                    &quot;redQuiz&quot;: &quot;红方3&quot;,//红方投注名（sting）
+                    &quot;blueQuiz&quot;: &quot;蓝方3,//蓝方投注名（string）
+                    &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                    &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;hyh&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;streamUrl&quot;: &quot;sfgdsfgsd&quot;,
+                &quot;sortId&quot;: 1,
+                &quot;isShow&quot;: 2,
+                &quot;liveImg&quot;: &quot;http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg&quot;,
+                &quot;concernType&quot;: 1,
+                &quot;concernId&quot;: 1,
+                &quot;createTime&quot;: &quot;Dec 21, 2017 4:02:30 PM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 5, 2018 10:09:51 AM&quot;
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;pap&quot;,
+                &quot;gameId&quot;: 3,
+                &quot;streamUrl&quot;: &quot;asdfasdfasdf&quot;,
+                &quot;sortId&quot;: 1,
+                &quot;isShow&quot;: 2,
+                &quot;liveImg&quot;: &quot;http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg&quot;,
+                &quot;concernType&quot;: 1,
+                &quot;concernId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 4, 2018 12:14:58 PM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 5, 2018 10:09:53 AM&quot;
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;ooo&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;streamUrl&quot;: &quot;sadgasfd&quot;,
+                &quot;sortId&quot;: 1,
+                &quot;isShow&quot;: 2,
+                &quot;liveImg&quot;: &quot;http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg&quot;,
+                &quot;concernType&quot;: 1,
+                &quot;concernId&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 4, 2018 12:15:15 PM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 5, 2018 10:09:52 AM&quot;
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功为"OK"，失败则为错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功返回对象</td>
+</tr>
+</tbody>
+</table></div><h2>2.4、用户下注接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户下注接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/quiz/bet.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>用户token</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lottertType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>竞猜类型</td>
+</tr>
+<tr>
+<td style="text-align: left;">lotteryId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>竞猜id</td>
+</tr>
+<tr>
+<td style="text-align: left;">quizMoney</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>下注金额</td>
+</tr>
+<tr>
+<td style="text-align: left;">quizTeamType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>下注队伍  0：红方    1：蓝方</td>
+</tr>
+<tr>
+<td style="text-align: left;">roundId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>盘口id</td>
+</tr>
+<tr>
+<td style="text-align: left;">quizType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>竞猜运营方（0：三方；1：自营）</td>
+</tr>
+<tr>
+<td style="text-align: left;">clientType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>客户端类型    0.web客户端 1.windows客户端 2.android客户端 3.iPhone客户端',</td>
+</tr>
+<tr>
+<td style="text-align: left;">goldType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>下注金额类型（0：金币 1：钻石）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;操作成功&quot;
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20015：同一盘口两边不能同时投注；20017：该场赛事已经关闭；20016：该场赛事已停止竞猜；20018：财富不足；20000：系统内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>成功返回OK，失败返回错误信息</td>
+</tr>
+</tbody>
+</table></div><h2>2.5、获取竞猜列表接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取竞猜列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/quiz/list.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">offset</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>偏移量</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>每页显示数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">Long</td>
+<td>游戏类型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 5,
+        &quot;limit&quot;: 15,
+        &quot;result&quot;: [
+            {
+                &quot;lotteryId&quot;: 81,    //竞猜id（long）
+                &quot;lotteryName&quot;: &quot;赛事三&quot;,  //竞猜名称(string)
+                &quot;matchId&quot;: 1,   //赛事id(long)
+                &quot;quizId&quot;: &quot;JC181&quot;, (string)
+                &quot;isShow&quot;: 0,  //是否显示（0：不显示   1：显示）(int)
+                &quot;gameName&quot;: &quot;王者荣耀&quot;, //游戏名称(string)
+                &quot;gameId&quot;: 1,  //游戏id(loing)
+                &quot;redTeam&quot;: &quot;红方3&quot;,  //红队名称(string)
+                &quot;blueTeam&quot;: &quot;蓝方3&quot;, //蓝队名称(string)
+                &quot;redImg&quot;: &quot;123456&quot;, //红队图片(string)
+                &quot;blueImg&quot;: &quot;123456&quot;,//蓝队图片(string)
+                &quot;status&quot;: 1, //状态（0 竞猜中    1 赛事中    2:已结束'）(int)
+                &quot;quizType&quot;: 1, //竞猜类型(0：三方  1：自营)(int)
+                &quot;goldType&quot;: 0,//下注类型 （0：金币 1：钻石）（int）
+                &quot;sortTime&quot;: 1512540881000,//时间戳（long）
+                &quot;nowTime&quot;:1512540881000,//正常时间戳（long）
+                &quot;sortDate&quot;: &quot;Dec 6, 2017 2:14:41 PM&quot;,
+                &quot;redScore&quot;: 0,//红方获胜次数（int）
+                &quot;blueScore&quot;: 0,//蓝方获胜次数（int）
+                &quot;isLive&quot;: false,//是否有直播（Boolean）
+                &quot;liveId&quot;: 0,//直播id
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 96, //盘口id(long)
+                        &quot;lotteryId&quot;: 81, //竞猜id(long)
+                        &quot;handicapType&quot;: &quot;1&quot;,  //竞猜类型(string)
+                        &quot;redOdd&quot;: 1.2, //红方赔率（double）
+                        &quot;blueOdd&quot;: 1.2,//蓝方赔率（double）
+                        &quot;status&quot;: 1,//状态（0：竞猜中 2：流盘  3：已结算）（int）
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;, //竞猜结束时间(date)
+                        &quot;quizEndTime&quot;: 1512524689000,//竞猜结束时间戳（long）
+                        &quot;handicapNowTime&quot;: 1512524689000,//当前时间戳（long）
+                        &quot;maxQuiz&quot;: 2000, //竞猜上限(int)
+                        &quot;minQuiz&quot;: 1000, //竞猜下线(int)
+                        &quot;isShow&quot;: 1  //是否显示（0：不显示   1：显示）(int)
+                        &quot;goldType&quot;: 1 //下注类型 （0：金币 1：钻石）（int）
+                        &quot;fromType&quot;: 1//竞猜类型(0：三方  1：自营)(int)
+                    0 胜 1 负 &quot;redQuiz&quot;: &quot;红方3&quot;, //红方下注名（string）
+                        &quot;blueQuiz&quot;: &quot;蓝方3&quot; //蓝方下注名（string）
+                        &quot;quizName&quot;: &quot;赛事三&quot;//竞猜名称（string）
+                        &quot;redResult&quot;: 0,红方结果（int）（0 胜 1 负）
+                        &quot;blueResult&quot;: 1蓝方结果（int）（0 胜 1 负）
+                    },
+                    {
+                        &quot;handicapId&quot;: 97,
+                        &quot;lotteryId&quot;: 81,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 84,
+                &quot;lotteryName&quot;: &quot;赛事897&quot;,
+                &quot;matchId&quot;: 1,
+                &quot;quizId&quot;: &quot;JC184&quot;,
+                &quot;isShow&quot;: 1,
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;redTeam&quot;: &quot;红方&quot;,
+                &quot;blueTeam&quot;: &quot;蓝方&quot;,
+                &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;status&quot;: 1,
+                &quot;quizType&quot;: 1,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 102,
+                        &quot;lotteryId&quot;: 84,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    },
+                    {
+                        &quot;handicapId&quot;: 103,
+                        &quot;lotteryId&quot;: 84,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 79,
+                &quot;lotteryName&quot;: &quot;赛事一&quot;,
+                &quot;matchId&quot;: 1,
+                &quot;quizId&quot;: &quot;JC179&quot;,
+                &quot;isShow&quot;: 1,
+                &quot;gameName&quot;: &quot;英雄联盟&quot;,
+                &quot;gameId&quot;: 2,
+                &quot;redTeam&quot;: &quot;红方1&quot;,
+                &quot;blueTeam&quot;: &quot;蓝方1&quot;,
+                &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;status&quot;: 1,
+                &quot;quizType&quot;: 1,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 92,
+                        &quot;lotteryId&quot;: 79,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 5, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    },
+                    {
+                        &quot;handicapId&quot;: 93,
+                        &quot;lotteryId&quot;: 79,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 88,
+                &quot;lotteryName&quot;: &quot;赛事963&quot;,
+                &quot;matchId&quot;: 2,
+                &quot;quizId&quot;: &quot;JC188&quot;,
+                &quot;isShow&quot;: 1,
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;redTeam&quot;: &quot;红方&quot;,
+                &quot;blueTeam&quot;: &quot;蓝方&quot;,
+                &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;status&quot;: 1,
+                &quot;quizType&quot;: 1,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 110,
+                        &quot;lotteryId&quot;: 88,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2002,
+                        &quot;minQuiz&quot;: 1002,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    },
+                    {
+                        &quot;handicapId&quot;: 111,
+                        &quot;lotteryId&quot;: 88,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2001,
+                        &quot;minQuiz&quot;: 1001,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 85,
+                &quot;lotteryName&quot;: &quot;赛事89789&quot;,
+                &quot;matchId&quot;: 2,
+                &quot;quizId&quot;: &quot;JC185&quot;,
+                &quot;isShow&quot;: 1,
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,
+                &quot;gameId&quot;: 1,
+                &quot;redTeam&quot;: &quot;红方&quot;,
+                &quot;blueTeam&quot;: &quot;蓝方&quot;,
+                &quot;redImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;blueImg&quot;: &quot;http://pic36.nipic.com/20131202/1272022_170853031381_2.jpg&quot;,
+                &quot;status&quot;: 1,
+                &quot;quizType&quot;: 1,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 104,
+                        &quot;lotteryId&quot;: 85,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    },
+                    {
+                        &quot;handicapId&quot;: 105,
+                        &quot;lotteryId&quot;: 85,
+                        &quot;handicapType&quot;: &quot;1&quot;,
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;,
+                        &quot;maxQuiz&quot;: 2000,
+                        &quot;minQuiz&quot;: 1000,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 114187,
+                &quot;matchId&quot;: 0,
+                &quot;quizId&quot;: &quot;JC11418718&quot;,
+                &quot;gameName&quot;: &quot;阿道夫撒&quot;,
+                &quot;gameId&quot;: 0,
+                &quot;redTeam&quot;: &quot;Namshar&quot;,
+                &quot;blueTeam&quot;: &quot;Lambo&quot;,
+                &quot;status&quot;: 0,
+                &quot;quizType&quot;: 0,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 1,
+                        &quot;lotteryId&quot;: 114187,
+                        &quot;handicapType&quot;: &quot;win&quot;,
+                        &quot;redOdd&quot;: 1.2,
+                        &quot;blueOdd&quot;: 1.6,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    },
+                    {
+                        &quot;handicapId&quot;: 2,
+                        &quot;lotteryId&quot;: 114187,
+                        &quot;handicapType&quot;: &quot;lose&quot;,
+                        &quot;redOdd&quot;: 1.6,
+                        &quot;blueOdd&quot;: 1.8,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 114191,
+                &quot;matchId&quot;: 0,
+                &quot;quizId&quot;: &quot;JC11419021&quot;,
+                &quot;gameName&quot;: &quot;阿道夫撒&quot;,
+                &quot;gameId&quot;: 0,
+                &quot;redTeam&quot;: &quot;Ewwwww&quot;,
+                &quot;blueTeam&quot;: &quot;Reeee&quot;,
+                &quot;status&quot;: 0,
+                &quot;quizType&quot;: 0,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 9,
+                        &quot;lotteryId&quot;: 114191,
+                        &quot;handicapType&quot;: &quot;ggg&quot;,
+                        &quot;redOdd&quot;: 1.7,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    },
+                    {
+                        &quot;handicapId&quot;: 10,
+                        &quot;lotteryId&quot;: 114191,
+                        &quot;handicapType&quot;: &quot;kkkk&quot;,
+                        &quot;redOdd&quot;: 1.7,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 114190,
+                &quot;matchId&quot;: 0,
+                &quot;quizId&quot;: &quot;JC11418720&quot;,
+                &quot;gameName&quot;: &quot;阿道夫撒&quot;,
+                &quot;gameId&quot;: 0,
+                &quot;redTeam&quot;: &quot;Xeeeee&quot;,
+                &quot;blueTeam&quot;: &quot;Qwwwww&quot;,
+                &quot;status&quot;: 0,
+                &quot;quizType&quot;: 0,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 7,
+                        &quot;lotteryId&quot;: 114190,
+                        &quot;handicapType&quot;: &quot;ggg&quot;,
+                        &quot;redOdd&quot;: 1.9,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    },
+                    {
+                        &quot;handicapId&quot;: 8,
+                        &quot;lotteryId&quot;: 114190,
+                        &quot;handicapType&quot;: &quot;eee&quot;,
+                        &quot;redOdd&quot;: 1.7,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 114189,
+                &quot;matchId&quot;: 0,
+                &quot;quizId&quot;: &quot;JC11418719&quot;,
+                &quot;gameName&quot;: &quot;阿道夫撒&quot;,
+                &quot;gameId&quot;: 0,
+                &quot;redTeam&quot;: &quot;Haaaaaa&quot;,
+                &quot;blueTeam&quot;: &quot;Heeeeee&quot;,
+                &quot;status&quot;: 0,
+                &quot;quizType&quot;: 0,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 5,
+                        &quot;lotteryId&quot;: 114189,
+                        &quot;handicapType&quot;: &quot;qwe&quot;,
+                        &quot;redOdd&quot;: 1.7,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    },
+                    {
+                        &quot;handicapId&quot;: 6,
+                        &quot;lotteryId&quot;: 114189,
+                        &quot;handicapType&quot;: &quot;ewq&quot;,
+                        &quot;redOdd&quot;: 1.5,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    }
+                ]
+            },
+            {
+                &quot;lotteryId&quot;: 114188,
+                &quot;matchId&quot;: 0,
+                &quot;quizId&quot;: &quot;JC11418819&quot;,
+                &quot;gameName&quot;: &quot;阿道夫撒&quot;,
+                &quot;gameId&quot;: 0,
+                &quot;redTeam&quot;: &quot;uThermal&quot;,
+                &quot;blueTeam&quot;: &quot;Couguar&quot;,
+                &quot;status&quot;: 2,
+                &quot;quizType&quot;: 0,
+                &quot;handicapListInfos&quot;: [
+                    {
+                        &quot;handicapId&quot;: 3,
+                        &quot;lotteryId&quot;: 114188,
+                        &quot;handicapType&quot;: &quot;asdf&quot;,
+                        &quot;redOdd&quot;: 1.7,
+                        &quot;blueOdd&quot;: 1.9,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    },
+                    {
+                        &quot;handicapId&quot;: 4,
+                        &quot;lotteryId&quot;: 114188,
+                        &quot;handicapType&quot;: &quot;adsf&quot;,
+                        &quot;redOdd&quot;: 1.4,
+                        &quot;blueOdd&quot;: 1.9,
+                        &quot;status&quot;: 0,
+                        &quot;isShow&quot;: 1,
+                        &quot;goldType&quot;: 0
+                    }
+                ]
+            }
+        ],
+        &quot;filter&quot;: {},
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">string</td>
+<td>失败返回错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">t</td>
+<td style="text-align: left;">T</td>
+<td>成功为返回对象，失败则不返回</td>
+</tr>
+</tbody>
+</table></div><h2>2.6、获取用户竞猜订单接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取用户竞猜订单接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/quiz/user/betOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>用户token</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">dateType</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>0：全部  1：本周  2：本月</td>
+</tr>
+<tr>
+<td style="text-align: left;">offset</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>偏移量</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>每页显示数据</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 4,
+        &quot;limit&quot;: 15,
+        &quot;result&quot;: [
+            {
+                &quot;cbId&quot;: 139, //订单id（long）
+                &quot;cbResult&quot;: 2,//结果（0：未知，1：失败，2：成功，3:流盘  4：赢半   5：输半(4和5只有三方竞猜））（int）
+                &quot;handicapType&quot;: &quot;猜胜负&quot;,//竞猜类型（string）
+                &quot;cbOdds&quot;: 1.2,//赔率（double）
+                &quot;uid&quot;: 5,//用户id（long）
+                &quot;trType&quot;: 0,//竞猜队伍（0：红方    1：蓝方）（int）
+                &quot;gameId&quot;: 2,//游戏类型（long）
+                &quot;quizTrName&quot;: &quot;红方1&quot;,//竞猜队伍（string）
+                &quot;quizTrIcon&quot;: &quot;123456&quot;,//队伍图片（string）
+                &quot;quizGold&quot;: 100,//竞猜金额（int）
+                &quot;quizEarnGold&quot;: 220,//获胜金额（int）
+                &quot;quizId&quot;: &quot;JC179&quot;,（string）
+                &quot;trId&quot;: 79,//竞猜id（long）
+                &quot;clientType&quot;: 2,//客户端类型    0.web客户端 1.windows客户端 2.android客户端 3.iPhone客户端'（int）
+                &quot;valid&quot;: 0,
+                &quot;quizNumber&quot;: &quot;799205t0buR4&quot;,//订单号（string）
+                &quot;quizRound&quot;: 92,//盘口id（long）
+                &quot;quizType&quot;: 1,//运营方类型（0：三方；1：自营）（int）
+                &quot;createTime&quot;: &quot;Jan 3, 2018 10:55:52 AM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 3, 2018 1:42:48 PM&quot;,
+                &quot;resultGold&quot;: 220,//结果金额（string）,
+                &quot;matchName&quot;: &quot;赛事名称1&quot;,
+                &quot;gameName&quot;: &quot;英雄联盟&quot;//游戏类型（string）,
+                &quot;createDate&quot;: 1515723839000,
+                &quot;lotteryStatus&quot;: 0,(0：竞猜中 3：流盘  4：已结算)
+                &quot;goldType&quot;: 1
+
+            },
+            {
+                &quot;cbId&quot;: 142,
+                &quot;cbResult&quot;: 0,
+                &quot;handicapType&quot;: &quot;猜胜负&quot;,
+                &quot;cbOdds&quot;: 1.2,
+                &quot;uid&quot;: 1,
+                &quot;trType&quot;: 0,
+                &quot;gameId&quot;: 2,
+                &quot;quizTrName&quot;: &quot;红方1&quot;,
+                &quot;quizTrIcon&quot;: &quot;123456&quot;,
+                &quot;quizGold&quot;: 100,
+                &quot;quizEarnGold&quot;: 0,
+                &quot;quizId&quot;: &quot;JC179&quot;,
+                &quot;trId&quot;: 79,
+                &quot;clientType&quot;: 2,
+                &quot;valid&quot;: 0,
+                &quot;quizNumber&quot;: &quot;799205aV9G24&quot;,
+                &quot;quizRound&quot;: 92,
+                &quot;quizType&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 3, 2018 10:58:06 AM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 12, 2018 9:57:22 AM&quot;,
+                &quot;gameName&quot;: &quot;英雄联盟&quot;
+            },
+            {
+                &quot;cbId&quot;: 141,
+                &quot;cbResult&quot;: 0,
+                &quot;handicapType&quot;: &quot;猜胜负&quot;,
+                &quot;cbOdds&quot;: 1.2,
+                &quot;uid&quot;: 1,
+                &quot;trType&quot;: 0,
+                &quot;gameId&quot;: 2,
+                &quot;quizTrName&quot;: &quot;红方1&quot;,
+                &quot;quizTrIcon&quot;: &quot;123456&quot;,
+                &quot;quizGold&quot;: 100,
+                &quot;quizEarnGold&quot;: 0,
+                &quot;quizId&quot;: &quot;JC179&quot;,
+                &quot;trId&quot;: 79,
+                &quot;clientType&quot;: 2,
+                &quot;valid&quot;: 0,
+                &quot;quizNumber&quot;: &quot;799205dZxF36&quot;,
+                &quot;quizRound&quot;: 92,
+                &quot;quizType&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 3, 2018 10:57:54 AM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 12, 2018 9:57:22 AM&quot;,
+                &quot;gameName&quot;: &quot;英雄联盟&quot;
+            },
+            {
+                &quot;cbId&quot;: 139,
+                &quot;cbResult&quot;: 2,
+                &quot;handicapType&quot;: &quot;猜胜负&quot;,
+                &quot;cbOdds&quot;: 1.2,
+                &quot;uid&quot;: 1,
+                &quot;trType&quot;: 0,
+                &quot;gameId&quot;: 2,
+                &quot;quizTrName&quot;: &quot;红方1&quot;,
+                &quot;quizTrIcon&quot;: &quot;123456&quot;,
+                &quot;quizGold&quot;: 100,
+                &quot;quizEarnGold&quot;: 220,
+                &quot;quizId&quot;: &quot;JC179&quot;,
+                &quot;trId&quot;: 79,
+                &quot;clientType&quot;: 2,
+                &quot;valid&quot;: 0,
+                &quot;quizNumber&quot;: &quot;799205t0buR4&quot;,
+                &quot;quizRound&quot;: 92,
+                &quot;quizType&quot;: 1,
+                &quot;createTime&quot;: &quot;Jan 3, 2018 10:55:52 AM&quot;,
+                &quot;updateTime&quot;: &quot;Jan 12, 2018 9:57:21 AM&quot;,
+                &quot;resultGold&quot;: 220,
+                &quot;gameName&quot;: &quot;英雄联盟&quot;
+            }
+        ],
+        &quot;filter&quot;: {},
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div><h2>2.7、获取游戏类型接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取游戏类型接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/quiz/gameInfo/list.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">applySite</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>应用位置（1：竞猜  2：直播）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;gameList&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;王者荣耀&quot;,
+                &quot;shortName&quot;: &quot;King of Glory&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;英雄联盟&quot;,
+                &quot;shortName&quot;: &quot;League of Legends&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;绝地求生&quot;,
+                &quot;shortName&quot;: &quot;PLAYERUNKNOWN’S BATTLEGROUNDS&quot;
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div><h2>2.8、获取直播列表接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取直播列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/live/list.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">offset</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>偏移量</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>每页显示数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">gameId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>游戏id</td>
+</tr>
+<tr>
+<td style="text-align: left;">liveName</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>直播名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 1,
+        &quot;limit&quot;: 15,
+        &quot;result&quot;: [
+            {
+                &quot;id&quot;: 2,   //直播id（long）
+                &quot;name&quot;: &quot;hyh&quot;, //直播名称（string）
+                &quot;anchorName&quot;: &quot;主播一&quot;,
+                &quot;gameId&quot;: 1, //游戏类型（long）
+                &quot;streamUrl&quot;: &quot;sfgdsfgsd&quot;, //直播流（string）
+                &quot;sortId&quot;: 2, //排序权重
+                &quot;isShow&quot;: 2, //是否显示（1：不显示  2：显示）（int）
+                &quot;liveImg&quot;: &quot;sfdgsdfg&quot;,（直播图片）
+                &quot;concernType&quot;: 1, //关联内容（1.外部链接 2.内部链接-资讯 3.内部链接-代练 5.内部链接-赛事 6.内部链接-竞猜）（int）
+                &quot;concernId&quot;: 1,//关联内容id（long）
+                &quot;createTime&quot;: &quot;Dec 21, 2017 4:02:30 PM&quot;,
+                &quot;updateTime&quot;: &quot;Dec 26, 2017 3:10:41 PM&quot;
+                &quot;viewNum&quot;: &quot;3&quot;
+            }
+        ],
+        &quot;filter&quot;: {},
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}1.外部链接 2.内部链接-资讯 3.内部链接-代练 5.内部链接-赛事 6.内部链接-竞猜</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功为"OK"，失败则为错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>成功返回对象</td>
+</tr>
+</tbody>
+</table></div><h2>2.9、根据竞猜id获取竞猜数据接口</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据竞猜id获取竞猜数据接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://XX:8087/live/lotteryInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">lotteryId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>竞猜id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+                    &quot;lotteryId&quot;: 81,    //竞猜id（long）
+                    &quot;lotteryName&quot;: &quot;赛事三&quot;,  //竞猜名称(string)
+                    &quot;matchId&quot;: 1,   //赛事id(long)
+                    &quot;quizId&quot;: &quot;JC181&quot;, (string)
+                    &quot;isShow&quot;: 0,  //是否显示（0：不显示   1：显示）(int)
+                    &quot;gameName&quot;: &quot;王者荣耀&quot;, //游戏名称(string)
+                    &quot;gameId&quot;: 1,  //游戏id(loing)
+                    &quot;redTeam&quot;: &quot;红方3&quot;,  //红队名称(string)
+                    &quot;blueTeam&quot;: &quot;蓝方3&quot;, //蓝队名称(string)
+                    &quot;redImg&quot;: &quot;123456&quot;, //红队图片(string)
+                    &quot;blueImg&quot;: &quot;123456&quot;,//蓝队图片(string)
+                    &quot;status&quot;: 1, //状态（1 竞猜中    2 赛事中    3:已结束'）(int)
+                    &quot;quizType&quot;: 1, //竞猜类型(0：三方  1：自营)(int)
+                    &quot;sortTime&quot;: 1512540881000,//时间戳（long）
+                    &quot;nowTime&quot;:1512540881000,//正常时间戳（long）
+                    &quot;handicapListInfos&quot;: [
+                    {
+                    &quot;handicapId&quot;: 96, //盘口id(long)
+                        &quot;lotteryId&quot;: 81, //竞猜id(long)
+                        &quot;handicapType&quot;: &quot;1&quot;,  //竞猜类型(string)
+                        &quot;redOdd&quot;: 1.2, //红方赔率（double）
+                        &quot;blueOdd&quot;: 1.2,//蓝方赔率（double）
+                        &quot;status&quot;: 1,//状态（0：竞猜中 2：流盘  3：已结算）（int）
+                        &quot;quizEndDate&quot;: &quot;Dec 6, 2017 9:44:49 AM&quot;, //竞猜结束时间(date)
+                        &quot;quizEndTime&quot;: 1512524689000,//竞猜结束时间戳（long）
+                        &quot;maxQuiz&quot;: 2000, //竞猜上限(int)
+                        &quot;minQuiz&quot;: 1000, //竞猜下线(int)
+                        &quot;isShow&quot;: 1  //是否显示（0：不显示   1：显示）(int)
+                        &quot;goldType&quot;: 1 //下注类型 （0：金币 1：钻石）（int）
+                        &quot;fromType&quot;: 1//竞猜类型(0：三方  1：自营)(int)
+                    0 胜 1 负 &quot;redQuiz&quot;: &quot;红方3&quot;, //红方下注名（string）
+                        &quot;blueQuiz&quot;: &quot;蓝方3&quot; //蓝方下注名（string）
+                        &quot;quizName&quot;: &quot;赛事三&quot;//竞猜名称（string）
+                        &quot;redResult&quot;: 0,红方结果（int）（0 胜 1 负）
+                        &quot;blueResult&quot;: 1蓝方结果（int）（0 胜 1 负）
+                },
+                {
+                    &quot;handicapId&quot;: 2,
+                    &quot;lotteryId&quot;: 114187,
+                    &quot;handicapType&quot;: &quot;lose&quot;,
+                    &quot;redOdd&quot;: 1.6,
+                    &quot;blueOdd&quot;: 1.8,
+                    &quot;status&quot;: 0,
+                    &quot;isShow&quot;: 1,
+                    &quot;goldType&quot;: 0
+                }
+            ]
+        }
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h1>3、充值</h1><div style="margin-left:20px;"><h2>3.1、获取充值列表（活动）</h2><div style="margin-left:20px;"><h3>3.1.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取充值列表（活动）接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/pay/getPayActivity.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">activityType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>活动类型 1：标准充值 2：活动充值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;payActivitys&quot;: [
+            {
+                &quot;id&quot;: 1,  充值活动Id（long）
+                &quot;giveDiamond&quot;: 10,        赠送钻石（double）
+                &quot;paymentMoney&quot;: 1000, 充值钻石（double）
+                &quot;payMoney&quot;: 100,  祝福金额（double）
+                &quot;activityPicture&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/crop_image_1515726086808.jpg&quot;,    活动图片（String）（充值活动才有，标准活动没有）
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.2、支付宝获取订单</h2><div style="margin-left:20px;"><h3>3.2.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取支付宝订单接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/pay/createOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">body</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>商家名</td>
+</tr>
+<tr>
+<td style="text-align: left;">activityId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>活动Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;ok&quot;,
+    &quot;t&quot;: {
+        &quot;orderId&quot;: &quot;20180119192044964tapup3130836&quot;, 订单Id（String）
+        &quot;notify_url&quot;: &quot;http://39.106.145.173:8087/api/pay/aliNotify.json&quot;,  异步回调地址（String）
+        &quot;payInfo&quot;: &quot;app_id=2018010801696070&amp;biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E5%85%85%E5%80%BC%22%2C%22body%22%3A%22hh%22%2C%22out_trade_no%22%3A%2220180119192044964tapup3130836%22%7D&amp;charset=utf-8&amp;method=alipay.trade.app.pay&amp;notify_url=http%3A%2F%2F39.106.145.173%3A8087%2Fapi%2Fpay%2FaliNotify.json&amp;sign_type=RSA2&amp;timestamp=2018-01-19+19%3A20%3A45&amp;version=1.0&amp;sign=farLVso0ocyM6qNKXMm5IvIAmua8HhcNnl1uGO85WSxaXj4EVy%2Fr%2F3%2FTX0oWNSY6Yf07j%2Fhf%2BWW9qVl2tO5XVzFoVYHanQwqnX2iL3FjKdRQ5pKFcp23dsDe%2FnJcl08kXS19Fwvx8%2F4ZmqDV4Pa3bWs5nhR2dc2vJuXCv1KMAKKRzSn%2B8jlnUgP5Erdsc%2BVTGdwCGFOgP9%2FYDr5nIvQ44ibXj9P0QY1vLgc6T20ZdIZh48jswNVZFTC01QnTJxJuzwsT%2B%2FeoxO5hQzq%2FUNjl2O1PN%2FQAMlqhp%2BpXXxtmON7XiVkZpO58Xfxxkw%2FXWKX%2FnvHJ%2FEmQLDljGUuOv5GXpA%3D%3D&quot;   支付宝需要参数（String）
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；30010：活动不存在!；30011：您已参加过该活动；30012：您参加该活动次数已达到上限；30013：活动未开始，请耐心等待；30014：该活动已结束；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.3、支付宝订单校验</h2><div style="margin-left:20px;"><h3>3.3.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>支付宝验证订单接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/pay/aliCheckOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">result</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>支付宝返回的响应数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">sign</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>支付宝返回的签名</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；501：支付宝返回错误参数!；20000：系统异常</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.4、微信支付</h2><div style="margin-left:20px;"><h3>3.4.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>微信获取订单接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/pay/getPrepayId.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">activityId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>活动Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;appid&quot;: &quot;wxce0b77ee208f42de&quot;,
+        &quot;noncestr&quot;: &quot;1806437284341&quot;,
+        &quot;orderId&quot;: &quot;20180130180643704tapup4243824&quot;,
+        &quot;package&quot;: &quot;Sign=WXPay&quot;,
+        &quot;partnerid&quot;: &quot;1495321852&quot;,
+        &quot;prepayid&quot;: &quot;wx2018013018064448233dfe9f0447585983&quot;,
+        &quot;sign&quot;: &quot;6664DC95E778C050C727112E85E5655E&quot;,
+        &quot;timestamp&quot;: &quot;1517306804&quot;
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：Ok；20000：服务器内部错误；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>3.5、微信充值订单验证</h2><div style="margin-left:20px;"><h3>3.5.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<p>-微信充值订单验证接口</p>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.119:8180/api/pay/getOrderStatus.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">orderId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>订单Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;OK&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div></div><h1>4、举报用户</h1><div style="margin-left:20px;"><h2>4.1、拉取举报类型</h2><div style="margin-left:20px;"><h3>4.1.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>拉取举报类型接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/report/getReportTag.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: [
+        {
+            &quot;id&quot;: 12, 类型Id（long）
+            &quot;type&quot;: 3,    int
+            &quot;tag&quot;: &quot;语言恶劣&quot;   类型内容（String）
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;type&quot;: 3,
+            &quot;tag&quot;: &quot;血腥暴力&quot;
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;type&quot;: 3,
+            &quot;tag&quot;: &quot;淫秽色情&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;type&quot;: 3,
+            &quot;tag&quot;: &quot;服务太差&quot;
+        },
+        {
+            &quot;id&quot;: 16,
+            &quot;type&quot;: 3,
+            &quot;tag&quot;: &quot;人身攻击&quot;
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div><h2>4.2、举报</h2><div style="margin-left:20px;"><h3>4.2.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>举报接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/api/user/reportUser.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">reportType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>举报类型内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">reportInfo</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>手动补充</td>
+</tr>
+<tr>
+<td style="text-align: left;">reportUid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>被举报者用户Id</td>
+</tr>
+<tr>
+<td style="text-align: left;">reportPictures</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>举报截图 （list数组集合转成json字符串）例：[{"picUrl":"<a href="http://p22o6bknk.bkt.clouddn.com/crop_image_1517566737900.jpg&quot">http://p22o6bknk.bkt.clouddn.com/crop_image_1517566737900.jpg&quot</a>;}]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div></div><h1>5、代练</h1><div style="margin-left:20px;"><h2>5.1、新增代练订单(app)</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>新增代练订单(app)</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/leveling/order/insertOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ga_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>游戏 服务ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">le_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>代练ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>用户表id</td>
+</tr>
+<tr>
+<td style="text-align: left;">game_number</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>局数</td>
+</tr>
+<tr>
+<td style="text-align: left;">root_price</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>平台抽水</td>
+</tr>
+<tr>
+<td style="text-align: left;">leveling_type</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>代练类型 1个人，2办公室</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">date</td>
+<td>约定 游戏开始时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">info</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">String</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 280,
+        &quot;order_id&quot;: &quot;DD270280&quot;,
+        &quot;le_id&quot;: 27,
+        &quot;ga_id&quot;: 9,
+        &quot;game_category&quot;: 1,
+        &quot;game_number&quot;: 2,
+        &quot;order_status&quot;: 1,
+        &quot;order_price&quot;: 60,
+        &quot;pay_price&quot;: 60,
+        &quot;pay_type&quot;: 2,
+        &quot;leveling&quot;: {
+            &quot;id&quot;: 27,
+            &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+            &quot;levelingAccount&quot;: &quot;亿唐网游&quot;
+        },
+        &quot;item&quot;: {
+            &quot;id&quot;: 9,
+            &quot;game_name&quot;: 1,
+            &quot;division&quot;: 4,
+            &quot;game_id&quot;: 4,
+            &quot;price_type&quot;: 2,
+            &quot;price&quot;: 30,
+            &quot;service_item&quot;: &quot;荣耀黄金30钻/局&quot;
+        }
+    }
+}</code></pre></table></div><h2>5.2、查询代练-列表（APP）</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查询代练-列表（APP）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/leveling/getLevelingListForApp.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">is_top</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>是否推荐位 1 是 0否</td>
+</tr>
+<tr>
+<td style="text-align: left;">leveling_gametype</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>游戏类型 1王者荣耀 2绝地求生</td>
+</tr>
+<tr>
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>性别 1，男 ，2 女 ，3 保密</td>
+</tr>
+<tr>
+<td style="text-align: left;">isOrderBy</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>排序方式 0 权重 ，1 智能 2新人 3 价格 降序 4价格 升序</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 14,
+        &quot;limit&quot;: 15,
+        &quot;result&quot;: [
+            {
+                &quot;id&quot;: 26,
+                &quot;levelingName&quot;: &quot;乐享网游&quot;,
+                &quot;lowPrice&quot;: 60,
+                &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516712868140.jpg&quot;,
+                &quot;signature&quot;: &quot;快来吧，我的主人&quot;,
+                &quot;status&quot;: 1,
+                &quot;gender&quot;: 2,
+                &quot;lems&quot;: [
+                    {
+                        &quot;id&quot;: 40,
+                        &quot;createDate&quot;: &quot;Jan 17, 2018 10:12:45 PM&quot;,
+                        &quot;levelingGametype&quot;: 2,
+                        &quot;isTop&quot;: &quot;1&quot;
+                    }
+                ],
+                &quot;gameInfos&quot;: [
+                    {
+                        &quot;id&quot;: 8,
+                        &quot;le_id&quot;: 26,
+                        &quot;game_type&quot;: 2,
+                        &quot;is_take&quot;: 1,
+                        &quot;is_win&quot;: 0,
+                        &quot;division&quot;: 5,
+                        &quot;profile&quot;: &quot;吃鸡大神&quot;,
+                        &quot;star&quot;: 5,
+                        &quot;take_order&quot;: 3,
+                        &quot;gamePic&quot;: [
+                            {
+                                &quot;id&quot;: 8,
+                                &quot;picUrl&quot;: &quot;&quot;
+                            }
+                        ],
+                        &quot;gameItem&quot;: [
+                            {
+                                &quot;id&quot;: 24,
+                                &quot;game_name&quot;: 2,
+                                &quot;division&quot;: 0,
+                                &quot;game_id&quot;: 8,
+                                &quot;price_type&quot;: 2,
+                                &quot;price&quot;: 60,
+                                &quot;service_item&quot;: &quot;吃鸡60钻/小时&quot;
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 28,
+                &quot;levelingName&quot;: &quot;Vick&quot;,
+                &quot;lowPrice&quot;: 10,
+                &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1517801431181.jpg&quot;,
+                &quot;signature&quot;: &quot;快来吧，我的主人&quot;,
+                &quot;status&quot;: 1,
+                &quot;gender&quot;: 2,
+                &quot;lems&quot;: [
+                    {
+                        &quot;id&quot;: 43,
+                        &quot;createDate&quot;: &quot;Jan 17, 2018 10:13:56 PM&quot;,
+                        &quot;levelingGametype&quot;: 2,
+                        &quot;isTop&quot;: &quot;0&quot;
+                    }
+                ],
+                &quot;gameInfos&quot;: [
+                    {
+                        &quot;id&quot;: 11,
+                        &quot;le_id&quot;: 28,
+                        &quot;game_type&quot;: 2,
+                        &quot;is_take&quot;: 1,
+                        &quot;is_win&quot;: 0,
+                        &quot;profile&quot;: &quot;吃鸡大神&quot;,
+                        &quot;star&quot;: 5,
+                        &quot;take_order&quot;: 2,
+                        &quot;gamePic&quot;: [
+                            {
+                                &quot;id&quot;: 201,
+                                &quot;picUrl&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517637146907.jpg&quot;
+                            }
+                        ],
+                        &quot;gameItem&quot;: [
+                            {
+                                &quot;id&quot;: 249,
+                                &quot;game_name&quot;: 2,
+                                &quot;division&quot;: 0,
+                                &quot;game_id&quot;: 11,
+                                &quot;price_type&quot;: 2,
+                                &quot;price&quot;: 60,
+                                &quot;service_item&quot;: &quot;60钻/小时&quot;
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 30,
+                &quot;levelingName&quot;: &quot;东十网游&quot;,
+                &quot;lowPrice&quot;: 60,
+                &quot;signature&quot;: &quot;是时候展现真正的实力了&quot;,
+                &quot;status&quot;: 1,
+                &quot;gender&quot;: 1,
+                &quot;lems&quot;: [
+                    {
+                        &quot;id&quot;: 45,
+                        &quot;createDate&quot;: &quot;Jan 17, 2018 10:14:15 PM&quot;,
+                        &quot;levelingGametype&quot;: 2,
+                        &quot;isTop&quot;: &quot;1&quot;
+                    }
+                ],
+                &quot;gameInfos&quot;: [
+                    {
+                        &quot;id&quot;: 13,
+                        &quot;le_id&quot;: 30,
+                        &quot;game_type&quot;: 2,
+                        &quot;is_take&quot;: 1,
+                        &quot;is_win&quot;: 0,
+                        &quot;profile&quot;: &quot;吃鸡大神&quot;,
+                        &quot;star&quot;: 5,
+                        &quot;take_order&quot;: 1,
+                        &quot;gamePic&quot;: [
+                            {
+                                &quot;id&quot;: 13,
+                                &quot;picUrl&quot;: &quot;&quot;
+                            }
+                        ],
+                        &quot;gameItem&quot;: [
+                            {
+                                &quot;id&quot;: 34,
+                                &quot;game_name&quot;: 2,
+                                &quot;division&quot;: 0,
+                                &quot;game_id&quot;: 13,
+                                &quot;price_type&quot;: 2,
+                                &quot;price&quot;: 60,
+                                &quot;service_item&quot;: &quot;吃鸡60钻/小时&quot;
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 36,
+                &quot;levelingName&quot;: &quot;吃企鹅&quot;,
+                &quot;lowPrice&quot;: 50,
+                &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517476474010.jpg&quot;,
+                &quot;signature&quot;: &quot;1212121212121&quot;,
+                &quot;status&quot;: 3,
+                &quot;gender&quot;: 2,
+                &quot;lems&quot;: [
+                    {
+                        &quot;id&quot;: 50,
+                        &quot;createDate&quot;: &quot;Jan 23, 2018 10:39:27 AM&quot;,
+                        &quot;levelingGametype&quot;: 2,
+                        &quot;isTop&quot;: &quot;0&quot;
+                    }
+                ],
+                &quot;gameInfos&quot;: [
+                    {
+                        &quot;id&quot;: 29,
+                        &quot;le_id&quot;: 36,
+                        &quot;game_type&quot;: 2,
+                        &quot;is_take&quot;: 1,
+                        &quot;is_win&quot;: 0,
+                        &quot;profile&quot;: &quot;1212121&quot;,
+                        &quot;take_order&quot;: 0,
+                        &quot;gamePic&quot;: [
+                            {
+                                &quot;id&quot;: 169,
+                                &quot;picUrl&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517476511146.jpg&quot;
+                            }
+                        ],
+                        &quot;gameItem&quot;: [
+                            {
+                                &quot;id&quot;: 219,
+                                &quot;game_name&quot;: 2,
+                                &quot;division&quot;: 0,
+                                &quot;game_id&quot;: 29,
+                                &quot;price_type&quot;: 2,
+                                &quot;price&quot;: 50,
+                                &quot;service_item&quot;: &quot;50钻/小时&quot;
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 38,
+                &quot;status&quot;: 6,
+                &quot;gender&quot;: 0,
+                &quot;lems&quot;: [
+                    {
+                        &quot;id&quot;: 51,
+                        &quot;createDate&quot;: &quot;Jan 23, 2018 10:40:21 AM&quot;,
+                        &quot;levelingGametype&quot;: 2,
+                        &quot;isTop&quot;: &quot;0&quot;
+                    }
+                ],
+                &quot;gameInfos&quot;: [
+                    {
+                        &quot;id&quot;: 30,
+                        &quot;le_id&quot;: 38,
+                        &quot;game_type&quot;: 2,
+                        &quot;is_win&quot;: 0,
+                        &quot;gamePic&quot;: [],
+                        &quot;gameItem&quot;: []
+                    }
+                ]
+            }
+        ],
+        &quot;filter&quot;: {},
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">gameInfos</td>
+<td style="text-align: left;">游戏对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">division</td>
+<td style="text-align: left;">game游戏段位 后台配置 用于前台展示段位</td>
+</tr>
+<tr>
+<td style="text-align: left;">game_type</td>
+<td style="text-align: left;">游戏类型（1王者荣耀，2绝地求生）</td>
+</tr>
+<tr>
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">代练性别 1，男2女，3保密</td>
+</tr>
+<tr>
+<td style="text-align: left;">lems</td>
+<td style="text-align: left;">代练管理 对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingGametype</td>
+<td style="text-align: left;">游戏类型（1王者荣耀，2绝地求生）</td>
+</tr>
+<tr>
+<td style="text-align: left;">isTop</td>
+<td style="text-align: left;">配置是否推荐置顶 1，置顶 0 否</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingName</td>
+<td style="text-align: left;">代练名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingHead</td>
+<td style="text-align: left;">代练头像</td>
+</tr>
+<tr>
+<td style="text-align: left;">signature</td>
+<td style="text-align: left;">签名</td>
+</tr>
+<tr>
+<td style="text-align: left;">profile</td>
+<td style="text-align: left;">games配置 简介 显示</td>
+</tr>
+<tr>
+<td style="text-align: left;">lowPrice</td>
+<td style="text-align: left;">最低价格</td>
+</tr>
+</tbody>
+</table></div><h2>5.3、查看订单列表(app)</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看订单列表(app)</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/leveling/order/getOrderListBy.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">le_id</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">Long</td>
+<td>代练ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">userId</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">Long</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>已完成 包含（已完成，已退款，已取消）:1 ， 未完成: 0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;offset&quot;: 0,
+        &quot;total&quot;: 4,
+        &quot;limit&quot;: 15,
+        &quot;result&quot;: [
+            {
+                &quot;id&quot;: 222,
+                &quot;order_id&quot;: &quot;DD270222&quot;,
+                &quot;le_id&quot;: 27,
+                &quot;ga_id&quot;: 21,
+                &quot;game_category&quot;: 1,
+                &quot;create_date&quot;: 1518076683000,
+                &quot;game_number&quot;: 1,
+                &quot;order_status&quot;: 2,
+                &quot;pay_price&quot;: 20,
+                &quot;pay_type&quot;: 2,
+                &quot;leveling&quot;: {
+                    &quot;id&quot;: 27,
+                    &quot;levelingId&quot;: &quot;DLZH0027&quot;,
+                    &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+                    &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516193385909.jpg&quot;
+                },
+                &quot;item&quot;: {
+                    &quot;id&quot;: 21,
+                    &quot;game_name&quot;: 1,
+                    &quot;division&quot;: 3,
+                    &quot;game_id&quot;: 9,
+                    &quot;price_type&quot;: 2,
+                    &quot;price&quot;: 20,
+                    &quot;service_item&quot;: &quot;秩序白银20钻/局&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 206,
+                &quot;order_id&quot;: &quot;DD270206&quot;,
+                &quot;le_id&quot;: 27,
+                &quot;ga_id&quot;: 20,
+                &quot;game_category&quot;: 1,
+                &quot;create_date&quot;: 1517997937000,
+                &quot;game_number&quot;: 1,
+                &quot;order_status&quot;: 3,
+                &quot;pay_price&quot;: 10,
+                &quot;pay_type&quot;: 2,
+                &quot;leveling&quot;: {
+                    &quot;id&quot;: 27,
+                    &quot;levelingId&quot;: &quot;DLZH0027&quot;,
+                    &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+                    &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516193385909.jpg&quot;
+                },
+                &quot;item&quot;: {
+                    &quot;id&quot;: 20,
+                    &quot;game_name&quot;: 1,
+                    &quot;division&quot;: 2,
+                    &quot;game_id&quot;: 9,
+                    &quot;price_type&quot;: 2,
+                    &quot;price&quot;: 10,
+                    &quot;service_item&quot;: &quot;倔强青铜10钻/局&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 205,
+                &quot;order_id&quot;: &quot;DD270205&quot;,
+                &quot;le_id&quot;: 27,
+                &quot;ga_id&quot;: 20,
+                &quot;game_category&quot;: 1,
+                &quot;create_date&quot;: 1517997091000,
+                &quot;game_number&quot;: 1,
+                &quot;order_status&quot;: 9,
+                &quot;pay_price&quot;: 10,
+                &quot;pay_type&quot;: 2,
+                &quot;leveling&quot;: {
+                    &quot;id&quot;: 27,
+                    &quot;levelingId&quot;: &quot;DLZH0027&quot;,
+                    &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+                    &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516193385909.jpg&quot;
+                },
+                &quot;item&quot;: {
+                    &quot;id&quot;: 20,
+                    &quot;game_name&quot;: 1,
+                    &quot;division&quot;: 2,
+                    &quot;game_id&quot;: 9,
+                    &quot;price_type&quot;: 2,
+                    &quot;price&quot;: 10,
+                    &quot;service_item&quot;: &quot;倔强青铜10钻/局&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 202,
+                &quot;order_id&quot;: &quot;DD270202&quot;,
+                &quot;le_id&quot;: 27,
+                &quot;ga_id&quot;: 20,
+                &quot;game_category&quot;: 1,
+                &quot;create_date&quot;: 1517995821000,
+                &quot;game_number&quot;: 1,
+                &quot;order_status&quot;: 9,
+                &quot;pay_price&quot;: 10,
+                &quot;pay_type&quot;: 2,
+                &quot;leveling&quot;: {
+                    &quot;id&quot;: 27,
+                    &quot;levelingId&quot;: &quot;DLZH0027&quot;,
+                    &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+                    &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516193385909.jpg&quot;
+                },
+                &quot;item&quot;: {
+                    &quot;id&quot;: 20,
+                    &quot;game_name&quot;: 1,
+                    &quot;division&quot;: 2,
+                    &quot;game_id&quot;: 9,
+                    &quot;price_type&quot;: 2,
+                    &quot;price&quot;: 10,
+                    &quot;service_item&quot;: &quot;倔强青铜10钻/局&quot;
+                }
+            }
+        ],
+        &quot;filter&quot;: {},
+        &quot;totalPage&quot;: 1,
+        &quot;page&quot;: 1,
+        &quot;level&quot;: 0
+    }
+}</code></pre></table>
+<p><strong>返回参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">division</td>
+<td style="text-align: left;">段位</td>
+</tr>
+<tr>
+<td style="text-align: left;">game_category</td>
+<td style="text-align: left;">游戏名 类型， 1,王者荣耀</td>
+</tr>
+<tr>
+<td style="text-align: left;">game_number</td>
+<td style="text-align: left;">游戏局数</td>
+</tr>
+<tr>
+<td style="text-align: left;">item</td>
+<td style="text-align: left;">具体游戏服务对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">单价</td>
+</tr>
+<tr>
+<td style="text-align: left;">price_type</td>
+<td style="text-align: left;">价格类型</td>
+</tr>
+<tr>
+<td style="text-align: left;">order_price</td>
+<td style="text-align: left;">订单价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">order_id</td>
+<td style="text-align: left;">订单ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_date</td>
+<td style="text-align: left;">创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">leveling</td>
+<td style="text-align: left;">代练对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingHead</td>
+<td style="text-align: left;">代练头像</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingId</td>
+<td style="text-align: left;">代练ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingName</td>
+<td style="text-align: left;">代练昵称</td>
+</tr>
+</tbody>
+</table></div><h2>5.4、完成订单 app </h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>完成订单 app </li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8087/leveling/order/updateOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">root_price</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>平台抽水</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 280,
+        &quot;order_id&quot;: &quot;DD270280&quot;,
+        &quot;le_id&quot;: 27,
+        &quot;ga_id&quot;: 9,
+        &quot;game_category&quot;: 1,
+        &quot;game_number&quot;: 2,
+        &quot;order_status&quot;: 4,
+        &quot;order_price&quot;: 60,
+        &quot;pay_price&quot;: 60,
+        &quot;pay_type&quot;: 2,
+        &quot;leveling&quot;: {
+            &quot;id&quot;: 27,
+            &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+            &quot;levelingAccount&quot;: &quot;亿唐网游&quot;
+        },
+        &quot;item&quot;: {
+            &quot;id&quot;: 9,
+            &quot;game_name&quot;: 1,
+            &quot;division&quot;: 4,
+            &quot;game_id&quot;: 4,
+            &quot;price_type&quot;: 2,
+            &quot;price&quot;: 30,
+            &quot;service_item&quot;: &quot;荣耀黄金30钻/局&quot;
+        }
+    }
+}</code></pre></table></div><h2>5.5、取消订单  app </h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>取消订单  app </li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8089/leveling/order/cancelOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>订单ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 260,
+        &quot;order_id&quot;: &quot;DD400260&quot;,
+        &quot;le_id&quot;: 40,
+        &quot;ga_id&quot;: 258,
+        &quot;game_category&quot;: 1,
+        &quot;game_number&quot;: 1,
+        &quot;order_status&quot;: 8,
+        &quot;order_price&quot;: 100,
+        &quot;pay_price&quot;: 100,
+        &quot;pay_type&quot;: 2,
+        &quot;leveling&quot;: {
+            &quot;id&quot;: 40,
+            &quot;levelingName&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingAccount&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517381944980.jpg&quot;
+        },
+        &quot;item&quot;: {
+            &quot;id&quot;: 258,
+            &quot;game_name&quot;: 1,
+            &quot;division&quot;: 2,
+            &quot;game_id&quot;: 27,
+            &quot;price_type&quot;: 2,
+            &quot;price&quot;: 100,
+            &quot;service_item&quot;: &quot;倔强青铜100钻/局&quot;
+        }
+    }
+}</code></pre></table></div><h2>5.6、开始订单-app</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>开始订单-app</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8087/leveling/order/startOrder.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>订单ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 260,
+        &quot;order_id&quot;: &quot;DD400260&quot;,
+        &quot;le_id&quot;: 40,
+        &quot;ga_id&quot;: 258,
+        &quot;game_category&quot;: 1,
+        &quot;game_number&quot;: 1,
+        &quot;order_status&quot;: 3,
+        &quot;order_price&quot;: 100,
+        &quot;pay_price&quot;: 100,
+        &quot;pay_type&quot;: 2,
+        &quot;leveling&quot;: {
+            &quot;id&quot;: 40,
+            &quot;levelingName&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingAccount&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517381944980.jpg&quot;
+        },
+        &quot;item&quot;: {
+            &quot;id&quot;: 258,
+            &quot;game_name&quot;: 1,
+            &quot;division&quot;: 2,
+            &quot;game_id&quot;: 27,
+            &quot;price_type&quot;: 2,
+            &quot;price&quot;: 100,
+            &quot;service_item&quot;: &quot;倔强青铜100钻/局&quot;
+        }
+    }
+}</code></pre></table></div><h2>5.7、查看订单详情  app</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看订单详情  app</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8087/leveling/order/getOrderInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>订单ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;id&quot;: 260,
+        &quot;order_id&quot;: &quot;DD400260&quot;,
+        &quot;le_id&quot;: 40,
+        &quot;ga_id&quot;: 258,
+        &quot;game_category&quot;: 1,
+        &quot;game_number&quot;: 1,
+        &quot;order_status&quot;: 9,
+        &quot;order_price&quot;: 100,
+        &quot;pay_price&quot;: 100,
+        &quot;pay_type&quot;: 2,
+        &quot;leveling&quot;: {
+            &quot;id&quot;: 40,
+            &quot;levelingName&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingAccount&quot;: &quot;斯蒂芬斯蒂芬是的冯绍&quot;,
+            &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/1517381944980.jpg&quot;
+        },
+        &quot;item&quot;: {
+            &quot;id&quot;: 258,
+            &quot;game_name&quot;: 1,
+            &quot;division&quot;: 2,
+            &quot;game_id&quot;: 27,
+            &quot;price_type&quot;: 2,
+            &quot;price&quot;: 100,
+            &quot;service_item&quot;: &quot;倔强青铜100钻/局&quot;
+        }
+    }
+}</code></pre></table></div><h2>5.8、获取代练大神详情图片（app）</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取代练大神详情图片（app）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://39.106.145.173:8087/leveling/getLevelPicForApp.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">gameType</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>游戏类型 1王者荣耀 2绝地求生</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;code&quot;: 200,
+    &quot;t&quot;: {
+        &quot;result&quot;: [
+            &quot;http://39.106.145.173:8085/PowerLevelweb/html/PowerLevel/game.html&quot;,
+            &quot;http://p22o6bknk.bkt.clouddn.com/1517477390878.jpg&quot;,
+            &quot;http://p22o6bknk.bkt.clouddn.com/1517477394084.jpg&quot;,
+            &quot;http://p22o6bknk.bkt.clouddn.com/1517477396841.jpg&quot;,
+            &quot;http://p22o6bknk.bkt.clouddn.com/1517637800815.jpg&quot;
+        ]
+    }
+}</code></pre></table></div><h2>5.9、查看代练-消息</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看代练-消息</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8087/leveling/getLevelingInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get/post </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Long</td>
+<td>ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;lev&quot;: {
+            &quot;id&quot;: 27,
+            &quot;uid&quot;: 27,
+            &quot;levelingId&quot;: &quot;DLZH0027&quot;,
+            &quot;levelingName&quot;: &quot;亿唐网游&quot;,
+            &quot;allOrder&quot;: 11,
+            &quot;allPrice&quot;: 710,
+            &quot;commentStar&quot;: 5,
+            &quot;levelingHead&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516193385909.jpg&quot;,
+            &quot;signature&quot;: &quot;是时候展现真正的实力了&quot;,
+            &quot;status&quot;: 1,
+            &quot;gender&quot;: 1,
+            &quot;age&quot;: 25,
+            &quot;address&quot;: &quot;天津&quot;,
+            &quot;gameInfos&quot;: [
+                {
+                    &quot;id&quot;: 9,
+                    &quot;le_id&quot;: 27,
+                    &quot;game_type&quot;: 1,
+                    &quot;is_take&quot;: 1,
+                    &quot;is_win&quot;: 0,
+                    &quot;division&quot;: 5,
+                    &quot;profile&quot;: &quot;王者大神&quot;,
+                    &quot;star&quot;: 5,
+                    &quot;take_order&quot;: 11,
+                    &quot;gamePic&quot;: [
+                        {
+                            &quot;id&quot;: 9,
+                            &quot;picUrl&quot;: &quot;&quot;
+                        }
+                    ],
+                    &quot;gameItem&quot;: [
+                        {
+                            &quot;id&quot;: 20,
+                            &quot;game_name&quot;: 1,
+                            &quot;division&quot;: 2,
+                            &quot;game_id&quot;: 9,
+                            &quot;price_type&quot;: 2,
+                            &quot;price&quot;: 10,
+                            &quot;service_item&quot;: &quot;倔强青铜10钻/局&quot;
+                        },
+                        {
+                            &quot;id&quot;: 21,
+                            &quot;game_name&quot;: 1,
+                            &quot;division&quot;: 3,
+                            &quot;game_id&quot;: 9,
+                            &quot;price_type&quot;: 2,
+                            &quot;price&quot;: 20,
+                            &quot;service_item&quot;: &quot;秩序白银20钻/局&quot;
+                        },
+                        {
+                            &quot;id&quot;: 22,
+                            &quot;game_name&quot;: 1,
+                            &quot;division&quot;: 4,
+                            &quot;game_id&quot;: 9,
+                            &quot;price_type&quot;: 2,
+                            &quot;price&quot;: 30,
+                            &quot;service_item&quot;: &quot;荣耀黄金30钻/局&quot;
+                        },
+                        {
+                            &quot;id&quot;: 23,
+                            &quot;game_name&quot;: 1,
+                            &quot;division&quot;: 5,
+                            &quot;game_id&quot;: 9,
+                            &quot;price_type&quot;: 2,
+                            &quot;price&quot;: 40,
+                            &quot;service_item&quot;: &quot;尊贵铂金40钻/局&quot;
+                        }
+                    ]
+                }
+            ],
+            &quot;pics&quot;: [
+                {
+                    &quot;id&quot;: 25,
+                    &quot;picture&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1516241937234.jpg&quot;
+                }
+            ]
+        },
+        &quot;o&quot;: [
+            {
+                &quot;id&quot;: 46,
+                &quot;gameId&quot;: 1,
+                &quot;areaId&quot;: 2,
+                &quot;gameRank&quot;: &quot;至尊星耀&quot;,
+                &quot;role&quot;: &quot;小马哥&quot;,
+                &quot;userId&quot;: 27,
+                &quot;printscreen&quot;: &quot;http://p22o6bknk.bkt.clouddn.com/crop_image_1517479009412.jpg&quot;,
+                &quot;createTime&quot;: 1517479015000,
+                &quot;updateTime&quot;: 1517479015000,
+                &quot;gameName&quot;: &quot;王者荣耀&quot;,
+                &quot;areaName&quot;: &quot;微信大区&quot;,
+                &quot;gameLogo&quot;: &quot;http://7xlt2k.com1.z0.glb.clouddn.com/crop_image_1515726086808.jpg&quot;
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">Long</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">gameInfos</td>
+<td style="text-align: left;"></td>
+<td>游戏对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">gameItem</td>
+<td style="text-align: left;"></td>
+<td>具体游戏服务项目对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">game_name</td>
+<td style="text-align: left;"></td>
+<td>游戏名称 1，王者荣耀 2，绝地求生</td>
+</tr>
+<tr>
+<td style="text-align: left;">service_item</td>
+<td style="text-align: left;"></td>
+<td>服务项目</td>
+</tr>
+<tr>
+<td style="text-align: left;">signature</td>
+<td style="text-align: left;"></td>
+<td>签名</td>
+</tr>
+<tr>
+<td style="text-align: left;">levelingName</td>
+<td style="text-align: left;"></td>
+<td>代练昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">allOrder</td>
+<td style="text-align: left;"></td>
+<td>总接单数</td>
+</tr>
+<tr>
+<td style="text-align: left;">star</td>
+<td style="text-align: left;"></td>
+<td>星级 game 单个游戏评分</td>
+</tr>
+<tr>
+<td style="text-align: left;">take_order</td>
+<td style="text-align: left;"></td>
+<td>game对象接单数</td>
+</tr>
+<tr>
+<td style="text-align: left;">commentStar</td>
+<td style="text-align: left;"></td>
+<td>game对象接单数</td>
+</tr>
+</tbody>
+</table></div></div><h1>6、战队</h1><div style="margin-left:20px;"><h2>6.1、转移队长队长发送消息验证</h2><div style="margin-left:20px;"><h3>6.1.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>转移队长发送短信后验证接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.104:8087/troops/sendTransferCaptain.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+<tr>
+<td style="text-align: left;">troopsId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>战队Id</td>
+</tr>
+<tr>
+<td style="text-align: left;">newCaptainId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>转移队员Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;OK&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；1004408：只有队长可以操作；1004423：该队员已发送过转移消息；1004415：验证码错误；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table>
+<p>欢迎使用ShowDoc！</p></div></div><h2>6.2、转移队长队员确定操作</h2><div style="margin-left:20px;"><h3>6.2.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>队员确认接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.104:8087/troops/changeTroopsCaptainByApp.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+<tr>
+<td style="text-align: left;">realName</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">String</td>
+<td>真实姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">idCard</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>身份证号码</td>
+</tr>
+<tr>
+<td style="text-align: left;">transferStatus</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>处理状态（1：同意 2：拒绝）</td>
+</tr>
+<tr>
+<td style="text-align: left;">transferId</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>转移信息Id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;OK&quot;
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；1004305：参数不能为空!；1004420：真实姓名不能为空；1004421：身份证号码不能为空；1004415：验证码错误；1004408：只有队长可以操作；104425：转移队长失败，转移消息失效；1004422：转移队长失败；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table>
+<p>欢迎使用ShowDoc！</p></div></div><h2>6.3、拉取用户获取转移队长信息</h2><div style="margin-left:20px;"><h3>6.3.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>拉取用户转移队长信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.104:8087/troops/getTroopsTransfers.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;troopsCaptainTransfers&quot;: [
+            {
+                &quot;id&quot;: 1,  信息Id（long）
+                &quot;troopsId&quot;: 300,  战队id（int）
+                &quot;gameType&quot;: 2,    游戏类型（long）
+                &quot;transferId&quot;: 31, 转移者Id（long）
+                &quot;newCaptainId&quot;: 42,   被转移者id（long）
+                &quot;tranferStatus&quot;: 0,   转移状态（0：初始化 1：同意 2：拒绝）
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table>
+<p>欢迎使用ShowDoc！</p></div></div><h2>6.4、创建战队获取默认信息</h2><div style="margin-left:20px;"><h3>6.4.1、默认页面</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>创建战队获取默认信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.104:8087/troops/getUserTroopsInfo.json</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>请求头参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">必选</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TYPE</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端类型（2：安卓 3：iOS）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-VERSION</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端版本号（已每次发布的版本号为主）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TAP-CLIENT-TOKEN</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">是</td>
+<td>客户端Token号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;code&quot;: 200,
+    &quot;msg&quot;: &quot;成功&quot;,
+    &quot;t&quot;: {
+        &quot;readName&quot;: &quot;小马&quot;,   真实姓名
+        &quot;idCard&quot;: &quot;12345678909&quot; 身份证号码
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>响应状态码（200：成功；20000：系统异常；555：token is null token invalid</td>
+</tr>
+<tr>
+<td style="text-align: left;">msg</td>
+<td style="text-align: left;">String</td>
+<td>修改后，成功为"OK"，失败则为错误信息</td>
+</tr>
+</tbody>
+</table></div></div></div></body></html>
