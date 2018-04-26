@@ -26,6 +26,10 @@ public class BaseService {
 	private final String KEY_VALUE_PREFIX="=";
 
 	private final String PARAM_SPLIT_PREFIX="&";
+	
+	public String TAPCLIENTTYPE="2";
+
+	public String TAPCLIENTVERSION="1";
 
 	@Autowired
 	protected BaseConfig baseConfig;
