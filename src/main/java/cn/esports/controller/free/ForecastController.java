@@ -1,24 +1,24 @@
 package cn.esports.controller.free;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.esports.controller.BaseController;
-import cn.esports.entity.ForecastInfo;
 import cn.esports.service.ForecastService;
 
 @RestController
 public class ForecastController extends BaseController {
 
 	@Autowired
-	public ForecastService fService;
+	public ForecastService forecastService;
 	
 	@RequestMapping(value="/forecast/index", method = RequestMethod.GET)
 	public ModelAndView forecast() {
@@ -27,19 +27,9 @@ public class ForecastController extends BaseController {
 		return view;
 	}
 	
-	@RequestMapping(value="/forecast/list")
-	public Map<String, Object> GetList(Integer pageindex,Integer pagesize,int gameId){
-		if(pageindex==null)pageindex=1;
-		if(pagesize==null)pagesize=10;
-		int total=50;
-		List<ForecastInfo.TBean.ResultBean> resultBeans=fService.GetForecastList(pageindex.intValue(),pagesize.intValue(),gameId);
-		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("resultlist", resultBeans);
-		map.put("total", total);
-		map.put("pageindex", pageindex);
-		map.put("pagesize", pagesize);
-		return map;
-		
+	@RequestMapping(value="/forecast/list", method = RequestMethod.GET)
+	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
+		return forecastService.getForecastList(uriVariables);
 	}
 	
 }
