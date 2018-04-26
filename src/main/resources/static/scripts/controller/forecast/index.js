@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 					type : "get",
 					data : {
 						"offset" : curentPage,
-						"limit" : 10
+						"limit" : 2
 					},
 					success : function(json) {
 						var data = json.t;

@@ -14,8 +14,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.deploy>deploy</project.deploy>
-		<bootstrap.version>3.3.7</bootstrap.version>
-		<jquery.version>2.1.4</jquery.version>
 		<log4j.version>2.8.2</log4j.version>
 	</properties>
 
@@ -57,16 +55,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>${bootstrap.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-			<version>${jquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
