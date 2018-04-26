@@ -1,5 +1,6 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery','pagePlugin','utilService'], function($,pagePlugin,util) {
+		var gameId=-1;
 		$("#list_content").paginator({
 			itemTemplateId:'itemTemplate',
 			pageNavId:'pageContainer',
@@ -8,9 +9,9 @@ define(function(require, exports, module) {
                 	url : "/forecast/list",
                     datatype: 'json',
                     type: "get",
-                    data : {"page" : curentPage},
+                    data : {"pageindex" : curentPage,"pagesize":10,"gameId":gameId},
                     success: function (data) {
-                    	var data={total:data.total,page:data.page,list:data.zxlist};
+                    	var data={total:data.total,page:data.pageindex,list:data.resultlist};
                     	renderHtml(data);
                     }
                 });

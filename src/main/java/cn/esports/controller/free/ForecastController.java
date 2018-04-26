@@ -20,24 +20,24 @@ public class ForecastController extends BaseController {
 	@Autowired
 	public ForecastService fService;
 	
-	@RequestMapping(value="/forecast", method = RequestMethod.GET)
+	@RequestMapping(value="/forecast/index", method = RequestMethod.GET)
 	public ModelAndView forecast() {
-		ModelAndView view =new ModelAndView("forecast");
+		ModelAndView view =new ModelAndView("forecast/index");
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		return view;
 	}
 	
 	@RequestMapping(value="/forecast/list")
-	public Map<String, Object> GetList(Integer page,Integer size,int gameId){
-		if(page==null)page=1;
-		if(size==null)size=10;
+	public Map<String, Object> GetList(Integer pageindex,Integer pagesize,int gameId){
+		if(pageindex==null)pageindex=1;
+		if(pagesize==null)pagesize=10;
 		int total=50;
-		List<ForecastInfo.TBean.ResultBean> resultBeans=fService.GetForecastList(page.intValue(),size.intValue(),gameId);
+		List<ForecastInfo.TBean.ResultBean> resultBeans=fService.GetForecastList(pageindex.intValue(),pagesize.intValue(),gameId);
 		Map<String, Object> map=new HashMap<String,Object>();
 		map.put("resultlist", resultBeans);
 		map.put("total", total);
-		map.put("page", page);
-		map.put("size", size);
+		map.put("pageindex", pageindex);
+		map.put("pagesize", pagesize);
 		return map;
 		
 	}
