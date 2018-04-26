@@ -32,7 +32,6 @@
   				data.list.forEach(function(obj) {
   					controlHtml += itemHtml.repalceVars(obj);
       			});
-  				debugger;
   				obj.settings.ele.html(controlHtml);
   				if(obj.settings.usepager){
                 var total = data.total; //取到pageCount的值(把返回数据转成object类型)
