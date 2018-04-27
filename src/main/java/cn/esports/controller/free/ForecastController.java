@@ -32,4 +32,9 @@ public class ForecastController extends BaseController {
 		return forecastService.getForecastList(uriVariables);
 	}
 	
+	@RequestMapping(value="/forecast/gemelist", method = RequestMethod.GET)
+	public JSONObject getGameInfoList(@RequestParam Map<String, String> uriVariables){
+		return forecastService.getGameInfoList(uriVariables);
+	}
+	
 }

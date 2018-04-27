@@ -163,7 +163,10 @@
 .btncre{border-radius: 4px;margin:0 auto; position: relative; left: -36px; margin-top:30px;background: #fd3741; line-height: 46px; height: 46px; width: 266px; color: #ffffff; font-size: 16px;text-align: center;}
 
 
+/* 关于我们 */
 
+.aboutus h3{font-size: 14px; color: #eeeeee;background: #2e3035; text-align: center; line-height: 62px; height: 62px;}
+.aboutus{width: 1100px; min-width: 1100px; margin:0 auto;}
 
 
 
