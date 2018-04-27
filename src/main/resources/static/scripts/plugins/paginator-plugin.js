@@ -1,23 +1,24 @@
 (function(factory) {
 	if (typeof define === 'function') {
 		// 如果define已被定义，模块化代码
-		define('pagePlugin', [ 'jquery', 'utilService','bootstrap','bootstrapPaginator'],
+		define('pagePlugin', [ 'jquery', 'utilService','bootstrap','bootstrapPaginator','template'],
 				function(require, exports, moudles) {
-					factory(require('jquery'),require('utilService'),require('bootstrap'),require('bootstrapPaginator')); // 初始化插件
+					factory(require('jquery'),require('utilService'),require('bootstrap'),require('bootstrapPaginator'),require('template')); // 初始化插件
 					return jQuery; // 返回jQuery
 				});
 	} else {
 		// 如果define没有被定义，正常执行jQuery
 		factory(jQuery);
 	}
-}(function($, util,bootstrap,paginator) {
+}(function($, util,bootstrap,paginator,template) {
 	var paginator = function(ele, opt) {
 		this.defaults = {
 			itemTemplateId : '', // 条目模版Id
 			pageNavId : '', // 分页导航id
 			ajaxFuc : null, // 获取数据
 			ele : ele,
-			usepager:true
+			usepager:true,
+			useSeniorTemplate:false,
 		};
 		this.settings = $.extend({}, this.defaults, opt);
 	};
@@ -28,17 +29,21 @@
 		getPageData:function(obj,currentPage){
 			this.settings.ajaxFuc(currentPage,function(data){
 				var controlHtml='';
-  				var itemHtml = $("#"+obj.settings.itemTemplateId).val();
-  				data.list.forEach(function(obj) {
-  					controlHtml += itemHtml.repalceVars(obj);
-      			});
+				if(obj.settings.useSeniorTemplate){
+					controlHtml=template(obj.settings.itemTemplateId, data);
+				}else{
+					var itemHtml = $("#"+obj.settings.itemTemplateId).val();
+	  				data.list.forEach(function(obj) {
+	  					controlHtml += itemHtml.repalceVars(obj);
+	      			});
+				}
   				obj.settings.ele.html(controlHtml);
   				if(obj.settings.usepager){
-                var total = data.total; //取到pageCount的值(把返回数据转成object类型)
-                var currentPage = data.page; //得到urrentPage
-  	            if (currentPage && total) {
-  	            	obj.render(obj,currentPage, total);
-  	            }
+	                var total = data.total; //取到pageCount的值(把返回数据转成object类型)
+	                var currentPage = data.page; //得到urrentPage
+	  	            if (currentPage && total) {
+	  	            	obj.render(obj,currentPage, total);
+	  	            }
   				}
 			});
 			
