@@ -5,10 +5,11 @@ define(function (require, exports, module) {
         $("#list_content").paginator({
             itemTemplateId: 'listTemplate',
             pageNavId: 'pageContainer',
-            usepager:true,
+            usepager: true,
+            useSeniorTemplate: true,
             ajaxFuc: function (curentPage, renderHtml) {
                 $.ajax({
-                    url: "/message/messageTitle",
+                    url: "/message/list",
                     datatype: 'json',
                     type: "get",
                     data: {
@@ -17,24 +18,21 @@ define(function (require, exports, module) {
                     },
                     success: function (json) {
                         var data = json.t;
-                        var paramObj = {
-                            total: data.total,
-                            page: data.page,
-                            list: data.result
-                        };
-                        renderHtml(paramObj);
-                        // loadTitle();
+                        renderHtml(data);
+                        loadTitle();
+                        init();
                     }
                 });
             }
         });
 
         //资讯栏目列表
-        function loadTitle(){
+        function loadTitle() {
             $("#title_list").paginator({
                 itemTemplateId: 'titleTemplate',
-                pageNavId: 'pageContainer',
-                usepager:false,
+                pageNavId: '',
+                usepager: false,
+                useSeniorTemplate: true,
                 ajaxFuc: function (curentPage, renderHtml) {
                     $.ajax({
                         url: "/message/messageTitle",
@@ -42,14 +40,45 @@ define(function (require, exports, module) {
                         type: "get",
                         success: function (json) {
                             var data = json.t;
-                            var paramObj = {
-                                total: data.total,
-                                list: data.result
-                            };
-                            renderHtml(paramObj);
+                            // renderHtml(data);
+                            var width = Math.round(1 / data.total * 10000) / 100.00 + "%";
+                            // debugger;
+                            // $(".nav").css("width", width);
                         }
                     });
                 }
+            });
+        }
+
+
+        function init() {
+            //关键字搜索
+
+            $('#searchMessage').on("click", function () {
+                var key = $("#contentKey").val();
+                $("#list_content").paginator({
+                    itemTemplateId: 'listTemplate',
+                    pageNavId: 'pageContainer',
+                    usepager: true,
+                    useSeniorTemplate: true,
+                    ajaxFuc: function (curentPage, renderHtml) {
+                        $.ajax({
+                            url: "/message/searchByKey",
+                            datatype: 'json',
+                            type: "get",
+                            data: {
+                                "offset": curentPage,
+                                "limit": 2,
+                                "keyWord": key
+                            },
+                            success: function (json) {
+                                var data = json.t;
+                                renderHtml(data);
+                                loadTitle();
+                            }
+                        });
+                    }
+                });
             });
         }
     });

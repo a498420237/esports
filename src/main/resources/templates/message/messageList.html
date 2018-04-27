@@ -20,6 +20,11 @@
     <script src="/vendor/sea/sea.js"></script>
     <script src="/scripts/config/seajs-config.js"></script>
     <script src="/js/jquery.1.11.3.min.js"></script>
+    <script src="/message/index.js"></script>
+
+    <script>
+        seajs.use('/scripts/controller/message/index');
+    </script>
 </head>
 <body>
 <div class="topWrap">
@@ -46,12 +51,23 @@
     <div class="wid_1100 saishi_listPage ">
         <div class="saishi_nav font0 overflow_hide bg-black text-left overflow_hide">
             <div id="title_list" class="left_div text-center fl">
-
+                <div class="nav active">
+                    <p class="border"></p>
+                    所有赛事
+                </div>
+                <div class="nav">
+                    <p class="border"></p>
+                    <img src="/images/news_gamepic01.png"/>王者荣耀
+                </div>
+                <div class="nav">
+                    <p class="border"></p>
+                    <img src="/images/news_gamepic02.png"/>绝地求生
+                </div>
             </div>
             <div class="search_div">
                 <div class="search_input">
-                    <input type="text" placeholder="请输入搜素关键字"/>
-                    <button><img src="/images/news_searchicon.png"/></button>
+                    <input id="contentKey" type="text" placeholder="请输入搜素关键字"/>
+                    <button id="searchMessage"><img src="/images/news_searchicon.png"/></button>
                 </div>
             </div>
 
@@ -113,72 +129,23 @@
 
 <textarea id="listTemplate" style="display:none;">
     <div class="list_box">
-
+        {{each result }}
         <a href="javascript:;" class="list_item ">
             <div class="img fl">
-                <img src="/images/detail1.jpg"/>
+                <img src="{{$value.pictureUrl}}"/>
             </div>
             <div class="item_detail">
-                <h4>英雄联盟S7赛季全球总决赛</h4>
+                <h4>{{$value.informationName}}</h4>
                 <div class="detail_con">
-                    <p class="dc">通过活动模式，可以体验到一般模式无法体验到的“竞技生存”玩法</p>
+                    <p class="dc">{{@$value.content}}</p>
                 </div>
-                <p class="date"><span class="fl">2小时前</span><em class="look fr"><img
+                <p class="date"><span class="fl">{{@$value.updateTime}}</span><em class="look fr"><img
                         src="/images/eyesicon.png"/><i>31145</i></em>
                 </p>
 
             </div>
         </a>
-        <a href="javascript:;" class="list_item odd">
-            <div class="img fl">
-                <img src="/images/detail1.jpg"/>
-            </div>
-            <div class="item_detail">
-                <h4>英雄联盟S7赛季全球总决赛</h4>
-                <div class="detail_con">
-                    <p class="dc">通过活动模式，可以体验到一般模式无法体验到的“竞技生存”玩法</p>
-
-                </div>
-                <p class="date"><span class="fl">2小时前</span><em class="look fr"><img
-                        src="/images/eyesicon.png"/><i>31145</i></em>
-                </p>
-
-
-            </div>
-        </a>
-        <a href="javascript:;" class="list_item ">
-            <div class="img fl">
-                <img src="/images/detail1.jpg"/>
-            </div>
-            <div class="item_detail">
-                <h4>英雄联盟S7赛季全球总决赛</h4>
-                <div class="detail_con">
-                    <p class="dc">通过活动模式，可以体验到一般模式无法体验到的“竞技生存”玩法</p>
-
-                </div>
-                <p class="date"><span class="fl">2小时前</span><em class="look fr"><img
-                        src="/images/eyesicon.png"/><i>31145</i></em>
-                </p>
-
-
-            </div>
-        </a>
-        <a href="javascript:;" class="list_item odd">
-            <div class="img fl">
-                <img src="/images/detail1.jpg"/>
-            </div>
-            <div class="item_detail">
-                <h4>英雄联盟S7赛季全球总决赛</h4>
-                <div class="detail_con">
-                    <p class="dc">通过活动模式，可以体验到一般模式无法体验到的“竞技生存”玩法</p>
-
-                </div>
-                <p class="date"><span class="fl">2小时前</span><em class="look fr"><img
-                        src="/images/eyesicon.png"/><i>31145</i></em>
-                </p>
-
-            </div>
-        </a>
+        {{/each}}
     </div>
 </textarea>
 
@@ -187,21 +154,18 @@
         <p class="border"></p>
         所有赛事
     </div>
+    {{each result }}
     <div class="nav">
         <p class="border"></p>
-        <img src="/images/news_gamepic01.png"/>王者荣耀
+        <img src="/images/news_gamepic01.png"/>{{$value.channelName}}
     </div>
-    <div class="nav">
-        <p class="border"></p>
-        <img src="/images/news_gamepic02.png"/>绝地求生
-    </div>
+    {{/each}}
 </textarea>
+
 <!--<script src="js/idangerous.swiper2.7.6.min.js"></script>-->
 <script src="/js/swiper.min.js"></script>
 <script src="/js/con_js.6.23.js"></script>
 <script>
-
-    seajs.use('/scripts/controller/message/index');
 
     $(".saishi_nav .nav").each(function () {
         var num = $(".saishi_nav .nav").length;

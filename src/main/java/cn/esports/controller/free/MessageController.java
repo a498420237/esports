@@ -34,9 +34,9 @@ public class MessageController extends BaseController {
         return messageService.getTitles(uriVariables);
     }
 
-    @RequestMapping(value = "message/messageDetail", method = RequestMethod.GET)
+    @RequestMapping(value = "message/searchByKey", method = RequestMethod.GET)
     public JSONObject getList(@RequestParam Map<String, String> uriVariables) {
-        return messageService.getMessageDetail(uriVariables);
+        return messageService.searchByKey(uriVariables);
     }
 
 

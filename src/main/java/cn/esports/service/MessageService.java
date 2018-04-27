@@ -13,7 +13,7 @@ public class MessageService extends BaseService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MessageService.class);
 
-	public JSONObject getInformations(Map<String, String> uriVariables) {
+	public JSONObject searchByKey(Map<String, String> uriVariables) {
 		try {
 			return restTemplate.getForObject(createUrl("/app/infoContentSearch.json", uriVariables),JSONObject.class);
 		} catch (RestClientException e) {
@@ -31,7 +31,7 @@ public class MessageService extends BaseService {
 		}
 	}
 
-	public JSONObject getMessageDetail(Map<String, String> uriVariables) {
+	public JSONObject getInformations(Map<String, String> uriVariables) {
 		try {
 			return restTemplate.getForObject(createUrl("/app/findInfoContentListForApp.json", uriVariables),JSONObject.class);
 		} catch (RestClientException e) {
