@@ -12,14 +12,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import cn.esports.cache.Cache;
-import cn.esports.entity.UserInfo;
 import cn.esports.service.UserService;
+import cn.esports.utils.Constants;
 
 public class ShiroRealm extends AuthorizingRealm {
-
-	@Autowired
-	private Cache cache;
 
 	@Autowired
 	private UserService userService;
@@ -37,14 +33,13 @@ public class ShiroRealm extends AuthorizingRealm {
 			AuthenticationToken token) throws AuthenticationException {
 		SecurityUtils.getSubject().logout();// 覆盖登录
 		String mobile = (String) token.getPrincipal();
-		/*char[] ch = (char[]) token.getCredentials();
+		char[] ch = (char[]) token.getCredentials();
 		String code = new String(ch);
 		String tokenStr= userService.getToken(mobile, code);
 		if (StringUtils.isEmpty(tokenStr)) {
 			return null;
-		}*/
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-				mobile, "xxx", getName());
+		}
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(mobile, code, getName());
 		return authenticationInfo;
 	}
 }

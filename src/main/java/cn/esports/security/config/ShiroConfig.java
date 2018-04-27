@@ -13,16 +13,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
-import cn.esports.cache.Cache;
 import cn.esports.security.ShiroRealm;
 
 @Configuration
 public class ShiroConfig {
-	
-	@Bean
-	public Cache cache(){
-		return new Cache();
-	}
 	
 	@Bean
 	public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
