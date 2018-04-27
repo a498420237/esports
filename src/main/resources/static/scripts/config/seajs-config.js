@@ -5,5 +5,7 @@ seajs.config({
     	'bootstrap':'/vendor/bootstrap/bootstrap.min',
     	'bootstrapPaginator':'/vendor/paginator/bootstrap-paginator.min',
     	'pagePlugin':'/scripts/plugins/paginator-plugin',
+    	'loginService':'/scripts/services/login-service',
+    	
     }
 });

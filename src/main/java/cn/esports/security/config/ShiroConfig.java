@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import cn.esports.cache.Cache;
-import cn.esports.security.MyShiroRealm;
+import cn.esports.security.ShiroRealm;
 
 @Configuration
 public class ShiroConfig {
@@ -43,7 +43,7 @@ public class ShiroConfig {
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
 		filterChainDefinitionMap.put("/user/**", "authc");
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-		shiroFilterFactoryBean.setLoginUrl("/login");
+		shiroFilterFactoryBean.setLoginUrl("/");
 		// 登录成功后要跳转的链接
 	    //shiroFilterFactoryBean.setSuccessUrl("/index");
 
@@ -68,8 +68,8 @@ public class ShiroConfig {
 	}
 
 	@Bean
-	public MyShiroRealm myShiroRealm() {
-		MyShiroRealm myShiroRealm = new MyShiroRealm();
+	public ShiroRealm myShiroRealm() {
+		ShiroRealm myShiroRealm = new ShiroRealm();
 		//myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 		return myShiroRealm;
 	}

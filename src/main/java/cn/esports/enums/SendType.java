@@ -1,6 +1,6 @@
 package cn.esports.enums;
 
-public enum TYPEENUM {
+public enum SendType {
 	LOGIN("login"),
 	BINDMOBILE("bindMobile"),
 	RESETBINDMOBILE("resetBindMobile"),
@@ -10,7 +10,7 @@ public enum TYPEENUM {
 	
 	private final String index;
 
-	TYPEENUM(String index) {
+	SendType(String index) {
         this.index = index;
     }
     public String getIndex() {

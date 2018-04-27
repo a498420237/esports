@@ -20,16 +20,16 @@ import cn.esports.config.BaseConfig;
  * @date 2018年4月24日
  */
 public class BaseService {
-	
-	private final String URL_PARAM_PREFIX="?";
-	
-	private final String KEY_VALUE_PREFIX="=";
 
-	private final String PARAM_SPLIT_PREFIX="&";
-	
-	public String TAPCLIENTTYPE="2";
+	private final String URL_PARAM_PREFIX = "?";
 
-	public String TAPCLIENTVERSION="1";
+	private final String KEY_VALUE_PREFIX = "=";
+
+	private final String PARAM_SPLIT_PREFIX = "&";
+
+	public String TAPCLIENTTYPE = "2";
+
+	public String TAPCLIENTVERSION = "1";
 
 	@Autowired
 	protected BaseConfig baseConfig;
@@ -37,11 +37,17 @@ public class BaseService {
 	@Autowired
 	protected RestTemplate restTemplate;
 
-	protected String createUrl(String path,Map<String, String> uriVariables) {
-		String url=baseConfig.getHttpUrl()+path+URL_PARAM_PREFIX;
-		for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
-			url+=entry.getKey()+KEY_VALUE_PREFIX+entry.getValue()+PARAM_SPLIT_PREFIX;
+	protected String createUrl(String path, Map<String, String> uriVariables) {
+		String url = baseConfig.getHttpUrl() + path;
+		if (uriVariables == null) {
+			return url;
 		}
-		return url.substring(0, url.length()-1);
+		url = url + URL_PARAM_PREFIX;
+
+		for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
+			url += entry.getKey() + KEY_VALUE_PREFIX + entry.getValue()
+					+ PARAM_SPLIT_PREFIX;
+		}
+		return url.substring(0, url.length() - 1);
 	}
 }

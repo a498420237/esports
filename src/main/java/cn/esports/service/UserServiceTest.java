@@ -4,7 +4,9 @@ import cn.esports.utils.RestTemplateUtils;
 import cn.esports.entity.LoginEntity;
 import cn.esports.entity.ResultEntity;
 import cn.esports.entity.UserInfo;
+import cn.esports.enums.SendType;
 import cn.esports.service.BaseService;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -24,7 +26,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserService extends BaseService {
+public class UserServiceTest extends BaseService {
 
 
     /**
@@ -129,4 +131,9 @@ public class UserService extends BaseService {
 
         return userinfo;
     }
+    
+    public static void main(String[] args) {
+    	ResultEntity entity= new UserServiceTest().sendMobileCode("13535375895",SendType.LOGIN.getIndex());	
+    	System.out.println(entity);
+	}
 }
