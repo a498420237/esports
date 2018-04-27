@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>预测列表</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/zyx_forecast.css"></head>
+  
+  <body>
+    <div class="topWrap">
+      <div class="topcenter">
+        <div class="logo">
+          <img src="images/tplogo.png"></div>
+        <div class="nav">
+          <a href="#">首页
+            <span>HOME</span></a>
+          <a href="#">赛事
+            <span>COMPETITION</span></a>
+          <a href="#">资讯
+            <span>MESSAGE</span></a>
+          <a href="#" class="current">直播
+            <span>LIVE</span></a>
+          <a href="#">预测
+            <span>FORECAST</span></a>
+          <a href="#">移动端
+            <span>MOBILE</span></a>
+        </div>
+        <div class="loginr">
+          <a class="current" href="#">登录</a>
+          <a href="#">注册</a></div>
+      </div>
+    </div>
+    <div class="contwrap">
+      <div class="z_container">
+        <div class="z_container_content">
+          <div class="z_Video_detail">
+            <h1>网二：德玛西亚最强上单</h1>
+            <span>来源：斗鱼</span>
+            <span>主播：卢姥爷</span>
+            <span>在线人数：500万</span>
+            <span>粉丝：80万</span>
+          </div>
+          <div class="z_Video_detail_video">
+            <img src="images/vediopic.png">
+            <div class="z_download"><img src="images/logoicon.png" ><a href="javascriopt:">下载电竞e族app,电竞玩家都在用>></a></div>
+          </div>
+
+          <div class="z_Video_lists">
+          <div class="z_Video_heade"><span>推荐直播</span></div>
+            <ul class="z_Video_list">
+               <li>
+                 <div class="z_Video_con"><img src="images/vedio_gamepic.png"></div>
+                 <div class="z_shade"></div>
+                 <h1 class="z_Video_con_title">阿健：直播到晚上8点</h1>
+                 <div class="z_Video_con_subtitle">
+                   <span>荣耀108星全能健</span>
+                   <span class="right"><img src="images/eyesicon.png">1789</span>
+                 </div>
+              </li>
+              <li>
+                 <div class="z_Video_con"><img src="images/vedio_gamepic.png"></div>
+                 <div class="z_shade"></div>
+                 <h1 class="z_Video_con_title">阿健：直播到晚上8点</h1>
+                 <div class="z_Video_con_subtitle">
+                   <span>荣耀108星全能健</span>
+                   <span class="right"><img src="images/eyesicon.png">1789</span>
+                 </div>
+              </li>
+              <li>
+                 <div class="z_Video_con"><img src="images/vedio_gamepic.png"></div>
+                 <div class="z_shade"></div>
+                 <h1 class="z_Video_con_title">阿健：直播到晚上8点</h1>
+                 <div class="z_Video_con_subtitle">
+                   <span>荣耀108星全能健</span>
+                   <span class="right"><img src="images/eyesicon.png">1789</span>
+                 </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!--footer-->
+        <div class="botwrap">
+          <div class="bottcon">
+            <div class="btnav">
+              <div class="dyl">
+                <a class="current" href="#">关于我们</a>
+                <a href="#">媒体报道</a>
+                <a href="#">投资方&顾问</a></div>
+              <div class="dyl">
+                <a href="#">工作机会</a>
+                <a href="#">网站条款</a>
+                <a href="#">新手指南</a></div>
+              <div class="dyl">
+                <a href="#">我们的公众号</a></div>
+            </div>
+            <div class="btlogo">
+              <img src="images/btlogo.png"></div>
+          </div>
+          <div class="btsafetext">
+            <div class="textnav">
+              <a href="#">家长监护</a>|
+              <a href="#">防沉迷</a>|
+              <a href="#">交易纠纷处理</a>|
+              <a href="#">用户权益保障措施</a></div>
+            <p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+            <p>指尖上行（北京）互动娱乐科技有限公司</p>
+          </div>
+        </div>
+        <script src="js/jquery.1.11.3.min.js"></script>
+        <script src="layer/layer.js"></script>
+        <script>
+         $(function(){
+            $(".z_Video_con").mouseover(function(event){
+                var _this=$(this)
+               var notThis = $('li .z_Video_con').not(_this); 
+                notThis.parents("li").find(".z_shade").hide();
+                _this.parents("li").find('.z_shade').show();
+             })
+        })
+        </script>
+  </body>
+
+</html>

@@ -90,6 +90,16 @@ $(function() {
 
 
 	//弹出筛选条件
+$(".btncre").click(function(){
+			$(".popmoney").fadeIn();			
+
+		});	
+	$(".close").click(function(){
+	
+			$(".popmoney").hide();			
+
+		});
+
 		$("#logi").click(function(){
 	
 			$(".poplogind").fadeIn(2000);			

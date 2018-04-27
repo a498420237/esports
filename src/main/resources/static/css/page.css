@@ -206,8 +206,8 @@
 .list_box .list_item .img{width: 235px;height: 140px;}
 .list_box .list_item .img img{display: block;width: 235px;height: 140px;}
 .list_box .list_item .item_detail{height: 140px; margin-left: 260px;position: relative;}
-.list_box .list_item .item_detail  h4{font-size: 20px;font-family: "黑体";line-height: 1; padding:5px 0;}
-.list_box .list_item .item_detail .detail_con{position: absolute;left:0px;top:40px; line-height: 30px;}
+.list_box .list_item .item_detail  h4{font-size: 20px;font-family: "黑体";line-height: 1; padding:5px 0;color: #fff;}
+.list_box .list_item .item_detail .detail_con{position: absolute;left:0px;top:24px; line-height: 30px; margin-top: 12px;}
 .list_box .list_item .item_detail .detail_con p{color:#ccc; font-size: 14px;}
 .list_box .list_item .item_detail .detail_con p span{color:#ccc}
 .list_box .list_item .item_detail .detail_con p span.marg{margin-left: 50px;}
@@ -227,14 +227,13 @@
 .list_box .list_item .item_detail .detail_con p.dc{color:#dddcdc}
 .item_detail .date{ position: absolute;width: 100%;bottom: 10px;color:#999;overflow: hidden;line-height: normal;}
 .item_detail .date em img{margin-right: 10px;display: inline-block;vertical-align: middle;}
-.edit_box p{text-indent: 2em;line-height: 30px;color:#dddcdc; margin-bottom: 15px;font-size: 16px;}
+.edit_box p{text-indent: 2em;line-height: 40px;color:#dddcdc; margin-bottom: 15px;font-size: 16px;}
 .edit_box p img:only-child{width:80% ;display: block;margin: 0 auto;}
 .edit_box p img{width:80% ;display: block;margin: 0 auto;}
 .share_div{padding: 50px 0;}
 .share_div i{margin: 0px 15px;cursor: pointer;}
 
 .down_load{height: 750px; background-color: #1a1a1a;position: relative;}
-.erweima_box{position: absolute;right:120px;top:50%;margin-top: -225px;}
 
 .erweima_box h4{margin-top: 30px;color:#fff; font-size: 24px;}
 .erweima_box .erwiema .load{display: inline-block;margin: 0px 40px;}
@@ -244,4 +243,7 @@
 .erweima_box .erwiema .load .code_img img{width:160px;height: 160px;}
 .erweima_box .erwiema .load span{color:#999;font-size: 16px; margin-top: 10px;display: block;}
 
+.contwrapd{width: 100%; min-width: 1100px; background: #1b1b1b;}
+.leimg{float: left; width: 615px;}
+.erweima_box{float: left;margin-left:140px; width: 493px;margin-top: 150px; }
 

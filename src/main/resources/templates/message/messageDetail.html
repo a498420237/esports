@@ -19,26 +19,19 @@
     <link rel="stylesheet" href="css/page.css">
     <script src="js/jquery.1.11.3.min.js"></script>
 </head>
+<script>
+window.onload = function(){
+	$(".nav a").each(function(){
+		$(this).removeAttr('class');
+	});
+	$(".nav a").eq(2).attr("class","current");
+}
+ 
+</script>
 <body>
-<div class="topWrap">
-    <div class="topcenter">
-        <div class="logo">
-            <img src="images/tplogo.png">
-        </div>
-        <div class="nav">
-            <a class="current" href="#">首页<span>HOME</span></a>
-            <a href="#">赛事<span>COMPETITION</span></a>
-            <a href="#">资讯<span>MESSAGE</span></a>
-            <a href="#">直播<span>LIVE</span></a>
-            <a href="#">预测<span>FORECAST</span></a>
-            <a href="#">移动端<span>MOBILE</span></a>
-        </div>
-        <div class="loginr">
-            <a class="current" href="#">登录</a>
-            <a href="#">注册</a>
-        </div>
-    </div>
-</div>
+
+    <div th:include="/include :: topWrap"></div>
+
 
 
 <div class="contwrap">
@@ -356,38 +349,8 @@
 </div>
 
 
-<div class="botwrap">
-    <div class="bottcon">
-        <div class="btnav">
-            <div class="dyl">
-                <a class="current" href="#">关于我们</a>
-                <a href="#">媒体报道</a>
-                <a href="#">投资方&顾问</a>
-            </div>
-            <div class="dyl">
-                <a href="#">工作机会</a>
-                <a href="#">网站条款</a>
-                <a href="#">新手指南</a>
-            </div>
-            <div class="dyl">
-                <a href="#">我们的公众号</a>
-            </div>
-        </div>
-        <div class="btlogo">
-            <img src="images/btlogo.png">
-        </div>
-    </div>
-    <div class="btsafetext">
-        <div class="textnav">
-            <a href="#">家长监护</a>|
-            <a href="#">防沉迷</a>|
-            <a href="#">交易纠纷处理</a>|
-            <a href="#">用户权益保障措施</a>
-        </div>
-        <p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
-        <p>指尖上行（北京）互动娱乐科技有限公司</p>
-    </div>
-</div>
+<!-- 尾部 -->
+	<div class="botwrap" th:include="/include :: botwrap"></div>
 
 <!--<script src="js/idangerous.swiper2.7.6.min.js"></script>-->
 <script src="js/swiper.min.js"></script>

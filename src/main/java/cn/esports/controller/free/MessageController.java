@@ -18,7 +18,7 @@ public class MessageController extends BaseController {
     @Autowired
     public MessageService messageService;
 
-    @RequestMapping(value = "/message/messageList", method = RequestMethod.GET)
+    @RequestMapping(value = "/message/index", method = RequestMethod.GET)
     public ModelAndView messageList() {
         ModelAndView view = new ModelAndView("message/messageList");
         return view;
