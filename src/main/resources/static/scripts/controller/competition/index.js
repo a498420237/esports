@@ -1,11 +1,12 @@
 define(function(require, exports, module) {
 	
-	//赛事状态转换:  1预热，2报名中，3开赛准备，4比赛中，5比赛结束,6已取消	
-	var matchStatusClass = {//目前只有这几种状态
-		"1" : "reading",	
-		"2" : "baominging",	
-		"4" : "runing",	
-		"5" : "end",	
+	var competitionUtil = {
+		matchStatusClass : {//赛事状态转换:  1预热，2报名中，3开赛准备，4比赛中，5比赛结束,6已取消    目前只有这几种状态
+			"1" : "reading",	
+			"2" : "baominging",	
+			"4" : "runing",	
+			"5" : "end",	
+		}
 	};
 	
 	function loadDatas(curentPage, renderHtml){
@@ -25,7 +26,7 @@ define(function(require, exports, module) {
 				var results = data.result;
 				for(var index in results){
 					var r = results[index];							
-					r.matchStatusClass = matchStatusClass[r.matchStatus];
+					r.matchStatusClass = competitionUtil.matchStatusClass[r.matchStatus];
 				}
 				
 				var paramObj = {
@@ -33,10 +34,11 @@ define(function(require, exports, module) {
 					page : curentPage,
 					list : data.result
 				};
-				renderHtml(paramObj);
+				competitionUtil.renderHtml(paramObj);
 			}
 		});
 	}
+	
 	
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService' ], function($,pagePlugin, util) {
 		
@@ -44,10 +46,14 @@ define(function(require, exports, module) {
 			itemTemplateId : 'competitionList_template',
 			pageNavId : 'pageContainer',
 			ajaxFuc : function(curentPage, renderHtml) {
-				loadDatas(curentPage, renderHtml);
+				competitionUtil.renderHtml = renderHtml;
+				loadDatas(curentPage);
 			}
 		});
 		
+		$("#competitionTab").click(function(){//tab点击
+			loadDatas(0);
+		});
 	});
 	
 	
