@@ -103,70 +103,7 @@
 					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
 					<div class="jianli_list swiper-container2">
 						<div class="swiper-wrapper">
-								<div class="jianli_item text-center swiper-slide font0 text-left">
-									  <div class="saishi_status  bg-black radius6">
-									  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
-									  	  	<span class="fl color-999 l-h-25">2018-5-20</span>
-									  	  	<b class="fr color-fff  p_both10 radius4 l-h-25 font12 runing">正在进行</b>
-									  	  </div>
-									  	  <div class="status_detail font0">
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/comde_sclpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  	   <span class="score"><i>3</i><b class="m_both10">:</b><i>2</i></span>
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/com_scrpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  </div>
-									  </div>
-									  <div class="saishi_status  bg-black radius6">
-									  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
-									  	  	<span class="fl color-999 l-h-25">2018-5-20</span>
-									  	  	<b class="fr color-fff  p_both10 radius4 l-h-25 font12 runing">正在进行</b>
-									  	  </div>
-									  	  <div class="status_detail font0">
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/comde_sclpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  	   <span class="score"><i>3</i><b class="m_both10">:</b><i>2</i></span>
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/com_scrpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  </div>
-									  </div>
-									  <div class="saishi_status  bg-black radius6">
-									  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
-									  	  	<span class="fl color-999 l-h-25">2018-5-20</span>
-									  	  	<b class="fr color-fff  p_both10 radius4 l-h-25 font12 end">已结束</b>
-									  	  </div>
-									  	  <div class="status_detail font0">
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/comde_sclpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  	   <span class="score"><i>3</i><b class="m_both10">:</b><i>2</i></span>
-									  	  	  <div class="team">
-									  	  	  	  <div class="img">
-									  	  	  	  	<img src="/images/com_scrpic.png" />
-									  	  	  	  </div>
-									  	  	  	  <p>LLJHG</p>
-									  	  	  </div>
-									  	  </div>
-									  </div>
+								<div class="jianli_item text-center swiper-slide font0 text-left" id="againstPlans">
 								</div>
 						</div>
 					</div>
@@ -208,10 +145,36 @@
 <div style="display: none;">
   	<!-- 轮次信息列表 -->
   	<textarea id="againstInfo_template">
-		<div class="process_item" data-num="1">
+		<div class="process_item $dataClass$" data-num="$num$" >
 			第$num$轮
 		</div>
   	</textarea>
+  	
+  	<textarea id="againstPlan_template">
+		<div class="saishi_status  bg-black radius6">
+	  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
+	  	  	<span class="fl color-999 l-h-25">$gameDay$</span>
+	  	  	<b class="fr color-fff  p_both10 radius4 l-h-25 font12 $statuClass$">$statuName$</b>
+	  	  </div>
+	  	  <div class="status_detail font0">
+	  	  	  <div class="team">
+	  	  	  	  <div class="img">
+	  	  	  	  	<img src="$leftPic$" />
+	  	  	  	  </div>
+	  	  	  	  <p>$leftName$</p>
+	  	  	  </div>
+	  	  	   <span class="score"><i>3</i><b class="m_both10">:</b><i>2</i></span>
+	  	  	  <div class="team">
+	  	  	  	  <div class="img">
+	  	  	  	  	<img src="$rightPic$" />
+	  	  	  	  </div>
+	  	  	  	  <p>$rightName$</p>
+	  	  	  </div>
+	  	  </div>
+	  	 </div>
+	  </textarea>
+  </div>
+									  
 </div>
 <script src="/js/swiper.min.js"></script>
 <script src="/js/con_js.6.23.js"></script>
