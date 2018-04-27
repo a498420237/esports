@@ -1,23 +1,12 @@
 package cn.esports.service;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
-
-import cn.esports.EsportsApplication;
-import cn.esports.entity.UserLogin;
-import cn.esports.enums.TYPEENUM;
-
 
 @RunWith(SpringRunner.class)
 

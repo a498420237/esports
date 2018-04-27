@@ -11,6 +11,9 @@
 		factory(jQuery);
 	}
 }(function($, util,bootstrap,paginator,template) {
+	template.defaults.imports.dateFmt = function(ns){
+		return new Date(parseInt(ns)).toLocaleString();
+	};
 	var paginator = function(ele, opt) {
 		this.defaults = {
 			itemTemplateId : '', // 条目模版Id
