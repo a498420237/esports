@@ -59,4 +59,15 @@ public class CompetitionController extends BaseController {
 		view.addObject("totalMumber",  totalMumber);
 		return view;
 	}
+	
+	/**
+	 * 赛事详情
+	 * @param matchId
+	 * @return
+	 */
+	@RequestMapping(value="/competition/againstInfo/{matchId}", method = RequestMethod.GET)
+	public JSONObject getAgainstInfo(@PathVariable Long matchId,
+			@RequestParam int num){
+		return competitionService.getAgainstPlan(matchId, num);
+	}
 }
