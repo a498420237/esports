@@ -27,6 +27,7 @@ define(function(require, exports, module) {
 				for(var index in results){
 					var r = results[index];							
 					r.matchStatusClass = competitionUtil.matchStatusClass[r.matchStatus];
+					r.startTime = new Date(r.startTime).format("yyyy-MM-dd");
 				}
 				
 				var paramObj = {
