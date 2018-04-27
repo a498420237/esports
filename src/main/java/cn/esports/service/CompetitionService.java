@@ -42,11 +42,14 @@ public class CompetitionService extends BaseService {
 	 * @param matchId
 	 * @return
 	 */
-	public JSONObject getCompetitionInfo(Long matchId) {
+	public Object getCompetitionInfo(Long matchId) {
 		try {
 			Map<String, String> uriVariables = new HashMap<String, String>();
 			uriVariables.put("matchId", String.valueOf(matchId));
-			return restTemplate.getForObject(createUrl(INFO_URL, uriVariables),JSONObject.class);
+			JSONObject result = restTemplate.getForObject(createUrl(INFO_URL, uriVariables),JSONObject.class);
+			
+			Object competition = result.get("t");
+			return competition;
 		} catch (RestClientException e) {
 			logger.error("call the forecast list from rest api occurred error,cause by:",e);
 			return null;

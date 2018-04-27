@@ -47,12 +47,16 @@ public class CompetitionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/competition/info/{matchId}", method = RequestMethod.GET)
-	public ModelAndView getInfo(@PathVariable Long matchId){
+	public ModelAndView getInfo(@PathVariable Long matchId,
+			@RequestParam String totalPrize,
+			@RequestParam String totalMumber,
+			@RequestParam String prizeType){
 		
-		JSONObject result = competitionService.getCompetitionInfo(matchId);
 		ModelAndView view =new ModelAndView("competition/info");
-		Object competition = result.get("t"); 
-		view.addObject("competition", competition);
+		view.addObject("competition",  competitionService.getCompetitionInfo(matchId));
+		view.addObject("totalPrize",  totalPrize);
+		view.addObject("prizeType",  prizeType);
+		view.addObject("totalMumber",  totalMumber);
 		return view;
 	}
 }
