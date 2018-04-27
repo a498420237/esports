@@ -15,7 +15,7 @@ import org.springframework.util.MultiValueMap;
 import com.alibaba.fastjson.JSON;
 import cn.esports.entity.UserInfo;
 import cn.esports.entity.UserLogin;
-import cn.esports.enums.TYPEENUM;
+import cn.esports.enums.SendType;
 
 /**
  * 
@@ -104,7 +104,7 @@ public class UserInfoService extends BaseService {
 	 * @param code
 	 * @return
 	 */
-	public UserLogin SendSMS(String mobile, TYPEENUM typeEnum) {
+	public UserLogin SendSMS(String mobile, SendType typeEnum) {
 		UserLogin token = null ;
 		try {
 			String url = baseConfig.getHttpUrl() + "/api/msg/sendMobileCode.json";

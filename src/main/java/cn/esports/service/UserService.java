@@ -1,132 +1,75 @@
 package cn.esports.service;
 
-import cn.esports.utils.RestTemplateUtils;
-import cn.esports.entity.LoginEntity;
-import cn.esports.entity.ResultEntity;
-import cn.esports.entity.UserInfo;
-import cn.esports.service.BaseService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- * Competition赛制>Troops站队
- * <p>Title: CompetitionTroopsService</p>
- * <p>Description: </p>
- *
- * @author zhimin.hu
- * @date 2018年4月24日
- */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestClientException;
+
+import cn.esports.entity.SimpleUser;
+import cn.esports.enums.SendType;
+
+import com.alibaba.fastjson.JSONObject;
 
 @Component
-public class UserService extends BaseService {
-
-
-    /**
-     * 发送短信
-     *
-     * @return
-     */
-    public ResultEntity sendMobileCode(String mobile, String type) {
-
-        ResultEntity resultEntity = RestTemplateUtils.post(baseConfig.getHttpUrl() + "/api/msg/sendMobileCode.json",
-
-                "{\"mobile\": \"" + mobile +
-                        "\",\"type\": \"" + type + "\" }",
-
-                "{\"TAP-CLIENT-TYPE\": \"" + TAPCLIENTTYPE +
-                        "\",\"TAP-CLIENT-VERSION\": \"" + TAPCLIENTVERSION + "\" }",
-
-                ResultEntity.class, null);
-
-        return resultEntity;
-    }
-
-
-    /**
-     * 登录或注册，并获取token
-     *
-     * @return
-     */
-    public LoginEntity login(String mobile, String code) {
-
-        LoginEntity loginEntity = RestTemplateUtils.post(baseConfig.getHttpUrl() + "/api/index/login.json",
-
-                "{\"mobile\": \"" + mobile +
-                        "\",\"code\": \"" + code + "\" }",
-
-                "{\"TAP-CLIENT-TYPE\": \"" + TAPCLIENTTYPE +
-                        "\",\"TAP-CLIENT-VERSION\": \"" + TAPCLIENTVERSION + "\" }",
-
-                LoginEntity.class, null);
-
-
-        if (loginEntity.getCode() == 200) {
-
-            Subject currentUser = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(String.valueOf(loginEntity.getT().getId()), loginEntity.getT().getUserName());
-
-            Session session = currentUser.getSession();
-            session.setAttribute("token", loginEntity.getT().getToken());
-
-            //String value = (String) session.getAttribute("token");
-
-            if (!currentUser.isAuthenticated()) {
-                try {
-                    currentUser.login(token);
-                } catch (UnknownAccountException uae) {
-                    //log.info("-->There is no user with username of " + token.getPrincipal());
-                } catch (IncorrectCredentialsException ice) {
-                    //log.info("-->Password for account " + token.getPrincipal() + " was incorrect!");
-                } catch (LockedAccountException lae) {
-                    //log.info("The account for username " + token.getPrincipal() + " is locked.  " +
-                }
-            }
-
-        }
-
-        return loginEntity;
-    }
-
-    public void loginout() {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.logout();
-    }
-
-
-    /**
-     * 获取用户资料信息
-     *
-     * @return
-     */
-    public UserInfo getUserInfo(String jsonparams) {
-
-        Subject currentUser = SecurityUtils.getSubject();
-
-        if (!currentUser.isAuthenticated()) {
-             return null;
-        }
-
-        Session session = currentUser.getSession();
-
-        String token = (String) session.getAttribute("token");
-
-        if (token==null){
-            return null;
-        }
-
-        UserInfo userinfo = RestTemplateUtils.post(baseConfig.getHttpUrl() + "/api/index/login.json",
-                jsonparams,
-                "{\"TAP-CLIENT-TYPE\": \"" + TAPCLIENTTYPE +
-                        "\",\"TAP-CLIENT-VERSION\": \"" + TAPCLIENTVERSION +
-                        "\",\"token\":" + token + " }",
-                UserInfo.class, null);
-
-        return userinfo;
-    }
+public class UserService extends BaseService{
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+	
+	/**
+	 * 发送手机验证码
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject sendMobileCode(String mobile){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			//requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			postParameters.add("mobile", mobile);
+			postParameters.add("type", SendType.LOGIN.getIndex());
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			
+			return restTemplate.postForObject(createUrl("/api/msg/sendMobileCode.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("send mobile code to rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+	
+	public String getToken(String mobile,String code){
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+		requestHeaders.add("TAP-CLIENT-VERSION", "0.0.1"); // 客户端版本
+		requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+		MultiValueMap<String, String> postParameters = new LinkedMultiValueMap<>();
+		postParameters.add("mobile", mobile);
+		postParameters.add("code", code);
+		HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+		ResponseEntity<JSONObject> resp = restTemplate.exchange(createUrl("/api/index/login", null) ,HttpMethod.POST,httpEntity, JSONObject.class);
+		if(resp.getBody().get("code").toString().equals("200")){
+			List<String> cookies = resp.getHeaders().get("Set-Cookie");
+			for(String cookie:cookies){
+				if(cookie.startsWith("rememberTap_token")) {
+					resp.getBody().put("token", cookie.replace("rememberTap_token=", ""));
+					return cookie.replaceAll("rememberTap_token=(.*);", "$1");
+	        	}
+			}
+		}
+		return "";
+	}
 }

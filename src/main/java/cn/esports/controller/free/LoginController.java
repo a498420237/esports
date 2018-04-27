@@ -14,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.esports.controller.BaseController;
 import cn.esports.entity.UserInfo;
 import cn.esports.entity.UserLogin;
-import cn.esports.enums.TYPEENUM;
+import cn.esports.enums.SendType;
 import cn.esports.service.UserInfoService;
 
-@RestController
+/*@RestController*/
 public class LoginController extends BaseController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class LoginController extends BaseController {
 	}
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ModelAndView loginin(String userName) {
-		UserLogin userLogin=uService.SendSMS(userName, TYPEENUM.LOGIN);
+		UserLogin userLogin=uService.SendSMS(userName, SendType.LOGIN);
 		if(200==userLogin.getCode()) {
 		return new ModelAndView("loginIn");
 		}else {
