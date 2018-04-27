@@ -1,4 +1,4 @@
-package cn.esports.controller.free;
+package cn.esports.controller.infos;
 
 import cn.esports.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;

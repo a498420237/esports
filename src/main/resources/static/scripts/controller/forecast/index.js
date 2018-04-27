@@ -1,16 +1,20 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
+		var isShow=true;
 		//获取列表数据
 		function seniorLoad(gameId){
+			debugger;
+			if(isShow){
+				isShow=false;
 			$("#list_content").paginator({
-				itemTemplateId : 'webTemplatetest',
+				itemTemplateId : 'itemTemplate',
 				pageNavId : 'pageContainer',
 				usepager:true,
 				useSeniorTemplate:true,
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 3
+							"limit" : 2
 					};
 					if(gameId!=""){
 						data.gameId=gameId;
@@ -25,15 +29,18 @@ define(function(require, exports, module) {
 							var paramObj = {
 								total : data.total,
 								page : data.offset,
-								list : data.result,
-								children:data.result.handicapListInfos
+								list : data.result
 							};
 							renderHtml(data);
 							init();
+							isShow=true;
 						}
 					});
 				}
 			});
+			}else{
+				//alert("你点的太快了");
+			}
 		}
 		
 		//获取列表数据
@@ -60,8 +67,7 @@ define(function(require, exports, module) {
 							var paramObj = {
 								total : data.total,
 								page : data.offset,
-								list : data.result,
-								children:data.result.handicapListInfos
+								list : data.result
 							};
 							renderHtml(paramObj);
 							init();
@@ -92,7 +98,7 @@ define(function(require, exports, module) {
 								renderHtml(paramObj);
 								$("#gemelist_left_nav").children().eq(0).find("a").attr("class","active");
 								
-								load("");
+								seniorLoad("");
 								init();
 					    	}else{
 					    		alert(json.msg);
@@ -108,7 +114,7 @@ define(function(require, exports, module) {
 			     $('.z_forecast_nav li a').removeClass("active");
 			     $(this).addClass("active");
 			     var id=$(this).attr("name");
-			     load(id);
+			     seniorLoad(id);
 			   });
 			   $('.z_list_con').on("click",function() {
 			     var _this = $(this);
