@@ -1,12 +1,13 @@
 define(function(require, exports, module) {
-	seajs.use([ 'jquery' ], function($) {
+	seajs.use([ 'jquery','layer'], function($,layer) {
 
 		// 绑定获取验证码事件
 		var bindGetCodeEvent = function() {
 			$("#getCodeBtn").click(function() {
+				debugger;
 				var mobile = $("#phoneInput").val();
 				if (mobile == "") {
-					alert("请输入手机号");
+					layer.alert("请输入手机号");
 					return;
 				}
 				$.ajax({
@@ -15,6 +16,8 @@ define(function(require, exports, module) {
 					type : "post",
 					data : {
 						"mobile" : mobile
+					},success:function(){
+						alert("发送成功,请注意接受短信。");
 					}
 				});
 			});
@@ -22,9 +25,7 @@ define(function(require, exports, module) {
 
 		// 绑定登录事件
 		var bindLoginEvent = function() {
-			debugger;
 			$("#loginBtn").click(function() {
-				debugger;
 				var mobile = $("#phoneInput").val();
 				if (mobile == "") {
 					alert("请输入手机号");
@@ -44,6 +45,10 @@ define(function(require, exports, module) {
 						"code" : code
 					},
 					success : function(json) {
+						debugger;
+						$(".poplogin").fadeIn();
+						$("#logi").text("测试用户");
+						$("#logi").attr("href","/user/index");
 						window.location.reload();
 					}
 				});

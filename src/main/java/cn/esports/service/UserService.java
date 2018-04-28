@@ -16,8 +16,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import cn.esports.entity.SimpleUser;
+import cn.esports.entity.UserInfo;
 import cn.esports.enums.SendType;
 
 import com.alibaba.fastjson.JSONObject;
@@ -52,6 +54,7 @@ public class UserService extends BaseService{
 	}
 	
 	public String getToken(String mobile,String code){
+		try {
 		HttpHeaders requestHeaders = new HttpHeaders();
 		requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
 		requestHeaders.add("TAP-CLIENT-VERSION", "0.0.1"); // 客户端版本
@@ -66,9 +69,40 @@ public class UserService extends BaseService{
 			for(String cookie:cookies){
 				if(cookie.startsWith("rememberTap_token")) {
 					resp.getBody().put("token", cookie.replace("rememberTap_token=", ""));
-					return cookie.replaceAll("rememberTap_token=(.*);", "$1");
+					Pattern pattern = Pattern.compile("rememberTap_token=(.*);");
+			        Matcher matcher = pattern.matcher(cookie);
+			        if(matcher.find()){
+			           return  matcher.group(1);
+			        }
+					//return cookie.replaceAll("rememberTap_token=(.*);", "$1");
 	        	}
 			}
+		}
+		} catch (RestClientException e) {
+			logger.error("validation Token to rest api occurred error,cause by:",e);
+		}
+		return "";
+	}
+	/**
+	 * 获取用户信息
+	 * 
+	 * @return
+	 */
+	public String  getUserInfo(String token) {
+		
+		try {
+			String url = baseConfig.getHttpUrl() + "/api/user/getUserInfo";
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN", token); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+	        HttpEntity<String> requestEntity = new HttpEntity<String>(null, requestHeaders);
+	        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+	        String uString=  response.getBody();
+	        return uString;
+		} catch (Exception e) {
+			logger.error("getUserInfo Token to rest api occurred error,cause by:",e);
 		}
 		return "";
 	}

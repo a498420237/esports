@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import cn.esports.cache.Cache;
 import cn.esports.controller.BaseController;
 import cn.esports.entity.UserInfo;
-import cn.esports.service.UserInfoService;
+import cn.esports.service.TestUserInfoService;
 
 /**
  * 
@@ -40,7 +40,7 @@ import cn.esports.service.UserInfoService;
 public class MyInfoController extends BaseController {
 
 	@Autowired
-	public UserInfoService uService;
+	public TestUserInfoService uService;
 
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
 	public ModelAndView myInfo(HttpServletRequest request,HttpServletResponse response) {

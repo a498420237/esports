@@ -1,6 +1,6 @@
 package cn.esports.security;
 
-import org.apache.shiro.SecurityUtils;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,8 +12,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.esports.service.UserService;
-import cn.esports.utils.Constants;
+import cn.esports.utils.SessionUtil;
 
 public class ShiroRealm extends AuthorizingRealm {
 
@@ -31,14 +33,17 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		SecurityUtils.getSubject().logout();// 覆盖登录
+		//SecurityUtils.getSubject().logout();// 覆盖登录
 		String mobile = (String) token.getPrincipal();
 		char[] ch = (char[]) token.getCredentials();
 		String code = new String(ch);
+		
 		String tokenStr= userService.getToken(mobile, code);
 		if (StringUtils.isEmpty(tokenStr)) {
 			return null;
 		}
+		String jsonObject= userService.getUserInfo(tokenStr);
+		SessionUtil.setCurUser(jsonObject,tokenStr);
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(mobile, code, getName());
 		return authenticationInfo;
 	}
