@@ -107,7 +107,7 @@ JAVA_OPTS=`loadJavaOpts`
 # Start the server
 echo "Booting the web-demo server (Using JAVA_OPTS=${JAVA_OPTS})..."
 
-java ${JAVA_OPTS} -cp ${CLASSPATH} com.personal.job.web.demo.WebDemoApplication > ${SERVER_LOG} 2>&1 &
+java ${JAVA_OPTS} -cp ${CLASSPATH} cn.esports.EsportsApplication > ${SERVER_LOG} 2>&1 &
 
   # Save the pid to a pidfile
   MTRPID=$!

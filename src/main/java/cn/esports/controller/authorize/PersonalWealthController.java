@@ -25,14 +25,14 @@ public class PersonalWealthController extends BaseController {
 	@Autowired
 	public PersonalWealthService personalWealthService;
 	
-	@RequestMapping(value="/user/PersonalWealth", method = RequestMethod.GET)
+	@RequestMapping(value="/PersonalWealth", method = RequestMethod.GET)
 	public ModelAndView forecast() {
 		ModelAndView view =new ModelAndView("user/PersonalWealth");
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		return view;
 	}
 	
-	@RequestMapping(value="/user/PersonalWealth/list", method = RequestMethod.GET)
+	@RequestMapping(value="/PersonalWealth/list", method = RequestMethod.GET)
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
 		String token="";
 		return personalWealthService.getPersonalWealthInfo(token,uriVariables);

@@ -24,7 +24,7 @@ public class MatchService extends BaseService {
 	 * 
 	 * @return
 	 */
-	public MatchInfo.TBean GetIndexList(String token) {
+	public MatchInfo.TBean GetIndexList(String token,int gameType) {
 		MatchInfo.TBean tBean = new MatchInfo.TBean();
 		try {
 			String url = baseConfig.getHttpUrl() + "/match/findMatchListByApp.json";
@@ -36,7 +36,8 @@ public class MatchService extends BaseService {
 			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
 			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
 			//postParameters.add("token", mobile);
-			//postParameters.add("type", typeEnum.name());
+//			postParameters.add("type", typeEnum.name());
+			postParameters.add("gameType", gameType); //游戏类型
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			MatchInfo models = restTemplate.postForObject(url, r, MatchInfo.class);
 			tBean=models.getT();
