@@ -41,80 +41,7 @@
 				<a class="leftBorder" data-tab="6"><p>我要报名<span>(20钻石/1次)</span><i><img src="/images/hoticon.png"/></i></p></a>
 			</div>
 			
-			<div class="saishi_jianjie bg-black m-t-15 tabContent tab1" >
-				<div class="mianbaoxie color-glod">
-					<span>赛事</span><i class="fa fa-angle-right m_both5"></i><span th:text="${competition.matchName}"> </span>
-				</div>
-				<div class="detail bg-gray overflow_hide">
-					<div class="img">
-						<img src="/images/detail1.jpg"/>
-					</div>
-					<div class="content">
-						<h4 class="font24 color-glod" th:text="${competition.matchName}"></h4>
-						<p class="color-glod m-b-10"><span>总奖金:<i ><font th:text="${totalPrize}"></font><font th:text="${prizeType}"></font></i></span><span>参赛人数 :<i th:text="${totalMumber}"></i>人</span></p>
-						<p class="color-glod"><span>开始时间:<i th:text="${#calendars.format(competition.startTime,'yyyy年MM月 dd日')}"></i></span><span>结束时间:<i th:text="${#calendars.format(competition.startTime,'yyyy年MM月 dd日')}"></i></span></p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="saishi_jianjie bg-black m-t-15 tabContent tab2">
-				<div class="mianbaoxie color-glod">
-					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事介绍</span>
-				</div>
-				<div class="detail bg-gray overflow_hide">
-					<div class="font16 color-ccc"  th:utext="${competition.matchIntroduce}">
-					</div>
-				</div>
-			</div>
-			<div class="saishi_jianjie bg-black m-t-15 tabContent tab3">
-				<div class="mianbaoxie color-glod">
-					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛程表</span>
-				</div>
-				<div class="saichengbiao">
-					<img src="/images/jiangsai1.jpg"/>
-<!-- 					<img  th:src="@{${competition.matchDetails }}"/> -->
-				</div>
-			</div>
-			
-			<div class="saishi_jianjie bg-black m-t-15 tabContent tab4">
-				<div class="mianbaoxie color-glod">
-					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>比赛奖励</span>
-				</div>
-				<div class="jiangli bg-gray relative ">
-					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
-					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
-					<div class="jianli_list swiper-container">
-						<div class="swiper-wrapper">
-							 <div class="jianli_item text-center swiper-slide">
-								<div class="name" th:each="prize:${competition.matchPrize}">
-									<span class="color-orange font24" th:text="${prize.ranking}"></span>
-									<p><img src="/images/dimandicon.png"><span th:text="${prize.awardContent}"></span><span th:text="${prize.awardType}"></span></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="saishi_jianjie bg-black m-t-15 tabContent tab5">
-				<div class="mianbaoxie color-glod">
-					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事进程</span>
-				</div>
-				
-				<div id="againstInfoList" class="saishi_process font0 bg-gray">
-				</div>
-				
-				<div class="jiangli bg-gray relative p-v-30">
-					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
-					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
-					<div class="jianli_list swiper-container2">
-						<div class="swiper-wrapper">
-								<div class="jianli_item text-center swiper-slide font0 text-left" id="againstPlans">
-								</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id="tabContent"></div>
 		</div>
 	</div>
 	
@@ -149,14 +76,112 @@
 </body>
 
 <div style="display: none;">
-  	<!-- 轮次信息列表 -->
-  	<textarea id="againstInfo_template">
+    
+    <!-- 隐藏数据区域 -->
+    <div id="hiddern_totalPrize" th:text="${totalPrize}"></div>
+    <div id="hiddern_matchId" th:text="${matchId}"></div>
+    <div id="hiddern_prizeType" th:text="${prizeType}"></div>
+    <div id="hiddern_totalMumber" th:text="${totalMumber}"></div>
+    
+    <!-- 主体模板 -->
+	<div id="tabContent_template" >
+			
+			<!-- tab1 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab1" >
+				<div class="mianbaoxie color-glod">
+					<span>赛事</span><i class="fa fa-angle-right m_both5"></i><span >$matchName$</span>
+				</div>
+				<div class="detail bg-gray overflow_hide">
+					<div class="img">
+						<img src="/images/detail1.jpg"/>
+					</div>
+					<div class="content">
+						<h4 class="font24 color-glod" >$matchName$</h4>
+						<p class="color-glod m-b-10"><span>总奖金:<i >$totalPrize$ $prizeType$</i></span><span>参赛人数 :<i >$totalMumber$</i>人</span></p>
+						<p class="color-glod"><span>开始时间:<i>$startTime$</i></span><span>结束时间:<i >$startTime$</i></span></p>
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab2 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab2">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事介绍</span>
+				</div>
+				<div class="detail bg-gray overflow_hide">
+					<div class="font16 color-ccc" >
+					   $matchIntroduce$
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab3 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab3">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛程表</span>
+				</div>
+				<div class="saichengbiao">
+<!-- 					<img src="/images/jiangsai1.jpg"/> -->
+					<img  src="matchDetails" />
+				</div>
+			</div>
+			
+			<!-- tab4 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab4">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>比赛奖励</span>
+				</div>
+				<div class="jiangli bg-gray relative ">
+					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
+					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
+					<div class="jianli_list swiper-container">
+						<div class="swiper-wrapper">
+							 <div class="jianli_item text-center swiper-slide" id="prizeArea">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab5 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab5">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事进程</span>
+				</div>
+				
+				<div id="againstInfoList" class="saishi_process font0 bg-gray">
+				</div>
+				
+				<div class="jiangli bg-gray relative p-v-30">
+					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
+					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
+					<div class="jianli_list swiper-container2">
+						<div class="swiper-wrapper">
+								<div class="jianli_item text-center swiper-slide font0 text-left" id="againstPlans">
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+			
+	<!-- 奖励模板 -->
+	<div id="prizeArea_template">
+		<div class="name" >
+			<span class="color-orange font24" >$ranking$</span>
+			<p><img src="/images/dimandicon.png">$awardContent$ $awardType$</p>
+		</div>
+	</div>
+			
+  	<!-- 轮次信息列表模板 -->
+  	<div id="againstInfo_template">
 		<div class="process_item $dataClass$" data-num="$num$" >
 			第$num$轮
 		</div>
-  	</textarea>
+  	</div>
   	
-  	<textarea id="againstPlan_template">
+  	<!-- 对阵信息模板 -->
+  	<div id="againstPlan_template">
 		<div class="saishi_status  bg-black radius6">
 	  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
 	  	  	<span class="fl color-999 l-h-25">$gameDay$</span>
@@ -178,7 +203,7 @@
 	  	  	  </div>
 	  	  </div>
 	  	 </div>
-	  </textarea>
+	  </div>
   </div>
 									  
 </div>
