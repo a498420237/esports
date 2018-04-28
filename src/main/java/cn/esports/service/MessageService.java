@@ -39,4 +39,13 @@ public class MessageService extends BaseService {
 			return null;
 		}
 	}
+
+	public JSONObject messageDetail(Map<String, String> uriVariables) {
+		try {
+			return restTemplate.getForObject(createUrl("/web/findInfoContent.json", uriVariables),JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("get the message detail from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
 }
