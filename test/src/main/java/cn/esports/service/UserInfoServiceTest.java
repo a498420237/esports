@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserInfoServiceTest {
 
 	    @Autowired
-	    private UserInfoService service;
+	    private TestUserInfoService service;
 	    
 	    @Test
 	    public void findOne() throws Exception {

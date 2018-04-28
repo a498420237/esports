@@ -18,7 +18,7 @@ import cn.esports.enums.SendType;
 import cn.esports.service.TestUserInfoService;
 
 /*@RestController*/
-public class LoginController extends BaseController {
+public class TestLoginController extends BaseController {
 
 	@Autowired
 	public TestUserInfoService uService;

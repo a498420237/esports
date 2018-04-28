@@ -33,7 +33,7 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(String mobile, String code) {
+	public void login(String mobile, String code) {
 		Subject subject = SecurityUtils.getSubject();  
 	    UsernamePasswordToken token = new UsernamePasswordToken(mobile, code); 
 	    try {  
@@ -42,7 +42,7 @@ public class LoginController extends BaseController {
 	    } catch (Exception e) {  
 	    	logger.error("login occurred error,cause by:",e);
 	    }
-	    return new ModelAndView("/user/index");
+	   // return new ModelAndView("/user/index");
 	    
 	}
 }

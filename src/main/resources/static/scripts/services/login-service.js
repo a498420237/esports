@@ -46,10 +46,10 @@ define(function(require, exports, module) {
 					},
 					success : function(json) {
 						debugger;
-						$(".poplogin").fadeIn();
-						$("#logi").text("测试用户");
-						$("#logi").attr("href","/user/index");
-						window.location.reload();
+						//$(".poplogin").fadeIn();
+						//$("#logi").text("测试用户");
+						//$("#logi").attr("href","/user/index");
+						window.location.href="http://localhost:8081/user/index";
 					}
 				});
 			});
