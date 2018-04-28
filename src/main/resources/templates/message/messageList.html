@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -59,23 +59,13 @@ window.onload = function(){
             </div>
 
         </div>
-        <!--<div id="list_content" class="list_show ">-->
+
         <div id="list_content" class="list_show ">
 
         </div>
         <div class="z_pager">
             <ul id="pageContainer"></ul>
         </div>
-
-        <!--<div class="fenye text-center">-->
-        <!--<div class="overflow_hide">-->
-        <!--<button>首页</button>-->
-        <!--<button class="nol">上一页</button>-->
-        <!--<span><a>1</a><a class="active">2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>-->
-        <!--<button class="noR">上一页</button>-->
-        <!--<button>尾页</button>-->
-        <!--</div>-->
-        <!--</div>-->
 
     </div>
 </div>
@@ -87,19 +77,18 @@ window.onload = function(){
 <textarea id="listTemplate" style="display:none;">
     <div class="list_box">
         {{each result }}
-        <a href="javascript:;" class="list_item ">
+        <a href="/message/messageDetail/{{$value.id}}" class="list_item ">
             <div class="img fl">
                 <img src="{{$value.pictureUrl}}"/>
             </div>
             <div class="item_detail">
-                <h4>{{$value.informationName}}</h4>
+                    <h4>{{$value.informationName}}</h4>
                 <div class="detail_con">
-                    <p class="dc">{{@$value.content}}</p>
+                    <p id="content" class="dc">{{$value.content}}</p>
                 </div>
-                <p class="date"><span class="fl">{{@$value.updateTime}}</span><em class="look fr"><img
+                <p class="date"><span class="fl">{{$value.updateTime}}</span><em class="look fr"><img
                         src="/images/eyesicon.png"/><i>31145</i></em>
                 </p>
-
             </div>
         </a>
         {{/each}}
@@ -142,15 +131,6 @@ window.onload = function(){
 
     })
 
-
-    //	var mySwiper = new Swiper('.swiper-container', {
-    //		autoplayDisableOnInteraction:false,
-    //		pagination:".swiper-pagination",
-    //		loop:true,
-    //
-    //
-    //
-    //	})
 </script>
 
 

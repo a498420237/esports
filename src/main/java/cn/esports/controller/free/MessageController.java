@@ -4,12 +4,14 @@ import cn.esports.controller.BaseController;
 import cn.esports.service.MessageService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -39,8 +41,15 @@ public class MessageController extends BaseController {
         return messageService.searchByKey(uriVariables);
     }
 
-    @RequestMapping(value = "message/messageDetail", method = RequestMethod.GET)
-    public JSONObject messageDetail(@RequestParam Map<String, String> uriVariables) {
-        return messageService.messageDetail(uriVariables);
+    @RequestMapping(value = "message/messageDetail/{messageId}", method = RequestMethod.GET)
+    public ModelAndView messageDetail(@PathVariable Long messageId) {
+        ModelAndView view = new ModelAndView("message/messageDetail");
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("id", messageId.toString());
+        JSONObject result = messageService.messageDetail(uriVariables);
+        Object value = result.get("t");
+        view.addObject("value", value);
+
+        return view;
     }
 }

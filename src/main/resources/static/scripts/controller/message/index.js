@@ -13,8 +13,9 @@ define(function (require, exports, module) {
                     datatype: 'json',
                     type: "get",
                     data: {
+                        // "id": 78,
                         "offset": curentPage,
-                        "limit": 2
+                        "limit": 5
                     },
                     success: function (json) {
                         var data = json.t;
@@ -38,12 +39,15 @@ define(function (require, exports, module) {
                         url: "/message/messageTitle",
                         datatype: 'json',
                         type: "get",
+                        data: {
+                            // "id": 73,
+                            "limit": 6
+                        },
                         success: function (json) {
                             var data = json.t;
                             // renderHtml(data);
-                            var width = Math.round(1 / data.total * 10000) / 100.00 + "%";
-                            // debugger;
-                            // $(".nav").css("width", width);
+                            // var width = Math.round(1 / data.total * 10000) / 100.00 + "%";
+                            // $("#title_list .nav").css("width", width);
                         }
                     });
                 }
@@ -68,18 +72,19 @@ define(function (require, exports, module) {
                             type: "get",
                             data: {
                                 "offset": curentPage,
-                                "limit": 2,
+                                "limit": 5,
                                 "keyWord": key
                             },
                             success: function (json) {
                                 var data = json.t;
                                 renderHtml(data);
-                                loadTitle();
+                                // loadTitle();
                             }
                         });
                     }
                 });
             });
+
         }
     });
 });
