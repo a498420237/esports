@@ -13,7 +13,6 @@
 <meta name="Keywords" content="">
 <meta name="Description" content="">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>	
 <link rel="stylesheet" type="text/css" href="/css/swiper.min.css"/>
 <link href="/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/page.css">
@@ -46,29 +45,6 @@
 	</div>
 	
 	<div id="payArea" class="mengbanDiv">
-		<div class="baomingPay">
-			<div class="pay_con">
-				<span class="fl">赛事</span><p class="fr">英雄联盟总决赛</p>
-			</div>
-			<div class="pay_con">
-				<span class="fl">赛区</span><p class="fr">手Q大区</p>
-			</div>
-			<div class="pay_con">
-				<span class="fl">报名费</span><p class="fr">20钻石</p>
-			</div>
-			<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
-				<span class="fl"><img src="/images/gantanhao1.png"/>没有绑定该游戏账号</span>
-				<a class="fr" href="javascript">立即绑定</a>
-			</div>
-			<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
-				<span class="fl"><img src="/images/gantanhao1.png"/>钻石/金币不足</span>
-				<a class="fr color-red" href="javascript" >立即充值</a>
-			</div>
-			<div class="pay_do ">
-				<span class="cancel fl">取消支付</span>
-				<a class="pay fr">支付</a>
-			</div>
-		</div>
 	</div>
 	
 	<!-- 尾部 -->
@@ -82,6 +58,7 @@
     <div id="hiddern_matchId" th:text="${matchId}"></div>
     <div id="hiddern_prizeType" th:text="${prizeType}"></div>
     <div id="hiddern_totalMumber" th:text="${totalMumber}"></div>
+    <div id="hiddern_endTime" th:text="${endTime}"></div>
     
     <!-- 主体模板 -->
 	<div id="tabContent_template" >
@@ -98,7 +75,7 @@
 					<div class="content">
 						<h4 class="font24 color-glod" >$matchName$</h4>
 						<p class="color-glod m-b-10"><span>总奖金:<i >$totalPrize$ $prizeType$</i></span><span>参赛人数 :<i >$totalMumber$</i>人</span></p>
-						<p class="color-glod"><span>开始时间:<i>$startTime$</i></span><span>结束时间:<i >$startTime$</i></span></p>
+						<p class="color-glod"><span>开始时间:<i>$startTime$</i></span><span>结束时间:<i >$endTime$</i></span></p>
 					</div>
 				</div>
 			</div>
@@ -203,9 +180,34 @@
 	  	  	  </div>
 	  	  </div>
 	  	 </div>
-	  </div>
-  </div>
-									  
+	</div>
+		
+	<!-- 支付信息模板 -->
+	<div id="payArea_template">
+		<div class="baomingPay" id="payArea_template">
+				<div class="pay_con">
+					<span class="fl">赛事</span><p class="fr">$matchName$</p>
+				</div>
+				<div class="pay_con">
+					<span class="fl">赛区</span><p class="fr">$serverType$</p>
+				</div>
+				<div class="pay_con">
+					<span class="fl">报名费</span><p class="fr">$entryFee$ $entryFeeType$</p>
+				</div>
+				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
+					<span class="fl"><img src="/images/gantanhao1.png"/>没有绑定该游戏账号</span>
+					<a class="fr" href="javascript">立即绑定</a>
+				</div>
+				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
+					<span class="fl"><img src="/images/gantanhao1.png"/>钻石/金币不足</span>
+					<a class="fr color-red" href="javascript" >立即充值</a>
+				</div>
+				<div class="pay_do ">
+					<span class="cancel fl">取消支付</span>
+					<a class="pay fr">支付</a>
+				</div>
+		</div>		
+	</div>					  
 </div>
 <script src="/js/swiper.min.js"></script>
 <script src="/js/con_js.6.23.js"></script>
@@ -215,10 +217,6 @@
 
 	seajs.use('/scripts/controller/competition/info');
 	
-	//关闭蒙版层
-	$(".pay_do .cancel").click(function(){
-		$(".mengbanDiv").removeClass("show")
-	})
 // 	$(".pay_do .cancel").click();
 </script>
 </html>

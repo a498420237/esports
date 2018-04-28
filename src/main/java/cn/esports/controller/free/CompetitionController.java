@@ -50,6 +50,7 @@ public class CompetitionController extends BaseController {
 	public ModelAndView getInfo(@PathVariable Long matchId,
 			@RequestParam String totalPrize,
 			@RequestParam String totalMumber,
+			@RequestParam String endTime,
 			@RequestParam String prizeType){
 		
 		ModelAndView view =new ModelAndView("competition/info");
@@ -57,6 +58,7 @@ public class CompetitionController extends BaseController {
 		view.addObject("prizeType",  prizeType);
 		view.addObject("totalMumber",  totalMumber);
 		view.addObject("matchId",  matchId);
+		view.addObject("endTime",  endTime);
 		return view;
 	}
 	

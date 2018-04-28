@@ -33,7 +33,7 @@ define(function(require, exports, module) {
 	
 	//填充模板方法
 	exports.fillHtml = function(domId, templateHtml, data){
-		var content = "";debugger;
+		var content = "";
 		if(data instanceof Array){
 			data.forEach(function(obj) {
 				content += templateHtml.repalceVars(obj);

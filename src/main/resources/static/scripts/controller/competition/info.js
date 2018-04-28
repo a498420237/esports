@@ -1,15 +1,33 @@
 define(function(require, exports, module) {
 	
+	
+	var dict = {
+		serverType : {
+			"9" : "QQ",
+			"10" : "微信"
+		},
+		entryFeeType : {
+			"4" : "砖石",
+			"5" : "金币"
+		}
+	}
+	
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService' ], function($,pagePlugin, util) {
 		
-		var matchId = $("#hiddern_matchId").html(); //比赛id字段
-		var totalPrize = $("#hiddern_totalPrize").html(); //比赛id字段
-		var prizeType = $("#hiddern_prizeType").html(); //比赛id字段
-		var totalMumber = $("#hiddern_totalMumber").html(); //比赛id字段
+		/**
+		 * 有一部分数据 详情接口没有 只能在列表拿到
+		 */
+		var dataCenter = {
+			"matchId" : $("#hiddern_matchId").html(), 
+			"totalPrize" : $("#hiddern_totalPrize").html(),
+			"prizeType" : $("#hiddern_prizeType").html(), 
+			"totalMumber" : $("#hiddern_totalMumber").html(), 
+			"endTime" : $("#hiddern_endTime").html(),
+		}
 		
 		var loadInfoData = function(num){//加载赛事主内容
 			$.ajax({
-				url : "/competition/info/"+matchId,
+				url : "/competition/info/"+dataCenter.matchId,
 				datatype : 'json',
 				type : "get",
 				data : {
@@ -20,33 +38,45 @@ define(function(require, exports, module) {
 					}
 					
 					var data = json;
-					data.matchId = matchId;
-					data.totalPrize = totalPrize;
-					data.prizeType = prizeType;
-					data.totalMumber = totalMumber;
-					data.startTime = new Date(data.startTime).format("yyyy-MM-dd");
+					data.matchId = dataCenter.matchId;
+					data.totalPrize = dataCenter.totalPrize;
+					data.prizeType = dataCenter.prizeType;
+					data.totalMumber = dataCenter.totalMumber;
+					data.endTime = dataCenter.endTime;
+					data.startTime = new Date(data.startTime).format("yyyy-MM-dd");debugger;
+					data.entryFeeType = dict.entryFeeType[data.entryFeeType] ? dict.entryFeeType[data.entryFeeType] : "其他";
+					data.serverType = dict.serverType[data.serverType] ? dict.serverType[data.serverType] : "其他赛区";
 					
 					//按步骤填充页面
 			    	util.fillHtml("tabContent", $("#tabContent_template").html(), data); 
 			    	util.fillHtml("prizeArea", $("#prizeArea_template").html(), data.matchPrize);
+			    	util.fillHtml("payArea", $("#payArea_template").html(), data);
+			    	
 			    	//绑定事件
 					$("#againstInfoList").on("click", ".process_item", function(){
 						var num = $(this).data("num");
 						loadAgainstInfo(num);
 					});
+					//关闭蒙版层
+					$(".pay_do .cancel").click(function(){
+						$(".mengbanDiv").removeClass("show")
+					})
 				}
 			});
 		}
 			
 		var loadAgainstInfo = function(num){//加载对阵信息
 			$.ajax({
-				url : "/competition/againstInfo/"+matchId+"?num="+num,
+				url : "/competition/againstInfo/"+dataCenter.matchId+"?num="+num,
 				datatype : 'json',
 				type : "get",
 				data : {
 				},
 				success : function(json) {
 					var data = json.t;
+					if(data == undefined || data.gameDayList == undefined){
+						return;
+					}
 					var gameDayList = data.gameDayList;
 					gameDayList = gameDayList.sort(function(a,b){//排序
 				        return a.num - b.num;
