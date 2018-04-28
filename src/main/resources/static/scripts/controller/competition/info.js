@@ -59,6 +59,19 @@ define(function(require, exports, module) {
 			var num = $(this).data("num");
 			loadData(num);
 		});
+		
+		$("#pageNav").on("click", "a", function(){
+			var tab = $(this).data("tab");
+			if(tab == 6){//支付tab
+				$(".mengbanDiv").addClass("show");
+				return;
+			}
+			
+			$(".tabContent").hide();
+			$(".tabContent.tab"+tab).show();
+		});
+		
+		$("#pageNav a:first").click();
 	});
 	
 	

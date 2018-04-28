@@ -20,6 +20,11 @@
 <script src="/js/jquery.1.11.3.min.js"></script>
 </head>
 
+<style>
+.tabContent{
+  display: none;
+}
+</style>
 <body>
     <!-- 导航 -->
 	<div class="topWrap" th:include="/include :: topWrap" ></div>
@@ -27,15 +32,16 @@
 	<!-- 主体 -->
 	<div class="contwrap">
 		<div class="main_content">
-			<div class="pege_nav bg-black font0 text-center font18 ">
-				<a  href="page1"><p>赛事首页</p></a>
-				<a class="leftBorder"  href="page2"><p>赛事介绍</p></a>
-				<a class="leftBorder" href="page3"><p>赛程图</p></a>
-				<a class="leftBorder" href="page4"><p>比赛奖励</p></a>
-				<a class="leftBorder" href="page5"><p>赛事进程</p></a>
-				<a class="leftBorder" href="page6"><p>我要报名<span>(20钻石/1次)</span><i><img src="/images/hoticon.png"/></i></p></a>
+			<div id="pageNav" class="pege_nav bg-black font0 text-center font18 ">
+				<a data-tab="1"><p>赛事首页</p></a>
+				<a class="leftBorder" data-tab="2"><p>赛事介绍</p></a>
+				<a class="leftBorder" data-tab="3"><p>赛程图</p></a>
+				<a class="leftBorder" data-tab="4"><p>比赛奖励</p></a>
+				<a class="leftBorder" data-tab="5"><p>赛事进程</p></a>
+				<a class="leftBorder" data-tab="6"><p>我要报名<span>(20钻石/1次)</span><i><img src="/images/hoticon.png"/></i></p></a>
 			</div>
-			<div class="saishi_jianjie bg-black m-t-15">
+			
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab1" >
 				<div class="mianbaoxie color-glod">
 					<span>赛事</span><i class="fa fa-angle-right m_both5"></i><span th:text="${competition.matchName}"> </span>
 				</div>
@@ -51,7 +57,7 @@
 				</div>
 			</div>
 			
-			<div class="saishi_jianjie bg-black m-t-15">
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab2">
 				<div class="mianbaoxie color-glod">
 					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事介绍</span>
 				</div>
@@ -60,17 +66,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="saishi_jianjie bg-black m-t-15">
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab3">
 				<div class="mianbaoxie color-glod">
 					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛程表</span>
 				</div>
 				<div class="saichengbiao">
 					<img src="/images/jiangsai1.jpg"/>
-<!-- 					<img  th:src="@{${competition.matchPic }}"/> -->
+<!-- 					<img  th:src="@{${competition.matchDetails }}"/> -->
 				</div>
 			</div>
 			
-			<div class="saishi_jianjie bg-black m-t-15">
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab4">
 				<div class="mianbaoxie color-glod">
 					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>比赛奖励</span>
 				</div>
@@ -90,9 +96,9 @@
 				</div>
 			</div>
 			
-			<div class="saishi_jianjie bg-black m-t-15">
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab5">
 				<div class="mianbaoxie color-glod">
-					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事介绍</span>
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事进程</span>
 				</div>
 				
 				<div id="againstInfoList" class="saishi_process font0 bg-gray">
@@ -112,7 +118,7 @@
 		</div>
 	</div>
 	
-	<div class="mengbanDiv show">
+	<div id="payArea" class="mengbanDiv">
 		<div class="baomingPay">
 			<div class="pay_con">
 				<span class="fl">赛事</span><p class="fr">英雄联盟总决赛</p>
@@ -188,6 +194,6 @@
 	$(".pay_do .cancel").click(function(){
 		$(".mengbanDiv").removeClass("show")
 	})
-	$(".pay_do .cancel").click();
+// 	$(".pay_do .cancel").click();
 </script>
 </html>
