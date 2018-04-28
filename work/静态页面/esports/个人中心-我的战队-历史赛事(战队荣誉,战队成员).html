@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/personal.css">
 	<script src="js/jquery.1.11.3.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
+	<script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+	<script type="text/javascript" src="js/effec.js"></script>
 </head>
 <body>
 	<div class="topWrap">
@@ -42,16 +45,18 @@
 						<li><a href="#"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="#"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="#"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>
+						<!--<li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>-->
 						<li><a class="select" href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>				
 					</ul>
 				</div>
 				<div class="team">
-					<div class="table_head overflow_hide color-glod">
+					<div class="table_head overflow_hide color-glod mess">
 						<div class="left fl">
 							<label for="match1" class="active">王者荣耀</label>
 							<label for="match2">绝地求生大逃杀</label>
 						</div>
+						<div class="messad"><i> <img src="images/messico.png"> </i><span class="mdat">99</span></div>
+						
 					</div>
 					<div class="list my">
 						<div class="block1">
@@ -62,7 +67,7 @@
 							<p class="color-fff">战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 							<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 						</div>
-						<div class="zd-btn">退出战队</div>
+						<div id="exitzdd" class="zd-btn">退出战队</div>
 					</div>
 					<div class="historyTable">
 						<div class="table_box show">
@@ -74,42 +79,69 @@
 						    <div class="tab_container">  
 						        <div id="tab1" class="tab_content" style="display: block; ">  
 									<div class="saishi">
-										<img src="images/team_lishi.png" alt="">
+										<i><img src="images/team_lishi.png" alt=""></i>
 										<span class="text">MDL国际精英邀请赛</span>
 										<em><img src="images/rank1icon.png" alt="">冠军</em>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/team_lishi.png" alt="">
+										<i><img src="images/team_lishi.png" alt=""></i>
 										<span class="text">MDL国际精英邀请赛</span>
 										<em><img src="images/rank2icon.png" alt="">亚军</em>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/team_lishi.png" alt="">
+										<i><img src="images/team_lishi.png" alt=""></i>
 										<span class="text">MDL国际精英邀请赛</span>
 										<em><img src="images/rank3icon.png" alt="">季军</em>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/team_lishi.png" alt="">
+										<i><img src="images/team_lishi.png" alt=""></i>
 										<span class="text">MDL国际精英邀请赛</span>
 										<em>第四名</em>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/team_lishi.png" alt="">
-										<span class="text">MDL国际精英邀请赛</span>
+										<i><img src="images/team_lishi.png" alt=""></i>
+										<span class="text">MDL国际精英邀请MDL国际精英邀请MDL邀请赛</span>
 										<em>第五名</em>
-										<a href="#">查看详情</a>
+										
 									</div>
-									<div class="fenye text-center">
-										<div class="overflow_hide">
-											<button >首页</button><button class="nol">上一页</button>
-											<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
-											<button class="noR">上一页</button><button>尾页</button>
-										</div>
-									</div>
+									<div class="z_pager">
+            <ul id="pageContainer" class="pagination pagination-sm">
+              <li >
+                <a title="首页" href="">首页</a>
+              </li>
+              <li >
+                <a title="跳转到前一页" href="">上一页</a>
+              </li>
+              <li class="active">
+                <a title="当前页面是 1" href="">1</a>
+              </li>
+              <li >
+                <a title="转到页面 2" href="">2</a>
+              </li>
+              <li >
+                <a title="转到页面 3" href="">3</a>
+              </li>
+              <li >
+                <a title="转到页面 4" href="">4</a>
+              </li>
+              <li >
+                <a title="转到页面 5" href="">5</a>
+              </li>
+              <li >
+                <a title="转到页面 6" href="">6</a>
+              </li>
+              <li >
+                <a title="跳转到后一页" href="">下一页</a>
+              </li>
+              <li >
+                <a title="尾页" href="">尾页</a>
+              </li>
+            </ul>
+          </div>
 						        </div>  
 						          
 						        <div id="tab2" class="tab_content" style="display: none; ">  
@@ -154,49 +186,108 @@
 						        </div>  
 						        <div id="tab3" class="tab_content" style="display: none; ">  
 									<div class="saishi">
-										<img src="images/tplogo.png" alt="">
+										<i><img src="images/tplogo.png" alt="">
+										</i>
 										<span class="text">MDL国际精英邀请赛</span>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/tplogo.png" alt="">
+										<i><img src="images/tplogo.png" alt="">
+										</i>
 										<span class="text">MDL国际精英邀请赛</span>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/tplogo.png" alt="">
+										<i><img src="images/tplogo.png" alt="">
+										</i>
 										<span class="text">MDL国际精英邀请赛</span>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/tplogo.png" alt="">
+										<i><img src="images/tplogo.png" alt="">
+										</i>
 										<span class="text">MDL国际精英邀请赛</span>
-										<a href="#">查看详情</a>
+										
 									</div>
 									<div class="saishi">
-										<img src="images/tplogo.png" alt="">
+										<i><img src="images/tplogo.png" alt="">
+										</i>
 										<span class="text">MDL国际精英邀请赛</span>
-										<a href="#">查看详情</a>
+										
 									</div>
-									<div class="fenye text-center">
-										<div class="overflow_hide">
-											<button >首页</button><button class="nol">上一页</button>
-											<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
-											<button class="noR">上一页</button><button>尾页</button>
-										</div>
-									</div>
+									<div class="z_pager">
+            <ul id="pageContainer" class="pagination pagination-sm">
+              <li >
+                <a title="首页" href="">首页</a>
+              </li>
+              <li >
+                <a title="跳转到前一页" href="">上一页</a>
+              </li>
+              <li class="active">
+                <a title="当前页面是 1" href="">1</a>
+              </li>
+              <li >
+                <a title="转到页面 2" href="">2</a>
+              </li>
+              <li >
+                <a title="转到页面 3" href="">3</a>
+              </li>
+              <li >
+                <a title="转到页面 4" href="">4</a>
+              </li>
+              <li >
+                <a title="转到页面 5" href="">5</a>
+              </li>
+              <li >
+                <a title="转到页面 6" href="">6</a>
+              </li>
+              <li >
+                <a title="跳转到后一页" href="">下一页</a>
+              </li>
+              <li >
+                <a title="尾页" href="">尾页</a>
+              </li>
+            </ul>
+          </div>
 						        </div>  
 						    </div>  
 						</div>
 						<div class="table_box">
 			
-							<div class="fenye text-center">
-								<div class="overflow_hide">
-									<button >首页</button><button class="nol">上一页</button>
-									<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
-									<button class="noR">上一页</button><button>尾页</button>
-								</div>
-							</div>
+							<div class="z_pager">
+            <ul id="pageContainer" class="pagination pagination-sm">
+              <li >
+                <a title="首页" href="">首页</a>
+              </li>
+              <li >
+                <a title="跳转到前一页" href="">上一页</a>
+              </li>
+              <li class="active">
+                <a title="当前页面是 1" href="">1</a>
+              </li>
+              <li >
+                <a title="转到页面 2" href="">2</a>
+              </li>
+              <li >
+                <a title="转到页面 3" href="">3</a>
+              </li>
+              <li >
+                <a title="转到页面 4" href="">4</a>
+              </li>
+              <li >
+                <a title="转到页面 5" href="">5</a>
+              </li>
+              <li >
+                <a title="转到页面 6" href="">6</a>
+              </li>
+              <li >
+                <a title="跳转到后一页" href="">下一页</a>
+              </li>
+              <li >
+                <a title="尾页" href="">尾页</a>
+              </li>
+            </ul>
+          </div>
 						</div>
 					</div>
 					
@@ -205,6 +296,32 @@
 		</div>
 	</div>
 </div>
+
+
+<!--我的战队-队员推出战队弹窗-->
+<div class="exitzd">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+	<div class="pubclose">
+		<img src="images/closeico.png">
+	</div>
+	<div class="credwrap"> 
+		<h3>确定退出战队？
+		</h3>
+		<p>
+			<a href="">取消</a>
+			<a href="">确定</a>
+		</p>
+	</div>
+</div>
+
+
+
+
+
+
+
 	<div class="botwrap">
 		<div class="bottcon">
 			<div class="btnav">

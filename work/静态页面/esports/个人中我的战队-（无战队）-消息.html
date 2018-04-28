@@ -6,7 +6,10 @@
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/personal.css">
-	<script src="js/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
+	<script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+	<script type="text/javascript" src="js/effec.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -48,15 +51,27 @@
 				</div>
 				<div class="team">
 					<div class="table_head overflow_hide color-glod">
-						<div class="left fl">
-							<label for="match1" class="active">王者荣耀</label>
-							<label for="match2">绝地求生大逃杀</label>
-						</div>
-						<div class="right fr mess">
-							<label id="create" class="active"><span>创建战队</span></label>
-							<div class="messa"><i> <img src="images/messico.png"> </i><span class="mdat">999</span></div>
-						</div>
+						<h3><span>我的战队</span> <img src="images/dyh.png"> <span class="oran">战队消息</span></h3>
+						
 					</div>
+
+					<div class="dzchange">
+						
+							<i>
+							<img src="images/mes_tx.png">
+							</i>
+							<h4>
+								"有你就赢有你就赢"
+							</h4>
+							<span>队长转移确认
+							</span>
+						
+						<div id="dzchang" class="zd-btn">确认</div>
+					</div>
+
+
+
+
 					<div class="historyTable">
 						<div class="table_box show">
 							<div class="list">
@@ -68,7 +83,10 @@
 									<p>战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 									<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 								</div>
-								<div class="zd-btn">申请加入</div>
+								<div class="zd-btncz">
+									<a href="" >接受</a>
+									<a>删除</a>
+								</div>
 							</div>
 							<div class="list">
 								<div class="block1">
@@ -79,7 +97,10 @@
 									<p>战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 									<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 								</div>
-								<div class="zd-btn">申请加入</div>
+								<div class="zd-btncz">
+									<a href="" class="orang">接受</a>
+									<a>删除</a>
+								</div>
 							</div>
 							<div class="list">
 								<div class="block1">
@@ -90,7 +111,9 @@
 									<p>战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 									<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 								</div>
-								<div class="zd-btn active">已申请</div>
+								<div class="zd-btncz">
+									<a>已加入</a>
+								</div>
 							</div>
 							<div class="list">
 								<div class="block1">
@@ -101,42 +124,45 @@
 									<p>战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 									<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 								</div>
-								<div class="zd-btn active">已申请</div>
+								<div class="zd-btncz">
+									<a href="" >接受</a>
+									<a>删除</a>
+								</div>
 							</div>
 							<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
+			    	<ul id="pageContainer" class="pagination pagination-sm">
+			    		<li >
+			    			<a title="首页" href="">首页</a>
+			    		</li>
+			    		<li >
+			    			<a title="跳转到前一页" href="">上一页</a>
+			    		</li>
+			    		<li class="active">
+			    			<a title="当前页面是 1" href="">1</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 2" href="">2</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 3" href="">3</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 4" href="">4</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 5" href="">5</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 6" href="">6</a>
+			    		</li>
+			    		<li >
+			    			<a title="跳转到后一页" href="">下一页</a>
+			    		</li>
+			    		<li >
+			    			<a title="尾页" href="">尾页</a>
+			    		</li>
+			    	</ul>
+			    </div>
 						</div>
 						<div class="table_box">
 							<div class="list">
@@ -148,73 +174,56 @@
 									<p>战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 									<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 								</div>
-								<div class="zd-btn active">已申请</div>
+								<div class="zd-btncz">
+									<a href="" >接受</a>
+									<a>删除</a>
+								</div>
 							</div>
-							<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
+							<div class="fenye text-center">
+								<div class="overflow_hide">
+									<button >首页</button><button class="nol">上一页</button>
+									<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
+									<button class="noR">上一页</button><button>尾页</button>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="dialog">
-						<div class="cont">
-							<div class="upimg">
-								<span>上传战队图片</span>
-								<a href="javascript:;" class="file right">
-							    <input type="file" name="" id="">
-							</a>
+
+
+					
+					<div class="popwrit">
+						<div class="blacbg">
+						</div>
+						<div class="alwr">
+						<div class="pubclose">
+							<img src="images/closeico.png">
+						</div>
+						<div class="credwrap">
+							<div class="firwr">
+								<h3>
+									身份验证
+								</h3>
+								<div class="firwcon">
+									<h4><span>‘有你就赢’ </span>战队队长将变更为 <span> 王小小</span>
+									</h4>
+										<p>转移申请将在新队长补充个人信息后立即生效
+										</p>
+										<p>转移申请三日内有效，三日后将自动失效，如需再次操作请重新提交申请
+										</p>
+										<p>如有疑问，请联系官方客服
+										</p>
+								</div>
 							</div>
-							<div class="info1">
-								<p class="clearfix"><span>所属游戏</span><em>王者荣耀</em></p>
-								<p class="clearfix"><span>游戏区服</span>
-									<select class="right">
-									<option value="volvo">必选</option>
-									<option value="saab">Saab</option>
-									<option value="mercedes">Mercedes</option>
-									<option value="audi">Audi</option>
-								</select>								
-								</p>
-								<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号"></p>
-								<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字"></p>
+
+							<div class="infod">
+								<p ><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+								<p ><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
+								<p ><span>验证手机号</span><input type="text" placeholder="188****4167"></p>
+								<p ><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
+								<div class="craat-btn">提交</div>
+								<div class="agreement">提交申请即代表同意<em>《创建战队协议》</em></div>
 							</div>
-							<div class="info1">
-								<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
-								<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
-								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号"></p>
-								<p class="clearfix"><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
-								<div class="craat-btn">创建战队</div>
-								<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
-							</div>
+						</div>
 						</div>
 					</div>
 				</div>

@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/personal.css">
 	<script src="js/jquery.1.11.3.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
+	<script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+	<script type="text/javascript" src="js/effec.js"></script>
 </head>
 <body>
 	<div class="topWrap">
@@ -47,9 +50,15 @@
 					</ul>
 				</div>
 				<div class="team">
-					<div class="table_head overflow_hide color-glod ">
-						<h3><span>我的战队</span> <img src="images/dyh.png"> <span class="oran">战队详情</span></h3>
-						
+					<div class="table_head overflow_hide color-glod">
+						<div class="left fl">
+							<label for="match1" class="active">王者荣耀</label>
+							<label for="match2">绝地求生大逃杀</label>
+						</div>
+						<div class="right fr messd">
+							<i class="playapply" >入队申请<span >122323</span></i>
+							<div class="messa"><i> <img src="images/messico.png"> </i><span class="mdat">999</span></div>
+						</div>
 					</div>
 					<div class="list my">
 						<div class="block1">
@@ -60,7 +69,7 @@
 							<p class="color-fff">战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言战队宣言。</p>
 							<div class="info"><span>王者荣耀</span><span>微信区</span><span>10/20</span></div>
 						</div>
-						<div class="zd-btn">申请加入</div>
+						<div id="exitzdd" class="zd-btn">退出战队</div>
 					</div>
 					<div class="historyTable">
 						<div class="table_box show">
@@ -102,39 +111,39 @@
 										
 									</div>
 									<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
+			    	<ul id="pageContainer" class="pagination pagination-sm">
+			    		<li >
+			    			<a title="首页" href="">首页</a>
+			    		</li>
+			    		<li >
+			    			<a title="跳转到前一页" href="">上一页</a>
+			    		</li>
+			    		<li class="active">
+			    			<a title="当前页面是 1" href="">1</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 2" href="">2</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 3" href="">3</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 4" href="">4</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 5" href="">5</a>
+			    		</li>
+			    		<li >
+			    			<a title="转到页面 6" href="">6</a>
+			    		</li>
+			    		<li >
+			    			<a title="跳转到后一页" href="">下一页</a>
+			    		</li>
+			    		<li >
+			    			<a title="尾页" href="">尾页</a>
+			    		</li>
+			    	</ul>
+			    </div>
 						        </div>  
 						          
 						        <div id="tab2" class="tab_content" style="display: none; ">  
@@ -150,24 +159,40 @@
 										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
 										<div class="area">微信区</div>
 										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a class="tcdz" href="" >踢出队员</a>
+											<a class="zydz" href="">转移队长</a>
+										</div>
 									</div>
 									<div class="players clearfix">
 										<div><img src="images/person_avant.png"></div>
 										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
 										<div class="area">微信区</div>
 										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
 									</div>
 									<div class="players clearfix">
 										<div><img src="images/person_avant.png"></div>
 										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
 										<div class="area">微信区</div>
 										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
 									</div>
 									<div class="players clearfix">
 										<div><img src="images/person_avant.png"></div>
 										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
 										<div class="area">微信区</div>
 										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
 									</div>
 									<div class="fenye text-center">
 										<div class="overflow_hide">
@@ -208,79 +233,25 @@
 										<span class="text">MDL国际精英邀请赛</span>
 										
 									</div>
-									<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
+									<div class="fenye text-center">
+										<div class="overflow_hide">
+											<button >首页</button><button class="nol">上一页</button>
+											<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
+											<button class="noR">上一页</button><button>尾页</button>
+										</div>
+									</div>
 						        </div>  
 						    </div>  
 						</div>
 						<div class="table_box">
 			
-							<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
+							<div class="fenye text-center">
+								<div class="overflow_hide">
+									<button >首页</button><button class="nol">上一页</button>
+									<span><a class="active">1</a><a >2</a><a>3</a><a>4</a><a>5</a><a>6</a></span>
+									<button class="noR">上一页</button><button>尾页</button>
+								</div>
+							</div>
 						</div>
 					</div>
 					
@@ -321,6 +292,198 @@
 			<p>指尖上行（北京）互动娱乐科技有限公司</p>
 		</div>
 	</div>
+
+<!--我的战队-队员推出战队弹窗-->
+<div class="exitzd">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+	<div class="pubclose">
+		<img src="images/closeico.png">
+	</div>
+	<div class="credwrap"> 
+		<h3>确定退出战队？
+		</h3>
+		<p>
+			<a href="">取消</a>
+			<a href="">确定</a>
+		</p>
+	</div>
+</div>
+
+
+
+
+<!--我的战队-转移队长的弹窗-->
+<div class="exitzydz">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+	<div class="pubclose">
+		<img src="images/closeico.png">
+	</div>
+	<div class="credwrap"> 
+		<h3>队长退队需转移队长
+		</h3>
+		<p>
+			<a href="">确定</a>
+		</p>
+	</div>
+</div>
+
+
+<!--我的战队-队长踢出战队成员的弹窗-->
+<div class="exittcdz">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+	<div class="pubclose">
+		<img src="images/closeico.png">
+	</div>
+	<div class="credwrap"> 
+		<h3>确定踢出队员？
+		</h3>
+		<p>
+			<a href="">取消</a>
+			<a href="">确定</a>
+		</p>
+	</div>
+</div>
+
+
+<!--我的战队-身份验证-->
+<div class="popsfyz">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+		<div class="pubclose">
+			<img src="images/closeico.png">
+		</div>
+		<div class="infod">
+			<h3>
+				身份验证
+			</h3>						
+		<p ><label>验证手机号 :</label><span>188****4167</span></p>
+		<p ><input type="text" placeholder="请输入验证码"><span class="access">获取验证码</span></p>
+		<div class="craat-btn">确定</div>
+	</div>
+</div>
+
+<!--我的战队-身份验证提示-->
+<div class="teamconyz">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+	<div class="pubclose">
+		<img src="images/closeico.png">
+	</div>
+	<div class="credwrap"> 
+					<h3>
+				身份验证
+			</h3>
+			<div class="firwcon">
+				<h4><span>‘有你就赢’ </span>战队队长将变更为 <span> 王小小</span>
+				</h4>
+					<p>转移申请将在新队长补充个人信息后立即生效
+					</p>
+					<p>转移申请三日内有效，三日后将自动失效，如需再次操作请重新提交申请
+					</p>
+					<p>如有疑问，请联系官方客服
+					</p>
+			
+		</div>
+
+		<p>
+			<a href="">上一步</a>
+			<a href="">确认转移</a>
+		</p>
+	</div>
+</div>
+
+
+
+<!--我的战队入队申请-->
+<div class="poprdsq">
+	<div class="blacbg">
+	</div>
+	<div class="playerwr">
+		<div class="pubclose">
+			<img src="images/closeico.png">
+		</div>
+		<div class="playerwrap">
+			<h3>入队申请
+			</h3>
+
+			<div class="players clearfix">
+										<div class="captain"><img src="images/person_avant.png"></div>
+										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+										<div class="area">微信区</div>
+										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a class="tcdz" href="" >踢出队员</a>
+											<a class="zydz" href="">转移队长</a>
+										</div>
+									</div>
+									<div class="players clearfix">
+										<div><img src="images/person_avant.png"></div>
+										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+										<div class="area">微信区</div>
+										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a class="tcdz" href="" >踢出队员</a>
+											<a class="zydz" href="">转移队长</a>
+										</div>
+									</div>
+									<div class="players clearfix">
+										<div><img src="images/person_avant.png"></div>
+										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+										<div class="area">微信区</div>
+										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
+									</div>
+									<div class="players clearfix">
+										<div><img src="images/person_avant.png"></div>
+										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+										<div class="area">微信区</div>
+										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
+									</div>
+									<div class="players clearfix">
+										<div><img src="images/person_avant.png"></div>
+										<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+										<div class="area">微信区</div>
+										<div class="dan">无敌白银V</div>
+										<div class="zd-btncz">
+											<a href="" >踢出队员</a>
+											<a href="">转移队长</a>
+										</div>
+									</div>
+									
+		<div class="viewmatch">查看全部赛事 <img src="images/viemat.png"></div>
+	</div>
+</div>
+
+
+
+
+									
+
+
+
+
+
+
+
+
+
+
+
         <script type="text/javascript" src="js/jquery.select.js"></script>
         <script type="text/javascript">
         $(".table_head  .left label").click(function(){
