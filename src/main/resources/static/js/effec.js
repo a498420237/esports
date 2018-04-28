@@ -111,11 +111,11 @@ $(".btncre").click(function(){
 
 		});
 
-	$("#logi").click(function(){
+	/*$("#logi").click(function(){
 	
 			$(".poplogin").fadeIn();			
 
-		});	
+		});	*/
 	$(".blacbg").click(function(){
 	
 			$(".poplogin").fadeOut();			

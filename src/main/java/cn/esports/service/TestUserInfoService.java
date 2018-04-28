@@ -30,7 +30,7 @@ import cn.esports.enums.SendType;
  * @date 2018年4月25日
  */
 @Component
-public class UserInfoService extends BaseService {
+public class TestUserInfoService extends BaseService {
 
 	/**
 	 * 效验手机和验证码是否匹配
@@ -145,13 +145,7 @@ public class UserInfoService extends BaseService {
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			UserInfo models = restTemplate.postForObject(url, r, UserInfo.class);
 			tBean=models.getT();
-			
-			//ResponseEntity<String> resp = restTemplate.exchange(url ,HttpMethod.POST,r, String.class);
-	        //获取返回的header
-	        //List<String> val = resp.getHeaders().get("Set-Cookie");
-	        
-	        //String body = resp.getBody();
-	        //String bString="";
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

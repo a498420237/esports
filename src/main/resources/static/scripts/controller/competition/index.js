@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 	
 	function loadDatas(curentPage, renderHtml){
 		var gameType = $("#competitionTab .nav.active").data("type");
+		var statuType = $("#statusTab .active").data("type");
 		$.ajax({
 			url : "/competition/list",
 			datatype : 'json',
@@ -18,8 +19,8 @@ define(function(require, exports, module) {
 			data : {
 				"offset" : curentPage,
 				"limit" : 4,
-				"gameType" : gameType
-				
+				"gameType" : gameType,
+				"statuType" : statuType
 			},
 			success : function(json) {
 				var data = json.t;
@@ -53,8 +54,8 @@ define(function(require, exports, module) {
 			}
 		});
 		
-		$("#competitionTab").click(function(){//tab点击
-			loadDatas(0);
+		$("#competitionTab, #statusTab").click(function(){//tab点击
+			loadDatas(1);
 		});
 	});
 	

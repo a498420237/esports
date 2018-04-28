@@ -10,6 +10,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.springframework.util.StringUtils;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.esports.entity.SimpleUser;
 
 public class SessionUtil {
@@ -31,12 +33,13 @@ public class SessionUtil {
 	 * 
 	 * @param user
 	 */
-	public static void setCurUser(SimpleUser user) {
+	public static void setCurUser(String user,String token) {
 		if (user != null) {
 			newRequestTimer();
-			sessionMap.put(user.getUsername(), getSession());
+			sessionMap.put(user, getSession());
 		}
 		SecurityUtils.getSubject().getSession(true).setAttribute(Constants.KEY_USER, user);
+		SecurityUtils.getSubject().getSession(true).setAttribute(Constants.KEY_TOKEN, token);
 	}
 
 	/**
@@ -44,8 +47,16 @@ public class SessionUtil {
 	 * 
 	 * @return
 	 */
-	public static SimpleUser getCurUser() {
-		return (SimpleUser) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_USER);
+	public static JSONObject getCurUser() {
+		return (JSONObject) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_USER);
+	}
+	/**
+	 * 获取当前登录用户
+	 * 
+	 * @return
+	 */
+	public static String getCurToken() {
+		return (String) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_TOKEN);
 	}
 
 	/**
@@ -54,8 +65,8 @@ public class SessionUtil {
 	 * @return
 	 */
 	public static boolean isLogin() {
-		SimpleUser user = getCurUser();
-		return user != null && !StringUtils.isEmpty(user.getUsername());
+		JSONObject user = getCurUser();
+		return user != null && !StringUtils.isEmpty(user);
 	}
 
 	/**
@@ -130,7 +141,7 @@ public class SessionUtil {
 	 */
 	public static boolean isMutualSession() {
 		Session session1 = getSession();
-		Session session2 = sessionMap.get(getCurUser().getUsername());
+		Session session2 = sessionMap.get(getCurUser());
 		if (session1 == null || session2 == null || !session1.getId().equals(session2.getId())) {
 			return true;
 		}

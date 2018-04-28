@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 	
 	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
-	public ModelAndView sendMobileCode(String mobile) {
+	public ModelAndView index() {
 		return new ModelAndView("user/index");
 	}
 	

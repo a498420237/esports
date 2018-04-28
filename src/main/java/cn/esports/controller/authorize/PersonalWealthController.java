@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import cn.esports.controller.BaseController;
 import cn.esports.service.ForecastService;
 import cn.esports.service.PersonalWealthService;
+import cn.esports.utils.SessionUtil;
 /**
  * 个人中心-消费记录
  * @author huzhimin
@@ -25,16 +26,16 @@ public class PersonalWealthController extends BaseController {
 	@Autowired
 	public PersonalWealthService personalWealthService;
 	
-	@RequestMapping(value="/PersonalWealth", method = RequestMethod.GET)
+	@RequestMapping(value="/user/PersonalWealth", method = RequestMethod.GET)
 	public ModelAndView forecast() {
 		ModelAndView view =new ModelAndView("user/PersonalWealth");
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		return view;
 	}
 	
-	@RequestMapping(value="/PersonalWealth/list", method = RequestMethod.GET)
+	@RequestMapping(value="/user/PersonalWealth/list", method = RequestMethod.GET)
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
-		String token="";
-		return personalWealthService.getPersonalWealthInfo(token,uriVariables);
+		
+		return personalWealthService.getPersonalWealthInfo(SessionUtil.getCurToken(),uriVariables);
 	}
 }

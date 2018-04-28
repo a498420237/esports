@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.esports.service.UserService;
 import cn.esports.utils.Constants;
@@ -21,19 +22,27 @@ public class LoginController extends BaseController {
 	@Autowired
 	private UserService userService;
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView sendMobileCode() {
+		return new ModelAndView("login");
+	}
+	
 	@RequestMapping(value = "/sendMobileCode", method = RequestMethod.POST)
 	public void sendMobileCode(String mobile) {
 		userService.sendMobileCode(mobile);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void login(String mobile, String code) {
+	public ModelAndView login(String mobile, String code) {
 		Subject subject = SecurityUtils.getSubject();  
 	    UsernamePasswordToken token = new UsernamePasswordToken(mobile, code); 
 	    try {  
-	        subject.login(token);  
+	        subject.login(token); 
+	       
 	    } catch (Exception e) {  
 	    	logger.error("login occurred error,cause by:",e);
-	    } 
+	    }
+	    return new ModelAndView("/user/index");
+	    
 	}
 }

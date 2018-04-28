@@ -26,11 +26,6 @@ define(function(require, exports, module) {
 						data : data,
 						success : function(json) {
 							var data = json.t;
-							var paramObj = {
-								total : data.total,
-								page : data.offset,
-								list : data.result
-							};
 							renderHtml(data);
 							init();
 							isShow=true;

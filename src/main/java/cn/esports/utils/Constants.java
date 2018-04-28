@@ -3,6 +3,7 @@ package cn.esports.utils;
 public class Constants {
 
 	public static final String KEY_USER="esports_user";
+	public static final String KEY_TOKEN="esports_token";
 	
 	public static final String REQUEST_TIMER = "esports_request_timer";
 	

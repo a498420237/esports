@@ -15,13 +15,13 @@ import cn.esports.controller.BaseController;
 import cn.esports.entity.UserInfo;
 import cn.esports.entity.UserLogin;
 import cn.esports.enums.SendType;
-import cn.esports.service.UserInfoService;
+import cn.esports.service.TestUserInfoService;
 
 /*@RestController*/
 public class LoginController extends BaseController {
 
 	@Autowired
-	public UserInfoService uService;
+	public TestUserInfoService uService;
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public ModelAndView login() {

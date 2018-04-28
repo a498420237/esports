@@ -30,7 +30,7 @@
 			this.getPageData(this,1);
 		},
 		getPageData:function(obj,currentPage){
-			this.settings.ajaxFuc(currentPage,function(data){
+			this.settings.ajaxFuc(currentPage-1,function(data){
 				var controlHtml='';
 				if(obj.settings.useSeniorTemplate){
 					controlHtml=template(obj.settings.itemTemplateId, data);
@@ -43,7 +43,7 @@
   				obj.settings.ele.html(controlHtml);
   				if(obj.settings.usepager){
 	                var total = data.total; //取到pageCount的值(把返回数据转成object类型)
-	                var currentPage = data.page; //得到urrentPage
+	                var currentPage=data.offset+1;
 	  	            if (currentPage && total) {
 	  	            	obj.render(obj,currentPage, total);
 	  	            }
@@ -114,23 +114,18 @@
 
                     switch (type) {
                         case "first":
-                            currentTarget.bootstrapPaginator("showFirst");
                             obj.getPageData(obj,page);
                             break;
                         case "prev":
-                            currentTarget.bootstrapPaginator("showPrevious");
                             obj.getPageData(obj,page);
                             break;
                         case "next":
-                            currentTarget.bootstrapPaginator("showNext");
                             obj.getPageData(obj,page);
                             break;
                         case "last":
-                            currentTarget.bootstrapPaginator("showLast");
                             obj.getPageData(obj,page);
                             break;
                         case "page":
-                            currentTarget.bootstrapPaginator("show", page);
                             obj.getPageData(obj,page);
                             break;
                     }

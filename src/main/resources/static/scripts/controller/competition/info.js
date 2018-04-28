@@ -43,7 +43,7 @@ define(function(require, exports, module) {
 					data.prizeType = dataCenter.prizeType;
 					data.totalMumber = dataCenter.totalMumber;
 					data.endTime = dataCenter.endTime;
-					data.startTime = new Date(data.startTime).format("yyyy-MM-dd");debugger;
+					data.startTime = new Date(data.startTime).format("yyyy-MM-dd");
 					data.entryFeeType = dict.entryFeeType[data.entryFeeType] ? dict.entryFeeType[data.entryFeeType] : "其他";
 					data.serverType = dict.serverType[data.serverType] ? dict.serverType[data.serverType] : "其他赛区";
 					
@@ -92,7 +92,7 @@ define(function(require, exports, module) {
 			    	for(var index in againstPlanList){
 			    		var againstPlan = againstPlanList[index];
 			    		againstPlan.gameDay = gameDay;
-			    		if(againstPlan.winId != undefined){
+			    		if(againstPlan.winId != undefined){//已经有胜利方 则结束
 			    			againstPlan.statuClass =  "end";
 			    			againstPlan.statuName = "已结束";
 			    		}else{
