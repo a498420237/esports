@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,10 +15,10 @@
 
 </head>
 <body>
-    <!-- 导航 -->
 	<div class="topWrap">
-		<div th:include="/include :: topWrap" ></div>
-	</div>
+    <div th:include="/include :: topWrap"></div>
+</div>
+
 
 	<div class="contwrap">
 		<!-- 导航&新闻区 -->
@@ -42,32 +42,7 @@
 			<div class="hotnew">
 				<h3>最热资讯
 				</h3>
-				<ul>
-					<a href="#">
-						<li>
-							<span class="context">中国DOTA2 Supermajor直邀名单出炉 PPD颇有微词有微词有微词</span>
-							<span class="time">3小时前</span>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span class="context">中国DOTA2 Supermajor直邀名单出炉 PPD颇有微词有微词有微词</span>
-							<span class="time">3小时前</span>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span class="context">中国DOTA2 Supermajor直邀名单出炉 PPD颇有微词有微词有微词</span>
-							<span class="time">3小时前</span>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span class="context">中国DOTA2 Supermajor直邀名单出炉 PPD颇有微词有微词有微词</span>
-							<span class="time">3小时前</span>
-						</li>
-					</a>
-
+				<ul id="info_content">
 				</ul>
 			</div>
 		</div>
@@ -82,85 +57,11 @@
 					<h3>
 						<i><img src="images/home_videoicon.png"></i>
 						热门直播
-						<span>MORE <img src="images/home_moreicon.png"></span>
+						<a href="/live/index"><span>MORE <img src="images/home_moreicon.png"></span></a>
 					</h3>
-					<ul>	
-					<li>
-
-						<img src="images/home_vediopic.png">
-						<div class="vediotext">
-							<h3>阿建：直播美播不停不停听
-							</h3>
-							<p>荣耀108星全能
-							</p>
-							<span>王者荣誉
-							</span>
-
-						</div>
-
-					</li>
-
-					<li>
-
-						<img src="images/home_vediopic.png">
-						<div class="vediotext">
-							<h3>阿建：直播美播不停不停听
-							</h3>
-							<p>荣耀108星全能
-							</p>
-							<span>王者荣誉
-							</span>
-
-						</div>
-
-					</li>	
-
-					<li>
-
-						<img src="images/home_vediopic.png">
-						<div class="vediotext">
-							<h3>阿建：直播美播不停不停听
-							</h3>
-							<p>荣耀108星全能
-							</p>
-							<span>王者荣誉
-							</span>
-
-						</div>
-
-					</li>	
-
-					<li>
-
-						<img src="images/home_vediopic.png">
-						<div class="vediotext">
-							<h3>阿建：直播美播不停不停听
-							</h3>
-							<p>荣耀108星全能
-							</p>
-							<span>王者荣誉
-							</span>
-
-						</div>
-
-					</li>	
-
-					<li>
-
-						<img src="images/home_vediopic.png">
-						<div class="vediotext">
-							<h3>阿建：直播美播不停不停听
-							</h3>
-							<p>荣耀108星全能
-							</p>
-							<span>王者荣誉
-							</span>
-
-						</div>
-
-					</li>	
+					<ul id="live_content">	
+						
 					</ul>
-
 				</div>
 
 				<!-- 预测模块-->
@@ -168,113 +69,10 @@
 					<h3>
 						<i><img src="images/home_guessico.png"></i>
 						预测
-						<span>MORE <img src="images/home_moreicon.png"></span>
+						<a href="/forecast/index"><span>MORE <img src="images/home_moreicon.png"></span></a>
 					</h3>
-					<ul>	
-						<li>
-							<p>
-								<img src="images/home_money.png">
-								<span>
-									金币竞猜
-								</span>	
-								<span>
-									T17国际邀请赛  半决赛   
-								</span>
-								<span class="last">
-									2017年10月03日
-								</span>
-
-							</p>
-
-							<div class="gusjc">
-								<span>
-									<i>
-										<img src="images/blueteam.png">
-									</i>
-									Newbee
-								</span>
-								<span class="guessstat">
-									竞猜中
-								</span>
-								<span class="last">
-									<i>
-										<img src="images/redteam.png">
-									</i>
-									lgd
-								</span>
-
-							</div>
-						</li>
-						<li>
-							<p>
-								<img src="images/home_money.png">
-								<span>
-									金币竞猜
-								</span>	
-								<span>
-									T17国际邀请赛  半决赛   
-								</span>
-								<span class="last">
-									2017年10月03日
-								</span>
-
-							</p>
-
-							<div class="gusjc">
-								<span>
-									<i>
-										<img src="images/blueteam.png">
-									</i>
-									Newbee
-								</span>
-								<span class="guessstat">
-									竞猜中
-								</span>
-								<span class="last">
-									<i>
-										<img src="images/redteam.png">
-									</i>
-									lgd
-								</span>
-
-							</div>
-						</li>
-						<li>
-							<p>
-								<img src="images/home_money.png">
-								<span>
-									金币竞猜
-								</span>	
-								<span>
-									T17国际邀请赛  半决赛   
-								</span>
-								<span class="last">
-									2017年10月03日
-								</span>
-
-							</p>
-
-							<div class="gusjc">
-								<span>
-									<i>
-										<img src="images/blueteam.png">
-									</i>
-									Newbee
-								</span>
-								<span class="guessstat">
-									竞猜中
-								</span>
-								<span class="last">
-									<i>
-										<img src="images/redteam.png">
-									</i>
-									lgd
-								</span>
-
-							</div>
-						</li>
+					<ul id="forcast_content">	
 					</ul>
-					
 				</div>
 			</div>
 			<!-- 左边模块 end-->
@@ -324,138 +122,11 @@
                                     <th ></th>
                                 </tr>
                             </thead>
-                            <tbody cellpadding="0" cellspacing="0">
-
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn green"  href="">进行中</div>
-                                    </td>
-                                </tr>   
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn red"  href="">报名中</div>
-                                    </td>
-                                </tr> 
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn blue"  href="">筹备中</div>
-                                    </td>
-                                </tr>   
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn grey"  href="">已结束</div>
-                                    </td>
-                                </tr> 
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn green"  href="">进行中</div>
-                                    </td>
-                                </tr>   
-                                <tr>
-                                    <td>
-                                        <img src="images/home_compepic.png" >
-                                        <div class="matcon">
-                                            
-                                            <h4> T17国际邀请赛  半决赛  </h4> 
-                                           
-                                            <p>616人已报名</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span >1000元</span>
-                                    </td>
-                                    <td >
-                                        <span>12-01~6-01</span>
-                                        <span>今天10:00～23:55</span>
-                                    </td>
-                                    <td>                                       
-                                         <div class="matbtn red"  href="">报名中</div>
-                                    </td>
-                                </tr> 
+                            <tbody cellpadding="0" cellspacing="0" id="matchList">
                             </tbody>
                  </table>
                  <div class="matmore">
-                 	查看全部赛事	<img src="images/home_moreicon.png">
+                 	<a href="/competition/index">查看全部赛事	<img src="images/home_moreicon.png"></a>
                  </div>
 
                  <!-- 战队模块-->
@@ -474,14 +145,7 @@
 						<div class="main_image1">
 						<ul>					
 							<li>
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
+								
 								<dl>
 									<dt><img src="images/teamimg.jpg"></dt>
 									<dd>
@@ -576,16 +240,16 @@
                 <ul class="inf">
                   <li>
                     
-                    <input id="phoneInput" class="phone" placeholder="请输入您的手机号" type="text"  />
+                    <input class="phone" placeholder="请输入您的手机号" type="text"  id=""/>
                   </li>
                   <li>
                    
-                    <input id="codeInput" class="yzm"placeholder="请输入验证码"  type="password" />
-                    <span id="getCodeBtn">获取验证码</span>
+                    <input class="yzm"placeholder="请输入验证码"  type="password"  id=""/>
+                    <span>获取验证码</span>
 
                   </li>
                   <li>
-                  	<div id="loginBtn" class="sucbtn">
+                  	<div class="sucbtn">
 						<a href="">
 						登录
 						</a>
@@ -614,7 +278,7 @@
 		<div class="bottcon">
 			<div class="btnav">
 				<div class="dyl">
-					<a class="current" th:href="@{/infos/aboutUs}">关于我们</a>
+					<a class="current" href="#">关于我们</a>
 					<a href="#">媒体报道</a>
 					<a href="#">投资方&顾问</a>
 				</div>
@@ -642,6 +306,86 @@
 			<p>指尖上行（北京）互动娱乐科技有限公司</p>
 		</div>
 	</div>
+<textarea id="itemTemplate">
+	<li>
+		<a href="/live/detail/$id$"><img src="$pictureUrl$" onerror="this.src='images/home_vediopic.png;this.onerror=null'"></a>
+		<div class="vediotext">
+			<h3>$anchorName$:$name$</h3>
+			<p>$name$</p>
+			<span>王者荣耀</span>
+		</div>
+	</li>
+</textarea>
+<textarea id="forcastTemplate">
+	<li>
+							<p>
+								<img src="images/home_money.png">
+								<span>
+									金币竞猜
+								</span>	
+								<span>
+									$lotteryName$
+								</span>
+								<span class="last">
+									$nowTime$
+								</span>
+
+							</p>
+
+							<div class="gusjc">
+								<span>
+									<i>
+										<img src="$blueImg$" weight="25px" height="31px" onerror="this.src='images/blueteam.png;this.onerror=null'">
+									</i>
+									$blueTeam$
+								</span>
+								<span class="guessstat">
+									<a href="/competition/againstInfo/$lotteryId$">竞猜中</a>
+								</span>
+								<span class="last">
+									<i>
+										<img src="$redImg$" weight="25px" height="31px" onerror="this.src='images/redteam.png;this.onerror=null'">
+									</i>
+									$redTeam$
+								</span>
+
+							</div>
+						</li>
+</textarea>
+
+
+<textarea id="matchTemplate">
+ <tr>
+    <td>
+       <a href="/competition/info/$matchId$"><img src="$matchPic$" onerror="this.src='images/home_compepic.png;this.onerror=null'" weight="108px" height="64px"></a> 
+        <div class="matcon">
+            <h4>$matchName$</h4> 
+            <p>$totalMumber$人已报名</p>
+        </div>
+    </td>
+    <td>
+        <span >$totalPrize$</span>
+    </td>
+    <td >
+        <span>$entryTime$~$endEntryTime$</span>
+        <span>今天10:00～23:55</span>
+    </td>
+    <td>                                       
+         <div class="matbtn green"  href="">$matchStatusClass$</div>
+    </td>
+</tr>   
+</textarea>
+
+
+<textarea id="infoTemplate">
+	<a href="#">
+		<li>
+			<span class="context">$informationName$</span>
+			<span class="time">$updateTime$</span>
+		</li>
+	</a>
+</textarea>
+
 
 <script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
@@ -650,7 +394,8 @@
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script type="text/javascript">
-	seajs.use('/scripts/controller/login/index');
+	seajs.use('/scripts/controller/index');
 </script> 
+
 </body>
 </html>

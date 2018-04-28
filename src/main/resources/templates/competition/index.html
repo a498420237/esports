@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="/css/personal.css">
 <link rel="stylesheet" href="/css/page.css">
 <script src="/js/jquery.1.11.3.min.js"></script>
+<script>
+window.onload = function(){
+	$(".nav a").each(function(){
+		$(this).removeAttr('class');
+	});
+	$(".nav a").eq(1).attr("class","current");
+}
+ 
+</script>
 </head>
 <body>
     <!-- 导航 -->
@@ -63,7 +72,8 @@
 <div style="display: none;">
   	<!-- 赛事列表模板 -->
   	<textarea id="competitionList_template">
-  		<a href="/competition/info/$id$?totalPrize=$totalPrize$&prizeType=$prizeType$&totalMumber=$totalMumber$" class="list_item $matchStatusClass$ odd">
+  		<a href="/competition/infoIndex/$id$?totalPrize=$totalPrize$&prizeType=$prizeType$&totalMumber=$totalMumber$&endTime=$endTime$" 
+  			class="list_item $matchStatusClass$ odd">
   			<div class="img fl">
   				<img src="$matchPic$"/>
   			</div>
@@ -71,7 +81,7 @@
   				<h4>$matchName$</h4>
   				<div class="detail_con">
   					<p><span>总奖金:<i class="color-orange">$totalPrize$ $prizeType$</i></span><span class="marg">参赛人数:<i>$totalMumber$</i>人</span></p>
-  					<p><span>开始时间:<i>$startTime$</i></span><span class="marg">开始时间:<i></i></span></p>
+  					<p><span>开始时间:<i>$startTime$</i></span><span class="marg">结束时间:<i>$endTime$</i></span></p>
   				</div>
 
   			</div>

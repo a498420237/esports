@@ -42,26 +42,38 @@ public class CompetitionController extends BaseController {
 	}
 	
 	/**
-	 * 赛事详情
+	 * 赛事详情页面
 	 * @param matchId
 	 * @return
 	 */
-	@RequestMapping(value="/competition/info/{matchId}", method = RequestMethod.GET)
+	@RequestMapping(value="/competition/infoIndex/{matchId}", method = RequestMethod.GET)
 	public ModelAndView getInfo(@PathVariable Long matchId,
 			@RequestParam String totalPrize,
 			@RequestParam String totalMumber,
+			@RequestParam String endTime,
 			@RequestParam String prizeType){
 		
 		ModelAndView view =new ModelAndView("competition/info");
-		view.addObject("competition",  competitionService.getCompetitionInfo(matchId));
 		view.addObject("totalPrize",  totalPrize);
 		view.addObject("prizeType",  prizeType);
 		view.addObject("totalMumber",  totalMumber);
+		view.addObject("matchId",  matchId);
+		view.addObject("endTime",  endTime);
 		return view;
 	}
 	
 	/**
-	 * 赛事详情
+	 * 赛事详情信息
+	 * @param matchId
+	 * @return
+	 */
+	@RequestMapping(value="/competition/info/{matchId}", method = RequestMethod.GET)
+	public Object getInfo(@PathVariable Long matchId){
+		return competitionService.getCompetitionInfo(matchId);
+	}
+	
+	/**
+	 * 对阵信息
 	 * @param matchId
 	 * @return
 	 */

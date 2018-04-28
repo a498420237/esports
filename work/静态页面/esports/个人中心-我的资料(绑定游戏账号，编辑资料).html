@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/personal.css">
+	<script src="js/jquery.1.11.3.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="topWrap">
+		<div class="topcenter">
+			<div class="logo">
+				<img src="images/tplogo.png">
+			</div>
+			<div class="nav">
+				<a class="current" href="#">首页<span>HOME</span></a>
+				<a href="#">赛事<span>COMPETITION</span></a>
+				<a href="#">资讯<span>MESSAGE</span></a>
+				<a href="#">直播<span>LIVE</span></a>
+				<a href="#">预测<span>FORECAST</span></a>
+				<a href="#">移动端<span>MOBILE</span></a>
+			</div>
+			<div class="loginr">
+				<a class="current" href="#">登录</a>
+				<a href="#">注册</a>
+			</div>
+		</div>
+	</div>
+	<div class="data">
+		<div class="content">
+			<div class="tit">个人中心</div>
+			<div class="cont">
+				<div class="lt">
+					<ul>
+						<li><a class="select" href="#"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="#"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
+						<li><a href="#"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+						<li><a href="#"><div class="ic ic6"></div><span>消费记录</span></a></li>
+						<li><a href="#"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+						<li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>
+						<li><a href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>				
+					</ul>
+				</div>
+				<div class="rt">
+					<div class="detail" id="block1" style="display: none;">
+						<img class="timg" src="images/person_avant.png">
+						<p class="name"><em>昵称：</em>炸鸡啤酒</p>
+						<p><em>性别：</em>女男</p>
+						<p class="age"><em>年龄：</em>22岁</p>
+						<p class="address"><em>所在地：</em>北京市望京soho</p>
+						<p class="signature"><em>签名：</em>能躺能Carry，鱼塘选手，畅游无阻</p>
+						<p class="editor" id="editor">编辑</p>
+					</div>
+					<div class="detail" id="block2">
+						<img class="timg" src="images/person_avant.png">
+						<p class="name"><em>昵称：</em><input class="w155" type="text" placeholder="请输入昵称"></p>
+						<div class="sex clearfix">
+							<em>性别：</em><form action=""> 
+					        <input type="radio" name="性别" value="男" >男  
+					        <input type="radio" name="性别" value="女" >女   
+					        </form>  
+				        </div>
+						<p class="age"><em>年龄：<input class="w40" type="text" value="22">岁</em></p>
+						<p class="address"><em>所在地：</em><input class="w155" type="text" placeholder="请输入所在地"></p>
+						<p class="signature"><em>签名：<input class="w155" type="text" placeholder="请输入签名"></em></p>
+						<p class="editor" id="save">保存</p>
+					</div>
+					<div class="line"></div>
+					<div class="bind">
+						<div class="ln"><em>绑定手机：<span class="cl-fff">176****2201</span></em><div class="btns" id="phone">修改手机</div></div>
+						<div class="ln"><em>绑定邮箱：未绑定</em><div class="btns" id="email">立即绑定</div></div>
+					</div>
+					<div class="line"></div>
+					<div class="up-img">
+						<p>精选照片：</p>
+						<div class="nr clearfix">
+							<div class="list left">
+								<div class="img"><img src="images/person_photo.png"><div class="ic"><img src="images/person_close.png"></div></div>
+							</div>
+							<a href="javascript:;" class="file left">
+							    <input type="file" name="" id="">
+							</a>
+						</div>	
+						<div class="save">保存</div>					
+					</div>
+					<div class="game">
+						<p>绑定游戏账号</p>
+						<div class="account">
+							<div class="ry">
+								<div class="info">
+									<div class="tit">王者荣耀</div>
+									<p>AMSsss</p>
+									<p>微信126区</p>
+									<p>荣耀王者</p>
+									<div class="set"></div>
+								</div>
+							</div>
+							<div class="qs">
+								<div class="info">
+									<div class="tit">绝地求生</div>
+									<div class="chain"></div>									
+								</div>
+								<div class="pro" id="bind">点击绑定账号</div>
+							</div>
+						</div>
+					</div>
+					<!--绑定游戏账号-->
+					<div class="dialog">
+						<div class="cont">
+							<div class="tit">绑定游戏账号</div>
+							<div class="info"><span>游戏：</span>
+								<select>
+									<option>绝地求生</option>
+								</select>
+							</div>
+							<div class="info"><span>区服：</span>
+								<select>
+									<option>东南亚</option>
+								</select>
+							</div>
+							<div class="info"><span>排名：</span>
+								<select>
+									<option>81</option>
+								</select>
+							</div>
+							<div class="info"><span>昵称：</span>
+								<input type="text" placeholder="请输入游戏昵称">
+							</div>
+							<div class="upimg clearfix">
+								<p class="text-right">添加截图</p>
+								<a href="javascript:;" class="file">
+								    <input type="file" name="" id="">
+								</a>
+								<div class="promt">游戏角色名称一经绑定将无法修改，如遇账号被绑定请联系客服</div>
+							</div>
+							<div class="btns clearfix">
+								<div class="cancel left">取消</div>
+								<div class="confirm right">确认</div>
+							</div>
+						</div>
+					</div>
+					<!--绑定手机-->
+					<div class="dialog1">
+						<div class="cont1">
+							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="box">
+								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入手机号"></div>
+								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
+								<div class="tk-btn clearfix">
+									<div class="left" id="phone-can">返回</div><div class="right complete">完成</div>
+								</div>
+							</div>						
+						</div>
+					</div>
+					<!--绑定邮箱-->
+					<div class="dialog2">
+						<div class="cont2">
+							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="box">
+								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入邮箱"></div>
+								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
+								<div class="tk-btn clearfix">
+									<div class="left" id="phone-can">上一步</div><div class="right complete">完成</div>
+								</div>
+								<div class="tk-btn1 complete">完成</div>
+							</div>						
+						</div>
+					</div>
+					<!--完成-->
+					<div class="dialog3">
+						<div class="cont3">
+							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="box">
+								<img src="images/succes.png">
+								<p>您的手机号绑定成功</p>
+							</div>	
+							<div class="tk-btn1" id="close">完成</div>					
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="botwrap">
+		<div class="bottcon">
+			<div class="btnav">
+				<div class="dyl">
+					<a class="current" href="#">关于我们</a>
+					<a href="#">媒体报道</a>
+					<a href="#">投资方&顾问</a>
+				</div>
+				<div class="dyl">
+					<a href="#">工作机会</a>
+					<a href="#">网站条款</a>
+					<a href="#">新手指南</a>
+				</div>
+				<div class="dyl">
+					<a href="#">我们的公众号</a>
+				</div>
+			</div>
+			<div class="btlogo">
+				<img src="images/btlogo.png">
+			</div>
+		</div>
+		<div class="btsafetext">
+			<div class="textnav">
+				<a href="#">家长监护</a>|
+				<a href="#">防沉迷</a>|
+				<a href="#">交易纠纷处理</a>|
+				<a href="#">用户权益保障措施</a>
+			</div>
+			<p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+			<p>指尖上行（北京）互动娱乐科技有限公司</p>
+		</div>
+	</div>
+<script>
+	//编辑
+	$("#save").on("click",function(){
+		$("#block2").fadeOut(300);
+		setTimeout(function() {
+			$("#block1").fadeIn();
+		}, 300);
+	})
+	$("#editor").on("click",function(){
+		$("#block1").fadeOut(300);
+		setTimeout(function() {
+			$("#block2").fadeIn();
+		}, 300);
+	})
+	//弹框
+	$("#bind").on("click",function(){
+		$(".dialog").fadeIn();
+	})
+	$(".cancel").on("click",function(){
+		$(".dialog").fadeOut();
+	})
+	$(document).mouseup(function(e){
+        var _con = $('.dialog'); 
+        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
+           	$(_con).fadeOut();
+        }
+    });
+    //手机
+    $("#phone").on("click",function(){
+		$(".dialog1").fadeIn();
+	})
+	$(".phone-can").on("click",function(){
+		$(".dialog1").fadeOut();
+	})
+	$(document).mouseup(function(e){
+        var _con = $('.dialog1'); 
+        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
+           	$(_con).fadeOut();
+        }
+    });
+    //邮箱
+    $("#email").on("click",function(){
+		$(".dialog2").fadeIn();
+	})
+	$(".phone-can").on("click",function(){
+		$(".dialog2").fadeOut();
+	})
+	$(document).mouseup(function(e){
+        var _con = $('.dialog2'); 
+        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
+           	$(_con).fadeOut();
+        }
+    });
+    //成功
+    $(".complete").on("click",function(){
+		$(".dialog3").fadeIn();
+		$(".dialog2").fadeOut();
+		$(".dialog1").fadeOut();
+	})
+	$("#close").on("click",function(){
+		$(".dialog3").fadeOut();
+	})
+	$(document).mouseup(function(e){
+        var _con = $('.dialog3'); 
+        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
+           	$(_con).fadeOut();
+        }
+    });
+</script>
+</body>
+</html>

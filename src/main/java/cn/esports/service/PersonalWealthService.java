@@ -31,7 +31,7 @@ public class PersonalWealthService extends BaseService {
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			return  restTemplate.postForObject("/api/user/getPersonalWealthInfo.json", r, JSONObject.class);
 		} catch (RestClientException e) {
-			logger.error("call the forecast list from rest api occurred error,cause by:",e);
+			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);
 			return null;
 		}
 	}
