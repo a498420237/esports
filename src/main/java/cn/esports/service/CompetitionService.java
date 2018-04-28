@@ -43,7 +43,7 @@ public class CompetitionService extends BaseService {
 			Integer limit = Integer.parseInt(uriVariables.get("limit"));
 			String gameType = uriVariables.get("gameType");
 			String statuType = uriVariables.get("statuType");
-			uriVariables.remove("limit");//调接口不分页
+			uriVariables.put("limit", "5000");//调接口不分页 
 			
 			JSONObject result = restTemplate.getForObject(createUrl(LIST_URL, uriVariables),JSONObject.class);
 			JSONObject t = result.getJSONObject(("t"));
