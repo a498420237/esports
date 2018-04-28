@@ -5,12 +5,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
+import cn.esports.entity.UserInfo;
+import cn.esports.utils.SessionUtil;
+
 @RestController
 public class UserController {
 	
 	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
 	public ModelAndView index() {
-		return new ModelAndView("user/index");
+		ModelAndView view =new ModelAndView("user/index");
+		view.addObject("userinf",JSON.parseObject(SessionUtil.getCurUser(),UserInfo.class));
+		return view;
 	}
 	
 	@RequestMapping(value = "/user/suc", method = RequestMethod.GET)

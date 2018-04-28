@@ -47,8 +47,8 @@ public class SessionUtil {
 	 * 
 	 * @return
 	 */
-	public static JSONObject getCurUser() {
-		return (JSONObject) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_USER);
+	public static String getCurUser() {
+		return (String) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_USER);
 	}
 	/**
 	 * 获取当前登录用户
@@ -65,7 +65,7 @@ public class SessionUtil {
 	 * @return
 	 */
 	public static boolean isLogin() {
-		JSONObject user = getCurUser();
+		String user = getCurUser();
 		return user != null && !StringUtils.isEmpty(user);
 	}
 

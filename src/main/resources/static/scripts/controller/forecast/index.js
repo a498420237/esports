@@ -123,27 +123,27 @@ define(function(require, exports, module) {
 
 			   });
 			   //赔率点击显示弹出框
-			   $('.odds').on("click",function() {
-			     layer.open({
-			       type: 1,
-			       title: false,
-			       shadeClose: true,
-			       shade: 0.5,
-			       closeBtn: 0,
-			       area: ['390px', '500px'],
-			       //宽高
-			       content: $('.z_models')
-			     })
-			   });
-			   //弹出框选择操作效果
-			   $(".click").on("click",function() {
-			     $(this).parents(".lump").find(".click").removeClass("normal");
-			     $(this).addClass("normal")
-			   });
-			   //关闭弹出层
-			   $('.confirm').on("click",function() {
-			     layer.close(layer.index);
-			   });
+		        $('.odds').click(function() {
+		          layer.open({
+		            type: 1,
+		            title: false,
+		            shadeClose: true,
+		            shade: 0.5,
+		            closeBtn: 0,
+		            area: ['390px', '500px'],
+		            //宽高
+		            content: $('.z_models')
+		          })
+		        });
+		        //弹出框选择操作效果
+		        $(".click").click(function() {
+		          $(this).parents(".lump").find(".click").removeClass("normal");
+		          $(this).addClass("normal")
+		        });
+		        //关闭弹出层
+		        $('.confirm').click(function() {
+		          layer.close(layer.index);
+		        });
 			}
 	});
 });
