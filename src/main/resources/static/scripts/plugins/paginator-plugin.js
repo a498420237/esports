@@ -1,18 +1,39 @@
 (function(factory) {
 	if (typeof define === 'function') {
 		// 如果define已被定义，模块化代码
-		define('pagePlugin', [ 'jquery', 'utilService','bootstrap','bootstrapPaginator','template'],
+		define('pagePlugin', [ 'jquery', 'utilService','bootstrap','bootstrapPaginator','template','layerUtil'],
 				function(require, exports, moudles) {
-					factory(require('jquery'),require('utilService'),require('bootstrap'),require('bootstrapPaginator'),require('template')); // 初始化插件
+					factory(require('jquery'),require('utilService'),require('bootstrap'),require('bootstrapPaginator'),require('template'),require('layerUtil')); // 初始化插件
 					return jQuery; // 返回jQuery
 				});
 	} else {
 		// 如果define没有被定义，正常执行jQuery
 		factory(jQuery);
 	}
-}(function($, util,bootstrap,paginator,template) {
+}(function($, util,bootstrap,paginator,template,layerUtil) {
 	template.defaults.imports.dateFmt = function(ns){
 		return new Date(parseInt(ns)).toLocaleString();
+	};
+	template.defaults.imports.contentSub = function(ns){
+		return ns.substring(0,100);
+	};
+	template.defaults.imports.fmtDate = function(ns,format){
+		var date = new Date(parseInt(ns));
+        var args = {
+            "M+": date.getMonth() + 1,
+            "d+": date.getDate(),
+            "h+": date.getHours(),
+            "m+": date.getMinutes(),
+            "s+": date.getSeconds(),
+        };
+        if (/(y+)/.test(format))
+            format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var i in args) {
+            var n = args[i];
+            if (new RegExp("(" + i + ")").test(format))
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
+        }
+        return format;
 	};
 	var paginator = function(ele, opt) {
 		this.defaults = {

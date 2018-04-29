@@ -2,11 +2,16 @@ package cn.esports.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.esports.entity.Troops;
 
@@ -20,27 +25,32 @@ import cn.esports.entity.Troops;
 
 @Component
 public class CompetitionTroopsService extends BaseService {
-	
+	private static Logger logger = LoggerFactory.getLogger(CompetitionTroopsService.class);
 	/**
 	 * 站队列表数据
 	 * @return
 	 */
-	public  List<Troops.TBean.ResultBean> GetTroopsList() {
-		List<Troops.TBean.ResultBean> list = new ArrayList<Troops.TBean.ResultBean>();
-		//String result="";
+	public  JSONObject getTroopsList(Map<String,String> uriVariables) {
 		try {
-			/*ResponseEntity<String> responseEntity = restTemplate
-					.getForEntity(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", String.class);
-			String jsString = responseEntity.getBody();*/
-			//Troops models=restTemplate.getForEntity(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", Troops.class);
-			Troops models=restTemplate.getForObject(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", Troops.class);
-			//String jString=restTemplate.getForObject(baseConfig.getHttpUrl() + "/troops/findTroopsListByApp.json", String.class);
-			list = models.getT().getResult();
-			//result=JSON.toJSONString( models.getT().getResult());
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+			return restTemplate.getForObject(createUrl("/troops/findTroopsListByApp.json", uriVariables),JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("get the message list from rest api occurred error,cause by:",e);
+			return null;
 		}
-		return list;
 	}
+	
+	/**
+	 * 个人用户战队数据
+	 * @return
+	 */
+	public  JSONObject getUserWithoutTroopsList(Map<String,String> uriVariables) {
+		try {
+			return restTemplate.getForObject(createUrl("/troops/userApplyInvitationList.json", uriVariables),JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("get the message list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+	
+	
 }

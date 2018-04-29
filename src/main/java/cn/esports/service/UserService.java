@@ -49,7 +49,10 @@ public class UserService extends BaseService{
 			return restTemplate.postForObject(createUrl("/api/msg/sendMobileCode.json", null), httpEntity, JSONObject.class);
 		} catch (RestClientException e) {
 			logger.error("send mobile code to rest api occurred error,cause by:",e);
-			return null;
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
 		}
 	}
 	

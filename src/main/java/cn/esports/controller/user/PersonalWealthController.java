@@ -1,4 +1,4 @@
-package cn.esports.controller.authorize;
+package cn.esports.controller.user;
 
 import java.util.Map;
 

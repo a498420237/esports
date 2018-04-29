@@ -84,7 +84,7 @@ window.onload = function(){
             <div class="item_detail">
                     <h4>{{$value.informationName}}</h4>
                 <div class="detail_con">
-                    <p id="content" class="dc">{{$value.content}}</p>
+                    <p id="content" class="dc">{{#$value.content | contentSub}}</p>
                 </div>
                 <p class="date"><span class="fl">{{$value.updateTime}}</span><em class="look fr"><img
                         src="/images/eyesicon.png"/><i>31145</i></em>

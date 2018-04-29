@@ -1156,6 +1156,87 @@ var set_stars = function(params) {
 
 
 
+
+
+
+
+
+
+
+
+//swiper封装，方便调用
+
+$.fn.extend({
+	Swiper:function(json){
+
+
+		var doms=$(this);
+		var isIE8=navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE8.0";
+	
+		if(isIE8)
+		{ 
+		     $('<link rel="stylesheet" type="text/css" href="css/idangerous.swiper2.7.6.css">').insertAfter($("link").eq(0));
+		     $('<script type="text/javascript" src="js/idangerous.swiper2.7.6.min.js" ></script>').insertAfter($("script").eq(0));
+		
+		}else{
+       
+			$('<link rel="stylesheet" type="text/css" href="css/swiper.min.css">').insertAfter($("link").eq(0));
+			$('<script type="text/javascript" src="js/swiper.min.js" ></script>').insertAfter($("script").eq(0));
+          
+		}
+	
+		//映射关系
+		var param_relative={
+			"fenye":"pagination",
+		    "leftBtn":"prevButton",
+		    "rightBtn":"nextButton",
+		}
+		
+		var newParam={};
+		for(item in json)
+		{
+			newParam[param_relative[item]||item]=json[item]
+
+		}
+		//默认值
+		var swiperDefaultParam={
+			autoplayDisableOnInteraction:false,
+			pagination:".swiper-pagination",
+		    loop:true
+
+		}
+
+		//swiper板块序号
+		var swiper_objs={};
+//	    doms.each(function(){
+	    	var _swiperSerial=new Date().valueOf();
+	    	var SwiperDom=$(this);
+	    	SwiperDom.addClass("SwiperSerial_"+_swiperSerial);
+	    	console.log(newParam);
+	    	swiper_objs[_swiperSerial]=new Swiper(".SwiperSerial_"+_swiperSerial,$.extend(swiperDefaultParam,newParam));
+	    	if(isIE8)
+	    	{
+	    		SwiperDom.parent().find(newParam["prevButton"]).click(function(){
+	    			swiper_objs[_swiperSerial].swipePrev()
+	    			
+	    		})
+	    		SwiperDom.parent().find(newParam["nextButton"]).click(function(){
+	    			swiper_objs[_swiperSerial].swipeNext()
+	    			
+	    		})
+	    		
+	    	}
+
+//	    })
+	    console.log(swiper_objs);
+
+	}
+
+	
+})
+
+
+
 //调用方法
 //	 var img_url={filled:"img/slice/godstar.png",empty:"img/slice/badstar.png"};
 //	set_stars($(".set_stars"),img_url,5,25,"onlyread")

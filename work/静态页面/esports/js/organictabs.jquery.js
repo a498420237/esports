@@ -1,7 +1,7 @@
 (function($) {
 
     $.organicTabs = function(el, options) {
-
+    
         var base = this;
         base.$el = $(el);
         base.$nav = base.$el.find(".nav");
@@ -19,7 +19,7 @@
             }); 
             
             base.$nav.delegate("li > a", "click", function() {
-
+            
                 // Figure out current list via CSS class
                 var curList = base.$el.find("a.current").attr("href").substring(1),
                 

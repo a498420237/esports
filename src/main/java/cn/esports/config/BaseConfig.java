@@ -20,6 +20,9 @@ public class BaseConfig implements Serializable {
 	private String httpUrl;
 	private String httpMethod;
 	private String httpResultType;
+	
+	private String token;
+	private String uid;
 
 	public String getHttpUrl() {
 		return httpUrl;
@@ -43,6 +46,22 @@ public class BaseConfig implements Serializable {
 
 	public void setHttpResultType(String httpResultType) {
 		this.httpResultType = httpResultType;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	@Override

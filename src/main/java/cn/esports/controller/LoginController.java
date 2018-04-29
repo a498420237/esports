@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.esports.service.UserService;
 import cn.esports.utils.Constants;
 
@@ -28,21 +30,26 @@ public class LoginController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/sendMobileCode", method = RequestMethod.POST)
-	public void sendMobileCode(String mobile) {
-		userService.sendMobileCode(mobile);
+	public JSONObject sendMobileCode(String mobile) {
+		return userService.sendMobileCode(mobile);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void login(String mobile, String code) {
+	public JSONObject login(String mobile, String code) {
 		Subject subject = SecurityUtils.getSubject();  
+		   JSONObject jsonObject=new JSONObject();
 	    UsernamePasswordToken token = new UsernamePasswordToken(mobile, code); 
 	    try {  
 	        subject.login(token); 
-	       
+	        jsonObject.put("code", 200);
+	        jsonObject.put("code", "登录成功");
+	        return jsonObject;
 	    } catch (Exception e) {  
 	    	logger.error("login occurred error,cause by:",e);
+	    	jsonObject.put("code", 100);
+	    	jsonObject.put("msg", "验证码效验失败，请重新输入");
+	    	return jsonObject;
 	    }
-	   // return new ModelAndView("/user/index");
-	    
+		//return  jsonObject;
 	}
 }

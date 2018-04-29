@@ -61,11 +61,6 @@ public class IndexController extends BaseController {
 	private LiveStreamRoomService liveStreamRoomService;
 	
 	/**
-	 * 获取主页赛事列表
-	 * @param gameType 赛事类型
-	 * @return
-	 */
-	/**
 	 * 赛事列表
 	 * @param uriVariables
 	 * @return
@@ -107,27 +102,9 @@ public class IndexController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getLatestTroops", method = RequestMethod.GET)
-	public JsonResp getLatestTroops(){
-		try {
-			List<Troops.TBean.ResultBean> list = troopsService.GetTroopsList();
-			if(list==null||list.isEmpty()){
-				return JsonResp.success(Collections.EMPTY_LIST);
-			} else if(list.size()>6) {
-				return JsonResp.success(list.subList(0, 6));
-			}else{
-				return JsonResp.success(list);
-			}
-		} catch (Exception e) {
-			logger.error("getLatestTroops fail",e);
-			return JsonResp.fail("get List fail");
-		}
-	}
-	
-	@RequestMapping(value="/getForecastList", method = RequestMethod.GET)
-	public JSONObject getForecastList(@RequestParam Map<String, String> uriVariables){
-		JSONObject json= forecastService.getForecastList(uriVariables);
+	public JSONObject getLatestTroops(@RequestParam Map<String, String> uriVariables){
+		JSONObject json = troopsService.getTroopsList(uriVariables);
 		return json;
 	}
-	
 	
 }

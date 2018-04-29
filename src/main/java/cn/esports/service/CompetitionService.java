@@ -51,13 +51,21 @@ public class CompetitionService extends BaseService {
 			List<JSONObject> matchs = new ArrayList<JSONObject>();
 			for(int i=0; i<results.size();i++){
 				JSONObject o = results.getJSONObject(i);
-				if(matchGameType(gameType, o) && matchStatuType(statuType, o)){
-					matchs.add(o);
+				if(gameType!=null && statuType!=null) {
+					if(!"-1".equals(gameType))
+					{
+						if( matchStatuType(statuType, o)){
+							matchs.add(o);
+						}
+					}else
+					{
+						matchs.add(o);
+					}
 				}
 			}
 
 			//分页
-			int start = (offSet - 1) * limit;
+			int start = (offSet + 1) * limit;
 			if(start < 0 || start > matchs.size()){
 				start = 0;
 			}
@@ -75,7 +83,10 @@ public class CompetitionService extends BaseService {
 			return ret;
 		} catch (RestClientException e) {
 			logger.error("call the forecast list from rest api occurred error,cause by:",e);
-			return null;
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
 		}
 	}
 	

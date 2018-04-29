@@ -89,7 +89,88 @@ $(function() {
 
 
 
-	//弹出筛选条件
+
+
+//我的战队-转移队长的弹窗
+$(".zydz").click(function(){
+			$(".exitzydz").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".exitzydz").hide();			
+
+		});
+
+
+//我的战队-队长踢出战队成员的弹窗
+$(".tcdz").click(function(){
+			$(".exittcdz").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".exittcdz").hide();			
+
+		});
+
+
+//我的战队-身份验证
+$("").click(function(){
+			$(".popsfyz").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".popsfyz").hide();			
+
+		});
+
+
+
+
+//我的战队-入队申请
+$(".playapply").click(function(){
+
+			$(".poprdsq").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".poprdsq").hide();			
+
+		});
+
+
+//我的战队-身份验证提示
+$("").click(function(){
+			$(".teamconyz").fadeIn(500);			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".teamconyz").hide(500);			
+
+		});
+
+
+
+
+
+
+//我的战队-队员退出战队弹窗
+$("#exitzdd").click(function(){
+			$(".exitzd").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".exitzd").hide();			
+
+		});
+
+
+	//充值弹框
 $(".btncre").click(function(){
 			$(".popmoney").fadeIn();			
 
@@ -100,6 +181,21 @@ $(".btncre").click(function(){
 
 		});
 
+	//队长转移
+
+	$("#dzchang").click(function(){
+	
+			$(".popwrit").fadeIn();			
+
+		});	
+	$(".pubclose").click(function(){
+	
+			$(".popwrit").fadeOut();			
+
+		});
+
+
+//登录弹框
 		$("#logi").click(function(){
 	
 			$(".poplogind").fadeIn(2000);			

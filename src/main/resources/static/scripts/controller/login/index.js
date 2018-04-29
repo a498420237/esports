@@ -1,5 +1,5 @@
 define(function(require, exports, module) {
-	seajs.use([ 'jquery','loginService','layer'], function($,loginService,layer) {
+	seajs.use([ 'jquery','loginService','layerUtil'], function($,loginService,layerUtil) {
 		loginService.bindEvents();
 	});
 });
