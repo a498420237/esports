@@ -43,21 +43,21 @@ public class CompetitionService extends BaseService {
 			Integer limit = Integer.parseInt(uriVariables.get("limit"));
 			String gameType = uriVariables.get("gameType");
 			String statuType = uriVariables.get("statuType");
-			uriVariables.put("limit", "5000");//调接口不分页 
+			uriVariables.put("limit", "5000");//调接口不分页  暂时设置为5000 后面改了接口是直接查接口的
 			
-			JSONObject result = restTemplate.getForObject(createUrl(LIST_URL, uriVariables),JSONObject.class);
+			JSONObject  result = restTemplate.getForObject(createUrl(LIST_URL, uriVariables),JSONObject.class);
 			JSONObject t = result.getJSONObject(("t"));
-			JSONArray results = t.getJSONArray("result");
+			JSONArray list = t.getJSONArray("result");
 			List<JSONObject> matchs = new ArrayList<JSONObject>();
-			for(int i=0; i<results.size();i++){
-				JSONObject o = results.getJSONObject(i);
+			for(int i=0; i<list.size();i++){
+				JSONObject o = list.getJSONObject(i);
 				if(matchGameType(gameType, o) && matchStatuType(statuType, o)){
 					matchs.add(o);
 				}
 			}
 
 			//分页
-			int start = (offSet - 1) * limit;
+			int start = offSet * limit;
 			if(start < 0 || start > matchs.size()){
 				start = 0;
 			}
@@ -66,13 +66,8 @@ public class CompetitionService extends BaseService {
 				toIndex = matchs.size();
 			}
 			List<JSONObject> subList = matchs.subList(start, toIndex);    
-			
-			JSONObject ret0 = new JSONObject();
-			ret0.put("result", subList);
-			ret0.put("total", matchs.size());
-			JSONObject ret = new JSONObject();
-			ret.put("t", ret0);
-			return ret;
+			t.put("result", subList); //将筛选过的重新设置到result列表中
+			return result;
 		} catch (RestClientException e) {
 			logger.error("call the forecast list from rest api occurred error,cause by:",e);
 			return null;

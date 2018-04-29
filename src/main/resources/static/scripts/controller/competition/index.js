@@ -34,8 +34,9 @@ define(function(require, exports, module) {
 				
 				var paramObj = {
 					total : data.total,
-					page : curentPage,
-					list : data.result
+					page : data.page,
+					list : data.result,
+					offset : data.offset
 				};
 				competitionUtil.renderHtml(paramObj);
 			}
@@ -48,14 +49,14 @@ define(function(require, exports, module) {
 		$("#competitionList").paginator({
 			itemTemplateId : 'competitionList_template',
 			pageNavId : 'pageContainer',
-			ajaxFuc : function(curentPage, renderHtml) {
+			ajaxFuc : function(curentPage, renderHtml) {debugger;
 				competitionUtil.renderHtml = renderHtml;
 				loadDatas(curentPage);
 			}
 		});
 		
 		$("#competitionTab, #statusTab").click(function(){//tab点击
-			loadDatas(1);
+			loadDatas(0);
 		});
 	});
 	
