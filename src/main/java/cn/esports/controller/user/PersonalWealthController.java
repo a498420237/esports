@@ -36,7 +36,6 @@ public class PersonalWealthController extends BaseController {
 	
 	@RequestMapping(value="/user/PersonalWealth/list", method = RequestMethod.GET)
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
-		
 		return personalWealthService.getPersonalWealthInfo("",uriVariables);
 	}
 }

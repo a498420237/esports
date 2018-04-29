@@ -3,9 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>个人中心-消费记录</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/personal.css">
+    <link rel="stylesheet" href="/css/zyx_forecast.css">
+    <link rel="stylesheet"	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous" />
 	<script src="/js/jquery.1.11.3.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
@@ -19,15 +20,14 @@
 			<div class="cont">
 				<div class="lt">
 					<ul>
-						<li><a href="#"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
 						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
-						<li><a href="#"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
-						<li><a href="#"><div class="ic ic5"></div><span>货币兑换</span></a></li>
-						<li><a href="#"><div class="ic ic6"></div><span>消费记录</span></a></li>
-						<li><a class="select" href="#"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>
-						<li><a href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>				
+						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+						<li><a href="/user/PersonalWealth" class="select"><div class="ic ic6"></div><span>消费记录</span></a></li>
+						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+						<li><a  href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>					
 					</ul>
 				</div>
 				<div class="record">
@@ -38,11 +38,11 @@
 				            <option value ="1" >3个月</option>
 					    </select>
 					</div>
-					<div class="tab"><span class="sel" name="0">所有</span><span name="1">钻石</span><span name="2">金币</span></div>
+					<div class="tab"><span class="sel" name="0">所有</span><span name="2">钻石</span><span name="1">金币</span></div>
 					<div class="list" id="list_content">
 						
 					</div>
-					<div class="fenye text-center">
+					<div class="z_pager">
 								<ul id="pageContainer"></ul>
 							</div>
 				</div>
@@ -50,15 +50,16 @@
 		</div>
 	</div>
 </div>
-
-	<div th:include="/user/include :: botwrap"></div>
-	<textarea id="itemTemplate">
+<div class="botwrap">
+	<div th:include="/include :: botwrap"></div>
+	</div>
+	<textarea id="itemTemplate"  style="display:none;">
 	{{each result}}
-	<p class="clearfix"><span class="time">{{$value.createTime | dateFmt}}</span><span>{{$value.detailtype}}</span>
+	<p class="clearfix"><span class="time">{{$value.createTime | dateAprFmt}}</span><span>{{$value.detailtype}}</span>
 	
-	{{if ($value.operationType==1 or $value.operationType==1)}}
+	{{if ($value.operationType==0 || $value.operationType==1)}}
 	<em class="blue">{{$value.value}} 金币</em>
-	{{else if(($value.operationType==3 or $value.operationType==4))}}
+	{{else if(($value.operationType==3 || $value.operationType==4))}}
 	<em class="blue">{{$value.value}} 钻石</em>
 	{{/if}}
 	</p>

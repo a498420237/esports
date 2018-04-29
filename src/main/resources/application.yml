@@ -16,5 +16,5 @@ baseConfig:
       httpUrl: http://39.106.145.173:8087
       httpMethod: get
       httpResultType: JSON
-      token: 18A8E062099EEE9EC65A860EE7F37B23AAE07974
-      uid: 133
+      token: A7CF1A60E28D595A72F1AD4D4FD1EC0C8C5EAF8B
+      uid: 138

@@ -3,6 +3,8 @@ package cn.esports.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import cn.esports.config.BaseConfig;
@@ -49,5 +51,17 @@ public class BaseService {
 					+ PARAM_SPLIT_PREFIX;
 		}
 		return url.substring(0, url.length() - 1);
+	}
+	
+	protected MultiValueMap<String, Object> getPostParameters(Map<String, String> uriVariables)  
+	{
+		MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+		if (uriVariables == null) {
+			return null;
+		}
+		for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
+			postParameters.add(entry.getKey(), entry.getValue());
+		}
+		return postParameters;
 	}
 }

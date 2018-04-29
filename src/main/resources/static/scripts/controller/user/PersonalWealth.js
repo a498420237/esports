@@ -5,7 +5,6 @@ define(function(require, exports, module) {
 			init();
 			seniorLoad(0,0);
 		});
-		
 		var isShow=true;
 		//获取列表数据
 		function seniorLoad(currency,dateId){
@@ -20,7 +19,7 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 15,currency:dateId,dateId:dateId
+							"limit" : 15,"currency":currency,"dateId":dateId
 					};
 			
 					$.ajax({
@@ -29,6 +28,7 @@ define(function(require, exports, module) {
 						type : "get",
 						data : data,
 						success : function(json) {
+							debugger;
 							var data = json.t;
 							var paramObj = {
 								total : data.total,
@@ -51,16 +51,12 @@ define(function(require, exports, module) {
 			     $('.tab span').removeClass("sel");
 			     $(this).addClass("sel");
 			     var currency=$(this).attr("name");
-			     
 			     var dateId=$("select.select").val();
-			     
 			     seniorLoad(currency,0);
 			   });
 			 $("#dataId").on("click",function() {
-				 debugger;
 				varcurrency=  $('.tab span.sel').attr("name");
 			     var dateId=$(this).val();
-			     debugger;
 			     seniorLoad(currency,dateId);
 			   });
 			}

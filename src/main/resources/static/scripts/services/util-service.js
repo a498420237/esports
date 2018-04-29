@@ -9,6 +9,9 @@ define(function(require, exports, module) {
 	String.prototype.aa = function(obj) {
 	    alert(obj);
 	};
+	 Date.prototype.toLocaleString = function () {
+	        return this.getFullYear()+'-'+(this.getMonth()+1)+'-'+this.getDate()+' '+this.getHours()+':'+this.getMinutes()+':'+this.getSeconds()
+	    }
 	//日期原型  格式化方法    fmt 格式 如：yyyy-MM-dd
 	Date.prototype.format = function (fmt) {
 		var o = {    

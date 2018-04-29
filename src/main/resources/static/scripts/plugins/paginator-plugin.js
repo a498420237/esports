@@ -14,6 +14,9 @@
 	template.defaults.imports.dateFmt = function(ns){
 		return new Date(parseInt(ns)).toLocaleString();
 	};
+	template.defaults.imports.dateAprFmt = function(ns){
+		return new Date(ns).toLocaleString();
+	};
 	template.defaults.imports.contentSub = function(ns){
 		return ns.substring(0,100);
 	};
@@ -35,6 +38,7 @@
         }
         return format;
 	};
+
 	var paginator = function(ele, opt) {
 		this.defaults = {
 			itemTemplateId : '', // 条目模版Id
