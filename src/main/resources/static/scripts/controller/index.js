@@ -34,9 +34,9 @@ define(function(require, exports, module) {
 			type : "get",
 			data : {
 				"offset" : 0,
-				"limit" : 6
-			/*	"gameType" : $("#gameType").val(),
-				"statuType" : statuType*/
+				"limit" : 6,
+				"gameType" : -1,
+				"statuType" : 4
 			},
 			success : function(json) {
 				debugger;

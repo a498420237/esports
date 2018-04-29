@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 
+import cn.esports.config.BaseConfig;
 import cn.esports.controller.BaseController;
 import cn.esports.service.ForecastService;
 import cn.esports.service.PersonalWealthService;
@@ -36,6 +37,6 @@ public class PersonalWealthController extends BaseController {
 	@RequestMapping(value="/user/PersonalWealth/list", method = RequestMethod.GET)
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
 		
-		return personalWealthService.getPersonalWealthInfo(SessionUtil.getCurToken(),uriVariables);
+		return personalWealthService.getPersonalWealthInfo("",uriVariables);
 	}
 }

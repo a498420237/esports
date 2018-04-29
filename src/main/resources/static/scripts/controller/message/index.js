@@ -18,6 +18,7 @@ define(function (require, exports, module) {
                         "limit": 5
                     },
                     success: function (json) {
+                    	debugger;
                         var data = json.t;
                         renderHtml(data);
                         loadTitle();
