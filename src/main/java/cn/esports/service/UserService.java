@@ -80,7 +80,10 @@ public class UserService extends BaseService{
 					//return cookie.replaceAll("rememberTap_token=(.*);", "$1");
 	        	}
 			}
-		}
+		}/*else {
+			
+			return  resp.getBody().toJSONString();
+		}*/
 		} catch (RestClientException e) {
 			logger.error("validation Token to rest api occurred error,cause by:",e);
 		}

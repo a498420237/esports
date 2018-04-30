@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/personal.css">
+	<script src="/js/jquery.1.11.3.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="topWrap">
+		<div th:include="/include :: topWrap" ></div>
+		</div>
+	<div class="data">
+		<div class="content">
+			<div class="tit">个人中心</div>
+			<div class="cont">
+				<div class="lt">
+					<ul>
+						<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="/user/BetOrder" class="select"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
+						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
+						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+						<li><a  href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>					
+					</ul>
+				</div>
+				<div class="quiz">
+						<div class="head">
+							<select class="select" name="state" data-value="0">
+					            <option value ="0">全部</option>
+					            <option value ="1" >本周</option>
+					            <option value ="2" >本月</option>
+					        </select>
+						</div>
+						<div class="cont" id="list_content">
+
+						</div>
+							<div class="z_pager">
+							
+								<ul id="pageContainer"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<div class="botwrap">
+	<div th:include="/include :: botwrap"></div>
+	</div>
+		<textarea id="itemTemplate"  style="display:none;">
+	{{each result}}
+	<div class="list">
+							 	<div class="period1">
+									<div class="number left">
+ 				{{if ($value.goldType==0)}}
+                    	  <img src="/images/home_money.png" alt=""> 金币竞猜
+                    		{{else }}
+                    		  <img src="/images/dimandicon.png" alt="">钻石竞猜
+                    		{{/if}}
+<span>竞猜单号：{{$value.quizNumber}}</span></div>
+									<div class="time right">{{$value.createDate  | dateFmt}}</div>
+							 	</div>
+							 	<div class="period2">
+							 		<div class="name left">{{$value.matchName}}</div>
+							 		<div class="info right">{{$value.handicapType}}</div>
+							 	</div>
+							 	<div class="period3">
+									<div class="block1">
+										<div class="he55">
+											<img class="" src="{{$value.quizTrIcon}}" onerror="this.src='/images/blueteam.png;this.onerror=null'">
+										</div>
+										<p>{{$value.quizTrName}}</p>
+									</div>
+									<div class="block2">
+										<p class="he55">获胜金额:{{$value.quizGold}}</p>
+										<p>竞猜金额:{{$value.quizEarnGold}}</p>
+									</div>
+									<div class="block3">
+										<p class="he55">{{$value.cbOdds}}</p>
+										<p>结算赔率</p>
+									</div>
+									<div class="block4">
+										{{if($value.lotteryStatus==0)}}
+										<p class="he55 red">竞猜中</p>
+										{{else if($value.lotteryStatus==3)}}
+										<p class="he55">已流盘</p>
+										{{else}}
+										<p class="he55 green">已结算</p>
+										{{/if}}
+										
+										
+										
+										{{if($value.cbResult==1)}}
+										<p>竞猜结果:成功</p>
+										{{else if($value.cbResult==2)}}
+										<p>竞猜结果:成功</p>
+										{{else if($value.cbResult==3)}}
+											<p>竞猜结果:流盘</p>
+											{{else if($value.cbResult==4)}}
+											<p>竞猜结果:赢半</p>
+												{{else if($value.cbResult==5)}}
+												<p>竞猜结果:输半</p>
+													{{else}}
+										<p>竞猜结果:未知</p>
+										{{/if}}
+										
+									</div>
+							 	</div>
+							 </div>
+	{{/each}}
+	</textarea>
+	<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script type="text/javascript">
+	seajs.use('/scripts/controller/user/BetOrder');
+</script>  
+        <script type="text/javascript" src="/js/jquery.select.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $('select.select').select();
+            });
+        </script>
+</body>
+</html>

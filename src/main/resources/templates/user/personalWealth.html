@@ -35,7 +35,7 @@
 						<select class="select" name="state" id="dataId" data-value="0">
 				            <option value ="0">本周</option>
 				            <option value ="1" >本月</option>
-				            <option value ="1" >3个月</option>
+				            <option value ="2" >3个月</option>
 					    </select>
 					</div>
 					<div class="tab"><span class="sel" name="0">所有</span><span name="2">钻石</span><span name="1">金币</span></div>
@@ -55,7 +55,41 @@
 	</div>
 	<textarea id="itemTemplate"  style="display:none;">
 	{{each result}}
-	<p class="clearfix"><span class="time">{{$value.createTime | dateAprFmt}}</span><span>{{$value.detailtype}}</span>
+	<p class="clearfix"><span class="time">{{$value.createTime | dateAprFmt}}</span><span>
+	{{if($value.detailtype==3)}}
+	赛事报名
+	{{else if($value.detailtype==7)}}
+	钻石兑换金币
+	{{else if($value.detailtype==8)}}
+	充值
+	{{else if($value.detailtype==1)}}
+	赛事结算
+	{{else if($value.detailtype==2)}}
+	赛事流盘
+	{{else if($value.detailtype==4)}}
+	三方竞猜
+	{{else if($value.detailtype==5)}}
+	兑换商品
+	{{else if($value.detailtype==6)}}
+	商品订单取消,退款
+	{{else if($value.detailtype==9)}}
+	赛事取消退款
+	{{else if($value.detailtype==10)}}
+	代练下单
+	{{else if($value.detailtype==11)}}
+	代练订单取消
+	{{else if($value.detailtype==12)}}
+	手动添加虚拟货币
+	{{else if($value.detailtype==13)}}
+	竞猜结算
+	{{else if($value.detailtype==14)}}
+	竞猜流盘
+	{{else}}
+	初始化账户信息
+	{{/if}}
+	
+	
+	</span>
 	
 	{{if ($value.operationType==0 || $value.operationType==1)}}
 	<em class="blue">{{$value.value}} 金币</em>

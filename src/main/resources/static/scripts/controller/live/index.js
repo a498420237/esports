@@ -8,12 +8,12 @@ define(function (require, exports, module) {
         $("#live_list").paginator({
             itemTemplateId: 'liveList_template',
             pageNavId: '',
-            usepager: false,
+            usepager: true,
             useSeniorTemplate:true,
             ajaxFuc: function (curentPage, renderHtml) {
                 var data = {
                     "offset": curentPage,
-                    "limit": 3
+                    "limit": 6
                 };
                 if (gameId != "") {
                     data.gameId = gameId;
@@ -27,6 +27,7 @@ define(function (require, exports, module) {
                     type: "get",
                     data: data,
                     success: function (json) {
+                    	debugger
                         var data = json.t;
                         renderHtml(data);
                         init();

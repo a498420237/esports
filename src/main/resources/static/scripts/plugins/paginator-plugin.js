@@ -18,8 +18,12 @@
 		return new Date(ns).toLocaleString();
 	};
 	template.defaults.imports.contentSub = function(ns){
-		return ns.substring(0,100);
+		
+		var content=ns.replace(/<[^>]+>/g,"") ;//去掉所有的html标记
+		
+		return content.substring(0,100);
 	};
+	
 	template.defaults.imports.fmtDate = function(ns,format){
 		var date = new Date(parseInt(ns));
         var args = {

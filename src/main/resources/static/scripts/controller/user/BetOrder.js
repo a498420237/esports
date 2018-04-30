@@ -3,12 +3,12 @@ define(function(require, exports, module) {
 		
 		$(function(){
 			init();
-			seniorLoad(0,0);
+			seniorLoad(0);
 		});
 		var isShow=true;
 		//获取列表数据
-		function seniorLoad(currency,dateId){
-
+		function seniorLoad(dateType){
+//dateType 0：全部 1：本周 2：本月
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -19,22 +19,34 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 5,"currency":currency,"dateId":dateId
+							"limit" : 15,"dateType":dateType
 					};
 			
 					$.ajax({
-						url : "/user/PersonalWealth/list",
+						url : "/user/BetOrder/list",
 						datatype : 'json',
 						type : "get",
 						data : data,
 						success : function(json) {
-							var data = json.t;
-							var paramObj = {
-								total : data.total,
-								page : data.offset,
-								list : data.result
-							};
-							renderHtml(data);
+							debugger;
+							if(json.code==200){
+								var data = json.t;
+								if(typeof(data) == "undefined" ){
+									$("#list_content").html("暂无数据");
+								}else{
+									if(data.result.length==0){
+										$("#list_content").html("暂无数据");
+									}else{
+								var paramObj = {
+									total : data.total,
+									page : data.offset,
+									list : data.result
+								};
+								renderHtml(data);}
+								}
+								}else{
+									alert("接口返回服务器内部错误");
+								}
 							isShow=true;
 						}
 					});
@@ -46,13 +58,6 @@ define(function(require, exports, module) {
 		}
 		
 		function init(){			//页面
-			 $('.tab span').on("click",function() {
-			     $('.tab span').removeClass("sel");
-			     $(this).addClass("sel");
-			     var currency=$(this).attr("name");
-			     var dateId=$("select.select").val();
-			     seniorLoad(currency,0);
-			   });
 			 $(".select_ul").click(function() {
 				 debugger;
 				var currency=  $('.tab span.sel').attr("name");

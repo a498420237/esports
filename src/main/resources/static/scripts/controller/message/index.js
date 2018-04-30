@@ -15,10 +15,9 @@ define(function (require, exports, module) {
                     data: {
                         // "id": 78,
                         "offset": curentPage,
-                        "limit": 5
+                        "limit": 4
                     },
                     success: function (json) {
-                    	debugger;
                         var data = json.t;
                         renderHtml(data);
                         loadTitle();
@@ -42,13 +41,57 @@ define(function (require, exports, module) {
                         type: "get",
                         data: {
                             // "id": 73,
-                            "limit": 6
+                            "limit": 4
                         },
                         success: function (json) {
                             var data = json.t;
-                            // renderHtml(data);
+                            renderHtml(data);
                             // var width = Math.round(1 / data.total * 10000) / 100.00 + "%";
                             // $("#title_list .nav").css("width", width);
+
+                            $(".saishi_nav .nav").each(function () {
+                                var num = $(".saishi_nav .nav").length;
+                                $(this)[0].style.width = 100 / num + "%"
+                            })
+                            $(".saishi_nav .nav").click(function () {
+
+                                $(this).addClass("active").siblings().removeClass("active");
+                                var channelId = $(this).attr("value");
+                                //特定栏目下数据
+                                $("#list_content").paginator({
+                                    itemTemplateId: 'listTemplate',
+                                    pageNavId: 'pageContainer',
+                                    usepager: true,
+                                    useSeniorTemplate: true,
+                                    ajaxFuc: function (curentPage, renderHtml) {
+                                        $.ajax({
+                                            url: "/message/list",
+                                            datatype: 'json',
+                                            type: "get",
+                                            data: {
+                                                "offset": curentPage,
+                                                "limit": 4,
+                                                "belongsChannel": channelId
+                                            },
+                                            success: function (json) {
+                                                var data = json.t;
+                                                renderHtml(data);
+                                                // loadTitle();
+                                            }
+                                        });
+                                    }
+                                });
+                            })
+
+                            $(".fenye a").click(function () {
+                                $(this).addClass("active").siblings().removeClass("active");
+
+                            })
+
+                            // $('.nav').on("click", function () {
+                            //     debugger;
+                            //     $(".nav").attr("class", "nav active");
+                            // });
                         }
                     });
                 }
@@ -73,7 +116,7 @@ define(function (require, exports, module) {
                             type: "get",
                             data: {
                                 "offset": curentPage,
-                                "limit": 5,
+                                "limit": 4,
                                 "keyWord": key
                             },
                             success: function (json) {
@@ -85,6 +128,7 @@ define(function (require, exports, module) {
                     }
                 });
             });
+
 
         }
     });

@@ -19,11 +19,18 @@ define(function(require, exports, module) {
 		}
 	}
 	
+	$(function(){
+		$(".popmatch li").on("click",function(){
+			var gemeType=$("#gemelist").find("li.current").children().attr("name");
+			loadMatchList(gemeType,$(this).attr("name"))
+		});
+	});
+	
 	function loadMatchList(gameType,statuType){
-		var statuType = $("#gemelist").find("a .active").data("type");
+		/*var statuType = $("#gemelist").find("a .active").data("type");
 		if(gameType!=''){
 			$("#gameType").val(gameType);
-		}
+		}*/
 		if(statuType==null||statuType==""){
 			statuType="";
 		}
@@ -35,11 +42,10 @@ define(function(require, exports, module) {
 			data : {
 				"offset" : 0,
 				"limit" : 6,
-				"gameType" : -1,
-				"statuType" : 4
+				"gameType" : gameType,
+				"statuType" : 5
 			},
 			success : function(json) {
-				debugger;
 				if(json.code==200){
 				var data = json.t;
 				var results = data.result;
@@ -108,9 +114,15 @@ define(function(require, exports, module) {
 									};
 									gameList = data.gameList;
 									renderHtml(paramObj);
-									$("#gemelist").children().eq(0)
-											.attr("class", "current");
-									seniorLoad("");
+									$("#gemelist").children().eq(0).attr("class", "current");
+								    var gametype=$("#gemelist").children().eq(0).children().attr("name");
+								    var statType= $(".popmatch").find("li.current").attr("name");
+									seniorLoad(gametype,statType);
+									$("#gemelist li").on("click",function(){
+										$("#gemelist li").removeAttr("class","current");
+										$(this).attr("class","current")
+										seniorLoad($(this).attr("name"),$(".popmatch").find("li.current").attr("name"));
+									});
 								} else {
 									alert(json.msg);
 								}
@@ -133,7 +145,7 @@ define(function(require, exports, module) {
 					}
 				});
 				$("#live_content").paginator({
-					itemTemplateId : 'itemTemplate',
+					itemTemplateId : 'liveitemTemplate',
 					pageNavId : '',
 					usepager : false,
 					useSeniorTemplate : true,

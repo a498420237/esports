@@ -125,19 +125,30 @@ window.onload = function(){
                 <ul class="z_list_ul">
                 {{each $value.handicapListInfos}}
                   <li>
-                    <div class="flex1 text-left relative">
-                      <a href="javascript:void(0)" class="text odds">赔率：{{$value.redOdd}}</a></div>
+                     <div class="flex1 text-left relative">
+                    {{if($value.status==3 || $value.status==2)}}
+                   			<a href="javascript:void(0)" class="text noClick"> 赔率：{{$value.redOdd}}</a>
+                    {{else}}
+                    <a href="javascript:void(0)" class="text odds">赔率：{{$value.redOdd}}</a>
+                    {{/if}}
+                     </div>
                     <div class="flex1">
-                      <h1 class="c999">{{$value.handicapType}}</h1>
-                      <small>{{if ($value.status==0)}}
-                    	竞猜中
+                     
+                      {{if ($value.status==0)}}
+                    	 <h1 class="cgreen">{{$value.handicapType}}</h1><small>竞猜中</small>
                     		{{else if(($value.status==2))}}
-                    		流盘
-                    		{{else if($value.status==3)}}
-                    		已结算
-                    	{{/if}}</small></div>
+                    		 <h1 class="cgreen">{{$value.handicapType}}</h1><small>流盘</small>
+                    		{{else}}
+                    		 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
+                    	{{/if}}
+                    	</div>
                     <div class="flex1 relative text-left">
-                      <span class="text text-left odds">赔率：{{$value.blueOdd}}</span></div>
+                     {{if($value.status==3 || $value.status==2)}}
+                   		<span class="text text-left noClick">赔率：{{$value.blueOdd}}</span>
+                    {{else}}
+                    <span class="text text-left odds">赔率：{{$value.blueOdd}}</span>
+                    {{/if}}
+                    </div>
                   </li>
                   {{/each}}
                 </ul>

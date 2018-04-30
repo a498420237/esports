@@ -26,6 +26,7 @@ define(function(require, exports, module) {
 						data : data,
 						success : function(json) {
 							var data = json.t;
+							debugger;
 							renderHtml(data);
 							init();
 							isShow=true;

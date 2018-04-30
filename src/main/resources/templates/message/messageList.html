@@ -84,10 +84,10 @@ window.onload = function(){
             <div class="item_detail">
                     <h4>{{$value.informationName}}</h4>
                 <div class="detail_con">
-                    <p id="content" class="dc">{{#$value.content | contentSub}}</p>
+                    <p id="content" class="dc">{{$value.content | contentSub}}</p>
                 </div>
                 <p class="date"><span class="fl">{{$value.updateTime}}</span><em class="look fr"><img
-                        src="/images/eyesicon.png"/><i>31145</i></em>
+                        src="/images/eyesicon.png"/><i>{{$value.hits}}0</i></em>
                 </p>
             </div>
         </a>
@@ -101,7 +101,7 @@ window.onload = function(){
         所有赛事
     </div>
     {{each result }}
-    <div class="nav">
+    <div class="nav" value="{{$value.id}}">
         <p class="border"></p>
         <img src="/images/news_gamepic01.png"/>{{$value.channelName}}
     </div>

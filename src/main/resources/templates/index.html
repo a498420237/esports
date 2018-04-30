@@ -82,25 +82,12 @@
 				<div class="matchtit">
 					<h3 id="clcma">全部赛事 <img src="images/home_bottomarrow.png"></h3>
 					<ul class="popmatch">
-						<li class="current">
-							全部赛事
-						</li>
-
-						<li onclick="loadMatchList('',1)">
-							筹备中
-						</li>
-
-						<li  onclick="loadMatchList('',2)">
-							报名中
-						</li>
-
-						<li onclick="loadMatchList('',4)">
-							进行中
-						</li>
-
-						<li onclick="loadMatchList('',5)">
-							已结束
-						</li>
+						<li class="current" name="">全部赛事</li>
+						<li name="1">筹备中</li>
+						<li name="2">报名中</li>
+						<li name="5">准备中</li>
+						<li name="4">比赛中</li>
+						<li name="5">已结束</li>
 					</ul>
 
 					<div class="gamest">
@@ -133,7 +120,7 @@
                  <div class="teamd">
                  	<h3>
 						<i><img src="images/home_teamico.png"></i>
-						预测
+						战队
 						<span>MORE <img src="images/home_moreicon.png"></span>
 					</h3>
 
@@ -143,55 +130,12 @@
 						<ul>					
 							<li id="troopList1">
 								
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
-								
 							</li>
 
 							<li id="troopList2">
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
-								<dl>
-									<dt><img src="images/teamimg.jpg"></dt>
-									<dd>
-										<p>天下无敌</p>
-										<p><span>英雄联盟</span><span>电信2区</span> <span class="data"><i class="redtxt">15</i>/18</span></p>
-									</dd>
-
-								</dl>
 								
 							</li>
 
-							
-							
 						</ul>
 						<a href="javascript:;" id="btn_prev1"></a>
 						<a href="javascript:;" id="btn_next1"></a>
@@ -267,51 +211,19 @@
 	</div>
 </div>
 
-
-
-
-
-	<div class="botwrap">
-		<div class="bottcon">
-			<div class="btnav">
-				<div class="dyl">
-					<a class="current" href="#">关于我们</a>
-					<a href="#">媒体报道</a>
-					<a href="#">投资方&顾问</a>
-				</div>
-				<div class="dyl">
-					<a href="#">工作机会</a>
-					<a href="#">网站条款</a>
-					<a href="#">新手指南</a>
-				</div>
-				<div class="dyl">
-					<a href="#">我们的公众号</a>
-				</div>
-			</div>
-			<div class="btlogo">
-				<img src="images/btlogo.png">
-			</div>
-		</div>
-		<div class="btsafetext">
-			<div class="textnav">
-				<a href="#">家长监护</a>|
-				<a href="#">防沉迷</a>|
-				<a href="#">交易纠纷处理</a>|
-				<a href="#">用户权益保障措施</a>
-			</div>
-			<p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
-			<p>指尖上行（北京）互动娱乐科技有限公司</p>
-		</div>
-	</div>
-<textarea id="itemTemplate">
+	<!-- 尾部 -->
+	<div class="botwrap" th:include="/include :: botwrap"></div>
+	
+<textarea id="liveitemTemplate">
 	{{each list}}
 	<li>
-		<a href="/live/detail/{{$value.id}}"><img src="{{$value.pictureUrl}}" onerror="this.src='images/home_vediopic.png;this.onerror=null'"></a>
+		<a href="/live/detail/{{$value.id}}"><img src="{{$value.pictureUrl}}" onerror="this.src='images/home_vediopic.png;this.onerror=null'">
 		<div class="vediotext">
 			<h3>{{$value.anchorName}}:{{$value.name}}</h3>
 			<p>{{$value.name}}</p>
 			<span>{{$value.gameName}}</span>
 		</div>
+		</a>
 	</li>
 	{{/each}}
 </textarea>
@@ -319,10 +231,12 @@
 	{{each list}}
 	<li>
 		<p>
-			<img src="images/home_money.png">
-			<span>
-				金币竞猜
-			</span>	
+		   {{if ($value.goldType==0)}}
+                    	  <img src="/images/home_money.png" alt="">	<span> 金币竞猜</span>	
+                    		{{else if(($value.goldType==1))}}
+                    		  <img src="/images/dimandicon.png" alt=""><span>钻石竞猜</span>	
+                    		{{/if}}
+		
 			<span>
 				{{$value.lotteryName}}
 			</span>
@@ -334,16 +248,16 @@
 		<div class="gusjc">
 			<span>
 				<i>
-					<img src="{{$value.blueImg}}" weight="25px" height="31px" onerror="this.src='images/blueteam.png;this.onerror=null'">
+					<img src="{{$value.blueImg}}" weight="25px" height="31px" onerror="this.src='/images/blueteam.png;this.onerror=null'">
 				</i>
 				{{$value.blueTeam}}
 			</span>
 			<span class="guessstat">
-				<a href="/competition/againstInfo/{{$value.lotteryId}}">竞猜中</a>
+				<a href="#">竞猜中</a>
 			</span>
 			<span class="last">
 				<i>
-					<img src="{{$value.redImg}}" weight="25px" height="31px" onerror="this.src='images/redteam.png;this.onerror=null'">
+					<img src="{{$value.redImg}}" weight="25px" height="31px" onerror="this.src='/images/redteam.png;this.onerror=null'">
 				</i>
 				{{$value.redTeam}}
 			</span>
@@ -358,7 +272,7 @@
 {{each list}}
  <tr>
     <td>
-       <a href="/competition/info/$matchId$"><img src="{{$value.matchPic}}" onerror="this.src='images/home_compepic.png;this.onerror=null'" weight="108px" height="64px"></a> 
+       <a href="/competition/info/$matchId$"><img src="{{$value.matchPic}}" onerror="this.src='/images/home_compepic.png;this.onerror=null'" weight="108px" height="64px"></a> 
         <div class="matcon">
             <h4>{{$value.matchName}}</h4> 
             <p>{{$value.totalMumber}}人已报名</p>
@@ -389,7 +303,7 @@
 
 <textarea id="infoTemplate" style="display:none;">
 	{{each list}}
-		<a href="#">
+		<a href="/message/messageDetail/{{$value.id}}">
 			<li>
 				<span class="context"> {{$value.informationName}}</span>
 				<span class="time">{{fmtDate($value.updateTime,"MM-dd")}}</span>
@@ -413,7 +327,7 @@
 
 
 <textarea id="gameListTemplate" style="display:none;">
- 	<li ><a href="javascript:void(0)">$name$</a></li>
+ 	<li ><a href="javascript:void(0)" name="$id$">$name$</a></li>
 </textarea>   
 
 <script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>

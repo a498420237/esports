@@ -1,17 +1,16 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
-		
 		$(function(){
 			init();
-			seniorLoad(0,0);
+			seniorLoad(0);
 		});
 		var isShow=true;
 		//获取列表数据
-		function seniorLoad(currency,dateId){
-
+		function seniorLoad(gametype){
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
+				
 				itemTemplateId : 'itemTemplate',
 				pageNavId : 'pageContainer',
 				usepager:true,
@@ -19,22 +18,30 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 5,"currency":currency,"dateId":dateId
+							"limit" : 15,"gameType":gametype
 					};
-			
+					debugger;
 					$.ajax({
-						url : "/user/PersonalWealth/list",
+						url : "/user/UserHonor/list",
 						datatype : 'json',
-						type : "get",
+						type : "GET",
 						data : data,
 						success : function(json) {
+							if(json.code==200){
 							var data = json.t;
+							if(typeof(data) == "undefined"){
+								$("#list_content").html("暂无数据");
+							}else{
 							var paramObj = {
 								total : data.total,
 								page : data.offset,
 								list : data.result
 							};
 							renderHtml(data);
+							}
+							}else{
+								alert(json.msg);
+							}
 							isShow=true;
 						}
 					});
@@ -46,18 +53,11 @@ define(function(require, exports, module) {
 		}
 		
 		function init(){			//页面
-			 $('.tab span').on("click",function() {
-			     $('.tab span').removeClass("sel");
-			     $(this).addClass("sel");
-			     var currency=$(this).attr("name");
-			     var dateId=$("select.select").val();
-			     seniorLoad(currency,0);
-			   });
-			 $(".select_ul").click(function() {
-				 debugger;
-				var currency=  $('.tab span.sel').attr("name");
-			     var dateId=$("select.select").val();
-			     seniorLoad(currency,dateId);
+			 $('#game_type span').on("click",function() {
+			     $('.tab span').removeClass("select");
+			     $(this).addClass("select");
+			     var gametype=$(this).attr("name");
+			     seniorLoad(gametype);
 			   });
 			}
 	});
