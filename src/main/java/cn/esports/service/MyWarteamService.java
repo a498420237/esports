@@ -33,7 +33,7 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId","138");
+			uriVariables.put("userId",baseConfig.getUid());
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(list_url,uriVariables) ,HttpMethod.GET,r, String.class);
 

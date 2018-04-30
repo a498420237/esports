@@ -34,7 +34,6 @@ public class MyWarTeamController extends BaseController {
 			JSONObject t = jsonObject.getJSONObject(("t"));
 			JSONArray list = t.getJSONArray("troops");
 			if(list.size()==0){
-			//if(true){
 				view=new ModelAndView("user/myWarTeamNothing");
 			}else{
 				JSONObject jsonObject2 = list.getJSONObject(0);

@@ -64,7 +64,7 @@
 						<img src="{{$value.troopsUrl}}" style="width: 46px;height: 49px;">
 						<p>{{$value.troopsName}}</p>
 					</div>
-					<!--<div class="block2">
+					<div class="block2">
 						<p>{{$value.troopsManifesto}}</p>
 						<div class="info">
                                         {{if ($value.gameType==1 )}}
@@ -79,8 +79,8 @@
 	                                        <span>微信区</span>
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
-					</div>-->
-					<div id="exitzdd" class="zd-btn">退出战队</div>
+					</div>
+					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()">退出战队</div>
     {{/each}}
 	</textarea>
 	<textarea id="itemTemplate"  style="display:none;">
@@ -113,6 +113,62 @@
     {{/each}}
 	</textarea>
 </div>
+<!--我的战队-队员推出战队弹窗-->
+<div class="exitzd" style="display: none;">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+		<div class="pubclose">
+			<img src="/images/closeico.png" onclick="closeWin()">
+		</div>
+		<div class="credwrap">
+			<h3>确定退出战队？
+			</h3>
+			<p>
+				<a href="javascript:;" onclick="closeWin()">取消</a>
+				<a href="">确定</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!--创建战队-->
+<div class="dialog" style="display: none;">
+	<div class="contuwrap">
+		<div class="pubclose">
+			<img src="/images/closeico.png">
+		</div>
+		<div class="cont">
+
+			<div class="upimg">
+				<span>上传战队图片</span>
+				<a href="javascript:;" class="file right">
+					<input type="file" name="" id="">
+				</a>
+			</div>
+			<div class="info1">
+				<p class="clearfix"><span>所属游戏</span><em>王者荣耀</em></p>
+				<p class="clearfix"><span>游戏区服</span>
+					<select class="right">
+						<option value="volvo">必选</option>
+						<option value="saab">Saab</option>
+						<option value="mercedes">Mercedes</option>
+						<option value="audi">Audi</option>
+					</select>
+				</p>
+				<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号"></p>
+				<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字"></p>
+			</div>
+			<div class="info1">
+				<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+				<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
+				<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号"></p>
+				<p class="clearfix"><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
+				<div class="craat-btn">创建战队</div>
+				<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
+			</div>
+		</div>
+	</div>
+</div>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script type="text/javascript">
@@ -123,18 +179,13 @@
     $(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
-    //弹框
-    $("#create").on("click",function(){
-        $(".dialog").fadeIn();
-    })
-    $(document).mouseup(function(e){
-        var _con = $('.dialog');
-        if(_con.is(e.target) && _con.has(e.target).length === 0){
-            $(_con).fadeOut();
-            $("html").css({overflow:"auto",height:"100%"})
-        }
-    });
 
+	function tuchuTeam() {
+		$(".exitzd").show();
+	}
+	function closeWin() {
+		$(".exitzd").hide();
+	}
 </script>
 </body>
 </html>
