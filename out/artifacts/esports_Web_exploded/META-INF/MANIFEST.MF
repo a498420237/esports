@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: esports
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: cn.esports
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.7.0_17
+Main-Class: ${start-class}
+

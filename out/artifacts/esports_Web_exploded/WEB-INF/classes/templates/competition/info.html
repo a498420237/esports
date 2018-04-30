@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>赛事详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="zh-CN">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/swiper.min.css"/>
+<link href="/css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/page.css">
+<script src="/js/jquery.1.11.3.min.js"></script>
+</head>
+
+<style>
+.tabContent{
+  display: none;
+}
+</style>
+<body>
+    <!-- 导航 -->
+	<div class="topWrap" th:include="/include :: topWrap" ></div>
+
+	<!-- 主体 -->
+	<div class="contwrap">
+		<div class="main_content">
+			<div id="pageNav" class="pege_nav bg-black font0 text-center font18 ">
+				<a data-tab="1"><p>赛事首页</p></a>
+				<a class="leftBorder" data-tab="2"><p>赛事介绍</p></a>
+				<a class="leftBorder" data-tab="3"><p>赛程图</p></a>
+				<a class="leftBorder" data-tab="4"><p>比赛奖励</p></a>
+				<a class="leftBorder" data-tab="5"><p>赛事进程</p></a>
+				<a class="leftBorder" data-tab="6"><p>我要报名<span>(20钻石/1次)</span><i><img src="/images/hoticon.png"/></i></p></a>
+			</div>
+			
+			<div id="tabContent"></div>
+		</div>
+	</div>
+	
+	<div id="payArea" class="mengbanDiv">
+	</div>
+	
+	<!-- 尾部 -->
+	<div class="botwrap" th:include="/include :: botwrap"></div>
+</body>
+
+<div style="display: none;">
+    
+    <!-- 隐藏数据区域 -->
+    <div id="hiddern_totalPrize" th:text="${totalPrize}"></div>
+    <div id="hiddern_matchId" th:text="${matchId}"></div>
+    <div id="hiddern_prizeType" th:text="${prizeType}"></div>
+    <div id="hiddern_totalMumber" th:text="${totalMumber}"></div>
+    <div id="hiddern_endTime" th:text="${endTime}"></div>
+    
+    <!-- 主体模板 -->
+	<div id="tabContent_template" >
+			
+			<!-- tab1 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab1" >
+				<div class="mianbaoxie color-glod">
+					<span>赛事</span> > <span >$matchName$</span>
+				</div>
+				<div class="detail bg-gray overflow_hide">
+					<div class="img">
+						<img src="/images/detail1.jpg"/>
+					</div>
+					<div class="content">
+						<h4 class="font24 color-glod" >$matchName$</h4>
+						<p class="color-glod m-b-10"><span>总奖金:<i >$totalPrize$ $prizeType$</i></span><span>参赛人数 :<i >$totalMumber$</i>人</span></p>
+						<p class="color-glod"><span>开始时间:<i>$startTime$</i></span><span>结束时间:<i >$endTime$</i></span></p>
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab2 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab2">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事介绍</span>
+				</div>
+				<div class="detail bg-gray overflow_hide">
+					<div class="font16 color-ccc" >
+					   $matchIntroduce$
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab3 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab3">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛程表</span>
+				</div>
+				<div class="saichengbiao">
+					<img src="/images/jiangsai1.jpg"/>
+<!-- 					<img  src="matchDetails" /> -->
+				</div>
+			</div>
+			
+			<!-- tab4 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab4">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>比赛奖励</span>
+				</div>
+				<div class="jiangli bg-gray relative ">
+					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
+					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
+					<div class="jianli_list swiper-container">
+						<div class="swiper-wrapper">
+							 <div class="jianli_item text-center swiper-slide" id="prizeArea">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- tab5 -->
+			<div class="saishi_jianjie bg-black m-t-15 tabContent tab5">
+				<div class="mianbaoxie color-glod">
+					<b class="yuandian  m-r-15 inline_div vertical_mid"><img src="/images/yellowdot.png" class="block"/></b><span>赛事进程</span>
+				</div>
+				
+				<div id="againstInfoList" class="saishi_process font0 bg-gray">
+				</div>
+				
+				<div class="jiangli bg-gray relative p-v-30">
+					<button class="left_btn changeBth" ><img src="/images/leftBtn.png"/></button>
+					<button class="right_btn changeBth" ><img src="/images/rightBtn.png"/></button>
+					<div class="jianli_list swiper-container2">
+						<div class="swiper-wrapper">
+								<div class="jianli_item text-center swiper-slide font0 text-left" id="againstPlans">
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+			
+	<!-- 奖励模板 -->
+	<div id="prizeArea_template">
+		<div class="name" >
+			<span class="color-orange font24" >$ranking$</span>
+			<p><img src="/images/dimandicon.png">$awardContent$ $awardType$</p>
+		</div>
+	</div>
+			
+  	<!-- 轮次信息列表模板 -->
+  	<div id="againstInfo_template">
+		<div class="process_item $dataClass$" data-num="$num$" >
+			第$num$轮
+		</div>
+  	</div>
+  	
+  	<!-- 对阵信息模板 -->
+  	<div id="againstPlan_template">
+		<div class="saishi_status  bg-black radius6">
+	  	  <div class="status_con  p-v-5 overflow_hide p-l-15 p-r-5">
+	  	  	<span class="fl color-999 l-h-25">$gameDay$</span>
+	  	  	<b class="fr color-fff  p_both10 radius4 l-h-25 font12 $statuClass$">$statuName$</b>
+	  	  </div>
+	  	  <div class="status_detail font0">
+	  	  	  <div class="team">
+	  	  	  	  <div class="img">
+	  	  	  	  	<img src="$leftPic$" />
+	  	  	  	  </div>
+	  	  	  	  <p>$leftName$</p>
+	  	  	  </div>
+	  	  	   <span class="score"><i>3</i><b class="m_both10">:</b><i>2</i></span>
+	  	  	  <div class="team">
+	  	  	  	  <div class="img">
+	  	  	  	  	<img src="$rightPic$" />
+	  	  	  	  </div>
+	  	  	  	  <p>$rightName$</p>
+	  	  	  </div>
+	  	  </div>
+	  	 </div>
+	</div>
+		
+	<!-- 支付信息模板 -->
+	<div id="payArea_template">
+		<div class="baomingPay" id="payArea_template">
+				<div class="pay_con">
+					<span class="fl">赛事</span><p class="fr">$matchName$</p>
+				</div>
+				<div class="pay_con">
+					<span class="fl">赛区</span><p class="fr">$serverType$</p>
+				</div>
+				<div class="pay_con">
+					<span class="fl">报名费</span><p class="fr">$entryFee$ $entryFeeType$</p>
+				</div>
+				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
+					<span class="fl"><img src="/images/gantanhao1.png"/>没有绑定该游戏账号</span>
+					<a class="fr" href="javascript">立即绑定</a>
+				</div>
+				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
+					<span class="fl"><img src="/images/gantanhao1.png"/>钻石/金币不足</span>
+					<a class="fr color-red" href="javascript" >立即充值</a>
+				</div>
+				<div class="pay_do ">
+					<span class="cancel fl">取消支付</span>
+					<a class="pay fr">支付</a>
+				</div>
+		</div>		
+	</div>					  
+</div>
+<script src="/js/swiper.min.js"></script>
+<script src="/js/con_js.6.23.js"></script>
+<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script>
+
+	seajs.use('/scripts/controller/competition/info');
+	
+// 	$(".pay_do .cancel").click();
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>登录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Content-Language" content="zh-CN">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/ling.css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="topWrap">  <div th:include="/include :: topWrap"></div></div>
+
+<!--登录弹框-->
+<div class="contwrapd">
+	<div class="loginnd">
+		<div class="logconwrap">
+		
+		<div class="leflgo">
+			<div class="downbtn">
+				<a href="">
+					点击下载
+				</a>
+			</div>
+
+		</div>
+		
+				<div class="loginndd">
+					<img src="images/loginlogo.png">
+					<form action="##"" id="logform">
+			                <ul class="inf">
+			                  <li>
+			                    
+			                    <input class="phone" placeholder="请输入您的手机号" type="text"  id="phoneInput"/>
+			                  </li>
+			                  <li>
+			                   
+			                    <input class="yzm"placeholder="请输入验证码"  type="password"  id="codeInput"/>
+			                    <span id="getCodeBtn">获取验证码</span>
+
+			                  </li>
+			                    
+			                </ul>
+			                <div id="loginBtn" class="sucbtndd">
+									<a href="">
+									登录 
+									</a>
+								</div>
+			        </form>
+					<p>点击登录即代表您同意<span class="bltext">
+			《电竞e族app用户协议》<span></p>
+
+				<div class="loanod">
+				<p><span>——————</span>其他方式登录<span>——————</span></p>
+				<span><img src="images/qq.png"> <img src="images/wechat.png"></span>
+				</div>
+				</div>	
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 尾部 -->
+	<div class="botwrap" th:include="/include :: botwrap"></div>
+
+<script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
+<script  type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+<script type="text/javascript" src="js/effec.js"></script>
+<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+
+<script type="text/javascript">
+	seajs.use('/scripts/controller/login/index');
+</script> 
+
+</body>
+</html>

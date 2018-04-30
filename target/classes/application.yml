@@ -1,0 +1,20 @@
+server:
+    port: 8081
+spring: 
+    thymeleaf: 
+        cache: false  
+        prefix: classpath:/templates/  
+        suffix: .html  
+        encoding: UTF-8  
+        content-type: text/html  
+        mode: LEGACYHTML5  
+httpClient:
+    maxTotalConnect:0
+    connectTimeout:20000
+    readTimeout:30000
+baseConfig: 
+      httpUrl: http://39.106.145.173:8087
+      httpMethod: get
+      httpResultType: JSON
+      token: A7CF1A60E28D595A72F1AD4D4FD1EC0C8C5EAF8B
+      uid: 138

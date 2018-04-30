@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>视频直播详情</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/zyx_forecast.css">
+</head>
+<script>
+window.onload = function(){
+	$(".nav a").each(function(){
+		$(this).removeAttr('class');
+	});
+	$(".nav a").eq(3).attr("class","current");
+}
+ 
+</script>
+<body>
+
+<div class="topWrap">
+    <div th:include="/include :: topWrap"></div>
+</div>
+
+<div class="contwrap">
+    <div class="z_container">
+        <div class="z_container_content">
+            <div class="z_Video_detail">
+                <h1 th:text="${liveInfo.name}"></h1>
+                <p style="color: #fff9ec;">
+                    来源：<span th:text="${liveInfo.name}"></span>
+                    主播：<span th:text="${liveInfo.anchorName}"></span>
+                    在线人数：<span th:text="${liveInfo.viewNum}"></span>
+                    粉丝：<span th:text="${liveInfo.name}"></span>
+                </p>
+            </div>
+            <div class="z_Video_detail_video">
+                <img class="z_download" th:src="${liveInfo.liveImg}">
+                <div class="z_download"><img src="/images/logoicon.png"><a href="javascriopt:">下载电竞e族app,电竞玩家都在用>></a>
+                </div>
+            </div>
+
+            <div class="z_Video_lists">
+                <div class="z_Video_heade" id="recommendLive_llist"><span>推荐直播</span></div>
+
+                <ul class="z_Video_list" id="recommendLive_list"></ul>
+                <!--<ul class="z_Video_list">-->
+                    <!--<li>-->
+                        <!--<div class="z_Video_con"><img src="/images/vedio_gamepic.png"></div>-->
+                        <!--<div class="z_shade"></div>-->
+                        <!--<h1 class="z_Video_con_title">阿健：直播到晚上8点</h1>-->
+                        <!--<div class="z_Video_con_subtitle">-->
+                            <!--<span>荣耀108星全能健</span>-->
+                            <!--<span class="right"><img src="/images/eyesicon.png">1789</span>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 尾部 -->
+	<div class="botwrap" th:include="/include :: botwrap"></div>
+
+</body>
+
+
+<div style="display: none;">
+    <!-- 赛事列表模板 -->
+    <textarea id="recommendLive_template">
+            <li>
+             <a href="/live/detail/$id$">
+                <div class="z_Video_con"><img class="z_Video_con" src="$liveImg$"></div>
+                <div class="z_shade"></div>
+                <h1 class="z_Video_con_title">$anchorName$ ：直播到晚上8点</h1>
+                <div class="z_Video_con_subtitle">
+                    <span>$name$</span>
+                    <span class="right"><img src="/images/eyesicon.png">$viewNum$</span>
+                </div>
+                </a>
+            </li>
+  	</textarea>
+</div>
+
+
+
+<script src="/js/jquery.1.11.3.min.js"></script>
+<script src="/layer/layer.js"></script>
+<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script>
+
+    seajs.use('/scripts/controller/live/index');
+
+
+    $(function () {
+        $(".z_Video_con").mouseover(function (event) {
+            var _this = $(this)
+            var notThis = $('li .z_Video_con').not(_this);
+            notThis.parents("li").find(".z_shade").hide();
+            _this.parents("li").find('.z_shade').show();
+        })
+    })
+</script>
+
+
+</html>
