@@ -81,7 +81,7 @@ define(function(require, exports, module) {
 					gameDayList = gameDayList.sort(function(a,b){//排序
 				        return a.num - b.num;
 				    });  
-					
+
 			    	var currGameDay = "";
 			    	var currNum = num == 0 ? gameDayList.length - 1 : 0;
 		    		var currGameDay = gameDayList[currNum];
@@ -104,7 +104,7 @@ define(function(require, exports, module) {
 			    	if(num == 0){//初始化时
 			    		util.fillHtml("againstInfoList", $("#againstInfo_template").html(), gameDayList);
 			    	}
-			    	util.fillHtml("againstPlans", $("#againstPlan_template").html(), againstPlanList);
+			    	util.fillHtml("againstPlans", $("#againstPlan_template").val(), againstPlanList);
 					$(".saishi_process .process_item").each(function(){
 						var num=$(".saishi_process .process_item").length;
 						$(this)[0].style.width=100/num+"%"	
@@ -122,15 +122,8 @@ define(function(require, exports, module) {
 				loadAgainstInfo(num);
 			});
 			
-			$("#pageNav").on("click", "a", function(){
-				var tab = $(this).data("tab");
-				if(tab == 6){//支付tab
+			$("#enrollMatch").on("click", function(){//展示报名页面
 					$(".mengbanDiv").addClass("show");
-					return;
-				}
-				
-				$(".tabContent").hide();
-				$(".tabContent.tab"+tab).show();
 			});
 			
 			$("#pageNav a:first").click();
