@@ -3,7 +3,6 @@ define(function(require, exports, module) {
 		// 绑定获取验证码事件
 		var bindGetCodeEvent = function() {
 			$("#getCodeBtn").click(function() {
-				//debugger;
 				var mobile = $("#phoneInput").val();
 				if (mobile == "") {
 					alert("请输入手机号");
@@ -52,25 +51,25 @@ define(function(require, exports, module) {
 						"mobile" : mobile,
 						"code" : code
 					},success:function(obj){
-						debugger;
 						if(typeof(obj) == "undefined"){
 							alert("系统内部错误");
 						}else{
 							if(obj.code==200){
-								window.location.href="http://localhost:8081/user/index";
+
+								  window.open('/user/index','_self');
 							}else{
 								if(typeof(obj.msg) == "undefined" ){
 									alert("返回值错误");
 								}else{
 									alert(obj.msg);
 								}
-								
 							}
 						}
 					}, error: function(XMLHttpRequest, textStatus, errorThrown) {
                         alert("ajax调用错误");
                     }
 				});
+				 return false; 
 				
 			});
 		}
