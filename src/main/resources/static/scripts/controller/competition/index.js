@@ -31,7 +31,7 @@ define(function(require, exports, module) {
 					r.startTime = r.startTime == undefined ? "" :new Date(r.startTime).format("yyyy-MM-dd");
 					r.endTime = r.endTime == undefined ? "" : new Date(r.endTime).format("yyyy-MM-dd");
 				}
-				
+
 				var paramObj = {
 					total : data.total,
 					page : data.page,
@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 		$("#competitionList").paginator({
 			itemTemplateId : 'competitionList_template',
 			pageNavId : 'pageContainer',
-			ajaxFuc : function(curentPage, renderHtml) {debugger;
+			ajaxFuc : function(curentPage, renderHtml) {
 				competitionUtil.renderHtml = renderHtml;
 				loadDatas(curentPage);
 			}
