@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
 	<meta charset="UTF-8">
 	<title>个人中心-消费记录</title>
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/personal.css">
-    <link rel="stylesheet" href="/css/zyx_forecast.css">
-    <link rel="stylesheet"	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous" />
-	<script src="/js/jquery.1.11.3.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
+<head th:include="/include :: user_header"></head>
 <body>
-<div class="topWrap">
-		<div th:include="/include :: topWrap" ></div>
-		</div>
+<div class="topWrap"><div th:include="/include :: topWrap" ></div></div>
 	<div class="data">
 		<div class="content">
 			<div class="tit">个人中心</div>
@@ -50,9 +42,7 @@
 		</div>
 	</div>
 </div>
-<div class="botwrap">
-	<div th:include="/include :: botwrap"></div>
-	</div>
+<div class="botwrap"><div th:include="/include :: botwrap"></div></div>
 	<textarea id="itemTemplate"  style="display:none;">
 	{{each result}}
 	<p class="clearfix"><span class="time">{{$value.createTime | dateAprFmt}}</span><span>

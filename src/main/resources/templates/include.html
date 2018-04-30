@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
 <div th:fragment="topWrap">
 	 <div class="topcenter">
       <div class="logo">
@@ -13,8 +15,11 @@
         <a href="/download/index">移动端<span>MOBILE</span></a>
       </div>
       <div class="loginr">
-        <a class="current" id="logi" href="/login">登录</a>
-       <!--  <a href="#">注册</a> -->
+      
+      <a href="/loginOut" th:unless="${userinfo.t==null}">登出</a>
+      <a class="current" href="#" th:unless="${userinfo.t==null}">充值</a>
+      <span th:unless="${userinfo.t==null}"><a  href="/user/index"><img src="/images/myavatpic.png" th:text="${userinfo.t.userName}"></a></span>
+        <a class="current" id="logi" href="/login" th:unless="${userinfo.t!=null}">登录</a> 
       </div>
     </div>
 </div>
@@ -52,7 +57,13 @@
     </div>
 </div>
 
-<div th:fragment="footer">
+<div th:fragment="user_header">
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link href="/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/personal.css" />	
+	 <link rel="stylesheet" href="/css/zyx_forecast.css">
 	<script src="/js/jquery.1.11.3.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="/js/bootstrap.min.js" ></script>
 </div>
+</body>
+</html>

@@ -30,7 +30,7 @@ public class UserController {
 	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView view =new ModelAndView("user/index");
-		view.addObject("userinfo",JSON.parseObject(SessionUtil.getCurUser(),UserInfo.class));
+		//view.addObject("userinfo",JSON.parseObject(SessionUtil.getCurUser(),UserInfo.class));
 		return view;
 	}
 	

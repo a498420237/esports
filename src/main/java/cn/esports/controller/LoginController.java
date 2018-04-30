@@ -51,4 +51,10 @@ public class LoginController extends BaseController {
 	    }
 		//return  jsonObject;
 	}
+	@RequestMapping(value = "/loginOut")
+	public void loginOut(String mobile) {
+		SessionUtil.setSessionTimeout(-1);
+		SessionUtil.cleanSessionMap();
+	}
+	
 }

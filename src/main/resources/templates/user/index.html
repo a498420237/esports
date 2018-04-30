@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>个人中心</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/personal.css">
-	<script src="/js/jquery.1.11.3.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
+<title>个人中心-个人资料</title>
+<meta charset="UTF-8">
+<head th:include="/include :: user_header"></head>
 <body>
 <div class="topWrap">
-		<div th:include="/include :: topWrap" ></div>
-		</div>
+<div th:include="/include :: topWrap" ></div>
+</div>
 	<div class="data">
 		<div class="content">
 			<div class="tit">个人中心</div>
@@ -43,12 +37,13 @@
 						<img class="timg" src="/images/person_avant.png">
 						<p class="name"><em>昵称：</em><input class="w155" type="text" id="userName" placeholder="请输入昵称" th:value="${userinfo.t.userName}"></p>
 						<div class="sex clearfix">
-							<em>性别：</em>
+							<em>性别：</em><form action=""> 
 					        <input type="radio" name="sex" id="sex1" value="1" th:value="${userinfo.t.sex}" >男  
 					        <input type="radio" name="sex" id="sex0" value="0" th:value="${userinfo.t.sex}">女   
+					        </form>
 					        
 				        </div>
-						<p class="age"><em>年龄：<input class="w40" type="text" id="age" th:value="${userinfo.t.sex}" >岁</em></p>
+						<p class="age"><em>年龄：<input class="w40" type="text" id="age" th:value="${userinfo.t.age}" >岁</em></p>
 						<p class="address"><em>所在地：</em><input class="w155" id="area" type="text" placeholder="请输入所在地" th:value="${userinfo.t.area}"></p>
 						<p class="signature"><em>签名：<input class="w155" id="signature" type="text" placeholder="请输入签名" th:value="${userinfo.t.signature}"></em></p>
 						<p class="editor" id="save">保存</p>
@@ -174,9 +169,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="botwrap">
-	<div th:include="/include :: botwrap"></div>
-	</div>
+
+	<div class="botwrap"><div th:include="/include :: botwrap"></div></div>
+
 	<script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script type="text/javascript">
