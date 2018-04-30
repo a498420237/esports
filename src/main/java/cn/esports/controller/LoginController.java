@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.esports.service.UserService;
 import cn.esports.utils.Constants;
+import cn.esports.utils.SessionUtil;
 
 @RestController
 public class LoginController extends BaseController {
@@ -42,13 +43,11 @@ public class LoginController extends BaseController {
 	    try {  
 	        subject.login(token); 
 	        jsonObject.put("code", 200);
-	        jsonObject.put("code", "登录成功");
+	        jsonObject.put("msg", "登录成功");
 	        return jsonObject;
 	    } catch (Exception e) {  
 	    	logger.error("login occurred error,cause by:",e);
-	    	jsonObject.put("code", 100);
-	    	jsonObject.put("msg", "验证码效验失败，请重新输入");
-	    	return jsonObject;
+	    	return SessionUtil.getLoginCode(mobile);
 	    }
 		//return  jsonObject;
 	}

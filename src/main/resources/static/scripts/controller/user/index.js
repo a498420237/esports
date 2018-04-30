@@ -3,7 +3,6 @@ define(function(require, exports, module) {
 		
 		$(function(){
 			init();
-			seniorLoad(0,0);
 		});
 		
 		var isShow=true;
@@ -46,23 +45,8 @@ define(function(require, exports, module) {
 			}
 		}
 		
-		function init(){			//页面
-			 $('.tab span').on("click",function() {
-			     $('.tab span').removeClass("sel");
-			     $(this).addClass("sel");
-			     var currency=$(this).attr("name");
-			     
-			     var dateId=$("select.select").val();
-			     
-			     seniorLoad(currency,0);
-			   });
-			 $("#dataId").on("click",function() {
-				 debugger;
-				varcurrency=  $('.tab span.sel').attr("name");
-			     var dateId=$(this).val();
-			     debugger;
-			     seniorLoad(currency,dateId);
-			   });
+		function init(){
+			
 			}
 	});
 });

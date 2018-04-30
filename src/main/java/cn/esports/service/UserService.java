@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 import cn.esports.entity.SimpleUser;
 import cn.esports.entity.UserInfo;
 import cn.esports.enums.SendType;
+import cn.esports.utils.SessionUtil;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -77,13 +78,10 @@ public class UserService extends BaseService{
 			        if(matcher.find()){
 			           return  matcher.group(1);
 			        }
-					//return cookie.replaceAll("rememberTap_token=(.*);", "$1");
 	        	}
 			}
-		}/*else {
-			
-			return  resp.getBody().toJSONString();
-		}*/
+		}
+		SessionUtil.setLoginCode(mobile, resp.getBody());
 		} catch (RestClientException e) {
 			logger.error("validation Token to rest api occurred error,cause by:",e);
 		}

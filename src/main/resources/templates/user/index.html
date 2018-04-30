@@ -30,8 +30,8 @@
 					</ul>
 				</div>
 				<div class="rt">
-					<div class="detail" id="block1" style="display: none;">
-						<img class="timg" src="/images/person_avant.png">
+					<div class="detail" id="block1" >
+						<img class="timg" src="${userinf.t.imagePrefix}" onerror="this.src='/images/person_avant.png;this.onerror=null'" >
 						<p class="name"><em>昵称：</em><span th:text="${userinf.t.userName}"></span></p>
 						<p><em>性别：</em><span th:if="${userinf.t.sex==1}">男</span><span th:if="${userinf.t.sex==0}">女</span></p>
 						<p class="age"><em>年龄：</em><span th:text="${userinf.t.age}"></span>岁</p>
@@ -39,7 +39,7 @@
 						<p class="signature"><em>签名：</em><span th:text="${userinf.t.signature}"></span></p>
 						<p class="editor" id="editor">编辑</p>
 					</div>
-					<div class="detail" id="block2">
+					<div class="detail" id="block2" style="display: none;">
 						<img class="timg" src="/images/person_avant.png">
 						<p class="name"><em>昵称：</em><input class="w155" type="text" placeholder="请输入昵称" th:value="${userinf.t.userName}"></p>
 						<div class="sex clearfix">
@@ -62,8 +62,12 @@
 					<div class="up-img">
 						<p>精选照片：</p>
 						<div class="nr clearfix">
-							<div class="list left">
-								<div class="img"><img src="images/person_photo.png"><div class="ic"><img src="images/person_close.png"></div></div>
+							<div class="list left" th:each="lm : ${userinf.t.userPictures}">
+							
+								<div class="img">
+								<img src="/images/person_photo.png" onerror="this.src='/images/person_photo.png;this.onerror=null'">
+									<div class="ic"><img src="/images/person_close.png"></div>
+								</div>
 							</div>
 							<a href="javascript:;" class="file left">
 							    <input type="file" name="" id="">
@@ -130,7 +134,7 @@
 					<!--绑定手机-->
 					<div class="dialog1">
 						<div class="cont1">
-							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
 								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入手机号"></div>
 								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
@@ -143,7 +147,7 @@
 					<!--绑定邮箱-->
 					<div class="dialog2">
 						<div class="cont2">
-							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
 								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入邮箱"></div>
 								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
@@ -157,9 +161,9 @@
 					<!--完成-->
 					<div class="dialog3">
 						<div class="cont3">
-							<div class="tk-logo"><img src="images/loginlogo.png"></div>
+							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
-								<img src="images/succes.png">
+								<img src="/images/succes.png">
 								<p>您的手机号绑定成功</p>
 							</div>	
 							<div class="tk-btn1" id="close">完成</div>					
@@ -171,36 +175,7 @@
 		</div>
 	</div>
 	<div class="botwrap">
-		<div class="bottcon">
-			<div class="btnav">
-				<div class="dyl">
-					<a class="current" href="#">关于我们</a>
-					<a href="#">媒体报道</a>
-					<a href="#">投资方&顾问</a>
-				</div>
-				<div class="dyl">
-					<a href="#">工作机会</a>
-					<a href="#">网站条款</a>
-					<a href="#">新手指南</a>
-				</div>
-				<div class="dyl">
-					<a href="#">我们的公众号</a>
-				</div>
-			</div>
-			<div class="btlogo">
-				<img src="images/btlogo.png">
-			</div>
-		</div>
-		<div class="btsafetext">
-			<div class="textnav">
-				<a href="#">家长监护</a>|
-				<a href="#">防沉迷</a>|
-				<a href="#">交易纠纷处理</a>|
-				<a href="#">用户权益保障措施</a>
-			</div>
-			<p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
-			<p>指尖上行（北京）互动娱乐科技有限公司</p>
-		</div>
+	<div th:include="/include :: botwrap"></div>
 	</div>
 <script>
 	//编辑

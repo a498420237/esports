@@ -111,7 +111,26 @@ public class SessionUtil {
 		return code;
 	}
 
+	/**
+	 * 设置登录返回信息
+	 * 
+	 * @param imageVerificationCode
+	 */
+	public static void setLoginCode(String mobile, JSONObject resultCode) {
+		SecurityUtils.getSubject().getSession(true).setAttribute(Constants.LOGIN_CODE + mobile,
+				resultCode);
+	}
 
+	/**
+	 * 获取登录返回信息
+	 * 
+	 * @return
+	 */
+	public static JSONObject getLoginCode(String mobile) {
+		JSONObject code = (JSONObject) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.LOGIN_CODE + mobile);
+		setImageVerificationCode(mobile, null);// 清理，避免重复使用
+		return code;
+	}
 	/**
 	 * 清理在线session数据
 	 */
