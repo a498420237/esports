@@ -20,49 +20,49 @@
 				<div class="lt">
 					<ul>
 						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a  href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>				
+						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>				
 					</ul>
 				</div>
 				<div class="rt">
 					<div class="detail" id="block1" >
-						<img class="timg" src="${userinf.t.imagePrefix}" onerror="this.src='/images/person_avant.png;this.onerror=null'" >
-						<p class="name"><em>昵称：</em><span th:text="${userinf.t.userName}"></span></p>
-						<p><em>性别：</em><span th:if="${userinf.t.sex==1}">男</span><span th:if="${userinf.t.sex==0}">女</span></p>
-						<p class="age"><em>年龄：</em><span th:text="${userinf.t.age}"></span>岁</p>
-						<p class="address"><em>所在地：</em><span th:text="${userinf.t.area}"></span></p>
-						<p class="signature"><em>签名：</em><span th:text="${userinf.t.signature}"></span></p>
+						<img class="timg" src="${userinfo.t.imagePrefix}/aaa.png" onerror="this.src='/images/person_avant.png;this.onerror=null'" >
+						<p class="name"><em>昵称：</em><span th:text="${userinfo.t.userName}"></span></p>
+						<p><em>性别：</em><span th:if="${userinfo.t.sex==1}">男</span><span th:if="${userinfo.t.sex==0}">女</span></p>
+						<p class="age"><em>年龄：</em><span th:text="${userinfo.t.age}"></span>岁</p>
+						<p class="address"><em>所在地：</em><span th:text="${userinfo.t.area}"></span></p>
+						<p class="signature"><em>签名：</em><span th:text="${userinfo.t.signature}"></span></p>
 						<p class="editor" id="editor">编辑</p>
 					</div>
 					<div class="detail" id="block2" style="display: none;">
 						<img class="timg" src="/images/person_avant.png">
-						<p class="name"><em>昵称：</em><input class="w155" type="text" placeholder="请输入昵称" th:value="${userinf.t.userName}"></p>
+						<p class="name"><em>昵称：</em><input class="w155" type="text" id="userName" placeholder="请输入昵称" th:value="${userinfo.t.userName}"></p>
 						<div class="sex clearfix">
-							<em>性别：</em><form action=""> 
-					        <input type="radio" name="性别" value="男" th:value="${userinf.t.sex}" >男  
-					        <input type="radio" name="性别" value="女" th:value="${userinf.t.sex}">女   
-					        </form>  
+							<em>性别：</em>
+					        <input type="radio" name="sex" id="sex1" value="1" th:value="${userinfo.t.sex}" >男  
+					        <input type="radio" name="sex" id="sex0" value="0" th:value="${userinfo.t.sex}">女   
+					        
 				        </div>
-						<p class="age"><em>年龄：<input class="w40" type="text" th:value="${userinf.t.sex}" >岁</em></p>
-						<p class="address"><em>所在地：</em><input class="w155" type="text" placeholder="请输入所在地" th:value="${userinf.t.area}"></p>
-						<p class="signature"><em>签名：<input class="w155" type="text" placeholder="请输入签名" th:value="${userinf.t.signature}"></em></p>
+						<p class="age"><em>年龄：<input class="w40" type="text" id="age" th:value="${userinfo.t.sex}" >岁</em></p>
+						<p class="address"><em>所在地：</em><input class="w155" id="area" type="text" placeholder="请输入所在地" th:value="${userinfo.t.area}"></p>
+						<p class="signature"><em>签名：<input class="w155" id="signature" type="text" placeholder="请输入签名" th:value="${userinfo.t.signature}"></em></p>
 						<p class="editor" id="save">保存</p>
 					</div>
 					<div class="line"></div>
 					<div class="bind">
-						<div class="ln"><em>绑定手机：<span class="cl-fff" th:text="${userinf.t.mobile}"></span></em><div class="btns" id="phone">修改手机</div></div>
-						<div class="ln"><em>绑定邮箱：未绑定</em><div class="btns" id="email">立即绑定</div></div>
+						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><div class="btns" id="phone">修改手机</div></div>
+						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" th:text="${userinfo.t.emailBound}"></span></em><div class="btns" id="email">立即绑定</div></div>
 					</div>
 					<div class="line"></div>
 					<div class="up-img">
 						<p>精选照片：</p>
 						<div class="nr clearfix">
-							<div class="list left" th:each="lm : ${userinf.t.userPictures}">
+							<div class="list left" th:each="lm : ${userinfo.t.userPictures}">
 							
 								<div class="img">
 								<img src="/images/person_photo.png" onerror="this.src='/images/person_photo.png;this.onerror=null'">
@@ -177,74 +177,10 @@
 	<div class="botwrap">
 	<div th:include="/include :: botwrap"></div>
 	</div>
-<script>
-	//编辑
-	$("#save").on("click",function(){
-		$("#block2").fadeOut(300);
-		setTimeout(function() {
-			$("#block1").fadeIn();
-		}, 300);
-	})
-	$("#editor").on("click",function(){
-		$("#block1").fadeOut(300);
-		setTimeout(function() {
-			$("#block2").fadeIn();
-		}, 300);
-	})
-	//弹框
-	$("#bind").on("click",function(){
-		$(".dialog").fadeIn();
-	})
-	$(".cancel").on("click",function(){
-		$(".dialog").fadeOut();
-	})
-	$(document).mouseup(function(e){
-        var _con = $('.dialog'); 
-        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
-           	$(_con).fadeOut();
-        }
-    });
-    //手机
-    $("#phone").on("click",function(){
-		$(".dialog1").fadeIn();
-	})
-	$(".phone-can").on("click",function(){
-		$(".dialog1").fadeOut();
-	})
-	$(document).mouseup(function(e){
-        var _con = $('.dialog1'); 
-        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
-           	$(_con).fadeOut();
-        }
-    });
-    //邮箱
-    $("#email").on("click",function(){
-		$(".dialog2").fadeIn();
-	})
-	$(".phone-can").on("click",function(){
-		$(".dialog2").fadeOut();
-	})
-	$(document).mouseup(function(e){
-        var _con = $('.dialog2'); 
-        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
-           	$(_con).fadeOut();
-        }
-    });
-    //成功
-    $(".complete").on("click",function(){
-		$(".dialog3").fadeIn();
-		$(".dialog2").fadeOut();
-		$(".dialog1").fadeOut();
-	})
-	$("#close").on("click",function(){
-		$(".dialog3").fadeOut();
-	})
-	$(document).mouseup(function(e){
-        var _con = $('.dialog3'); 
-        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
-           	$(_con).fadeOut();
-        }
-    });
-</script>
+	<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script type="text/javascript">
+	seajs.use('/scripts/controller/user/index');
+</script>  
 </body>
 </html>

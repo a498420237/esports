@@ -20,14 +20,14 @@
 			<div class="cont">
 				<div class="lt">
 					<ul>
-						<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
-						<li><a href="/user/UserHonor" class="select"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a  href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>					
+						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>				
 					</ul>
 				</div>
 				<div class="honor">
@@ -40,8 +40,8 @@
 						<div class="details clearfix">
 							<div class="img left"><img src="/images/person_avant.png" alt=""></div>
 							<div class="info left">
-								<p class="name">AMSsss</p>
-								<p><span>昵称：九块半66</span><span>区服：微信128区</span><span>段位：最强王者</span></p>
+								<p class="name" th:text="${userinfo.t.userName}"></p>
+								<p>昵称：<span th:text="${userinfo.t.userName}"></span><span>区服：微信128区</span><span>段位：最强王者</span></p>
 							</div>
 						</div>
 						<div class="bor">我的荣誉</div>

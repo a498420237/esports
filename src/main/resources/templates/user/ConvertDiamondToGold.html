@@ -19,14 +19,14 @@
 			<div class="cont">
 				<div class="lt">
 					<ul>
-						<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
-						<li><a href="/user/ConvertDiamondToGold" class="select"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a  href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>		
+						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>	
 					</ul>
 				</div>
 				<div class="currency">
@@ -37,8 +37,8 @@
 							<span>（1钻石=100金币）</span>
 						</div>
 						<div class="line2">
-							<span>可用钻石：<em class="blue">2000</em></span>
-							<span>可兑换金币：<em class="yellow">200000</em></span>
+							<span>可用钻石：<em class="blue" th:text="${userinfo.t.diamond}"></em></span>
+							<span>可兑换金币：<em class="yellow" th:text="${userinfo.t.gold}" ></em></span>
 						</div>
 						<div class="btn" id="btnSave">兑换</div>
 					</div>

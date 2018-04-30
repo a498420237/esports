@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.esports.entity.SimpleUser;
+import cn.esports.entity.UserInfo;
 
 public class SessionUtil {
 	
@@ -57,6 +58,10 @@ public class SessionUtil {
 	 */
 	public static String getCurToken() {
 		return (String) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_TOKEN);
+	}
+	public static int getCurUid() {
+		UserInfo userInfo=JSONObject.parseObject(getCurUser(),UserInfo.class);
+		return userInfo.getT().getId();
 	}
 
 	/**

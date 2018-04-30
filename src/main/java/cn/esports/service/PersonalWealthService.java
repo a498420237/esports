@@ -14,6 +14,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 
 import com.alibaba.fastjson.JSONObject;
+
+import cn.esports.utils.SessionUtil;
 @Component
 public class PersonalWealthService extends BaseService {
 
@@ -24,7 +26,7 @@ public class PersonalWealthService extends BaseService {
 			HttpHeaders requestHeaders = new HttpHeaders();
 			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
 			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
-			requestHeaders.add("TAP-CLIENT-TOKEN", baseConfig.getToken()); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN", SessionUtil.getCurToken()); // 客户端版本
 			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
 			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);

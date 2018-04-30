@@ -3,7 +3,15 @@ package cn.esports.entity;
 import java.util.List;
 
 public class UserInfo {
-	private int code;
+
+
+    /**
+     * code : 200
+     * msg : 成功
+     * t : {"id":132,"userName":"huzhimin","leveling":0,"sex":1,"age":28,"status":1,"mobile":"13428899017","mobileBound":true,"emailBound":false,"signature":"我就是我是颜色不一样的烟火","area":"广州地区","avatar":"aa.png","registerType":1,"imToken":"1d5f7b5fd1cc7128e2d3a35412a1b3e1","isOfficial":false,"createTime":"Apr 25, 2018 6:33:41 PM","updateTime":"Apr 25, 2018 6:33:41 PM","token":"F61604A9164AEB77442920D37634E3A623F9BC11","imagePrefix":"http://192.168.1.12:8094","gold":100,"diamond":505,"userPictures":[{"id":1,"uid":132,"picture":""}]}
+     */
+
+    private int code;
     private String msg;
     private TBean t;
 
@@ -33,41 +41,51 @@ public class UserInfo {
 
     public static class TBean {
         /**
-         * id : 1
-         * userName : 御龙归宇月
+         * id : 132
+         * userName : huzhimin
+         * leveling : 0
          * sex : 1
-         * age : 24
-         * mobile : 15202117928
+         * age : 28
+         * status : 1
+         * mobile : 13428899017
          * mobileBound : true
-         * email : 603498287@qq.com
-         * emailBound : true
-         * signature : 只想遇见那个她
-         * area : 安徽
-         * imToken : 63e8a4107b266b1c0e6a00f745d07e8e
-         * avatar : http://p3.gexing.com/shaitu/20120814/2322/502a6d183fad8.jpg
+         * emailBound : false
+         * signature : 我就是我是颜色不一样的烟火
+         * area : 广州地区
+         * avatar : aa.png
          * registerType : 1
+         * imToken : 1d5f7b5fd1cc7128e2d3a35412a1b3e1
+         * isOfficial : false
+         * createTime : Apr 25, 2018 6:33:41 PM
+         * updateTime : Apr 25, 2018 6:33:41 PM
+         * token : F61604A9164AEB77442920D37634E3A623F9BC11
          * imagePrefix : http://192.168.1.12:8094
-         * gold : 0.0
-         * diamond : 0.0
-         * userPictures : [{"id":1,"uid":1,"picture":"http://p2.gexing.com/shaitu/20120814/2321/502a6d05cf996.jpg"},{"id":2,"uid":1,"picture":"http://p2.gexing.com/shaitu/20120814/2321/502a6d10724dc.jpg"}]
+         * gold : 100
+         * diamond : 505
+         * userPictures : [{"id":1,"uid":132,"picture":""}]
          */
 
         private int id;
         private String userName;
+        private int leveling;
         private int sex;
         private int age;
+        private int status;
         private String mobile;
         private boolean mobileBound;
-        private String email;
         private boolean emailBound;
         private String signature;
         private String area;
-        private String imToken;
         private String avatar;
         private int registerType;
+        private String imToken;
+        private boolean isOfficial;
+        private String createTime;
+        private String updateTime;
+        private String token;
         private String imagePrefix;
-        private double gold;
-        private double diamond;
+        private int gold;
+        private int diamond;
         private List<UserPicturesBean> userPictures;
 
         public int getId() {
@@ -86,6 +104,14 @@ public class UserInfo {
             this.userName = userName;
         }
 
+        public int getLeveling() {
+            return leveling;
+        }
+
+        public void setLeveling(int leveling) {
+            this.leveling = leveling;
+        }
+
         public int getSex() {
             return sex;
         }
@@ -102,6 +128,14 @@ public class UserInfo {
             this.age = age;
         }
 
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
         public String getMobile() {
             return mobile;
         }
@@ -116,14 +150,6 @@ public class UserInfo {
 
         public void setMobileBound(boolean mobileBound) {
             this.mobileBound = mobileBound;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
         }
 
         public boolean isEmailBound() {
@@ -150,14 +176,6 @@ public class UserInfo {
             this.area = area;
         }
 
-        public String getImToken() {
-            return imToken;
-        }
-
-        public void setImToken(String imToken) {
-            this.imToken = imToken;
-        }
-
         public String getAvatar() {
             return avatar;
         }
@@ -174,6 +192,46 @@ public class UserInfo {
             this.registerType = registerType;
         }
 
+        public String getImToken() {
+            return imToken;
+        }
+
+        public void setImToken(String imToken) {
+            this.imToken = imToken;
+        }
+
+        public boolean isIsOfficial() {
+            return isOfficial;
+        }
+
+        public void setIsOfficial(boolean isOfficial) {
+            this.isOfficial = isOfficial;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
+
+        public String getUpdateTime() {
+            return updateTime;
+        }
+
+        public void setUpdateTime(String updateTime) {
+            this.updateTime = updateTime;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
         public String getImagePrefix() {
             return imagePrefix;
         }
@@ -182,19 +240,19 @@ public class UserInfo {
             this.imagePrefix = imagePrefix;
         }
 
-        public double getGold() {
+        public int getGold() {
             return gold;
         }
 
-        public void setGold(double gold) {
+        public void setGold(int gold) {
             this.gold = gold;
         }
 
-        public double getDiamond() {
+        public int getDiamond() {
             return diamond;
         }
 
-        public void setDiamond(double diamond) {
+        public void setDiamond(int diamond) {
             this.diamond = diamond;
         }
 
@@ -209,8 +267,8 @@ public class UserInfo {
         public static class UserPicturesBean {
             /**
              * id : 1
-             * uid : 1
-             * picture : http://p2.gexing.com/shaitu/20120814/2321/502a6d05cf996.jpg
+             * uid : 132
+             * picture : 
              */
 
             private int id;

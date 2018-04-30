@@ -16,6 +16,7 @@ define(function(require, exports, module) {
 							debugger;
 							if(json.code==200){
 								alert("兑换成功");
+								window.location.reload();
 							}else{
 								alert(json.msg);
 							}

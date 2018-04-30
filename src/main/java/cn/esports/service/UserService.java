@@ -21,8 +21,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 import cn.esports.entity.SimpleUser;
 import cn.esports.entity.UserInfo;
 import cn.esports.enums.SendType;
+import cn.esports.utils.Constants;
 import cn.esports.utils.SessionUtil;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 @Component
@@ -56,7 +58,41 @@ public class UserService extends BaseService{
 			return  jsonObject;
 		}
 	}
+	/**
+	 * 发送邮箱验证码
+	 * @param email
+	 * @param type
+	 * @return
+	 */
+	public JSONObject sendEmailCode(String email,String type){
+		try {
+			//发送类型（绑定邮箱：bindEmail 更换邮箱：resetBindEamil 更换手机号：resetBindMobile）
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			//requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			postParameters.add("email", email);
+			postParameters.add("type", type);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			
+			return restTemplate.postForObject(createUrl("/api/msg/sendMobileCode.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("send mobile code to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
 	
+	/**
+	 * 效验手机号和验证码是否正确
+	 * @param mobile
+	 * @param code
+	 * @return
+	 */
 	public String getToken(String mobile,String code){
 		try {
 		HttpHeaders requestHeaders = new HttpHeaders();
@@ -110,4 +146,181 @@ public class UserService extends BaseService{
 		}
 		return "";
 	}
+
+	/**
+	 * 修改用户信息
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject saveUserInfo(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			String tokenStr=SessionUtil.getCurToken();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",tokenStr); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			JSONObject resp = restTemplate.postForObject(createUrl("/api/user/completeUserInfo.json", null), httpEntity, JSONObject.class);
+			if(resp.get("code").toString().equals("200")){
+				String load= getUserInfo(tokenStr);
+				SessionUtil.setCurUser(load,tokenStr);
+			}
+			return resp;
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	/**
+	 * 修改与绑定手机号码
+	 * @param mobile 操作类型（1：绑定 2：更换）
+	 * @return
+	 */
+	public JSONObject BindMobile(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("/api/user/bindMobile.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	/**
+	 * 修改与绑定邮箱
+	 * @param mobile 操作类型（1：绑定 2：更换）
+	 * @return
+	 */
+	public JSONObject BindEmail(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("/api/user/bindEmail.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	
+	/**
+	 * 添加用户图片
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject addUserPicture(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("/api/user/userPicture.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	/**
+	 * 删除用户图片
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject delUserPicture(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("api/user/deleteUserPicture.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	
+	/**
+	 * 获取绑定账号
+	 * @return
+	 */
+	public JSONObject getUserBingGameAccess(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("api/gameAccount/getUserBindGame.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	/**
+	 * 用户绑定绑定游戏账号
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject UserBindgameAccess(Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			
+			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+			return restTemplate.postForObject(createUrl("api/gameAccount/bind.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
+	
 }

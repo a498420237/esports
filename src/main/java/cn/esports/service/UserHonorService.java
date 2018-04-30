@@ -4,16 +4,13 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 
 import com.alibaba.fastjson.JSONObject;
+
+import cn.esports.utils.SessionUtil;
 /**
  * 个人荣誉
  * @author huzhimin
@@ -26,7 +23,7 @@ public class UserHonorService extends BaseService {
 
 	public JSONObject getUserHonoList(String token,Map<String, String> uriVariables) {
 		try {
-			uriVariables.put("userId", baseConfig.getUid());
+			uriVariables.put("userId", String.valueOf( SessionUtil.getCurUid()));
 			 ResponseEntity<String> resp = restTemplate.getForEntity(createUrl("match/findUserHonorList.json",uriVariables) , String.class);
 			 return JSONObject.parseObject(resp.getBody());
 		} catch (RestClientException e) {
