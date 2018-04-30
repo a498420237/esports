@@ -26,19 +26,55 @@ public class MyWarTeamController extends BaseController {
 
 	@RequestMapping(value="/user/myWarTeam", method = RequestMethod.GET)
 	public ModelAndView forecast(@RequestParam Map<String, String> uriVariables) {
-		ModelAndView view =new ModelAndView("user/myWarTeam");
+		ModelAndView view =null;
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		JSONObject jsonObject =myWarteamService.getUserTeamList("",uriVariables);
 		String code = jsonObject.getString("code");
 		if("200".equals(code.toString())){
 			JSONObject t = jsonObject.getJSONObject(("t"));
 			JSONArray list = t.getJSONArray("troops");
+			if(list.size()==0){
+			//if(true){
+				view=new ModelAndView("user/myWarTeamNothing");
+			}else{
+				JSONObject jsonObject2 = list.getJSONObject(0);
+				if(list.size()==1){
+					//有一个战队为空
+					int gameType = Integer.parseInt(jsonObject2.getString("gameType"));
+					if(gameType==1){
+						//1 王者荣耀
+						view=new ModelAndView("user/myWarTeamWz");
+					}else {
+						//2 绝地求生
+						view=new ModelAndView("user/myWarTeamOneJd");
+					}
+
+				}else{
+					//都有
+					view=new ModelAndView("user/myWarTeam");
+				}
+			}
 		}
 		return view;
 	}
 
+	/**
+	 * 获取用户战队列表
+	 * @param uriVariables
+	 * @return
+	 */
 	@RequestMapping(value="/user/myWarTeam/list", method = RequestMethod.GET)
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
 		return myWarteamService.getUserTeamList("",uriVariables);
+	}
+
+	/**
+	 * 获取战队列表(无战队)
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/nothingList", method = RequestMethod.GET)
+	public JSONObject getNotingList(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.getAllUserTeamList("",uriVariables);
 	}
 }
