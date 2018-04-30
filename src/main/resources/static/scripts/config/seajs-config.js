@@ -7,7 +7,7 @@ seajs.config({
     	'pagePlugin':'/scripts/plugins/paginator-plugin',
     	'utilService':'/scripts/services/util-service',
     	'loginService':'/scripts/services/login-service',
-    	'layerUtil':'/layer/layer',
+    	'layerUtil':'/vendor/layer/layer',
     	
     }
 });

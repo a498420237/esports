@@ -37,20 +37,21 @@
 			                  <li>
 			                    
 			                    <input class="phone" placeholder="请输入您的手机号" type="text"  id="phoneInput"/>
+			                     <i> </i>
 			                  </li>
 			                  <li>
 			                   
-			                    <input class="yzm"placeholder="请输入验证码"  type="password"  id="codeInput"/>
-			                    <span id="getCodeBtn">获取验证码</span>
-
+			                    <input class="yzm" placeholder="请输入验证码"  type="password"  id="codeInput"/>
+			                    <span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>
+								 <i> </i>
 			                  </li>
 			                    
 			                </ul>
-			                <div id="loginBtn" class="sucbtndd">
-									<a href="">
+			               <a href=""> <div id="loginBtn" class="sucbtndd">
+									
 									登录 
-									</a>
-								</div>
+								
+								</div>	</a>
 			        </form>
 					<p>点击登录即代表您同意<span class="bltext">
 			《电竞e族app用户协议》<span></p>
@@ -68,7 +69,7 @@
 
 <div class="botwrap"><div th:include="/include :: botwrap"></div></div>
 
-
+<script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
 <script  type="text/javascript" src="layer/layer.js"></script>
 <script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
 <script type="text/javascript" src="js/jquery.touchSlider.js"></script>
