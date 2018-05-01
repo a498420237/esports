@@ -76,4 +76,34 @@ public class MyWarTeamController extends BaseController {
 	public JSONObject getNotingList(@RequestParam Map<String, String> uriVariables){
 		return myWarteamService.getAllUserTeamList("",uriVariables);
 	}
+
+	/**
+	 * 获取战队荣誉 /  历史赛事
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/teamHonorOrHistoryList", method = RequestMethod.GET)
+	public JSONObject getTeamHonorList(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.getTeamHonorOrHistoryList("",uriVariables);
+	}
+
+	/**
+	 * 战队成员
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/teamMemberList", method = RequestMethod.GET)
+	public JSONObject getTeamMemberList(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.getTeamMemberList("",uriVariables);
+	}
+
+	/**
+	 * 退出战队
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/backTeam", method = RequestMethod.GET)
+	public JSONObject backTeam(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.backTeam("",uriVariables);
+	}
 }

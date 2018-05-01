@@ -1,7 +1,27 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
+		var troopsId;
+		var captainId;
 		$(function(){
 			seniorLoad("teamInfoArea");
+			$("#backTeam").click(function() {
+				backTeam();
+			});
+			$("ul.tabs li").click(function() {
+				 $("ul.tabs li").removeClass("active");
+				 $(this).addClass("active");
+				 $(".tab_content").hide();
+				 var activeTab = $(this).find("a").attr("href");
+				 $(activeTab).fadeIn();
+				if("#tab1" == activeTab){
+					seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+				}else if("#tab2" == activeTab){
+					seniorLoad3("tabNo2","teamMember","pageContainer2",-1,"/user/myWarTeam/teamMemberList");
+				}else if("#tab3" == activeTab){
+					seniorLoad3("tabNo3","teamHistory","pageContainer3",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+				}
+				  return false;
+			 });
 			//弹框
 			$(".table_head  .left label").click(function(){
 				var currency=$(this).attr("name");
@@ -9,23 +29,13 @@ define(function(require, exports, module) {
 				if("active"!=className ){
 					if("wz" ==currency){
 						$("#create").hide();
-						/*$(".tab_content").show();
-						$(".tabs .clearfix").show();*/
 						$("#wz").show();
-						/*$("#tab1").show();
-						$("#tab2").show();
-						$("#tab3").show();*/
 
 						$("#teamInfo").show();
 						$(".historyTable").hide();
 						seniorLoad("teamInfoArea");
 					}else if("jd"==currency){
-						/*$(".tab_content").hide();
-						$(".tabs .clearfix").hide();*/
 						$("#wz").hide();
-					/*	$("#tab1").hide();
-						$("#tab2").hide();
-						$("#tab3").hide();*/
 
 						$("#create").show();
 						$("#teamInfo").hide();
@@ -40,6 +50,30 @@ define(function(require, exports, module) {
 		});
 		var isShow=true;
 		var isShow2=true;
+		var isShow3=true;
+		function backTeam() {
+			var data={
+				"troopsId":troopsId,
+			};
+			//退出战队
+			$.ajax({
+				url : "/user/myWarTeam/backTeam",
+				datatype : 'json',
+				type : "get",
+				data : data,
+				success : function(json) {
+					var data = json.code;
+					$(".exitzd").hide();
+					if("0"==data){
+
+					}else{
+						alert(json.msg);
+					}
+					exitzd
+					location.reload();
+				}
+			});
+		}
 		//获取列表数据
 		function seniorLoad(tempId){
 			if(isShow){
@@ -51,7 +85,7 @@ define(function(require, exports, module) {
 					ajaxFuc : function(curentPage, renderHtml) {
 						var data={
 							"offset" : curentPage,
-							"limit" : 2
+							"limit" : 5
 						};
 
 						$.ajax({
@@ -67,6 +101,9 @@ define(function(require, exports, module) {
 									list : data.troops
 								};
 								$(".mdat").html(data.newMsgCount);
+								troopsId=data.troops[0].id;
+								captainId =data.troops[0].captainId;
+								seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
 								renderHtml(data);
 								isShow=true;
 							}
@@ -88,7 +125,7 @@ define(function(require, exports, module) {
 					ajaxFuc : function(curentPage, renderHtml) {
 						var data={
 							"offset" : curentPage,
-							"limit" : 2,
+							"limit" : 5,
 							"gameType":2
 						};
 
@@ -106,6 +143,49 @@ define(function(require, exports, module) {
 								};
 								renderHtml(data);
 								isShow2=true;
+							}
+						});
+					}
+				});
+			}else{
+				//alert("你点的太快了");
+			}
+		}
+		function seniorLoad3(tabNo1,tempId,page,type,url){
+			if(isShow3){
+				isShow3=false;
+				$("#"+tabNo1).paginator({
+					itemTemplateId : tempId,
+					pageNavId : page,
+					usepager:true,
+					useSeniorTemplate:true,
+					ajaxFuc : function(curentPage, renderHtml) {
+						var data={
+							"offset" : curentPage,
+							"limit" : 5,
+							"troopsId":troopsId,
+							"operation":type
+						};
+
+						$.ajax({
+							url : url,
+							datatype : 'json',
+							type : "get",
+							data : data,
+							success : function(json) {
+								var data = json.t;
+								var paramObj = {
+									total : data.total,
+									page : data.offset,
+									list : data.result
+								};
+								if("tabNo2"==tabNo1){
+									data.page["captainId"] = captainId;
+									renderHtml(data.page);
+								}else{
+									renderHtml(data);
+								}
+								isShow3=true;
 							}
 						});
 					}

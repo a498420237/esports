@@ -90,27 +90,24 @@
 					</ul>
 				</div>
 				<div id="tab1" class="tab_content" style="display: block; ">
-					<div class="saishi">
-						<i><img src="images/team_lishi.png" alt=""></i>
-						<span class="text">MDL国际精英邀请赛</span>
-						<em><img src="images/rank1icon.png" alt="">冠军</em>
+					<div id="tabNo1">
+					</div>
+					<div class="z_pager">
+						<ul id="pageContainer1"></ul>
 					</div>
 				</div>
 				<div id="tab2" class="tab_content" style="display: none; ">
-					<div class="players clearfix">
-						<div class="captain"><img src="/images/person_avant.png"></div>
-						<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
-						<div class="area">微信区</div>
-						<div class="dan">无敌白银V</div>
-						<div class="position">队长</div>
+					<div id="tabNo2">
+					</div>
+					<div class="z_pager">
+						<ul id="pageContainer2"></ul>
 					</div>
 				</div>
 				<div id="tab3" class="tab_content" style="display: none; ">
-					<div class="saishi">
-						<i><img src="images/tplogo.png" alt="">
-						</i>
-						<span class="text">MDL国际精英邀请赛</span>
-
+					<div id="tabNo3">
+					</div>
+					<div class="z_pager">
+						<ul id="pageContainer3"></ul>
 					</div>
 				</div>
 			</div>
@@ -181,6 +178,55 @@
                       </div>
     {{/each}}
 	</textarea>
+	<textarea id="teamHonor"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 46px;height: 49px;"></i>
+							<span class="text">{{$value.matchName}}</span>
+							<em>
+								{{if ($value.ranking == "冠军")}}
+	                                        <img src="/images/rank1icon.png" alt="">冠军
+	                            {{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank2icon.png" alt="">亚军
+								{{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank3icon.png" alt="">亚军
+								{{else}}
+	                                        {{$value.ranking}}
+	                             {{/if}}
+
+							</em>
+						</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamHistory"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 103px;height: 26px;">
+							</i>
+							<span class="text">{{$value.matchName}}</span>
+						</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamMember"  style="display:none;">
+	{{each result}}
+						<div class="players clearfix">
+						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+						<div class="area">
+										<!--{{if ($value.serverType==1 )}}
+	                                        <span>手游区</span>
+	                                    {{else if(($value.gameType==2))}}
+	                                        <span>微信区</span>
+	                                    {{/if}}-->
+							 <span>{{$value.serverType}}</span>
+						</div>
+						<div class="dan">{{$value.level}}</div>
+							{{if ($value.userId == captainId)}}
+	                                        <div class="position">队长</div>
+	                        {{/if}}
+					</div>
+    {{/each}}
+	</textarea>
 </div>
 <!--我的战队-队员推出战队弹窗-->
 <div class="exitzd" style="display: none;">
@@ -195,7 +241,7 @@
 			</h3>
 			<p>
 				<a href="javascript:;" onclick="closeWin('exitzd')">取消</a>
-				<a href="">确定</a>
+				<a href="javascript:;" id="backTeam">确定</a>
 			</p>
 		</div>
 	</div>
@@ -208,21 +254,13 @@
 </script>
 <script type="text/javascript" src="/js/jquery.select.js"></script>
 <script type="text/javascript">
+	$(".historyTable").hide();
 	$(".tab_content").hide();
 	$(".tab_content:first").show();
 	$(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
-	$("ul.tabs li").click(function() {
-		$("ul.tabs li").removeClass("active");
-		$(this).addClass("active");
-		$(".tab_content").hide();
-		var activeTab = $(this).find("a").attr("href");
-		$(activeTab).fadeIn();
-		return false;
-	});
 	function createTeam() {
-		alert("1");
 		$(".dialog").show();
 	}
 	function tuchuTeam() {
