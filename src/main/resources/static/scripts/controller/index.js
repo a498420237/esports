@@ -20,50 +20,22 @@ define(function(require, exports, module) {
 	}
 	
 	$(function(){
-		$(".popmatch li").on("click",function(){
-			var gemeType=$("#gemelist").find("li.current").children().attr("name");
-			loadMatchList(gemeType,$(this).attr("name"))
-		});
+		
 	});
 	
-	function loadMatchList(gameType,statuType){
-		/*var statuType = $("#gemelist").find("a .active").data("type");
+	/*function loadMatchList(gameType,statuType){
+		var statuType = $("#gemelist").find("a .active").data("type");
 		if(gameType!=''){
 			$("#gameType").val(gameType);
-		}*/
-		if(statuType==null||statuType==""){
-			statuType="";
 		}
 		
-		$.ajax({
-			url : "/competition/list",
-			datatype : 'json',
-			type : "get",
-			data : {
-				"offset" : 0,
-				"limit" : 6,
-				"gameType" : gameType,
-				"statuType" : 5
-			},
-			success : function(json) {
-				if(json.code==200){
-				var data = json.t;
-				var results = data.result;
-				var paramObj = {
-					total : data.total,
-					page : 0,
-					list : data.result
-				};
-				competitionUtil.renderHtml(paramObj);
-				}
-			}
-		});
-	}
+	}*/
 	
 	
 
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService' ], function($,
 			pagePlugin, util) {
+		
 		// 资讯内容列表
 		$("#info_content").paginator({
 			itemTemplateId : 'infoTemplate',
@@ -118,10 +90,18 @@ define(function(require, exports, module) {
 								    var gametype=$("#gemelist").children().eq(0).children().attr("name");
 								    var statType= $(".popmatch").find("li.current").attr("name");
 									seniorLoad(gametype,statType);
+									loadmatch(gametype,statType);
 									$("#gemelist li").on("click",function(){
+										
 										$("#gemelist li").removeAttr("class","current");
 										$(this).attr("class","current")
-										seniorLoad($(this).attr("name"),$(".popmatch").find("li.current").attr("name"));
+										//loadMatchList()
+										loadmatch($(this).find("a").attr("name"),$(".popmatch").find("li.current").attr("name"));
+									});
+									$(".popmatch li").on("click",function(){
+										
+										var gemeType=$("#gemelist").find("li.current").children().attr("name");
+										loadmatch(gemeType,$(this).attr("name"))
 									});
 								} else {
 									alert(json.msg);
@@ -130,20 +110,46 @@ define(function(require, exports, module) {
 						});
 					}
 				});
-
+		function loadmatch(gameType,statuType){
+			$("#matchList").paginator({
+				itemTemplateId : 'matchTemplate',
+				pageNavId : '',
+				usepager : false,
+				useSeniorTemplate : true,
+				ajaxFuc : function(curentPage, renderHtml) {
+					if(statuType==null||statuType==""){
+						statuType="";
+					}
+					$.ajax({
+						url : "/competition/list",
+						datatype : 'json',
+						type : "get",
+						data : {
+							"offset" : 0,
+							"limit" : 6,
+							"gameType" : gameType,
+							"statuType" : statuType
+						},
+						success : function(json) {
+							if(json.code==200){
+							var data = json.t;
+							var results = data.result;
+							var paramObj = {
+								total : data.total,
+								page : 0,
+								list : data.result
+							};
+							renderHtml(paramObj);
+							}
+						}
+					});
+				}
+			});
+		}
 		
 		// 获取列表数据
 		function seniorLoad(gameType,status) {
-			$("#matchList").paginator({
-					itemTemplateId : 'matchTemplate',
-					pageNavId : '',
-					usepager : false,
-					useSeniorTemplate : true,
-					ajaxFuc : function(curentPage, renderHtml) {
-						competitionUtil.renderHtml = renderHtml;
-						loadMatchList(gameList[0].id,"");
-					}
-				});
+			
 				$("#live_content").paginator({
 					itemTemplateId : 'liveitemTemplate',
 					pageNavId : '',
@@ -159,6 +165,7 @@ define(function(require, exports, module) {
 								"limit" : 5
 							},
 							success : function(json) {
+								
 								var data = json.t;
 								var results = data.result;
 								for ( var index in results) {

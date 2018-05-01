@@ -143,7 +143,7 @@ define(function(require, exports, module) {
 		
 		//验证手机号码
 	function isPoneAvailable(poneInput) {  
-	    var myreg=/^1[3|4|5|8][0-9]\d{4,8}$/;  
+	    var myreg=/^1[3|4|5|7|8][0-9]\d{4,8}$/;  
 	    if (!myreg.test(poneInput)) {  
 	              return false;  
 	          } else {  

@@ -14,24 +14,25 @@ define(function(require, exports, module) {
 						data : {"diamond" : diamond},
 						success : function(json) {
 							debugger;
+							//layer.msg(json.msg);
 							if(json.code==200){
-								alert("兑换成功");
-								window.location.reload();
+								layer.msg("兑换成功",function(){window.location.reload();});
+								//
 							}else{
-								alert(json.msg);
+								layer.msg(json.msg);
 							}
 							isShow=true;
 						}
+						
 					});
-				
-		
+			
+					
 			}else{
 				//alert("你点的太快了");
 			}
 		}
 		
 		$(function(){
-			debugger;
 			$('#btnSave').on("click",function() {
 			    var diamond=$("#btn_value").val();
 			    if(diamond==""){
@@ -39,6 +40,8 @@ define(function(require, exports, module) {
 			    	return;
 			    }
 			     seniorLoad(diamond);
+			     //window.location.reload();
+			     return false;
 			   });
 		});	
 			 

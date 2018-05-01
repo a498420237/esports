@@ -215,7 +215,7 @@
 <textarea id="liveitemTemplate">
 	{{each list}}
 	<li>
-		<a href="/live/detail/{{$value.id}}"><img src="{{$value.pictureUrl}}" onerror="this.src='images/home_vediopic.png;this.onerror=null'">
+		<a href="/live/detail/{{$value.id}}"><img src="{{$value.liveImg}}" style=" width:170px; heigth:95px; " onerror="this.src='images/home_vediopic.png;this.onerror=null'">
 		<div class="vediotext">
 			<h3>{{$value.anchorName}}:{{$value.name}}</h3>
 			<p>{{$value.name}}</p>

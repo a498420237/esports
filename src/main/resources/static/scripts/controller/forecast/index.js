@@ -3,7 +3,8 @@ define(function(require, exports, module) {
 		var isShow=true;
 		//获取列表数据
 		function seniorLoad(){
-			var gameId=$("#gemelist_left_nav").children().find(".active").attr("name");
+			
+			debugger;
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -12,9 +13,10 @@ define(function(require, exports, module) {
 				usepager:true,
 				useSeniorTemplate:true,
 				ajaxFuc : function(curentPage, renderHtml) {
+					var gameId=$("#gemelist_left_nav").children().find(".active").attr("name");
 					var data={
 							"offset" : curentPage,
-							"limit" : 2
+							"limit" : 5
 					};
 					if(gameId!="" && gameId!=0){
 						data.gameId=gameId;
@@ -91,19 +93,39 @@ define(function(require, exports, module) {
 			   });
 			   //赔率点击显示弹出框
 		        $('.odds').click(function() {
-		        	var lotteryId=$(this).attr("name");
+		        	var l_h_id=$(this).attr("name");
+		        	var l_h_ids=l_h_id.split("_");
+		        	var lotteryId=l_h_ids[0];
+		        	var handicapId=l_h_ids[1];
 		        	$.ajax({
-						url : "/isLogin",
+						url : "/isLoginOrUser",
 						datatype : 'json',
 						type : "get",
 						success : function(json) {
-							if(json){
+							var userInfo=json.t;
+							if(json.code==200){
 								$.ajax({
 									url : "/forecast/getLotteryInfo",
 									datatype : 'json',
 									type : "get",
 									data : {"lotteryId" : lotteryId,},
 									success : function(json) {
+										var handicap=json.t;
+										var handicapListInfos = [];
+	
+										json.t.lotteryInfo.handicapListInfos.forEach(function(obj){
+											if(obj.handicapId==handicapId){
+												handicapListInfos.push(obj);
+											}
+										});
+										handicap.lotteryInfo.gold=userInfo.gold;
+										handicap.lotteryInfo.diamond=userInfo.diamond;
+										handicap.lotteryInfo.handicapId=handicapId;
+										handicap.lotteryInfo.handicapListInfos=handicapListInfos;
+										var data=[];
+										data.push(handicap.lotteryInfo);
+										var daa={ "total":10,"result":data};
+										var contenthtml=template("z_modelsTemplate", daa);
 										debugger;
 										if(json.code==200){
 											
@@ -115,8 +137,56 @@ define(function(require, exports, module) {
 										            closeBtn: 1,
 										            area: ['400px', '510px'],
 										            //宽高
-										            content: $('.z_models')
+										            content: contenthtml
 										          });
+											 //弹出框选择操作效果
+										        $(".clickNumber").on("click",function() {
+										        	debugger;
+										          $(this).parents(".lump").find(".click").removeClass("normal");
+										          $(this).addClass("normal")
+										          $("#quizMoney").val($(this).text());
+										          $("#estimate").text($(this).text());
+										        });
+										        $(".clicktype").on("click",function() {
+										        	debugger;
+										          $(this).parents(".lump").find(".click").removeClass("normal");
+										          $(this).addClass("normal")
+										        });
+										        //关闭弹出层
+										        $('.confirm').on("click",function() {
+										        	
+										        	var quizMoney=$("#quizMoney").val();
+										        	var quizTeamType=$("#quizTeamType").find("a.normal").attr("name");
+										        	var lotteryId=$("#lotteryId").val();
+										        	var roundId=$("#roundId").val();
+										        	var goldType=$("#goldType").val();
+										        	debugger;
+										        	var data={
+										        			"lottertType":1,
+										        			"lotteryId":lotteryId,
+										        			"quizMoney":quizMoney,
+										        			"quizTeamType":quizTeamType,
+										        			"roundId":roundId,
+										        			"quizType":1,
+										        			"clientType":0,
+										        			"goldType":goldType
+										        	};
+										        	debugger;
+										        	$.ajax({
+														url : "/user/BetOrder/saveBet",
+														datatype : 'json',
+														type : "get",
+														data:data,
+														success : function(json) {
+															if(json.code==200){
+																alert("成功");
+															}else{
+																alert(json.msg);
+															}
+														}
+										        	});
+										          layer.close(layer.index);
+										        });
 									    	}else{
 									    		layer.msg("获取数据错误");
 									    	}
@@ -131,15 +201,7 @@ define(function(require, exports, module) {
 					});
 		         
 		        });
-		        //弹出框选择操作效果
-		        $(".click").click(function() {
-		          $(this).parents(".lump").find(".click").removeClass("normal");
-		          $(this).addClass("normal")
-		        });
-		        //关闭弹出层
-		        $('.confirm').click(function() {
-		          layer.close(layer.index);
-		        });
+		       
 			}
 	});
 });

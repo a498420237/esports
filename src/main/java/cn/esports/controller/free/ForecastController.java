@@ -40,5 +40,9 @@ public class ForecastController extends BaseController {
 	public JSONObject getLotteryInfo(@RequestParam Map<String, String> uriVariables){
 		return forecastService.getLotteryInfo(uriVariables);
 	}
+	@RequestMapping(value="/forecast/addLotteryInfo", method = RequestMethod.GET)
+	public JSONObject addLotteryInfo(@RequestParam Map<String, String> uriVariables){
+		return forecastService.addLotteryInfo(uriVariables);
+	}
 	
 }

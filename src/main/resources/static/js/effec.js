@@ -115,6 +115,10 @@ $(".tcdz").click(function(){
 		});
 
 
+
+
+
+
 //我的战队-身份验证
 $("").click(function(){
 			$(".popsfyz").fadeIn();			
@@ -130,28 +134,18 @@ $("").click(function(){
 
 
 //我的战队-入队申请
-$(".playapply").click(function(){
+$(".team .playapply").click(function(){
+			$(".poprdsq").fadeIn();
 
-			$(".poprdsq").fadeIn();			
-
-		});	
+		});
 	$(".pubclose").click(function(){
-	
-			$(".poprdsq").hide();			
+
+			$(".poprdsq").fadeOut();
 
 		});
 
 
 //我的战队-身份验证提示
-$("").click(function(){
-			$(".teamconyz").fadeIn(500);			
-
-		});	
-	$(".pubclose").click(function(){
-	
-			$(".teamconyz").hide(500);			
-
-		});
 
 
 
@@ -201,7 +195,7 @@ $(".btncre").click(function(){
 			$(".poplogind").fadeIn(2000);			
 
 		});	
-	$(".blacbg").click(function(){
+	$(".pubclose").click(function(){
 	
 			$(".poplogind").fadeOut(2000);			
 
@@ -212,7 +206,7 @@ $(".btncre").click(function(){
 			$(".poplogin").fadeIn();			
 
 		});	
-	$(".blacbg").click(function(){
+	$(".pubclose").click(function(){
 	
 			$(".poplogin").fadeOut();			
 

@@ -27,14 +27,13 @@ define(function(require, exports, module) {
 						success : function(json) {
 							debugger;
 							if(json.code==200){
-								window.location.reload();
-								//alert("保存成功");
-								/*$("#block2").fadeOut(300);
-								setTimeout(function() {
-									$("#block1").fadeIn();
-								}, 300);*/
+								
+								layer.msg("修改成功",function(){
+									window.location.reload();
+								});
+								
 							}else{
-								alert(json.msg);
+								layer.msg(json.msg);
 							}
 						}
 					});
@@ -55,7 +54,7 @@ define(function(require, exports, module) {
 					$("#block2").fadeIn();
 				}, 300);
 			})
-			//弹框
+			/*//弹框
 			$("#bind").on("click",function(){
 				$(".dialog").fadeIn();
 			})
@@ -108,7 +107,7 @@ define(function(require, exports, module) {
 		        if(_con.is(e.target) && _con.has(e.target).length === 0){ 
 		           	$(_con).fadeOut();
 		        }
-		    });
+		    });*/
 			}
 	});
 });

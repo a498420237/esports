@@ -47,6 +47,9 @@
                          <ul class="z_Video_list" id="live_list">
                          </ul>
                         </div>
+                         <div class="z_pager">
+                 <ul id="pageContainer"></ul>
+               </div>
                     </div>
                 </div>
             </div>
@@ -83,8 +86,14 @@
     {{each result }}
      <span><img src="/images/news_gamepic01.png" alt="{{$value.id}}">{{$value.channelName}}</span>
     {{/each}}
-  <input type="text" class="z_search right" id="search_live_btn" placeholder="WCG主舞台"> 
-   <button id="searchMessage" class=""><img src="/images/news_searchicon.png"/></button>
+     <div class="search_div">
+                <div class="search_input">
+                    <input id="contentKey" type="text" placeholder="请输入搜素关键字"/>
+                    <button id="searchMessage"><img src="/images/news_searchicon.png"/></button>
+                </div>
+            </div>
+<!--   <input type="text" class="z_search right" id="search_live_btn" placeholder="WCG主舞台"> 
+   <button id="searchMessage" class=""><img src="/images/news_searchicon.png"/></button> -->
 </textarea>
 
 </body>

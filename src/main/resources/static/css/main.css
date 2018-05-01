@@ -1284,9 +1284,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{backg
 .z_pager  ul li a{background-color: #393f46; color:#efefef;border:1px solid #393f46; border-radius: 4px; margin: 0px 2px; padding:0px 14px; line-height: 34px; display: block; }
 .z_pager  ul li a:hover{color:#ffc000; border:1px solid #ffc000;background: #393f46; }
 .z_pager .pagination{padding-bottom: 2px;}
-.z_pager  ul  > .active{border:1px solid #ffc000;}
 .z_pager  ul .active > a:focus{color:#ffc000; border-color:#ffc000;background: #393f46;}
-
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{color:#ffc000; border:1px solid #ffc000;background: #393f46;}
 

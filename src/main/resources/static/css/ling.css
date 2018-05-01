@@ -31,7 +31,7 @@
 .hotvedio > h3 span{font-size: 12px; font-family: arial; float: right;color: #cccccc;margin-right: 20px;}
 .hotvedio ul{width: 100%; padding:20px;}
 .hotvedio ul li{width: 100%;margin-bottom: 20px;clear: both; overflow: hidden;}
-.hotvedio ul li img{margin-right: 20px;float: left;}
+.hotvedio ul li img{margin-right: 20px;float: left; width: 170px; height:96px; }
 .hotvedio ul li .vediotext{float: left;}
 .hotvedio ul li .vediotext > h3{font-size: 12px; color: #fefefe; line-height: 30px; text-align: left;}
 .hotvedio ul li .vediotext p{font-size: 10px; color: #999999; line-height: 24px; margin-bottom: 14px;}
@@ -59,7 +59,7 @@
 .secwrap .secrightwrap{width: 688px;float: left; background: #31363a;margin-top: 18px;}
 
 .matchtit{padding-left: 20px; z-index:9px;cursor: pointer;  position:relative;font-size: 15px; color: #cccccc; background: #2e3035; height: 52px; }
-.matchtit .popmatch{display: none;padding:0px 18px;width: 48px; height: 182px; float:left;position: absolute;top:52px;overflow: hidden; background: #393f46; }
+.matchtit .popmatch{display: none;padding:0px 18px;width: 48px; height: 182px; float:left;position: absolute;top:52px;overflow: hidden; background: #393f46; z-index: 99; }
 .matchtit .popmatch li{width:100%; border-bottom: 1px solid #484d54; line-height: 34px; text-align: center; color: #999999; font-size: 12px;}
 .matchtit .popmatch li:last-child{width:100%; border-bottom: none; }
 .matchtit img{margin-left: 6px;}

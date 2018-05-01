@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Language" content="zh-CN">
 <meta name="Keywords" content="">
 <meta name="Description" content="">
-<link rel="stylesheet" href="/css/bootstrap.min.css" />
+
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>	
 <link rel="stylesheet" type="text/css" href="/css/swiper.min.css"/>
 <link href="/css/main.css" rel="stylesheet">
@@ -76,7 +76,7 @@ window.onload = function(){
   		<a href="/competition/infoIndex/$id$?totalPrize=$totalPrize$&prizeType=$prizeType$&totalMumber=$totalMumber$&endTime=$endTime$" 
   			class="list_item $matchStatusClass$ odd">
   			<div class="img fl">
-  				<img src="$matchPic$"/>
+  				<img src="$matchPic$"   onerror="this.src='/images/detail1.jpg;this.onerror=null'"/>
   			</div>
   			<div class="item_detail">
   				<h4>$matchName$</h4>

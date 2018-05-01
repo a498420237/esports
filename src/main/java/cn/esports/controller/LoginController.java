@@ -55,9 +55,22 @@ public class LoginController extends BaseController {
 	public boolean isLogin() {
 		return SessionUtil.isLogin();
 	}
+	@RequestMapping(value = "/isLoginOrUser")
+	public JSONObject isLoginOrUser() {
+		
+		if(SessionUtil.isLogin()) {
+			return JSONObject.parseObject(SessionUtil.getCurUser(),JSONObject.class);
+		}else {
+			JSONObject result=new JSONObject();
+			result.put("code", 0);
+			return result;
+		}
+		
+	}
 	@RequestMapping(value = "/loginOut")
-	public void loginOut(String mobile) {
+	public ModelAndView loginOut(String mobile) {
 		SecurityUtils.getSubject().logout();// 覆盖登录
+		return new ModelAndView("login");
 	}
 	
 }

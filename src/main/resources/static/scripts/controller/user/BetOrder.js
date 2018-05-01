@@ -19,9 +19,9 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 15,"dateType":dateType
+							"limit" : 3,"dateType":dateType
 					};
-			
+			debugger;
 					$.ajax({
 						url : "/user/BetOrder/list",
 						datatype : 'json',

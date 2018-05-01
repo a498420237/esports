@@ -9,7 +9,7 @@ define(function (require, exports, module) {
              var liveName = "";
             $("#live_list").paginator({
                 itemTemplateId: 'liveList_template',
-                pageNavId: '',
+                pageNavId: 'pageContainer',
                 usepager: true,
                 useSeniorTemplate:true,
                 ajaxFuc: function (curentPage, renderHtml) {
@@ -17,8 +17,9 @@ define(function (require, exports, module) {
                         "offset": curentPage,
                         "limit": 6
                     };
+                    var page=curentPage;
                     gameId=$("#title_list span.active").find("img").attr("alt");
-                    liveName=$("#search_live_btn").val();
+                    liveName=$("#contentKey").val();
                     if(gameId!=""){
                     	data.gameId = gameId;
                     }
@@ -33,7 +34,12 @@ define(function (require, exports, module) {
                         success: function (json) {
                         	debugger;
                             var data = json.t;
-                            renderHtml(data);
+                            var paramObj = {
+    								total : data.total,
+    								offset : page,
+    								result : data.result
+    							};
+                            renderHtml(paramObj);
                         }
                     });
                 }

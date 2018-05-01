@@ -40,7 +40,7 @@ public class BetOrderController extends BaseController {
 
 	@RequestMapping(value="/user/BetOrder/saveBet", method = RequestMethod.GET)
 	public JSONObject saveBet(@RequestParam Map<String, String> uriVariables){
-		return betOrderService.saveBet("",uriVariables);
+		return betOrderService.saveBet(uriVariables);
 	}
 	
 	

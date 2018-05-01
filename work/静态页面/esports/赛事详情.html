@@ -53,7 +53,7 @@
 				<a class="leftBorder" href="page3"><p>赛程图</p></a>
 				<a class="leftBorder" href="page4"><p>比赛奖励</p></a>
 				<a class="leftBorder" href="page5"><p>赛事进程</p></a>
-				<a class="leftBorder" href="page6"><p>我要报名<span>(20钻石/1次)</span><i><img src="images/hoticon.png"/></i></p></a>
+				<div class="leftBorder appl" ><p id="bm">我要报名<span>(20钻石/1次)</span><i><img src="images/hoticon.png"/></i></p></div>
 			</div>
 			<div class="saishi_jianjie bg-black m-t-15">
 				<div class="mianbaoxie color-glod">
@@ -327,8 +327,11 @@
 		</div>
 
 	</div>
-	<div class="mengbanDiv show">
+	<div class="mengbanDiv">
 		<div class="baomingPay">
+			<div class="pubclose">
+			<img src="images/closeico.png">
+		</div>
 			<div class="pay_con">
 				<span class="fl">赛事</span><p class="fr">英雄联盟总决赛</p>
 			</div>
@@ -442,7 +445,16 @@ $(".swiper-container2").Swiper({
 //		
 //		})
 
-		
+	$(".pege_nav #bm").click(function(){
+        $(".mengbanDiv").show();
+      
+      });	
+
+
+	 $(".pubclose").click(function(){
+        $(".mengbanDiv").hide();
+        return false;
+      });	
 		
 		
 

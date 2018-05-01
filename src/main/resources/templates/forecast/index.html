@@ -40,52 +40,68 @@ window.onload = function(){
               </div>
       </div>
       <div class="clear"></div>
-      <div class="z_models">
-       <div class="pubclose">
-              <img src="/images/closeico.png">
-            </div>
-            <div class="title m-t-20">TI7国际邀请赛 半决赛 BO3</div>
-            <div class="subtitle m-t-10">第二场胜利</div>
+         <textarea id="z_modelsTemplate" style="display:none;">
+          <div class="z_models">
+             {{each result}}
+            <div class="title m-t-20">{{$value.lotteryName}}</div><input type="hidden" id="lotteryId" value="{{$value.lotteryId}}" >
+             {{each $value.handicapListInfos}}
+            <div class="subtitle m-t-10">{{$value.handicapType}}<input type="hidden" id="roundId" value="{{$value.handicapId}}" ></div>
             <div class="lump">
               <div class="flex1 wid25">
-                <img src="/images/comde_sclpic.png" alt="" width="55" height="55">
-                <span class="imgT">Newbee</span></div>
+                <img src="{{$value.redImg}}" onerror="this.src='/images/comde_sclpic.png;this.onerror=null'" alt="" width="55" height="55">
+                <span class="imgT">{{$value.redQuiz}}</span></div>
               <div class="flex1 wid25 score">
-                <span class="cred">0.89</span></div>
+                <span class="cred">{{$value.redOdd}}</span></div>
               <div class="flex1 wid25 score">
-                <span class="cgreen1">1.12</span></div>
+                <span class="cgreen1">{{$value.blueOdd}}</span></div>
               <div class="flex1 wid25">
-                <img src="/images/com_scrpic.png" alt="" width="55" height="55">
-                <span class="imgT">LGD</span></div>
+                <img src="{{$value.blueImg}}"  onerror="this.src='/images/com_scrpic.png;this.onerror=null'"alt="" width="55" height="55">
+                <span class="imgT">{{$value.blueQuiz}}</span></div>
             </div>
-            <div class="lump">
+            <div class="lump" id="quizTeamType">
               <div class="width100 left">
-                <a href="javascript:void(0)" class="click normal">竞猜</a></div>
+                <a href="javascript:void(0)" class="click clicktype normal" name="0">竞猜</a></div>
               <div class="ccc font18 center left width100" style="line-height: 36px; margin:0px 15px">VS</div>
               <div class="right width100" style="float: right">
-                <a href="javascript:void(0)" class="click">竞猜</a></div>
+                <a href="javascript:void(0)" class="click clicktype" name="1">竞猜</a></div>
               <div class="clear"></div>
             </div>
             <div class="lump">
               <div class="width100 left">
-                <span class="click normal">100</span></div>
+                <span class="click clickNumber normal">100</span></div>
               <div class="width100 left" style="margin:0px 15px">
-                <span class="click">500</span></div>
+                <span class="click clickNumber">500</span></div>
               <div class="width100 right" style="float: right">
-                <span class="click ">1000</span></div>
+                <span class="click clickNumber ">1000</span></div>
               <div class="clear"></div>
             </div>
+            {{/each}} 
             <div class="lump m-t-10">
-              <input type="text" placeholder="输入投注额度"></div>
+              <input type="text" placeholder="输入投注额度" id="quizMoney"></div>
             <div class="lump m-t-5">
               <span class="font15 c999">可用额度：
-                <img src="/images/dimandicon.png" width="15" alt="">100</span></div>
+               {{if ($value.goldType==0)}}
+                <img src="/images/home_money.png" width="15" alt=""> {{$value.gold}}</span>
+                {{else}}
+                  <img src="/images/dimandicon.png" width="15" alt=""> {{$value.diamond}}</span>
+               {{/if}}
+               </div>
             <div class="lump m-t-5">
-              <span class="font15 c999">预估收益：
-                <img src="/images/dimandicon.png" width="15" alt="">89</span></div>
+              <span class="font15 c999">预估收益：<input type="hidden" id="goldType" value="{{$value.goldType}}" >
+              {{if ($value.goldType==0)}}
+                <img src="/images/home_money.png" width="15" alt="">
+                {{else}}
+                  <img src="/images/dimandicon.png" width="15" alt="">
+               {{/if}}
+               <strong id="estimate"></strong>
+               </span>
+                </div>
             <div class="lump m-t-10">
               <input type="button" value="确定" class="confirm"></div>
+        	{{/each}} 
           </div>
+         </textarea>
+     
    </div>
  </div>
 </div>
@@ -134,7 +150,7 @@ window.onload = function(){
                     {{if($value.status==2 || $value.status==4)}}
                    			<a href="javascript:void(0)" class="text noClick" > 赔率：{{$value.redOdd}}</a>
                     {{else}}
-                    <a href="javascript:void(0)" class="text odds" name="{{$value.lotteryId}}">赔率：{{$value.redOdd}}</a>
+                    <a href="javascript:void(0)" class="text odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.redOdd}}</a>
                     {{/if}}
                      </div>
                     <div class="flex1">
@@ -153,7 +169,7 @@ window.onload = function(){
                      {{if($value.status==4 || $value.status==2)}}
                    		<span class="text text-left noClick">赔率：{{$value.blueOdd}}</span>
                     {{else}}
-                    <span class="text text-left odds" name="{{$value.lotteryId}}">赔率：{{$value.blueOdd}}</span>
+                    <span class="text text-left odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.blueOdd}}</span>
                     {{/if}}
                     </div>
                   </li>
