@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心-我的战队</title>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/personal.css">
+	<link rel="stylesheet" href="/css/zyx_forecast.css">
+	<link rel="stylesheet"	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous" />
+	<script src="/js/jquery.1.11.3.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="topWrap">
+	<div th:include="/include :: topWrap" ></div>
+</div>
+<div class="data">
+	<div class="content">
+		<div class="tit">个人中心</div>
+		<div class="cont">
+			<div class="lt">
+				<ul>
+					<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
+					<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+					<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+					<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
+					<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+					<li><a href="/user/PersonalWealth" class="select"><div class="ic ic6"></div><span>消费记录</span></a></li>
+					<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+					<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>
+				</ul>
+			</div>
+			<div class="team">
+				<div class="table_head overflow_hide color-glod ">
+					<h3><span>我的战队</span> <img src="/images/dyh.png"> <span class="oran">战队详情</span></h3>
+
+				</div>
+				<div class="list my" id="teamInfo">
+				</div>
+            <div class="historyTable">
+				<div class="table_box show">
+					<ul class="tabs clearfix">
+						<li class="active"><a href="#tab1">战队荣誉</a></li>
+						<li><a href="#tab2">战队成员</a></li>
+						<li><a href="#tab3">历史赛事</a></li>
+					</ul>
+				</div>
+				<div class="tab_container" style="display: block;">
+					<div id="tab1" class="tab_content" style="display: block; ">
+						<div id="tabNo1">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer1"></ul>
+						</div>
+					</div>
+					<div id="tab2" class="tab_content" style="display: none; ">
+						<div id="tabNo2">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer2"></ul>
+						</div>
+					</div>
+					<div id="tab3" class="tab_content" style="display: none; ">
+						<div id="tabNo3">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer3"></ul>
+						</div>
+					</div>
+            </div>
+
+			</div>
+	</div>
+	</div>
+	</div>
+</div>
+<div class="botwrap">
+	<div th:include="/include :: botwrap"></div>
+	<textarea id="itemTemplate"  style="display:none;">
+						<div class="block1">
+						<img src="{{troopsUrl}}" style="width: 46px;height: 49px;">
+						<p>{{troopsName}}</p>
+					</div>
+					<div class="block2">
+						<p class="color-fff">{{troopsManifesto}}</p>
+						<div class="info">
+							{{if (gameType==1 )}}
+	                                        <span>王者荣耀</span>
+	                        {{else if((gameType==2))}}
+	                                        <span>绝地求生</span>
+	                        {{/if}}
+							 {{if (serverType==1 )}}
+	                                        <span>手游区</span>
+	                         {{else if((gameType==2))}}
+	                                        <span>微信区</span>
+	                         {{/if}}
+							<span>{{troopsNumbers}}/{{troopsNumberLimit}}</span>
+						</div>
+					</div>
+					<div class="zd-btn" id="addTeam" style="cursor:pointer;" onclick="addTeam()">申请加入</div>
+	</textarea>
+	<textarea id="teamHonor"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 46px;height: 49px;"></i>
+							<span class="text">{{$value.matchName}}</span>
+							<em>
+								{{if ($value.ranking == "冠军")}}
+	                                        <img src="/images/rank1icon.png" alt="">冠军
+	                            {{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank2icon.png" alt="">亚军
+								{{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank3icon.png" alt="">亚军
+								{{else}}
+	                                        {{$value.ranking}}
+	                             {{/if}}
+
+							</em>
+						</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamHistory"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 103px;height: 26px;">
+							</i>
+							<span class="text">{{$value.matchName}}</span>
+						</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamMember"  style="display:none;">
+	{{each result}}
+						<div class="players clearfix">
+						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+						<div class="area">
+										<!--{{if ($value.serverType==1 )}}
+	                                        <span>手游区</span>
+	                                    {{else if(($value.gameType==2))}}
+	                                        <span>微信区</span>
+	                                    {{/if}}-->
+							 <span>{{$value.serverType}}</span>
+						</div>
+						<div class="dan">{{$value.level}}</div>
+							{{if ($value.userId == captainId)}}
+	                                        <div class="position">队长</div>
+	                        {{/if}}
+					</div>
+    {{/each}}
+	</textarea>
+</div>
+<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script type="text/javascript">
+	seajs.use('/scripts/controller/user/warTeamInfo');
+</script>
+<script type="text/javascript" src="/js/jquery.select.js"></script>
+	<script type="text/javascript">
+		var id = GetRequest().id;
+		function GetRequest() {
+			var url = location.search; //获取url中"?"符后的字串
+			var theRequest = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for(var i = 0; i < strs.length; i ++) {
+					theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+				}
+			}
+			return theRequest;
+		}
+		function addTeam() {
+			var data={
+				"troopsId":id,
+				"remark":"申请入队"
+			};
+			//加入战队
+			$.ajax({
+				url : "/user/myWarTeam/addTeam",
+				datatype : 'json',
+				type : "get",
+				data : data,
+				success : function(json) {
+					var data = json.code;
+					if("0"==data){
+						alert(json.msg);
+					}else{
+						alert(json.msg);
+					}
+					location.reload();
+				}
+			});
+		}
+	</script>
+</body>
+</html>

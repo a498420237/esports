@@ -23,7 +23,12 @@ public class MyWarTeamController extends BaseController {
 
 	@Autowired
 	public MyWarteamService myWarteamService;
-
+	@RequestMapping(value="/user/warTeamInfo", method = RequestMethod.GET)
+	public ModelAndView myWarTeam(@RequestParam Map<String, String> uriVariables,@RequestParam String id) {
+		ModelAndView view =new ModelAndView("user/warTeamInfo");
+		view.addObject("id",id);
+		return  view;
+	}
 	@RequestMapping(value="/user/myWarTeam", method = RequestMethod.GET)
 	public ModelAndView forecast(@RequestParam Map<String, String> uriVariables) {
 		ModelAndView view =null;
@@ -45,7 +50,7 @@ public class MyWarTeamController extends BaseController {
 						view=new ModelAndView("user/myWarTeamWz");
 					}else {
 						//2 绝地求生
-						view=new ModelAndView("user/myWarTeamOneJd");
+						view=new ModelAndView("user/myWarTeamWz");
 					}
 
 				}else{
@@ -105,5 +110,35 @@ public class MyWarTeamController extends BaseController {
 	@RequestMapping(value="/user/myWarTeam/backTeam", method = RequestMethod.GET)
 	public JSONObject backTeam(@RequestParam Map<String, String> uriVariables){
 		return myWarteamService.backTeam("",uriVariables);
+	}
+
+	/**
+	 * 战队详情
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/teamInfo", method = RequestMethod.GET)
+	public JSONObject teamInfo(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.teamInfo("",uriVariables);
+	}
+
+	/**
+	 * 加入战队
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/addTeam", method = RequestMethod.GET)
+	public JSONObject addTeam(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.addTeam("",uriVariables);
+	}
+
+	/**
+	 * 新增 修改战队
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/editTeam", method = RequestMethod.GET)
+	public JSONObject editTeam(@RequestParam Map<String, String> uriVariables){
+		return myWarteamService.editTeam("",uriVariables);
 	}
 }

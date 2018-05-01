@@ -5,7 +5,6 @@
 	<title>个人中心-我的战队</title>
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/personal.css">
-	<link rel="stylesheet" href="/css/zyx_forecast.css">
 	<script src="/js/jquery.1.11.3.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
@@ -146,7 +145,7 @@
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 					</div>
-					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()">退出战队</div>
+					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
     {{/each}}
 	</textarea>
 	<textarea id="itemTemplate"  style="display:none;">
@@ -173,7 +172,7 @@
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 								</div>
-								<div class="zd-btn">申请加入</div>
+								<div class="zd-btn"  style="cursor:pointer;" onclick="goTeamInfo({{$value.id}})">申请加入</div>
 							</div>
                       </div>
     {{/each}}
@@ -268,6 +267,13 @@
 	}
 	function closeWin(wid) {
 		$("."+wid).hide();
+	}
+	function goTeamInfo(id) {
+		var curWwwPath = window.document.location.href;
+		//获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+		var pathName = window.document.location.pathname;
+		var pos = curWwwPath.indexOf(pathName);
+		window.location.href=window.document.location.href.substring(0, pos)+'/user/warTeamInfo?id='+id;
 	}
 </script>
 </body>
