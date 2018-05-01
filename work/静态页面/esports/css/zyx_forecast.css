@@ -21,15 +21,24 @@
 	background-color: #393f46;
 
 }
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{    z-index: 3;
+	color: #fff;
+	cursor: default;background-color:none;border:none;}
 .z_forecast_nav ul li a{
   display: block;
   text-align: center;
   font-size:16px;
+	color:#ffffff;
 }
 .z_forecast_nav ul li a.active{
 	color:#ffc000;
 }
+.z_forecast_nav ul li a:hover{
 
+	text-decoration: none;
+	color: #ffc000;
+}
 .z_forecast_con{
 	margin-top: 30px;
 	width:70%;
@@ -496,3 +505,19 @@ ul.z_Video_list li .z_shade{
 	margin:20px 0px;
 
 }
+
+
+.pubclose{position: fixed;
+right: 50%;
+top: 50%;
+z-index: 99999999999;
+margin-right: -240px;
+margin-top: -240px;}
+
+
+
+
+
+
+
+

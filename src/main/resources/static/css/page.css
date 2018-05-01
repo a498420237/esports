@@ -69,6 +69,7 @@
 .bg-black{background-color: #2e3035;}
 .bg-gray{background-color: #393f46;}
 .main_content{ padding: 15px 0px 50px; width: 1100px; margin: 0 auto;}
+.main_content .appl{width: 183px; float: left; box-sizing: border-box;position: relative;cursor: pointer;}
 .pege_nav{line-height: 60px;overflow: hidden;}
 .pege_nav a{width: 183px; float: left; box-sizing: border-box;position: relative;cursor: pointer;}
 .pege_nav a p{display: inline-block;color:#efefef;}
@@ -76,6 +77,13 @@
 .pege_nav a p span{position: absolute;left:0px;bottom: 7px;width:100%;text-align: center;display: block;color:#999; font-size: 12px;line-height: 12px;}
 .pege_nav a p i img{display: block;}
 .pege_nav a p i{position: absolute;left:50%;top:10px; margin-left: 32px;}
+
+.appl  p{display: inline-block;color:#efefef;}
+.appl .leftBorder{border-left: 1px solid #47484d;}
+.appl  p span{position: absolute;left:0px;bottom: 7px;width:100%;text-align: center;display: block;color:#999; font-size: 12px;line-height: 12px;}
+.appl  p i img{display: block;}
+.appl  p i{position: absolute;left:50%;top:10px; margin-left: 32px;}
+
 
 .saishi_jianjie .mianbaoxie{padding: 0px 50px; line-height: 35px;color:#efefef; font-size: 14px;}
 .saishi_jianjie .detail{padding: 25px 50px;}
@@ -179,8 +187,7 @@
 .status_detail .team p{line-height: normal;width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;position: absolute;bottom: -30px;left:50%; margin-left: -50px;color:#fff; font-size: 16px; text-align: center;}
 .status_detail .score{width: 120px;font-size: 28px;color:#fff;vertical-align: middle;}
 
-.mengbanDiv{display: none;z-index: 10;}
-.mengbanDiv.show{display: block;position: fixed;width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);left:0px;top:0px}
+.mengbanDiv{z-index: 10;display: none;position: fixed;width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);left:0px;top:0px;}
 .mengbanDiv .baomingPay{border-radius: 10px;width: 280px;padding: 25px; background-color: #393f46; background-color: #393f46;position: absolute;left:50%; top:30%; margin-left: -140px;}
 .mengbanDiv .baomingPay>.pay_con{display: block;color:#efefef;font-size: 16px;overflow: hidden;line-height: 35px; border-bottom: 1px solid #464c52;}
 .mengbanDiv .baomingPay>*+.pay_con{margin-top: 10px;}
@@ -209,17 +216,17 @@
 .list_box .list_item .img{width: 235px;height: 140px;}
 .list_box .list_item .img img{display: block;width: 235px;height: 140px;}
 .list_box .list_item .item_detail{height: 140px; margin-left: 260px;position: relative;}
-.list_box .list_item .item_detail  h4{font-size: 20px;font-family: "黑体";line-height: 1; padding:5px 0;color: #fff;}
-.list_box .list_item .item_detail .detail_con{position: absolute;left:0px;top:24px; line-height: 30px; margin-top: 12px;}
+.list_box .list_item .item_detail  h4{font-size: 20px;font-family: "黑体";line-height: 1; padding:5px 0;color: #fff;padding-top: 20px;}
+.list_box .list_item .item_detail .detail_con{position: absolute;left:0px;top:24px; line-height: 30px; margin-top: 30px;}
 .list_box .list_item .item_detail .detail_con p{color:#ccc; font-size: 14px;}
-.list_box .list_item .item_detail .detail_con p span{color:#ccc}
+.list_box .list_item .item_detail .detail_con p span{color:#ccc;    width: 200px; display: block;float: left;}
 .list_box .list_item .item_detail .detail_con p span.marg{margin-left: 50px;}
 .list_box .list_item .item_detail .detail_con p span i{margin-left: 10px;color:#ccc}
 .list_box .list_item.readying{ background-image: url(../images/complist_cbz.png);background-position: top right;background-repeat: no-repeat;}
 .list_box .list_item.baominging{background-image:url(../images/bmz.png);background-position: top right;background-repeat: no-repeat;}
 .list_box .list_item.runing{background-image:url(../images/jxz.png);background-position: top right;background-repeat: no-repeat;}
 .list_box .list_item.end{background-image:url(../images/complist_end.png);background-position: top right;background-repeat: no-repeat;}
-.list_box .list_item.odd{ background-color: #393f46;}
+.list_box a:nth-child(odd){ background-color: #393f46;}
 
 .saishi_nav .left_div{width: 65%;}
 .saishi_nav .search_div{width: 35%;text-align: right;padding-right: 50px;line-height: 60px;vertical-align: top;}
@@ -256,7 +263,7 @@
 .vedio_list a h4{line-height: 50px;color:#efefef; font-size: 18px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
 .vedio_list a p *{color:#999; font-size: 16px;}
 .vedio_list a p img{margin-right: 15px;position: relative;top:-1px}
-
+.pubclose{position:absolute;right: -40px; top:16px;z-index: 9999;}
 
 
 

@@ -2,8 +2,8 @@ define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
 		var isShow=true;
 		//获取列表数据
-		function seniorLoad(gameId){
-			debugger;
+		function seniorLoad(){
+			var gameId=$("#gemelist_left_nav").children().find(".active").attr("name");
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 							"offset" : curentPage,
 							"limit" : 2
 					};
-					if(gameId!=""){
+					if(gameId!="" && gameId!=0){
 						data.gameId=gameId;
 					}
 					$.ajax({
@@ -39,39 +39,6 @@ define(function(require, exports, module) {
 			}
 		}
 		
-		//获取列表数据
-		function load(gameId){
-			$("#list_content").paginator({
-				itemTemplateId : 'itemTemplate',
-				pageNavId : 'pageContainer',
-				usepager:true,
-				ajaxFuc : function(curentPage, renderHtml) {
-					var data={
-							"offset" : curentPage,
-							"limit" : 3
-					};
-					if(gameId!=""){
-						data.gameId=gameId;
-					}
-					$.ajax({
-						url : "/forecast/list",
-						datatype : 'json',
-						type : "get",
-						data : data,
-						success : function(json) {
-							var data = json.t;
-							var paramObj = {
-								total : data.total,
-								page : data.offset,
-								list : data.result
-							};
-							renderHtml(paramObj);
-							init();
-						}
-					});
-				}
-			});
-		}
 		//获取游戏类型
 		$("#gemelist_left_nav").paginator({
 			itemTemplateId : 'leftNavTemplate',
@@ -94,7 +61,7 @@ define(function(require, exports, module) {
 								renderHtml(paramObj);
 								$("#gemelist_left_nav").children().eq(0).find("a").attr("class","active");
 								
-								seniorLoad("");
+								seniorLoad();
 								init();
 					    	}else{
 					    		alert(json.msg);
@@ -109,8 +76,7 @@ define(function(require, exports, module) {
 			 $('.z_forecast_nav li a').on("click",function() {
 			     $('.z_forecast_nav li a').removeClass("active");
 			     $(this).addClass("active");
-			     var id=$(this).attr("name");
-			     seniorLoad(id);
+			     seniorLoad();
 			   });
 			   $('.z_list_con').on("click",function() {
 			     var _this = $(this);
@@ -125,16 +91,45 @@ define(function(require, exports, module) {
 			   });
 			   //赔率点击显示弹出框
 		        $('.odds').click(function() {
-		          layer.open({
-		            type: 1,
-		            title: false,
-		            shadeClose: true,
-		            shade: 0.5,
-		            closeBtn: 0,
-		            area: ['390px', '500px'],
-		            //宽高
-		            content: $('.z_models')
-		          })
+		        	var lotteryId=$(this).attr("name");
+		        	$.ajax({
+						url : "/isLogin",
+						datatype : 'json',
+						type : "get",
+						success : function(json) {
+							if(json){
+								$.ajax({
+									url : "/forecast/getLotteryInfo",
+									datatype : 'json',
+									type : "get",
+									data : {"lotteryId" : lotteryId,},
+									success : function(json) {
+										debugger;
+										if(json.code==200){
+											
+											 layer.open({
+										            type: 1,
+										            title: false,
+										            shadeClose: true,
+										            shade: 0.5,
+										            closeBtn: 1,
+										            area: ['400px', '510px'],
+										            //宽高
+										            content: $('.z_models')
+										          });
+									    	}else{
+									    		layer.msg("获取数据错误");
+									    	}
+									}
+								});
+								
+								
+						    	}else{
+						    		window.location.href="/login";
+						    	}
+						}
+					});
+		         
 		        });
 		        //弹出框选择操作效果
 		        $(".click").click(function() {

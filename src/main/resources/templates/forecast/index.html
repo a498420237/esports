@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>预测列表</title>
-      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+   
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/zyx_forecast.css">
-  
+ <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
 </head>
 <script>
 window.onload = function(){
@@ -52,7 +52,7 @@ window.onload = function(){
               <div class="flex1 wid25 score">
                 <span class="cgreen1">1.12</span></div>
               <div class="flex1 wid25">
-                <img src="images/com_scrpic.png" alt="" width="55" height="55">
+                <img src="/images/com_scrpic.png" alt="" width="55" height="55">
                 <span class="imgT">LGD</span></div>
             </div>
             <div class="lump">
@@ -76,10 +76,10 @@ window.onload = function(){
               <input type="text" placeholder="输入投注额度"></div>
             <div class="lump m-t-5">
               <span class="font15 c999">可用额度：
-                <img src="images/dimandicon.png" width="15" alt="">200</span></div>
+                <img src="/images/dimandicon.png" width="15" alt="">100</span></div>
             <div class="lump m-t-5">
               <span class="font15 c999">预估收益：
-                <img src="images/dimandicon.png" width="15" alt="">89</span></div>
+                <img src="/images/dimandicon.png" width="15" alt="">89</span></div>
             <div class="lump m-t-10">
               <input type="button" value="确定" class="confirm"></div>
           </div>
@@ -104,7 +104,8 @@ window.onload = function(){
                     		  <img src="/images/dimandicon.png" alt="">钻石竞猜
                     		{{/if}}
                     </span>
-                  <span>{{$value.lotteryName}}</span></div>
+                  <span>{{$value.lotteryName}}</span>
+                  </div>
                 <div class="z_list_con">
                   <div class="flex1">
                     <img src="{{$value.redImg}}" alt=""  onerror="this.src='/images/com_scrpic.png;this.onerror=null'" width="55" height="55">
@@ -127,27 +128,29 @@ window.onload = function(){
                 {{each $value.handicapListInfos}}
                   <li>
                      <div class="flex1 text-left relative">
-                    {{if($value.status==3 || $value.status==2)}}
-                   			<a href="javascript:void(0)" class="text noClick"> 赔率：{{$value.redOdd}}</a>
+                    {{if($value.status==2 || $value.status==4)}}
+                   			<a href="javascript:void(0)" class="text noClick" > 赔率：{{$value.redOdd}}</a>
                     {{else}}
-                    <a href="javascript:void(0)" class="text odds">赔率：{{$value.redOdd}}</a>
+                    <a href="javascript:void(0)" class="text odds" name="{{$value.lotteryId}}">赔率：{{$value.redOdd}}</a>
                     {{/if}}
                      </div>
                     <div class="flex1">
                      
-                      {{if ($value.status==0)}}
+                      {{if ($value.status==3)}}
                     	 <h1 class="cgreen">{{$value.handicapType}}</h1><small>竞猜中</small>
-                    		{{else if(($value.status==2))}}
+                    		{{else if($value.status==2)}}
                     		 <h1 class="cgreen">{{$value.handicapType}}</h1><small>流盘</small>
-                    		{{else}}
+                    		{{else if($value.status==4)}}
                     		 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
+                    		 {{else}}
+                    		  <h1 class="c999">{{$value.handicapType}}</h1><small>未知_{{$value.status}}</small>
                     	{{/if}}
                     	</div>
                     <div class="flex1 relative text-left">
-                     {{if($value.status==3 || $value.status==2)}}
+                     {{if($value.status==4 || $value.status==2)}}
                    		<span class="text text-left noClick">赔率：{{$value.blueOdd}}</span>
                     {{else}}
-                    <span class="text text-left odds">赔率：{{$value.blueOdd}}</span>
+                    <span class="text text-left odds" name="{{$value.lotteryId}}">赔率：{{$value.blueOdd}}</span>
                     {{/if}}
                     </div>
                   </li>

@@ -9,12 +9,12 @@
 .main_image li span {display:block; width:100%; height:394px}
 .main_image li a {display:block; width:100%; height:394px}
 .main_image li img{width: 716px;}
-#btn_prev,#btn_next{z-index:11111;position:absolute;display:block;width:73px!important;height:74px!important;top:50%;margin-top:-37px;display:none;}
+#btn_prev,#btn_next{z-index:11111;position:absolute;display:block;width:73px!important;height:78px!important;top:50%;margin-top:-37px;display:none;}
 #btn_prev{background:url(../images/hover_left.png) no-repeat left top;left:0px;}
 #btn_next{background:url(../images/hover_right.png) no-repeat right top;right:0px;}
 
 
-.hotnew{max-width: 390px;  background-color: #31363a;height: 394px;overflow:hidden;float: right;position: absolute;top:17px; right: -6px;}
+.hotnew{width: 390px;  background-color: #31363a;height: 394px;overflow:hidden;float: right;position: absolute;top:17px; right: -6px;}
 .hotnew h3{font-size: 15px; color:#cccccc; text-align: center;line-height: 46px; height: 46px; background-color: #2e3035;width: 100%;}
 .hotnew ul {width: 100%;}
 .hotnew ul li{width:100%;padding:16px 22px; font-size:12px; color: #efefef; line-height: 22px;border-bottom: 1px solid #3c4044; overflow: hidden;}
@@ -58,7 +58,7 @@
 
 .secwrap .secrightwrap{width: 688px;float: left; background: #31363a;margin-top: 18px;}
 
-.matchtit{padding-left: 20px;cursor: pointer;  position:relative;font-size: 15px; color: #cccccc; background: #2e3035; height: 52px; }
+.matchtit{padding-left: 20px; z-index:9px;cursor: pointer;  position:relative;font-size: 15px; color: #cccccc; background: #2e3035; height: 52px; }
 .matchtit .popmatch{display: none;padding:0px 18px;width: 48px; height: 182px; float:left;position: absolute;top:52px;overflow: hidden; background: #393f46; }
 .matchtit .popmatch li{width:100%; border-bottom: 1px solid #484d54; line-height: 34px; text-align: center; color: #999999; font-size: 12px;}
 .matchtit .popmatch li:last-child{width:100%; border-bottom: none; }
@@ -103,7 +103,7 @@
 .main_image1 li {width:100%; height:394px; padding-left: 76px;}
 .main_image1 li span {display:block; width:100%; height:394px}
 .main_image1 li a {display:block; width:100%; height:394px}
-#btn_prev1,#btn_next1{z-index:11111;position:absolute;display:block;width:73px!important;height:74px!important;top:30%;margin-top:-37px;display:none;}
+#btn_prev1,#btn_next1{z-index:11111;position:absolute;display:block;width:73px!important;height:78px!important;top:30%;margin-top:-37px;display:none;}
 #btn_prev1{background:url(../images/hover_left.png) no-repeat left top;left:0px;}
 #btn_next1{background:url(../images/hover_right.png) no-repeat right top;right:0px;}
 .main_image1 li dl{width: 150px; height:234px; float: left;  overflow: hidden; padding: 16px;}
@@ -115,13 +115,13 @@
 .redtxt{color: #ffba00;}
 .poplogin,.popmoney{position: absolute;width: 100%; height: 100%; top:0px;display: none;}
 .blacbg{width: 100%; height: 100%;position:fixed; background: #000;opacity: 0.5;z-index: 55; top:0px; left: 0px;}
-.poplocon{width: 264px; overflow: hidden;background:#393f46; padding-top: 30px; position:fixed; border-radius: 10px; height: 250px;  z-index:999; top:180px;margin-left: 50%;left: -133px;}
+.poplocon{overflow: hidden;width: 100%;}
 .poplocon img{display: block; margin:0 auto;margin-bottom: 20px;	}
 .poplocon p{ line-height: 50px; color: #efefef;font-size: 12px; text-align: center;	margin-top: -20px;	}
 .sucbtn{width: 240px; height: 38px;line-height: 38px; background: #fa2c3b;font-size: 14px; text-align: center;border-radius: 6px; margin:0 auto;}
 
 
-.popmocon{width: 330px;  overflow: hidden;background:#393f46;  position:fixed; border-radius: 10px; height: 250px;  z-index:999; top:180px;margin-left: 50%;left: -133px;}
+.popmocon{width: 330px;  overflow: hidden;background:#393f46;  position:fixed; border-radius: 10px; height: 250px;  z-index:999; top:50%;margin-top:-125px;left: 50%;margin-left: -165px;}
 .popmocon h4{border-bottom: 1px solid #494f55; position: relative; line-height: 36px;color: #494f55; padding-left: 20px; }
 .popmocon h4 .close{position: absolute;right:20px;color: #999999; top:14px;}
 .popmocon h2{ font-size: 18px; line-height: 58px; color: #efefef; text-align: center;margin-top: 10px;}
@@ -133,16 +133,18 @@
 
 .poplogind{position: absolute;width: 100%; height: 100%; top:0px;display: none;}
 .blacbg{width: 100%; height: 100%;position:fixed; background: #000;opacity: 0.5;z-index: 55; top:0px; left: 0px;}
-.poplocond{width: 264px; overflow: hidden;background:#393f46; padding-top: 30px; position:fixed; border-radius: 10px; height: 362px;  z-index:999; top:160px;margin-left: 50%;left: -133px;}
+.poplocond{width: 100%; overflow: hidden;}
 .poplocond img{display: block; margin:0 auto;margin-bottom: 20px;	}
-.poplocond p{ line-height: 18px; color: #999999;font-size: 10px; text-align: center;	margin-top: -10px; 	}
+.poplocond ul li i { text-align: left;color: #fa2c3b;width: 100%;clear: both;line-height: 30px;display: block;font-size: 10px; padding-left: 18px; } 
+
+.poplocond p{ line-height: 18px; color: #999999;font-size: 10px; text-align: center;	margin-top: 10px; 	}
 .poplocond .bltext{display: block;  color:#0096ff;text-align: center;line-height: 18px;}
 .loano p{margin-top: 20px; clear: both; font-size: 12px; color: #888888;}
 .loano p span{color: #454b52;}
 .loano > span {display: block;width:190px;margin:0 auto; margin-top: 20px;}
 .loano > span img{float: left; margin-right: 30px; margin-left:30px; }
 .poplocond ul{width: 100%;overflow: hidden;}
-.poplocond ul li{width: 100%; margin-bottom: 20px; text-align: center;}
+.poplocond ul li{width: 100%;  text-align: center;}
 .poplocond ul li input{width: 220px; height: 30px;line-height: 30px; border:1px solid #6b6b6b; padding-left: 10px; margin:0 auto;}
 .poplocond ul li .yzm{width: 142px; line-height: 30px;  margin-right: 6px;}
 .poplocond ul li span{padding: 8px 8px; font-size: 11px; background: #fa2c3b; line-height: 30px;height: 30px;  border-radius: 4px; color: #ffffff;}
@@ -162,7 +164,7 @@
 .crecont ul li:hover{color: #ffc000; border: 1px solid #ffc000;cursor: pointer;}
 .crecont > span{color: #999999; font-size: 16px;float: left; line-height: 36px;}
 .crecont ul li >span{font-size: 10px;display: block;clear: both;}
-.contwrapd{background: url(../images/home_bg.jpg) #1f1f1e no-repeat ; background-size: 100%; padding-top: 30px; padding-bottom: 30px;}
+.contwrapc{background: url(../images/home_bg.jpg) #1f1f1e no-repeat ; background-size: 100%; padding-top: 30px; padding-bottom: 30px;}
 
 .czfs > span{color: #999999; font-size: 16px;width:80px;float: left;margin-right:16px; line-height: 36px;}
 .yfje  p{color: #999999; font-size: 16px;width: 100%;float: left;margin-right: 2%; line-height: 36px;}
@@ -203,9 +205,10 @@
 .loanod > span {display: block;width:190px;margin:0 auto; margin-top: 10px;}
 .loanod > span img{float: left; margin-right: 30px; margin-left:35px; width: 24px; }
 
-
-
-
+/* 弹框 */
+.logdwrap{width: 264px; background:#393f46; padding-top: 30px; position:fixed; border-radius: 10px; height: 378px;  z-index:999; top:100px;margin-left: 50%;left: -133px;}
+.logmwrap{width: 264px; background:#393f46; padding-top: 30px; position:fixed; border-radius: 10px; height: 250px;  z-index:999; top:180px;margin-left: 50%;left: -133px;}
+.pubclose{position:absolute;right: -40px; top:16px;z-index: 9999;}
 
 
 

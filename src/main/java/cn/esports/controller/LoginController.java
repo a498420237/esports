@@ -51,10 +51,13 @@ public class LoginController extends BaseController {
 	    }
 		//return  jsonObject;
 	}
+	@RequestMapping(value = "/isLogin")
+	public boolean isLogin() {
+		return SessionUtil.isLogin();
+	}
 	@RequestMapping(value = "/loginOut")
 	public void loginOut(String mobile) {
-		SessionUtil.setSessionTimeout(-1);
-		SessionUtil.cleanSessionMap();
+		SecurityUtils.getSubject().logout();// 覆盖登录
 	}
 	
 }
