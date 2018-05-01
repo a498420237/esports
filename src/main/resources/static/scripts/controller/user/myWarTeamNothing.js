@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 					ajaxFuc : function(curentPage, renderHtml) {
 						var data={
 							"offset" : curentPage,
-							"limit" : 2,"gameType":dateId
+							"limit" : 5,"gameType":dateId
 						};
 
 						$.ajax({
