@@ -9,10 +9,24 @@ define(function(require, exports, module) {
 				if("active"!=className ){
 					if("wz" ==currency){
 						$("#create").hide();
+						/*$(".tab_content").show();
+						$(".tabs .clearfix").show();*/
+						$("#wz").show();
+						/*$("#tab1").show();
+						$("#tab2").show();
+						$("#tab3").show();*/
+
 						$("#teamInfo").show();
 						$(".historyTable").hide();
 						seniorLoad("teamInfoArea");
 					}else if("jd"==currency){
+						/*$(".tab_content").hide();
+						$(".tabs .clearfix").hide();*/
+						$("#wz").hide();
+					/*	$("#tab1").hide();
+						$("#tab2").hide();
+						$("#tab3").hide();*/
+
 						$("#create").show();
 						$("#teamInfo").hide();
 						$(".historyTable").show();
@@ -20,7 +34,7 @@ define(function(require, exports, module) {
 					}
 					var ind=$(this).index();
 					$(this).addClass("active").siblings().removeClass("active");
-					$(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");
+					//$(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");
 				}
 			})
 		});

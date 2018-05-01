@@ -30,23 +30,93 @@
 					<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>
 				</ul>
 			</div>
-			<div class="record">
+			<div class="team">
+				<!--创建战队-->
+				<div class="dialog" style="display: block;">
+					<div class="contuwrap">
+						<div class="pubclose">
+							<img src="/images/closeico.png" onclick="closeWin('dialog')">
+						</div>
+						<div class="cont">
+
+							<div class="upimg">
+								<span>上传战队图片</span>
+								<a href="javascript:;" class="file right">
+									<input type="file" name="" id="">
+								</a>
+							</div>
+							<div class="info1">
+								<p class="clearfix"><span>所属游戏</span><em>王者荣耀</em></p>
+								<p class="clearfix"><span>游戏区服</span>
+									<select class="right">
+										<option value="volvo">必选</option>
+										<option value="saab">Saab</option>
+										<option value="mercedes">Mercedes</option>
+										<option value="audi">Audi</option>
+									</select>
+								</p>
+								<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号"></p>
+								<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字"></p>
+							</div>
+							<div class="info1">
+								<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+								<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
+								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号"></p>
+								<p class="clearfix"><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
+								<div class="craat-btn">创建战队</div>
+								<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="table_head overflow_hide color-glod">
                     <div class="left fl">
                         <label  class="active" name="wz">王者荣耀</label>
                         <label name="jd">绝地求生大逃杀</label>
                     </div>
                         <div class="right fr mess">
-                            <label id="create" class="active" style="display: none;"><span>创建战队</span></label>
+                            <label id="create" class="active" style="display: none;" onclick="createTeam()"><span>创建战队</span></label>
                             <div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
                         </div>
 				</div>
 				<div class="list my" id="teamInfo">
 
 				</div>
-            <div class="historyTable">
-				<div class="list" id="teamList">
+            <div  style="display: block;" id="wz">
+				<div class="table_box show">
+					<ul class="tabs clearfix" style="display: block;">
+						<li class="active"><a href="#tab1">战队荣誉</a></li>
+						<li><a href="#tab2">战队成员</a></li>
+						<li><a href="#tab3">历史赛事</a></li>
+					</ul>
+				</div>
+				<div id="tab1" class="tab_content" style="display: block; ">
+					<div class="saishi">
+						<i><img src="images/team_lishi.png" alt=""></i>
+						<span class="text">MDL国际精英邀请赛</span>
+						<em><img src="images/rank1icon.png" alt="">冠军</em>
+					</div>
+				</div>
+				<div id="tab2" class="tab_content" style="display: none; ">
+					<div class="players clearfix">
+						<div class="captain"><img src="/images/person_avant.png"></div>
+						<div class="id"><p class="name">APP ID：娜米米娜</p><p>游戏ID：阿凡达星人</p></div>
+						<div class="area">微信区</div>
+						<div class="dan">无敌白银V</div>
+						<div class="position">队长</div>
+					</div>
+				</div>
+				<div id="tab3" class="tab_content" style="display: none; ">
+					<div class="saishi">
+						<i><img src="images/tplogo.png" alt="">
+						</i>
+						<span class="text">MDL国际精英邀请赛</span>
 
+					</div>
+				</div>
+			</div>
+			<div class="historyTable">
+				<div class="list" id="teamList">
 				</div>
                 <div class="z_pager">
                     <ul id="pageContainer"></ul>
@@ -119,56 +189,19 @@
 	</div>
 	<div class="alwr">
 		<div class="pubclose">
-			<img src="/images/closeico.png" onclick="closeWin()">
+			<img src="/images/closeico.png" onclick="closeWin('exitzd')">
 		</div>
 		<div class="credwrap">
 			<h3>确定退出战队？
 			</h3>
 			<p>
-				<a href="javascript:;" onclick="closeWin()">取消</a>
+				<a href="javascript:;" onclick="closeWin('exitzd')">取消</a>
 				<a href="">确定</a>
 			</p>
 		</div>
 	</div>
 </div>
-<!--创建战队-->
-<div class="dialog" style="display: none;">
-	<div class="contuwrap">
-		<div class="pubclose">
-			<img src="/images/closeico.png">
-		</div>
-		<div class="cont">
 
-			<div class="upimg">
-				<span>上传战队图片</span>
-				<a href="javascript:;" class="file right">
-					<input type="file" name="" id="">
-				</a>
-			</div>
-			<div class="info1">
-				<p class="clearfix"><span>所属游戏</span><em>王者荣耀</em></p>
-				<p class="clearfix"><span>游戏区服</span>
-					<select class="right">
-						<option value="volvo">必选</option>
-						<option value="saab">Saab</option>
-						<option value="mercedes">Mercedes</option>
-						<option value="audi">Audi</option>
-					</select>
-				</p>
-				<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号"></p>
-				<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字"></p>
-			</div>
-			<div class="info1">
-				<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
-				<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
-				<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号"></p>
-				<p class="clearfix"><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
-				<div class="craat-btn">创建战队</div>
-				<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
-			</div>
-		</div>
-	</div>
-</div>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script type="text/javascript">
@@ -176,15 +209,28 @@
 </script>
 <script type="text/javascript" src="/js/jquery.select.js"></script>
 <script type="text/javascript">
-    $(".fenye a").click(function(){
+	$(".tab_content").hide();
+	$(".tab_content:first").show();
+	$(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
-
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active");
+		$(this).addClass("active");
+		$(".tab_content").hide();
+		var activeTab = $(this).find("a").attr("href");
+		$(activeTab).fadeIn();
+		return false;
+	});
+	function createTeam() {
+		alert("1");
+		$(".dialog").show();
+	}
 	function tuchuTeam() {
 		$(".exitzd").show();
 	}
-	function closeWin() {
-		$(".exitzd").hide();
+	function closeWin(wid) {
+		$("."+wid).hide();
 	}
 </script>
 </body>

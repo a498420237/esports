@@ -251,13 +251,24 @@
 }
 .rt .dialog .cont{
 	width: 378px;
+	overflow: hidden;
+	
+}
+
+.rt .dialog .contwrapd{
+	width: 378px;
 	background: #393f46;
-	border-radius: 5px;
+	border-radius: 10px;
 	height: 440px;
-	margin: 15% auto;
+	
 	color: #fff;
-	font-size: 15.6px;
-	border-radius: 5px;
+	font-size: 16px;
+	position: fixed;
+	
+top: 50%;
+left: 50%;
+margin-top: -220px;
+margin-left: -200px;
 }
 .rt .dialog .tit{
 	font-size: 15.6px;
@@ -334,15 +345,17 @@
 	cursor: pointer;
 }
 .data .rt .file{
-	width: 78px;
-	height: 78px;
+	width: 126px;
+	height: 126px;
 	background-size: cover;
 }
 .data .rt .file:hover{
-	width: 78px;
-	height: 78px;
+	width: 126px;
+	height: 126px;
 	background-size: cover;
 }
+.data .rt .filed{width: 78px;height: 78px;background-size: cover;}
+.data .rt .filed:hover{width: 78px;height: 78px;background-size: cover;}
 .data .detail{
 	margin-top: 32px;
 	margin-left: 32px;
@@ -462,6 +475,36 @@
     cursor: pointer;
 }
 .data .file:hover {
+    background: url(../images/person_selpic.png) no-repeat;
+}
+.data .filed {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    background: url(../images/person_selpicgrey.png) no-repeat;
+    transition: all .3s;
+    overflow: hidden;
+    z-index: 9999;
+}
+.data .filed input {
+    position: absolute;  
+    font-size: 13px;  
+    width: 100%;  
+    padding: 0;  
+    left: 0;  
+    margin: 0;  
+    filter:alpha(opacity=0);  
+    -moz-opacity:0;  
+    opacity:0;   
+    height: 100%;  
+    top: 0;  
+    cursor: pointer;
+}
+.data .filed:hover {
     background: url(../images/person_selpic.png) no-repeat;
 }
 .data .up-img{
@@ -835,7 +878,7 @@ text-align: center;
 margin-left:10px;
 }
 
-.quiz  .select_ul li,,.record .select_ul li{
+.quiz  .select_ul li,.record .select_ul li{
 line-height: 36px;
 text-indent: 10px;
 }
@@ -962,6 +1005,7 @@ color: #ffc000;
 }
 .team .list{
 	height: 122px;
+	width: 100%;
 }
 
 .team .block1{
@@ -1023,14 +1067,10 @@ color: #ffc000;
 	display: none;
 }
 .team .dialog .cont{
-	width: 563px;
-	background: #393f46;
-	border-radius: 5px;
-	height: 700px;
-	margin: 2% auto;
-	color: #fff;
-	font-size: 15.6px;
-	border-radius: 5px;
+width: 100%;
+height: 500px;
+overflow-y: scroll;
+
 }
 .team .dialog .upimg{
 	line-height: 99px;
@@ -1079,6 +1119,7 @@ color: #ffc000;
 .team .info1 em,.team .info1 select,.team .info1 input{
 	float: right;
 }
+.team .info1  .yzacces{width: 200px;}
 .team .info1 input{
 	background: none;
 	border: none;
@@ -1088,6 +1129,7 @@ color: #ffc000;
 	color: #999;
 	line-height: 30px;
 	height: 30px;
+	width: 360px;
 }
 .team .info1 select{
 	background: none;
@@ -1130,6 +1172,7 @@ color: #ffc000;
 	color: #999;
 	line-height: 1em;
 	margin-top: 15px;
+	margin-bottom: 20px;
 }
 .team .info1 .agreement em{
 	color: #62ccdf;
@@ -1450,16 +1493,25 @@ font-size: 14px;
 	z-index: 9999;
 }
 .rt .dialog1 .cont1,.rt .dialog2 .cont2,.rt .dialog3 .cont3{
+	width:100%;
+	overflow: hidden;
+}
+
+.rt .dialog1 .cont1wrap,.rt .dialog2 .cont2wrap,.rt .dialog3 .cont3wrap{
 	width: 256px;
 	background: #393f46;
-	border-radius: 5px;
 	height: 250px;
 	margin: 15% auto;
 	color: #fff;
 	font-size: 15.6px;
-	border-radius: 5px;
-	overflow: hidden;
+	border-radius: 10px;
+	position: relative;
+
+
 }
+
+
+.cont3wrap{}
 .rt .tk-logo{
 	text-align: center;
 	margin:20px 0 20px;
@@ -1517,11 +1569,23 @@ font-size: 14px;
 
 
 
+.exittcdz{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.poprdsq{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.popwrit{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.exitzd{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.exitzydz{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.popsfyzm{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.popsfyz{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.popsfyz .alwr{position: fixed;width: 384px;height: 240px;border-radius: 10px;left: 50%; margin-left: -192px; top: 50%;margin-top:-140px; background: #31363a;}
+.popsfyz .credwrap{overflow: hidden;}
 
 
-.popwrit,.exitzd,.exitzydz,.popsfyzm,.teamconyz,.poprdsq{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: block;z-index: 999;}
-.popwrit .alwr{position: absolute;width: 384px;height: 600px;border-radius: 10px;margin-left: 50%; left: -190px; margin-top: 26%;top:-310px; background: #31363a;}
+.teamconyz{position: fixed;top:0px;width: 100%;height: 100%;left: 0px;display: none;z-index: 999;}
+.teamconyz .alwr{position: fixed;width: 384px;height: 280px;border-radius: 10px;left: 50%; margin-left: -192px; top: 50%;margin-top:-140px; background: #31363a;}
+.popwrit .alwr{position: fixed;width: 384px;height: 600px;border-radius: 10px;left: 50%; margin-left: -192px; top: 50%;margin-top:-300px; background: #31363a;}
 .blacbg{width: 100%; height: 100%;background: #000;opacity: 0.5; }
+.teamconyz .credwrap{overflow: hidden;width: 384px;height: 280px;border-radius: 10px;}
+
 .popwrit .credwrap{overflow: hidden;width: 384px;height: 600px;border-radius: 10px;}
 .pubclose{position:absolute;right: -40px; top:16px;z-index: 9999;}
 .firwr{background: #393f46;width: 100%;overflow: hidden;}
@@ -1531,9 +1595,7 @@ font-size: 14px;
 .firwcon h4 span{font-size: 14px;color: #efefef;}
 .firwcon p{padding-left: 20px;margin-left: 30px;  background: url(../images/dotico.png)4px 6px  no-repeat; color: #ccc; font-size: 12px; line-height: 24px;}
 .popwrit .infod{padding:20px 30px;background: #393f46;margin-top: 10px; padding-bottom: 80px; }
-
-
-
+.teamconyz .infod{padding:20px 30px;background: #393f46;margin-top: 10px; padding-bottom: 80px; }
 .popwrit .infod p{
 	width: 100%;
 
@@ -1633,16 +1695,18 @@ color: #999999; font-size: 12px;
 
 
 
+.exitzd .alwr{width: 386px; height:190px; border-radius: 10px; position: absolute;left: 50%; margin-left: -190px; top: 50%;margin-top:-95px; background: #31363a;}
 
-
-.exitzd .alwr ,.exittcdz .alwr,.exitzydz .alwr{width: 386px; border-radius: 10px; position: absolute;margin-left: 50%; left: -190px; margin-top: 40%;top:-310px; background: #31363a;}
+.exitzydz .alwr{width: 386px; height:200px; border-radius: 10px; position: fixed;left: 50%; margin-left: -190px; top: 50%;margin-top:-100px; background: #31363a;}
 .exitzd  .credwrap,.exittcdz .credwrap,.exitzydz .credwrap{width: 100%;overflow: hidden;}
 .exitzd  .credwrap h3,.exittcdz .credwrap h3,.exitzydz .credwrap h3{line-height: 130px; color: #efefef;font-size: 18px; text-align: center;}
 .exitzd  .credwrap p a, .exitzydz .credwrap p a{display: block;width: 50%;float: left; line-height: 60px; text-align: center; border-left: 1px solid #42484f;border-top: 1px solid #42484f;margin-left: -1px; color: #ccc; font-size: 18px;}
+.teamconyz  .credwrap p a{display: block;width: 50%;float: left; line-height: 60px; text-align: center; border-left: 1px solid #42484f;border-top: 1px solid #42484f;margin-left: -1px; color: #ccc; font-size: 18px;}
+.exittcdz  .credwrap p a{display: block;width: 50%;float: left; line-height: 60px; text-align: center; border-left: 1px solid #42484f;border-top: 1px solid #42484f;margin-left: -1px; color: #ccc; font-size: 18px;}
 
 .popsfyz .infod{width: 100%;overflow: hidden;}
 .popsfyz .infod h3{ line-height: 60px; height: 60px;font-size: 18px; text-align: center;color: #efefef;}
-
+.exitzydz  .credwrap p a{width:100%;display:block;}
 
 .popsfyz .infod span{
 	float: left;font-size: 14px; color: #cccccc;
@@ -1687,7 +1751,7 @@ color: #999999; font-size: 12px;
 
 .popsfyz .infod .craat-btn{display: block;width: 100%;line-height: 60px; text-align: center;border-top: 1px solid #42484f; color: #ccc; font-size: 18px;margin-left: -1px; margin-top: 40px;}
 
-
+.teamconyz .alwr .credwrap h3{font-size:18px;line-height:60px; text-align:center;color:#fff;}
 .teamconyz .credwrap h3{clear: both;line-height: 60px;}
 .teamconyz .credwrap{overflow: hidden;border-radius: 10px; }
 .teamconyz .credwrap p{padding-right: 10px;}
@@ -1703,8 +1767,8 @@ max-height: 50px; z-index: 99; border-radius: 30px;position: absolute; top: 6px;
 
 .messd i{color: #ccc; font-size: 16px; }
 .messd i span{color:#fa4a4a;font-size: 16px;margin-left: 4px;}
-.playerwr{width: 750px; height: 910px; border-radius: 10px; position: absolute;margin-left: 50%; left: -390px; margin-top: 10%;top:-310px; background: #31363a;}
-.playerwrap{width: 100%;overflow: hidden;width: 750px; height: 910px; border-radius: 10px;
+.playerwr{width: 750px; height: 600px; border-radius: 10px; position: absolute;left: 50%; margin-left: -360px; top: 50%;margin-top:-325px; background: #31363a;}
+.playerwrap{width: 100%;overflow-y: scroll;width: 750px; height: 600px; border-radius: 10px;
 	font-size: 14px;}
 .playerwrap .players{
 
@@ -1720,21 +1784,36 @@ max-height: 50px; z-index: 99; border-radius: 30px;position: absolute; top: 6px;
 .playerwrap .players div:nth-child(2){width: 180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;margin-top: 0px;line-height: 40px;}
 .playerwrap .players div:nth-child(3){width: 150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;margin-top: 30px;}
 .playerwrap .players div:nth-child(4){width: 150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;margin-top: 30px;}
-.playerwrap .players div:nth-child(5){width: 100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;margin-top: 10px;}
+.playerwrap .players div:nth-child(5){width: 100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;margin-top: -40px; float:right}
 
 .playerwrap .players div{
 	float: left;
 }
 
 
-.viewmatch{color: #888888; text-align: center; margin-top: 40px;}
+.viewmatch{color: #888888; text-align: center; margin-top: -10px; line-height:50px; cursor: pointer;}
 
 .playerwrap  h3{line-height: 60px; text-align: center;font-size: 18px; color: #fff; background: #2f3035; height: 60px;}
+.contuwrap{width: 563px;
+background: #393f46;
+border-radius: 5px;
+height: 500px;
+color: #fff;
+font-size: 15.6px;
+border-radius: 10px;
+top: 50%;
+margin-top: -250px;
+position: absolute;
+left: 50%;
+margin-left: -280px;}
 
 
 
 
 
+.team .block1 i{width: 50px;height: 50px; overflow: hidden; display: block;margin-left: 50px;}
+.team .block1 i img{width: 100%;}
+.team .block2 p{height: 26px; overflow: hidden;}
 
 
 
