@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <title>视频直播</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/zyx_forecast.css">
     <link rel="stylesheet" href="/css/idangerous.swiper2.7.6.css">
     <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/personal.css">
+    <link rel="stylesheet" href="/css/page.css">
 </head>
 <script>
-window.onload = function(){
-	$(".nav a").each(function(){
-		$(this).removeAttr('class');
-	});
-	$(".nav a").eq(3).attr("class","current");
-}
+    window.onload = function(){
+        $(".nav a").each(function(){
+            $(this).removeAttr('class');
+        });
+        $(".nav a").eq(3).attr("class","current");
+    }
 </script>
 <body>
 
@@ -36,12 +39,18 @@ window.onload = function(){
             </div>
             <div class="z_Video">
                 <div class="z_panel">
-                    <div class="z_panel_title">
-                        <span class="active center">全部直播</span>
-                        <span><img src="/images/news_gamepic01.png" alt="">王者荣耀</span>
-                        <span><img src="/images/news_gamepic02.png" alt="">绝地求生</span>
-                        <span><img src="/images/news_gamepic03.png" alt="">英雄联盟</span>
-                        <input type="text" class="z_search right" placeholder="WCG主舞台">
+                    <div id="title_list" class="z_panel_title">
+                        <!--<span class="active center">全部直播</span>-->
+                        <!--<span><img src="/images/news_gamepic01.png" alt="">王者荣耀</span>-->
+                        <!--<span><img src="/images/news_gamepic02.png" alt="">绝地求生</span>-->
+                        <!--<span><img src="/images/news_gamepic03.png" alt="">英雄联盟</span>-->
+                        <!--<input type="text" class="z_search right" placeholder="WCG主舞台">-->
+                    </div>
+                    <div class="search_div">
+                        <div class="search_input">
+                            <input id="liveName" type="text" placeholder="WCG主舞台"/>
+                            <button id="searchLiveName"><img src="/images/news_searchicon.png"/></button>
+                        </div>
                     </div>
                     <div class="z_panel_con">
                         <div id="live_list" class="z_all">
@@ -54,8 +63,8 @@ window.onload = function(){
 </div>
 
 <!-- 尾部 -->
-	<div class="botwrap" th:include="/include :: botwrap"></div>
-	
+<div class="botwrap" th:include="/include :: botwrap"></div>
+
 <div style="display: none;">
     <!-- 直播列表模板 -->
     <textarea id="liveList_template">
@@ -77,6 +86,14 @@ window.onload = function(){
   	</textarea>
 </div>
 
+<textarea id="titleTemplate" style="display:none;">
+    <span class="active nav center">全部直播</span>
+    {{each result }}
+        <div class="nav center" value="{{$value.id}}">
+            <span><img src="/images/news_gamepic01.png" alt="">{{$value.name}}</span>
+        </div>
+    {{/each}}
+</textarea>
 
 </body>
 <script src="/js/jquery.1.11.3.min.js"></script>

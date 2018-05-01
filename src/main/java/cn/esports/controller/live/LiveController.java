@@ -35,6 +35,12 @@ public class LiveController extends BaseController {
         return view;
     }
 
+    @RequestMapping(value = "live/liveTitle")
+    public JSONObject getGameList(@RequestParam Map<String, String> uriVariables){
+        JSONObject gameList = liveService.getGameList(uriVariables);
+        return gameList;
+    }
+
     @RequestMapping(value = "/live/list")
     public JSONObject getLiveList(@RequestParam Map<String, String> uriVariables){
         JSONObject liveList = liveService.getList(uriVariables);
