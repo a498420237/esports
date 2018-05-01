@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
@@ -27,7 +27,7 @@
         </div>
         <div class="rt right">
             <div class="head">
-                <p>关于我们</p>
+                <p id="title">关于我们</p>
                 <p class="small">ABOUT US</p>
             </div>
             <div class="cont">
@@ -41,5 +41,13 @@
         </div>
     </div>
 </div>
+
+<script  src="/vendor/sea/sea.js"></script>
+<script src="/scripts/config/seajs-config.js"></script>
+<script type="text/javascript">
+    seajs.use('/scripts/controller/infos/index');
+</script>
+
+
 </body>
 </html>

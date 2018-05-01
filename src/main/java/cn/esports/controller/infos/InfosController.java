@@ -17,7 +17,7 @@ public class InfosController extends BaseController {
 
     @RequestMapping(value = "infos/aboutUs", method = RequestMethod.GET)
     public ModelAndView aboutUs(){
-        ModelAndView view = new ModelAndView("infos/aboutUs");
+        ModelAndView view = new ModelAndView("infos/index");
         return view;
     }
 
