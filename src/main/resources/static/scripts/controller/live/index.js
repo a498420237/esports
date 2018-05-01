@@ -2,10 +2,11 @@ define(function (require, exports, module) {
 
     seajs.use(['jquery', 'pagePlugin', 'utilService', 'template'], function ($, pagePlugin, util, template) {
 
-        var gameId = "";
-        var liveName = "";
+       
 
         function getLiveList(){
+        	 var gameId = "";
+             var liveName = "";
             $("#live_list").paginator({
                 itemTemplateId: 'liveList_template',
                 pageNavId: '',
@@ -16,24 +17,30 @@ define(function (require, exports, module) {
                         "offset": curentPage,
                         "limit": 6
                     };
-                    data.gameId = gameId;
+                    gameId=$("#title_list span.active").find("img").attr("alt");
+                    liveName=$("#search_live_btn").val();
+                    if(gameId!=""){
+                    	data.gameId = gameId;
+                    }
+                    if(liveName!=""){
                     data.liveName = liveName;
+                    }
                     $.ajax({
                         url: "/live/list",
                         datatype: 'json',
                         type: "get",
                         data: data,
                         success: function (json) {
+                        	debugger;
                             var data = json.t;
                             renderHtml(data);
-                            init();
                         }
                     });
                 }
             });
         }
 
-        // getLiveList();
+
 
 
         // 资讯栏目列表
@@ -48,23 +55,13 @@ define(function (require, exports, module) {
                     datatype: 'json',
                     type: "get",
                     data: {
-                        "limit": 4
+                        "limit": 3
                     },
                     success: function (json) {
                         var data = json.t;
                         renderHtml(data);
-                        $(".z_panel_title .nav").each(function () {
-                            var num = $(".z_panel_title .nav").length + 1;
-                            $(this)[0].style.width = 100 / num + "%"
-                        })
-                        $(".z_panel_title .nav").click(function () {
-                            $(this).addClass("active").siblings().removeClass("active");
-                            gameId = $(this).attr("value");
-                            liveName = "";
-                            //特定栏目下数据
-                            getLiveList();
-                        })
-
+                        init();
+                        getLiveList();
                     }
                 });
             }
@@ -72,24 +69,18 @@ define(function (require, exports, module) {
 
 
         function init(){
-            $(".z_Video_con").mouseover(function (event) {
-                var _this = $(this)
-                var notThis = $('li .z_Video_con').not(_this);
-                notThis.parents("li").find(".z_shade").hide();
-                _this.parents("li").find('.z_shade').show();
-            })
-
-
-            $(".z_panel .z_panel_title span").click(function () {
-                $(".z_panel .z_panel_title span").removeClass("active")
+     
+            $("#title_list span").click(function () {
+                $("#title_list span").removeClass("active")
                 $(this).addClass("active");
-            });
-
-            $('#searchLiveName').on("click", function () {
-                liveName = $("#liveName").val();
                 getLiveList();
+                event.stopPropagation();
             });
-
+            
+            $("#searchMessage").click(function(){
+            	getLiveList();
+                event.stopPropagation();
+            });
         }
 
         // 推荐直播
@@ -101,7 +92,7 @@ define(function (require, exports, module) {
             ajaxFuc: function (curentPage, renderHtml) {
                 var data = {
                     "offset": curentPage,
-                    "limit": 3
+                    "limit": 6
                 };
                 $.ajax({
                     url: "/live/recommendLive",

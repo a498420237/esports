@@ -37,7 +37,7 @@ window.onload = function(){
                 </p>
             </div>
             <div class="z_Video_detail_video">
-              <!--   <img class="z_download" th:src="${liveInfo.liveImg}"> -->
+              
                 <video
     id="my-player"
     class="video-js z_download"
@@ -48,7 +48,7 @@ window.onload = function(){
     <source th:src='${liveInfo.streamUrl}'  type='rtmp/flv'/>  
   </p>
 </video>
-                <div class="z_download"><img src="/images/logoicon.png"><a href="javascriopt:">下载电竞e族app,电竞玩家都在用>></a>
+                <div class="z_download"><img src="/images/logoicon.png"><a href="/download/index">下载电竞e族app,电竞玩家都在用>></a>
                 </div>
             </div>
 
@@ -56,16 +56,7 @@ window.onload = function(){
                 <div class="z_Video_heade" id="recommendLive_llist"><span>推荐直播</span></div>
 
                 <ul class="z_Video_list" id="recommendLive_list"></ul>
-                <!--<ul class="z_Video_list">-->
-                    <!--<li>-->
-                        <!--<div class="z_Video_con"><img src="/images/vedio_gamepic.png"></div>-->
-                        <!--<div class="z_shade"></div>-->
-                        <!--<h1 class="z_Video_con_title">阿健：直播到晚上8点</h1>-->
-                        <!--<div class="z_Video_con_subtitle">-->
-                            <!--<span>荣耀108星全能健</span>-->
-                            <!--<span class="right"><img src="/images/eyesicon.png">1789</span>-->
-                        <!--</div>-->
-                    <!--</li>-->
+      
                 </ul>
 
 
@@ -87,9 +78,9 @@ window.onload = function(){
              <a href="/live/detail/$id$">
                 <div class="z_Video_con"><img class="z_Video_con" src="$liveImg$"></div>
                 <div class="z_shade"></div>
-                <h1 class="z_Video_con_title">$anchorName$ </h1>
+                <h1 class="z_Video_con_title"> $name$</h1>
                 <div class="z_Video_con_subtitle">
-                    <span>$name$</span>
+                    <span>$anchorName$</span>
                     <span class="right"><img src="/images/eyesicon.png">$viewNum$</span>
                 </div>
                 </a>
