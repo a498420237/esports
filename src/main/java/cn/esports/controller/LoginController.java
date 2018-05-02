@@ -35,6 +35,15 @@ public class LoginController extends BaseController {
 		return userService.sendMobileCode(mobile);
 	}
 
+	/**
+	 * 创建战队发送验证码
+	 * @param mobile
+	 * @return
+	 */
+	@RequestMapping(value = "/sendMobileCodeByCreatTeam", method = RequestMethod.POST)
+	public JSONObject sendMobileCodeByCreatTeam(String mobile) {
+		return userService.sendMobileCodeByCreatTeam(mobile);
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public JSONObject login(String mobile, String code) {
 		Subject subject = SecurityUtils.getSubject();  

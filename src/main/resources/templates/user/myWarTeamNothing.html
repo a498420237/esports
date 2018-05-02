@@ -34,7 +34,7 @@
 				<div class="dialog" style="display: none;">
 					<div class="contuwrap" >
 						<div class="pubclose">
-							<img src="/images/closeico.png">
+							<img src="/images/closeico.png" onclick="closeWin('')">
 						</div>
 						<div class="cont">
 
@@ -68,7 +68,7 @@
 									<span class="access" style="cursor:pointer;" onclick="getCode()">获取</span>
 									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
 									<input type="text" placeholder="请输入验证码" id="code"></p>
-								<div class="craat-btn" onclick="createTeam()">创建战队</div>
+								<div class="craat-btn" onclick="createTeam()" style="cursor:pointer;">创建战队</div>
 								<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
 							</div>
 						</div>
@@ -80,7 +80,7 @@
                         <label name="jd">绝地求生大逃杀</label>
                     </div>
                         <div class="right fr mess">
-                            <label id="create" class="active" ><span>创建战队</span></label>
+                            <label id="create" class="active" style="cursor:pointer;"><span>创建战队</span></label>
                             <div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat">0</span></div>
                         </div>
 				</div>
@@ -144,7 +144,7 @@
     $("#create").on("click",function(){
 		$(".dialog").fadeIn();
 		$("html").css({overflow:"auto",height:"100%"})
-		/*layer.open({
+/*		layer.open({
 			type: 1,
 			title: false,
 			shadeClose: true,
@@ -187,6 +187,9 @@
             $("html").css({overflow:"auto",height:"100%"})
         }
     });
+	function closeWin() {
+        $('.dialog').fadeOut();
+    }
 	// 绑定获取验证码事件
 	var InterValObj; //timer变量，控制时间
 	var count = 90; //间隔函数，1秒执行
@@ -212,7 +215,7 @@
 	//发送验证码
 	function sendsms(mobile){
 		$.ajax({
-			url : "/sendMobileCode",
+			url : "/sendMobileCodeByCreatTeam",
 			datatype : 'json',
 			type : "post",
 			data : {

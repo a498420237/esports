@@ -40,8 +40,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			//uriVariables.put("userId", "138");
+			//uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(list_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
@@ -105,8 +105,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			//uriVariables.put("userId", "139");
+			//uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(member_list_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
@@ -128,8 +128,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			//uriVariables.put("userId", "139");
+			//uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(quit_troops_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
@@ -172,8 +172,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			//uriVariables.put("userId", "139");
+			//uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(add_team_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
@@ -195,8 +195,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			//uriVariables.put("captainId", "139");
+			//uriVariables.put("captainId", SessionUtil.getCurUid()+"");
+			uriVariables.put("captainId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(edit_team_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
