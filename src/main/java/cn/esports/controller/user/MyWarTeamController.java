@@ -65,6 +65,18 @@ public class MyWarTeamController extends BaseController {
 	}
 
 	/**
+	 * 获取用战队申请列表
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/user/myWarTeam/newMemberlist", method = RequestMethod.GET)
+	public JSONObject newMemberlist(@RequestParam Map<String, String> uriVariables){
+		uriVariables.put("troopsId","313");
+		JSONObject jsonObject3 = myWarteamService.newMemberList("",uriVariables);
+		return myWarteamService.newMemberList("",uriVariables);
+	}
+
+	/**
 	 * 获取用户战队列表
 	 * @param uriVariables
 	 * @return

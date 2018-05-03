@@ -2,6 +2,7 @@ define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
 		var troopsId;
 		var captainId;
+		var memberNew;
 		$(function(){
 			seniorLoad("teamInfoArea");
 			$("#backTeam").click(function() {
@@ -65,12 +66,11 @@ define(function(require, exports, module) {
 					var data = json.code;
 					$(".exitzd").hide();
 					if("0"==data){
-
+						location.reload();
 					}else{
-						alert(json.msg);
+						layer.alert(json.msg);
 					}
-					exitzd
-					location.reload();
+
 				}
 			});
 		}
@@ -101,6 +101,20 @@ define(function(require, exports, module) {
 									list : data.troops
 								};
 								$(".mdat").html(data.newMsgCount);
+								var p = {
+									troopsId : data.troops[0].id
+								};
+								$.ajax({
+									url : "/user/myWarTeam/newMemberlist",
+									datatype : 'json',
+									type : "get",
+									data : p,
+									success : function(json) {
+										var d = json.t;
+										memberNew=d.result.length;
+										$(".news").html(memberNew);
+									}
+								});
 								troopsId=data.troops[0].id;
 								captainId =data.troops[0].captainId;
 								seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");

@@ -176,7 +176,13 @@
 			data : {"troopsName" : troopsName,"gameType" : gameType,"serverType" : serverType,"code":code,"phone":phone},
 			success : function(json) {
 				var data = json.msg;
-				layer.msg(data);
+				layer.alert(data, {
+							title: data,
+							btn: ['确定']
+						},
+						function (index, item) {
+							location.reload();
+						});
 			}
 		});
 	}

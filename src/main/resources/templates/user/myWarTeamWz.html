@@ -31,9 +31,9 @@
 			<div class="team">
 				<!--创建战队-->
 				<div class="dialog" style="display: none;">
-					<div class="contuwrap">
+					<div class="contuwrap" >
 						<div class="pubclose">
-							<img src="/images/closeico.png" onclick="closeWin('dialog')">
+							<img src="/images/closeico.png" onclick="closeWin('')">
 						</div>
 						<div class="cont">
 
@@ -44,24 +44,30 @@
 								</a>
 							</div>
 							<div class="info1">
-								<p class="clearfix"><span>所属游戏</span><em>王者荣耀</em></p>
-								<p class="clearfix"><span>游戏区服</span>
-									<select class="right">
-										<option value="volvo">必选</option>
-										<option value="saab">Saab</option>
-										<option value="mercedes">Mercedes</option>
-										<option value="audi">Audi</option>
+								<p class="clearfix"><span>所属游戏</span>
+									<select class="right" id="gameType">
+										<option value="1">王者荣耀</option>
+										<option value="2">绝地求生</option>
 									</select>
 								</p>
-								<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号"></p>
-								<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字"></p>
+								<p class="clearfix"><span>游戏区服</span>
+									<select class="right" id="serverType">
+										<option value="1">手游区</option>
+										<option value="2">微信区</option>
+									</select>
+								</p>
+								<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号" maxlength="6" id="troopsName"></p>
+								<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字" maxlength="25"></p>
 							</div>
 							<div class="info1">
 								<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
 								<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
-								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号"></p>
-								<p class="clearfix"><span>输入验证码 </span><span class="access">获取</span><input type="text" placeholder="请输入验证码"></p>
-								<div class="craat-btn">创建战队</div>
+								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号" id="phoneInput"></p>
+								<p class="clearfix"><span>输入验证码 </span>
+									<span class="access" style="cursor:pointer;" onclick="getCode()">获取</span>
+									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
+									<input type="text" placeholder="请输入验证码" id="code"></p>
+								<div class="craat-btn" onclick="createTeam()" style="cursor:pointer;">创建战队</div>
 								<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
 							</div>
 						</div>
@@ -72,8 +78,9 @@
                         <label  class="active" name="wz">王者荣耀</label>
                         <label name="jd">绝地求生大逃杀</label>
                     </div>
-                        <div class="right fr mess">
-                            <label id="create" class="active" style="display: none;" onclick="createTeam()"><span>创建战队</span></label>
+                        <div class="right fr messd">
+                            <label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>
+							<i class="playapply" onclick="poprdsq()" style="cursor:pointer;">入队申请<span class="news"></span></i>
                             <div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
                         </div>
 				</div>
@@ -226,6 +233,22 @@
 					</div>
     {{/each}}
 	</textarea>
+	<textarea id="teamnNewMember"  style="display:none;">
+	{{each result}}
+				<div class="captain"><img src="{{$value.headUrl}}"></div>
+				<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+				<div class="area">{{if ($value.serverType==1 )}}
+	                                        <span>手游区</span>
+	                                    {{else if(($value.gameType==2))}}
+	                                        <span>微信区</span>
+	                                    {{/if}}</div>
+				<div class="dan">($value.level)</div>
+				<div class="zd-btncz">
+					<a class="tcdz" href="" >接受</a>
+					<a class="zydz" href="">删除</a>
+				</div>
+    {{/each}}
+	</textarea>
 </div>
 <!--我的战队-队员推出战队弹窗-->
 <div class="exitzd" style="display: none;">
@@ -246,8 +269,29 @@
 	</div>
 </div>
 
+<!--我的战队入队申请-->
+<div class="poprdsq">
+	<div class="blacbg">
+	</div>
+	<div class="playerwr">
+		<div class="pubclose">
+			<img src="/images/closeico.png">
+		</div>
+		<div class="playerwrap">
+			<h3>入队申请
+			</h3>
+
+			<div class="players clearfix" id="newMemberlist">
+
+			</div>
+
+			<div class="viewmatch">查看全部赛事 <img src="/images/viemat.png"></div>
+		</div>
+	</div>
+</div>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
+<script  type="text/javascript" src="/layer/layer.js"></script>
 <script type="text/javascript">
 	seajs.use('/scripts/controller/user/myWarTeamWz');
 </script>
@@ -259,8 +303,60 @@
 	$(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
+	function createTeam1() {
+		$(".dialog").fadeIn();
+	}
+	function poprdsq() {
+		var isShow4=true;
+		if(isShow4){
+			isShow4=false;
+		$("#newMemberlist").paginator({
+			itemTemplateId : teamnNewMember,
+			usepager:false,
+			useSeniorTemplate:true,
+			ajaxFuc : function(curentPage, renderHtml) {
+				var p2 = {
+					troopsId : troopsId
+				};
+
+				$.ajax({
+					url : "/user/myWarTeam/newMemberlist",
+					datatype : 'json',
+					type : "get",
+					data : p2,
+					success : function(json) {
+						var data = json.t;
+						renderHtml(data);
+						isShow=true;
+					}
+				});
+			}
+		});
+		$(".poprdsq").fadeIn();
+	}
 	function createTeam() {
-		$(".dialog").show();
+		var troopsName=$("#troopsName").val();
+		var gameType=$("#gameType").val();
+		var serverType=$("#serverType").val();
+		var captainId="";
+		var code=$("#code").val();
+		var phone =$("#phoneInput").val();
+		$.ajax({
+			url : "/user/myWarTeam/editTeam",
+			datatype : 'json',
+			type : "get",
+			data : {"troopsName" : troopsName,"gameType" : gameType,"serverType" : serverType,"code":code,"phone":phone},
+			success : function(json) {
+				var data = json.msg;
+				layer.alert(data, {
+							title: data,
+							btn: ['确定']
+						},
+						function (index, item) {
+							location.reload();
+						});
+			}
+		});
 	}
 	function tuchuTeam() {
 		$(".exitzd").show();
@@ -274,6 +370,94 @@
 		var pathName = window.document.location.pathname;
 		var pos = curWwwPath.indexOf(pathName);
 		window.location.href=window.document.location.href.substring(0, pos)+'/user/warTeamInfo?id='+id;
+	}
+	function closeWin() {
+		$('.dialog').fadeOut();
+	}
+	// 绑定获取验证码事件
+	var InterValObj; //timer变量，控制时间
+	var count = 90; //间隔函数，1秒执行
+	//var curCount;//当前剩余秒数
+	function getCode() {
+		var mobile = $("#phoneInput").val();
+		if (mobile == "") {
+			layer.msg("请输入手机号");
+			return;
+		}
+		if(!isPoneAvailable(mobile)){
+			layer.msg("请输入正确的手机号");
+			return;
+		}
+		//curCount = count;
+		$(this).off("click");
+		$(this).removeAttr("class","bg-red");
+		$(this).attr("class","bg-999");
+		//$(this).text("倒计时" + curCount + "秒");
+		//InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		sendsms(mobile);
+	};
+	//发送验证码
+	function sendsms(mobile){
+		$.ajax({
+			url : "/sendMobileCodeByCreatTeam",
+			datatype : 'json',
+			type : "post",
+			data : {
+				"mobile" : mobile
+			},success:function(obj){
+				if(obj==null){
+					layer.msg("远程接口调用失败");
+				}else{
+					if(obj.code==200){
+						layer.msg("验证码发送成功");
+					}else{
+						layer.msg("验证码发送失败请重试！");
+					}
+				}
+			}
+		});
+	}
+	//timer处理函数
+	function SetRemainTime() {
+		if (curCount == 0) {
+			window.clearInterval(InterValObj);//停止计时器
+			$("#getCodeBtn").on("click",function(){
+				var mobile = $("#phoneInput").val();
+				if (mobile == "") {
+					layer.msg("请输入手机号");
+					return;
+				}
+				if(!isPoneAvailable(mobile)){
+					layer.msg("请输入正确的手机号");return;}
+				curCount = count;
+				//设置button效果，开始计时
+				$(this).off("click");
+				$(this).removeAttr("class","bg-red");
+				$(this).attr("class","bg-999");
+				$(this).text("倒计时" + curCount + "秒");
+				InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+				sendsms(mobile);
+
+			});
+			$("#getCodeBtn").removeAttr("class","bg-999");
+			$("#getCodeBtn").attr("class","bg-red");
+			$("#getCodeBtn").text("发送验证码");
+
+		}
+		else {
+			curCount--;
+			$("#getCodeBtn").text("倒计时" + curCount + "秒");
+		}
+	}
+
+	//验证手机号码
+	function isPoneAvailable(poneInput) {
+		var myreg=/^1[3|4|5|8][0-9]\d{4,8}$/;
+		if (!myreg.test(poneInput)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 </script>
 </body>
