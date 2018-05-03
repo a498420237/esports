@@ -154,6 +154,7 @@
 	<div th:include="/include :: botwrap"></div>
 	<textarea id="teamInfoArea"  style="display:none;">
 	{{each troops}}
+		  {{if ($value.gameType==1 )}}
 						<div class="block1">
 						<img src="{{$value.troopsUrl}}" style="width: 46px;height: 49px;">
 						<p>{{$value.troopsName}}</p>
@@ -175,6 +176,7 @@
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 					</div>
 					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
+		{{/if}}
     {{/each}}
 	</textarea>
 	<textarea id="itemTemplate"  style="display:none;">
