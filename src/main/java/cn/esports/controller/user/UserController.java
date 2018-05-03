@@ -51,11 +51,6 @@ public class UserController {
 		return userService.BindEmail(uriVariables);
 	}
 	
-	@RequestMapping(value = "/user/addUserPicture", method = RequestMethod.POST)
-	public JSONObject addUserPicture(@RequestParam("avatar_file") MultipartFile file, String avatar_data, HttpServletRequest request ,@RequestParam Map<String, String> uriVariables) {
-		return userService.addUserPicture(uriVariables);
-	}
-	
 	@RequestMapping(value = "/user/delUserPicture", method = RequestMethod.POST)
 	public JSONObject delUserPicture(@RequestParam Map<String, String> uriVariables) {
 		return userService.delUserPicture(uriVariables);
@@ -87,4 +82,13 @@ public class UserController {
 	public ModelAndView suc(String mobile) {
 		return new ModelAndView("index");
 	}
+	
+	
+	@RequestMapping(value = "/user/submit", method = RequestMethod.POST)
+	public JSONObject usersubmit( String url, MultipartFile file) {
+		return userService.addUserPicture(url,file);
+	}
+	
+	
+	
 }

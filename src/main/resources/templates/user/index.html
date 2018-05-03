@@ -23,7 +23,6 @@
 						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
 						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
-						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
@@ -44,9 +43,9 @@
 						<img class="timg" src="/images/person_avant.png">
 						<p class="name"><em>昵称：</em><input class="w155" type="text" id="userName" placeholder="请输入昵称" th:value="${userinfo.t.userName}"></p>
 						<div class="sex clearfix">
-							<em>性别：</em><form action=""> 
-					        <input type="radio" name="sex" id="sex1" value="1" th:value="${userinfo.t.sex}" >男  
-					        <input type="radio" name="sex" id="sex0" value="0" th:value="${userinfo.t.sex}">女   
+							<em>性别：</em><form id="form_sex"> 
+					        <input type="radio" name="sex" id="sex1" value="1" th:checked="${userinfo.t.sex==1}" >男  
+					        <input type="radio" name="sex" id="sex0" value="0" th:checked="${userinfo.t.sex==0}">女   
 					        </form>
 					        
 				        </div>
@@ -63,18 +62,21 @@
 					<div class="line"></div>
 					<div class="up-img">
 						<p>精选照片：</p>
-						<div class="nr clearfix">
-							<div class="list left" th:each="lm : ${userinfo.t.userPictures}">
+						<div class="nr clearfix" id="pictures_list">
+							<div class="list left" th:each="lm: ${userinfo.t.userPictures}">
 								<div class="img">
-								<img src="/images/person_photo.png" onerror="this.src='/images/person_photo.png;this.onerror=null'">
-									<div class="ic"><img src="/images/person_close.png"></div>
+								<img th:src="${lm.picture}" onerror="this.src='/images/person_photo.png;this.onerror=null'">
+									<div class="ic"><img src="/images/person_close.png" th:alt="${lm.id}"></div>
 								</div>
 							</div>
+							<form id="form-add">
 							<a href="javascript:;" class="file left">
-							    <input type="file" name="" id="">
-							</a>
+							    <input type="file" name="file" />
+							  
+							</a>   <input type="hidden" id="url" name="url" /> 
+							</form>
 						</div>	
-						<div class="save">保存</div>					
+						<div class="save" id="submitFile">保存</div>					
 					</div>
 					<div class="game">
 						<p>绑定游戏账号</p>

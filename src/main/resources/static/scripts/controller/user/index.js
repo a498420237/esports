@@ -18,7 +18,6 @@ define(function(require, exports, module) {
 						"area":$("#area").val(),
 						"avatar":''
 				};
-				debugger;
 					$.ajax({
 						url : "/user/saveInfo",
 						datatype : 'json',
@@ -41,7 +40,33 @@ define(function(require, exports, module) {
 		
 		
 		
-		
+		function submitFile(){
+
+			var formData = new FormData($("#form-add")[0]);
+		    $.ajax({
+		        //接口地址
+		        url: '/user/submit' ,
+		        type: 'POST',
+		        data: formData,
+		        async: false,
+		        cache: false,
+		        contentType: false,
+		        processData: false,
+		        success: function (data) {
+		            //成功的回调
+		            if(data.code == 200){
+		            	alert("保存成功");		
+		            }else{
+		            	alert("保存失败："+data.msg);
+		            }
+		        },
+		        error: function (returndata) {
+		           //请求异常的回调
+		        	alert("失败aaa");
+		           // modals.warn("网络访问失败，请稍后重试!");
+		        }
+		    });
+		}
 		function init(){
 			//编辑
 			$("#save").on("click",function(){
@@ -54,8 +79,37 @@ define(function(require, exports, module) {
 					$("#block2").fadeIn();
 				}, 300);
 			})
-			
-			
+			$("#submitFile").on("click",function(){
+				/*if($("#url").val()==""){
+					alert("请选择图片");
+					return ;
+				}*/
+				submitFile();
+			});
+			$("#pictures_list .ic").on("click",function(){
+				if(window.confirm('你确定要删除吗？')){
+					var pid=$(this).find("img").attr("alt");
+					debugger;
+					$.ajax({
+						url : "/user/delUserPicture",
+						datatype : 'json',
+						type : "post",
+						data:{"pId":pid},
+						success : function(json) {
+							if(json.code==200){
+								layer.msg("删除成功",function(){
+									window.location.reload();
+								});
+							}else{
+								layer.msg("删除失败："+json.msg);
+							}
+						}
+					});
+	              }else{
+	                 //alert("取消");
+	                 //return false;
+	             }
+			});
 			//显示绑定的游戏数据
 			$.ajax({
 						url : "/user/getGameInfo",
@@ -72,7 +126,7 @@ define(function(require, exports, module) {
 									+"<div class=\"info\" >"
 									+"	<div class=\"tit\">$gameName$</div>"
 									+"	"
-									+"</div><div class=\"pro\" id=\"bind\">点击绑定账号</div>"
+									+"</div><div class=\"pro bind\" >点击绑定账号</div>"
 									+"</div></li>"
 									$("#gameSelect").empty();
 									$("#gameSelect").append("<option value='0'>请选择</option>");
@@ -91,7 +145,22 @@ define(function(require, exports, module) {
 						        	var gameRank=$("#GameRanksSelect").val();
 						        	var role=$("#gameNickname").val();
 						        	var printscreen="";
-						        
+						        	if(gameId=="" || gameId==0){
+						        		alert("请选择游戏类型");
+						        		return;
+						        	}
+						        	if(areaId=="" || areaId==0){
+						        		alert("请选择区服");
+						        		return;
+						        	}
+						        	if(gameRank=="" || gameRank==0){
+						        		alert("请选择游戏排名");
+						        		return;
+						        	}
+						        	if(role==""){
+						        		alert("请输入游戏昵称");
+						        		return;
+						        	}
 									var data={
 						        			"gameId":gameId,
 						        			"areaId":areaId,
@@ -107,9 +176,11 @@ define(function(require, exports, module) {
 										data:data,
 										success : function(json) {
 											if(json.code==200){
-												alert("成功");
+												layer.msg("绑定成功",function(){
+													window.location.reload();
+												});
 											}else{
-												alert(json.msg);
+												layer.msg(json.msg);
 											}
 										}
 						        	});
@@ -140,7 +211,7 @@ define(function(require, exports, module) {
 											$("#gameId_"+obj.gameId).children().eq(0).html(gameName+"<p>"+obj.role+"</p><p>"+obj.areaName+"</p><p>"+obj.gameRank+"</p>"+Exist);
 										});
 	
-									$("#bind").on("click",function(){
+									$(".bind").on("click",function(){
 										var game_id
 										$(".dialog").fadeIn();
 									})

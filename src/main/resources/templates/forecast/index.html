@@ -51,12 +51,12 @@ window.onload = function(){
                 <img src="{{$value.redImg}}" onerror="this.src='/images/comde_sclpic.png;this.onerror=null'" alt="" width="55" height="55">
                 <span class="imgT">{{$value.redQuiz}}</span></div>
               <div class="flex1 wid25 score">
-                <span class="cred">{{$value.redOdd}}</span></div>
+                <span class="cred">{{$value.redOdd}} <input type="hidden" id="redOdd" value="{{$value.redOdd}}" ></span></div>
               <div class="flex1 wid25 score">
-                <span class="cgreen1">{{$value.blueOdd}}</span></div>
+                <span class="cgreen1">{{$value.blueOdd}} <input type="hidden" id="blueOdd" value="{{$value.blueOdd}}" ></span></div>
               <div class="flex1 wid25">
                 <img src="{{$value.blueImg}}"  onerror="this.src='/images/com_scrpic.png;this.onerror=null'"alt="" width="55" height="55">
-                <span class="imgT">{{$value.blueQuiz}}</span></div>
+                <span class="imgT">{{$value.blueQuiz}} </span></div>
             </div>
             <div class="lump" id="quizTeamType">
               <div class="width100 left">
@@ -77,7 +77,7 @@ window.onload = function(){
             </div>
             {{/each}} 
             <div class="lump m-t-10">
-              <input type="text" placeholder="输入投注额度" id="quizMoney"></div>
+              <input type="text" placeholder="输入投注额度" id="quizMoney" value="100" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></div>
             <div class="lump m-t-5">
               <span class="font15 c999">可用额度：
                {{if ($value.goldType==0)}}
@@ -134,8 +134,12 @@ window.onload = function(){
                     	竞猜中
                     		{{else if(($value.status==1))}}
                     		赛事中
+                    			{{else if(($value.status==2))}}
+                    			已结束
+                    			
                     		{{else}}
-                    		已结束
+                    		未知状态_{{$value.status}}
+                    		
                     	{{/if}}
                     </h1>
                     <small>{{$value.nowTime | dateFmt}}</small></div>
@@ -147,7 +151,7 @@ window.onload = function(){
                 {{each $value.handicapListInfos}}
                   <li>
                      <div class="flex1 text-left relative">
-                    {{if($value.status==2 || $value.status==4)}}
+                    {{if($value.status==2 || $value.status==3 || $value.status==4)}}
                    			<a href="javascript:void(0)" class="text noClick" > 赔率：{{$value.redOdd}}</a>
                     {{else}}
                     <a href="javascript:void(0)" class="text odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.redOdd}}</a>
@@ -155,18 +159,18 @@ window.onload = function(){
                      </div>
                     <div class="flex1">
                      
-                      {{if ($value.status==3)}}
+                      {{if ($value.status==0)}}
                     	 <h1 class="cgreen">{{$value.handicapType}}</h1><small>竞猜中</small>
                     		{{else if($value.status==2)}}
                     		 <h1 class="cgreen">{{$value.handicapType}}</h1><small>流盘</small>
-                    		{{else if($value.status==4)}}
+                    		{{else if($value.status==3)}}
                     		 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
                     		 {{else}}
-                    		  <h1 class="c999">{{$value.handicapType}}</h1><small>未知_{{$value.status}}</small>
+                    		  <h1 class="c999">{{$value.handicapType}}</h1><small>未知状态_{{$value.status}}</small>
                     	{{/if}}
                     	</div>
                     <div class="flex1 relative text-left">
-                     {{if($value.status==4 || $value.status==2)}}
+                     {{if($value.status==2 || $value.status==3 || $value.status==4)}}
                    		<span class="text text-left noClick">赔率：{{$value.blueOdd}}</span>
                     {{else}}
                     <span class="text text-left odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.blueOdd}}</span>
@@ -176,6 +180,7 @@ window.onload = function(){
                   {{/each}}
                 </ul>
               </div>
+     
               {{/each}}
 </textarea>
   <script src="/js/jquery.1.11.3.min.js"></script>
