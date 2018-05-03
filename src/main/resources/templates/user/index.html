@@ -64,8 +64,11 @@
 					<div class="up-img">
 						<p>精选照片：</p>
 						<div class="nr clearfix">
-							<div class="list left">
-								<div class="img"><img src="/images/person_photo.png"><div class="ic"><img src="images/person_close.png"></div></div>
+							<div class="list left" th:each="lm : ${userinfo.t.userPictures}">
+								<div class="img">
+								<img src="/images/person_photo.png" onerror="this.src='/images/person_photo.png;this.onerror=null'">
+									<div class="ic"><img src="/images/person_close.png"></div>
+								</div>
 							</div>
 							<a href="javascript:;" class="file left">
 							    <input type="file" name="" id="">
@@ -75,23 +78,10 @@
 					</div>
 					<div class="game">
 						<p>绑定游戏账号</p>
-						<div class="account">
-							<div class="ry">
-								<div class="info">
-									<div class="tit">王者荣耀</div>
-									<p>AMSsss</p>
-									<p>微信126区</p>
-									<p>荣耀王者</p>
-									<div class="set"></div>
-								</div>
-							</div>
-							<div class="qs">
-								<div class="info">
-									<div class="tit">绝地求生</div>
-									<div class="chain"></div>									
-								</div>
-								<div class="pro" id="bind">点击绑定账号</div>
-							</div>
+						<div class="account" >
+						<ul id="bind_access">
+							
+							</ul>
 						</div>
 					</div>
 					
@@ -159,22 +149,22 @@
 						<div class="cont">
 							<div class="tit">绑定游戏账号</div>
 							<div class="info"><span>游戏：</span>
-								<select>
-									<option>绝地求生</option>
+								<select id="gameSelect">
+									
 								</select>
 							</div>
 							<div class="info"><span>区服：</span>
-								<select>
-									<option>东南亚</option>
+								<select id="GameAreaSelect">
+									
 								</select>
 							</div>
-							<div class="info"><span>排名：</span>
-								<select>
-									<option>81</option>
+							 <div class="info"><span>排名：</span>
+								<select id="GameRanksSelect">
+									
 								</select>
-							</div>
+							</div> 
 							<div class="info"><span>昵称：</span>
-								<input type="text" placeholder="请输入游戏昵称">
+								<input type="text" id="gameNickname" placeholder="请输入游戏昵称">
 							</div>
 							<div class="upimg clearfix">
 								<p class="text-right">添加截图</p>
@@ -185,7 +175,7 @@
 							</div>
 							<div class="btns clearfix">
 								<div class="cancel left">取消</div>
-								<div class="confirm right">确认</div>
+								<div id="bind_game_sumbit" class="confirm right">确认</div>
 							</div>
 						</div>
 					</div>
@@ -221,6 +211,9 @@
 		$(".dialog").fadeIn();
 	})
 	$(".cancel").on("click",function(){
+		$(".dialog").fadeOut();
+	})
+	$(".pubclose").on("click",function(){
 		$(".dialog").fadeOut();
 	})
 	$(document).mouseup(function(e){

@@ -233,7 +233,7 @@
 }
 .data .rt{
 	width: 750px;
-	height: 1104px;
+	
 	background: #31363a;
 	margin-top: 15px;
 	float: right;
@@ -558,14 +558,25 @@ margin-left: -200px;
 	background: url(../images/person_bindpic.png) no-repeat;
 	float: left;
 }
-.data .account .qs{
+
+
+.data .account ul li{float: left;margin-right: 10px;margin-bottom: 10px; 
+
+}
+
+.data .account ul{width:100%; clear: both;overflow: hidden;
+}
+
+
+
+
+.data .account .ry{
 	width: 330px;
 	height: 123px;
 	border-radius: 7px;
 	background: url(../images/news_piclist.png) no-repeat;
 	background-size: cover;
 	float: right;
-	margin-right: 30px;
 	position: relative;
 	overflow: hidden;
 }
