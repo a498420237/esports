@@ -11,6 +11,7 @@
 <body>
 <div class="topWrap">
 	<div th:include="/include :: topWrap" ></div>
+	<input type="hidden" val="" id="tid"/>;
 </div>
 <div class="data">
 	<div class="content">
@@ -30,10 +31,10 @@
 			</div>
 			<div class="team">
 				<!--创建战队-->
-				<div class="dialog" style="display: none;">
+				<div class="dialog" id="dialog1" style="display: none;">
 					<div class="contuwrap" >
 						<div class="pubclose">
-							<img src="/images/closeico.png" onclick="closeWin('')">
+							<img src="/images/closeico.png" onclick="closeWin('dialog')">
 						</div>
 						<div class="cont">
 
@@ -73,6 +74,27 @@
 						</div>
 					</div>
 				</div>
+
+				<!--转移队长-->
+				<div class="dialog" id="dialog2"style="display: none;">
+					<div class="contuwrap" >
+						<div class="pubclose">
+							<img src="/images/closeico.png" onclick="closeWin('dialog')">
+						</div>
+						<div class="cont">
+
+							<div class="info1">
+								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号" id="phoneInput2"></p>
+								<p class="clearfix"><span>输入验证码 </span>
+									<span class="access" style="cursor:pointer;" onclick="getCode2()">获取</span>
+									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
+									<input type="text" placeholder="请输入验证码" id="code2"></p>
+								<div class="craat-btn" onclick="goMsg()" style="cursor:pointer;">发送</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="table_head overflow_hide color-glod">
                     <div class="left fl">
                         <label  class="active" name="wz">王者荣耀</label>
@@ -80,7 +102,7 @@
                     </div>
                         <div class="right fr messd">
                             <label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>
-							<i class="playapply" onclick="poprdsq()" style="cursor:pointer;">入队申请<span class="news"></span></i>
+							<i class="playapply" style="cursor:pointer;">入队申请<span class="news"></span></i>
                             <div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
                         </div>
 				</div>
@@ -229,24 +251,36 @@
 						<div class="dan">{{$value.level}}</div>
 							{{if ($value.userId == captainId)}}
 	                                        <div class="position">队长</div>
-	                        {{/if}}
+							{{else if(($value.userId != captainId))}}
+							<div class="zd-btncz">
+											<a href="javascript:;" onclick="delMember({{$value.userId}})">踢出队员</a>
+											<a href="javascript:;" onclick="zyDz()">转移队长</a>
+										</div>
+							{{/if}}
 					</div>
     {{/each}}
 	</textarea>
 	<textarea id="teamnNewMember"  style="display:none;">
 	{{each result}}
+		<div class="players clearfix">
+
+
 				<div class="captain"><img src="{{$value.headUrl}}"></div>
-				<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
-				<div class="area">{{if ($value.serverType==1 )}}
-	                                        <span>手游区</span>
-	                                    {{else if(($value.gameType==2))}}
-	                                        <span>微信区</span>
-	                                    {{/if}}</div>
-				<div class="dan">($value.level)</div>
+				<div class="id"><p class="name">APP ID：{{$value.id}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+				<div class="area">
+	                                        <span>{{$value.serverType}}</span>
+	                                    </div>
+				<div class="dan">{{$value.level}}</div>
 				<div class="zd-btncz">
-					<a class="tcdz" href="" >接受</a>
-					<a class="zydz" href="">删除</a>
+										{{if ($value.status==0 )}}
+	                                       <a class="tcdz" onclick="editSQ({{$value.userId}},0)" style="cursor:pointer;">接受</a>
+											<a class="zydz" href="editSQ({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
+	                                    {{else if(($value.status!=0))}}
+	                                    {{/if}}
+
+
 				</div>
+			</div>
     {{/each}}
 	</textarea>
 </div>
@@ -275,16 +309,13 @@
 	</div>
 	<div class="playerwr">
 		<div class="pubclose">
-			<img src="/images/closeico.png">
+			<img src="/images/closeico.png" onclick="closeWin('poprdsq')">
 		</div>
 		<div class="playerwrap">
 			<h3>入队申请
 			</h3>
-
-			<div class="players clearfix" id="newMemberlist">
-
+			<div  id="newMemberlist">
 			</div>
-
 			<div class="viewmatch">查看全部赛事 <img src="/images/viemat.png"></div>
 		</div>
 	</div>
@@ -304,35 +335,32 @@
         $(this).addClass("active").siblings().removeClass("active");
     })
 	function createTeam1() {
-		$(".dialog").fadeIn();
+		$("#dialog1").fadeIn();
 	}
-	function poprdsq() {
-		var isShow4=true;
-		if(isShow4){
-			isShow4=false;
-		$("#newMemberlist").paginator({
-			itemTemplateId : teamnNewMember,
-			usepager:false,
-			useSeniorTemplate:true,
-			ajaxFuc : function(curentPage, renderHtml) {
-				var p2 = {
-					troopsId : troopsId
-				};
+	function zyDz(){
+		$("#dialog2").fadeIn();
+	}
 
-				$.ajax({
-					url : "/user/myWarTeam/newMemberlist",
-					datatype : 'json',
-					type : "get",
-					data : p2,
-					success : function(json) {
-						var data = json.t;
-						renderHtml(data);
-						isShow=true;
-					}
-				});
+	function goMsg(){
+		var tid=$("#tid").val();
+		var code=$("#code2").val();
+		var phone =$("#phoneInput2").val();
+		$.ajax({
+			url : "/user/myWarTeam/zydz",
+			datatype : 'json',
+			type : "get",
+			data : {"code" : code,"troopsId" : tid,"mobile":phone},
+			success : function(json) {
+				var data = json.msg;
+				layer.alert(data, {
+							title: data,
+							btn: ['确定']
+						},
+						function (index, item) {
+							location.reload();
+						});
 			}
 		});
-		$(".poprdsq").fadeIn();
 	}
 	function createTeam() {
 		var troopsName=$("#troopsName").val();
@@ -359,9 +387,10 @@
 		});
 	}
 	function tuchuTeam() {
-		$(".exitzd").show();
+		$(".exitzd").fadeIn();
 	}
 	function closeWin(wid) {
+		//$("."+wid).fadeOut();
 		$("."+wid).hide();
 	}
 	function goTeamInfo(id) {
@@ -370,9 +399,6 @@
 		var pathName = window.document.location.pathname;
 		var pos = curWwwPath.indexOf(pathName);
 		window.location.href=window.document.location.href.substring(0, pos)+'/user/warTeamInfo?id='+id;
-	}
-	function closeWin() {
-		$('.dialog').fadeOut();
 	}
 	// 绑定获取验证码事件
 	var InterValObj; //timer变量，控制时间
@@ -417,6 +443,47 @@
 			}
 		});
 	}
+
+	function getCode2() {
+		var mobile = $("#phoneInput2").val();
+		if (mobile == "") {
+			layer.msg("请输入手机号");
+			return;
+		}
+		if(!isPoneAvailable(mobile)){
+			layer.msg("请输入正确的手机号");
+			return;
+		}
+		//curCount = count;
+		$(this).off("click");
+		$(this).removeAttr("class","bg-red");
+		$(this).attr("class","bg-999");
+		//$(this).text("倒计时" + curCount + "秒");
+		//InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		sendsms2(mobile);
+	};
+	//发送验证码
+	function sendsms2(mobile){
+		$.ajax({
+			url : "/sendMobileCodeByZydz",
+			datatype : 'json',
+			type : "post",
+			data : {
+				"mobile" : mobile
+			},success:function(obj){
+				if(obj==null){
+					layer.msg("远程接口调用失败");
+				}else{
+					if(obj.code==200){
+						layer.msg("验证码发送成功");
+					}else{
+						layer.msg("验证码发送失败请重试！");
+					}
+				}
+			}
+		});
+	}
+
 	//timer处理函数
 	function SetRemainTime() {
 		if (curCount == 0) {
@@ -458,6 +525,46 @@
 		} else {
 			return true;
 		}
+	}
+
+	function editSQ(id,type) {
+		var tid=$("#tid").val();
+		$.ajax({
+			url : "/user/myWarTeam/operationTeam",
+			datatype : 'json',
+			type : "get",
+			data : {
+				"userId" : id,
+				"operation":type,
+				"troopsId":tid
+			},success:function(json){
+				var data = json.code;
+				$(".exitzd").hide();
+				if("0"==data){
+
+				}else{
+					layer.alert(json.msg);
+				}
+				location.reload();
+			}
+		});
+	}
+
+	function delMember(id) {
+		var tid=$("#tid").val();
+		$.ajax({
+			url : "/user/myWarTeam/delMember",
+			datatype : 'json',
+			type : "get",
+			data : {
+				"userId" : id,
+				"troopsId":tid
+			},success:function(json){
+				var data = json.code;
+				layer.alert(json.msg);
+				location.reload();
+			}
+		});
 	}
 </script>
 </body>

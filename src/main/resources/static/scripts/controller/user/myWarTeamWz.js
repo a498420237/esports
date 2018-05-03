@@ -23,6 +23,9 @@ define(function(require, exports, module) {
 				}
 				  return false;
 			 });
+			$(".playapply").click(function() {
+				poprdsq();
+			});
 			//弹框
 			$(".table_head  .left label").click(function(){
 				var currency=$(this).attr("name");
@@ -34,6 +37,7 @@ define(function(require, exports, module) {
 
 						$("#teamInfo").show();
 						$(".historyTable").hide();
+						$(".playapply").show();
 						seniorLoad("teamInfoArea");
 					}else if("jd"==currency){
 						$("#wz").hide();
@@ -41,6 +45,7 @@ define(function(require, exports, module) {
 						$("#create").show();
 						$("#teamInfo").hide();
 						$(".historyTable").show();
+						$(".playapply").hide();
 						seniorLoad2("itemTemplate");
 					}
 					var ind=$(this).index();
@@ -52,6 +57,7 @@ define(function(require, exports, module) {
 		var isShow=true;
 		var isShow2=true;
 		var isShow3=true;
+		var isShow4=true;
 		function backTeam() {
 			var data={
 				"troopsId":troopsId,
@@ -116,6 +122,7 @@ define(function(require, exports, module) {
 									}
 								});
 								troopsId=data.troops[0].id;
+								$("#tid").val(troopsId);
 								captainId =data.troops[0].captainId;
 								seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
 								renderHtml(data);
@@ -206,6 +213,34 @@ define(function(require, exports, module) {
 				});
 			}else{
 				//alert("你点的太快了");
+			}
+		}
+		function poprdsq() {
+			 isShow4=true;
+			if(isShow4){
+				isShow4=false;
+				$("#newMemberlist").paginator({
+					itemTemplateId : "teamnNewMember",
+					usepager:false,
+					useSeniorTemplate:true,
+					ajaxFuc : function(curentPage, renderHtml) {
+						var p2 = {
+							troopsId : troopsId
+						};
+						$.ajax({
+							url : "/user/myWarTeam/newMemberlist",
+							datatype : 'json',
+							type : "get",
+							data : p2,
+							success : function(json) {
+								var data = json.t;
+								renderHtml(data);
+								isShow4=true;
+								$(".poprdsq").fadeIn();
+							}
+						});
+					}
+				});
 			}
 		}
 	});

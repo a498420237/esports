@@ -71,8 +71,6 @@ public class MyWarTeamController extends BaseController {
 	 */
 	@RequestMapping(value="/user/myWarTeam/newMemberlist", method = RequestMethod.GET)
 	public JSONObject newMemberlist(@RequestParam Map<String, String> uriVariables){
-		uriVariables.put("troopsId","313");
-		JSONObject jsonObject3 = myWarteamService.newMemberList("",uriVariables);
 		return myWarteamService.newMemberList("",uriVariables);
 	}
 
@@ -155,4 +153,34 @@ public class MyWarTeamController extends BaseController {
 	public JSONObject editTeam(@RequestParam Map<String, String> uriVariables){
 		return myWarteamService.editTeam("",uriVariables);
 	}
+
+    /**
+     * 队长同意 拒绝入队申请
+     * @param uriVariables
+     * @return
+     */
+    @RequestMapping(value="/user/myWarTeam/operationTeam", method = RequestMethod.GET)
+    public JSONObject operationTeam(@RequestParam Map<String, String> uriVariables){
+        return myWarteamService.operationTeam("",uriVariables);
+    }
+
+    /**
+     * 删除队员
+     * @param uriVariables
+     * @return
+     */
+    @RequestMapping(value="/user/myWarTeam/delMember", method = RequestMethod.GET)
+    public JSONObject delMember(@RequestParam Map<String, String> uriVariables){
+        return myWarteamService.delMember("",uriVariables);
+    }
+
+    /**
+     * 转移队长申请
+     * @param uriVariables
+     * @return
+     */
+    @RequestMapping(value="/user/myWarTeam/zydz", method = RequestMethod.GET)
+    public JSONObject zydz(@RequestParam Map<String, String> uriVariables){
+        return myWarteamService.zydz("",uriVariables);
+    }
 }

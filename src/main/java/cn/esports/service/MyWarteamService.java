@@ -29,6 +29,9 @@ public class MyWarteamService extends BaseService {
 	private static final String add_team_url = "/troops/applyTroops.json";
 	private static final String edit_team_url = "/troops/updateTroops.json";
 	private static final String sq_team_url =  "/troops/applyTroopsList.json";
+	private static final String operation_team_url =  "/troops/TroopsOperationByCaptain.json";
+	private static final String delMember_url =  "/troops/expelTroops.json";
+	private static final String zyzd_url="/troops/sendTransferCaptain.json";
 	public JSONObject getUserTeamList(String token,Map<String, String> uriVariables){
 		try {
 			HttpHeaders requestHeaders = new HttpHeaders();
@@ -105,8 +108,8 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			//uriVariables.put("userId", SessionUtil.getCurUid()+"");
-			uriVariables.put("userId", "139");
+			uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			//uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(member_list_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
@@ -173,6 +176,7 @@ public class MyWarteamService extends BaseService {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
 			uriVariables.put("userId", SessionUtil.getCurUid()+"");
+			//uriVariables.put("userId", "132");
 			//uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(add_team_url,uriVariables) ,HttpMethod.GET,r, String.class);
@@ -222,6 +226,72 @@ public class MyWarteamService extends BaseService {
 			//uriVariables.put("userId", "139");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			ResponseEntity<String> resp = restTemplate.exchange(createUrl(sq_team_url,uriVariables) ,HttpMethod.GET,r, String.class);
+
+			return JSONObject.parseObject(resp.getBody());
+		} catch (RestClientException e) {
+			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+
+	public JSONObject operationTeam(String token,Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN", baseConfig.getToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
+				postParameters.add(entry.getKey(), entry.getValue());
+			}*/
+			uriVariables.put("captainId", SessionUtil.getCurUid()+"");
+			//uriVariables.put("captainId", "139");
+			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
+			ResponseEntity<String> resp = restTemplate.exchange(createUrl(operation_team_url,uriVariables) ,HttpMethod.GET,r, String.class);
+
+			return JSONObject.parseObject(resp.getBody());
+		} catch (RestClientException e) {
+			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+
+	public JSONObject delMember(String token,Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN", baseConfig.getToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
+				postParameters.add(entry.getKey(), entry.getValue());
+			}*/
+			uriVariables.put("captainId", SessionUtil.getCurUid()+"");
+			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
+			ResponseEntity<String> resp = restTemplate.exchange(createUrl(delMember_url,uriVariables) ,HttpMethod.GET,r, String.class);
+
+			return JSONObject.parseObject(resp.getBody());
+		} catch (RestClientException e) {
+			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+	public JSONObject zydz(String token,Map<String, String> uriVariables){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			requestHeaders.add("TAP-CLIENT-TOKEN", baseConfig.getToken()); // 客户端版本
+			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
+				postParameters.add(entry.getKey(), entry.getValue());
+			}*/
+			uriVariables.put("newCaptainId", SessionUtil.getCurUid()+"");
+			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
+			ResponseEntity<String> resp = restTemplate.exchange(createUrl(zyzd_url,uriVariables) ,HttpMethod.GET,r, String.class);
 
 			return JSONObject.parseObject(resp.getBody());
 		} catch (RestClientException e) {

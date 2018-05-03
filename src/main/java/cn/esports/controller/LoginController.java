@@ -44,6 +44,10 @@ public class LoginController extends BaseController {
 	public JSONObject sendMobileCodeByCreatTeam(String mobile) {
 		return userService.sendMobileCodeByCreatTeam(mobile);
 	}
+	@RequestMapping(value = "/sendMobileCodeByZydz", method = RequestMethod.POST)
+	public JSONObject sendMobileCodeByZydz(String mobile) {
+		return userService.sendMobileCodeByZydz(mobile);
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public JSONObject login(String mobile, String code) {
 		Subject subject = SecurityUtils.getSubject();  
