@@ -49,12 +49,13 @@
 .guess ul li p > span{margin-right: 24px;}
 .guess ul li .last{margin-right: 0px; text-align: right;}
 .gusjc {padding-top: 10px;height: 70px;}
-.gusjc > span i{display: block;text-align: center;width: 33%;margin-bottom: 10px;}
+.gusjc > span i{display: block;text-align: center;width:30px;height:30px; margin-bottom: 10px; overflow: hidden;}
+.gusjc > span i img{width: 100%;}
 .gusjc > span {text-align: left;width: 33%;display: block;float: left;font-size: 14px;color: #999999;padding-bottom: 10px; }
 .gusjc .guessstat{line-height: 50px; color: #fefefe; font-size: 12px;float: left; width: 33%;text-align: center;}
 .gusjc .last{float: right; text-align: right; position: relative;}
-.gusjc .last i{text-align:left;padding-left: 80px;}
-.gusjc .last i img{position: relative;right: 0px;}
+.gusjc .last i{text-align:left;margin-left: 86px;width:30px;height:30px; overflow: hidden;}
+.gusjc .last i img{position: relative;right: 0px;width: 100%;}
 
 .secwrap .secrightwrap{width: 688px;float: left; background: #31363a;margin-top: 18px;}
 
@@ -121,15 +122,25 @@
 .sucbtn{width: 240px; height: 38px;line-height: 38px; background: #fa2c3b;font-size: 14px; text-align: center;border-radius: 6px; margin:0 auto;}
 
 
+.popmocok{width: 330px;  overflow: hidden;background:#393f46;  position:fixed; border-radius: 10px; height: 280px;  z-index:999; top:50%;margin-top:-125px;left: 50%;margin-left: -165px;}
+.popmocok h4{border-bottom: 1px solid #494f55; position: relative; line-height: 36px;color: #999999; padding-left: 20px; }
+.popmocok h4 .close{position: absolute;right:20px;color: #999999; top:14px;}
+.popmocok h2{ font-size: 18px; line-height: 58px; color: #efefef; text-align: center;margin-top: 10px;}
+.popmocok img{display: block; margin:0 auto;margin-bottom: 20px;	}
+.popmocok p{ line-height: 45px; color: #999999;font-size: 12px; text-align: center;	margin-top: -20px;	}
+.sucbtnd{width: 300px; margin:0 auto;}
+.sucbtnd a{width: 110px;height: 38px;line-height: 38px; background: #fa2c3b;font-size: 14px; text-align: center;border-radius: 6px;float:left; margin-right: 6px; margin-left: 6px; display: block; margin-top: 20px;}
+.sucbtnd .pay{width: 156px; height: 38px; border-radius: 6px; border: 1px solid #fa2c3b; color: #fa2c3b; background: none;float: right;}
 .popmocon{width: 330px;  overflow: hidden;background:#393f46;  position:fixed; border-radius: 10px; height: 250px;  z-index:999; top:50%;margin-top:-125px;left: 50%;margin-left: -165px;}
-.popmocon h4{border-bottom: 1px solid #494f55; position: relative; line-height: 36px;color: #494f55; padding-left: 20px; }
+.popmocon h4{border-bottom: 1px solid #494f55; position: relative; line-height: 36px;color: #999999; padding-left: 20px; }
 .popmocon h4 .close{position: absolute;right:20px;color: #999999; top:14px;}
 .popmocon h2{ font-size: 18px; line-height: 58px; color: #efefef; text-align: center;margin-top: 10px;}
 .popmocon img{display: block; margin:0 auto;margin-bottom: 20px;	}
 .popmocon p{ line-height: 45px; color: #999999;font-size: 12px; text-align: center;	margin-top: -20px;	}
-.sucbtnd{width: 300px; margin:0 auto;}
-.sucbtnd a{width: 110px;height: 38px;line-height: 38px; background: #fa2c3b;font-size: 14px; text-align: center;border-radius: 6px;float:left; margin-right: 6px; margin-left: 6px; display: block; margin-top: 20px;}
-.sucbtnd .pay{width: 156px; height: 38px; border-radius: 6px; border: 1px solid #fa2c3b; color: #fa2c3b; background: none;float: right;}
+.sucbtno{width: 270px; margin:0 auto; margin-bottom: 20px;}
+.sucbtno a{width: 110px;height: 38px;line-height: 38px; background: #fa2c3b;font-size: 14px; text-align: center;border-radius: 6px;float:left; margin-right: 6px; margin-left: 6px; display: block; margin-top: 20px;}
+.sucbtno .back{width: 110px; height: 38px; border-radius: 6px; border: 1px solid #fa2c3b; color: #fa2c3b; background: none;float: right;}
+
 
 .poplogind{position: absolute;width: 100%; height: 100%; top:0px;display: none;}
 .blacbg{width: 100%; height: 100%;position:fixed; background: #000;opacity: 0.5;z-index: 55; top:0px; left: 0px;}

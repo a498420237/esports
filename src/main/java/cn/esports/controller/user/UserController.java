@@ -60,18 +60,44 @@ public class UserController {
 		return userService.BindEmail(uriVariables);
 	}
 	
-	@RequestMapping(value = "/user/addUserPicture", method = RequestMethod.POST)
-	public JSONObject addUserPicture(@RequestParam("avatar_file") MultipartFile file, String avatar_data, HttpServletRequest request ,@RequestParam Map<String, String> uriVariables) {
-		return userService.addUserPicture(uriVariables);
-	}
-	
 	@RequestMapping(value = "/user/delUserPicture", method = RequestMethod.POST)
 	public JSONObject delUserPicture(@RequestParam Map<String, String> uriVariables) {
 		return userService.delUserPicture(uriVariables);
+	}
+	@RequestMapping(value = "/user/getUserBindGame", method = RequestMethod.GET)
+	public JSONObject getUserBingGameAccess(@RequestParam Map<String, String> uriVariables) {
+		return userService.getUserBingGameAccess(uriVariables);
+	}
+	@RequestMapping(value = "/user/getGameArea", method = RequestMethod.GET)
+	public JSONObject getGameArea(@RequestParam Map<String, String> uriVariables) {
+		return userService.getGameArea(uriVariables);
+	}
+	@RequestMapping(value = "/user/getGameRanks", method = RequestMethod.GET)
+	public JSONObject getGameRanks(@RequestParam Map<String, String> uriVariables) {
+		return userService.getGameRanks(uriVariables);
+	}
+	
+	@RequestMapping(value = "/user/getGameInfo", method = RequestMethod.GET)
+	public JSONObject getGameInfo(@RequestParam Map<String, String> uriVariables) {
+		return userService.getGameInfo(uriVariables);
+	}
+	
+	@RequestMapping(value = "/user/UserBindgameAccess", method = RequestMethod.GET)
+	public JSONObject UserBindgameAccess(@RequestParam Map<String, String> uriVariables) {
+		return userService.UserBindgameAccess(uriVariables);
 	}
 	
 	@RequestMapping(value = "/user/suc", method = RequestMethod.GET)
 	public ModelAndView suc(String mobile) {
 		return new ModelAndView("index");
 	}
+	
+	
+	@RequestMapping(value = "/user/submit", method = RequestMethod.POST)
+	public JSONObject usersubmit( String url, MultipartFile file) {
+		return userService.addUserPicture(url,file);
+	}
+	
+	
+	
 }

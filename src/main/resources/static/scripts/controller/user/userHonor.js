@@ -2,7 +2,8 @@ define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
 		$(function(){
 			init();
-			seniorLoad(0);
+			seniorLoad(1);
+			getUserGameAccess(1);
 		});
 		var isShow=true;
 		//获取列表数据
@@ -18,9 +19,9 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 15,"gameType":gametype
+							"limit" : 5,"gameType":gametype
 					};
-					debugger;
+					
 					$.ajax({
 						url : "/user/UserHonor/list",
 						datatype : 'json',
@@ -58,7 +59,41 @@ define(function(require, exports, module) {
 			     $(this).addClass("select");
 			     var gametype=$(this).attr("name");
 			     seniorLoad(gametype);
+			     getUserGameAccess(gametype);
 			   });
+			
 			}
+		
+		function getUserGameAccess(gametype){
+			 $.ajax({
+					url : "/user/getUserBindGame",
+					datatype : 'json',
+					type : "GET",
+					success : function(json) {
+						if(json.code==200){
+							
+							if(json.t.gameAccountInfos.length>0){
+								var isBind=false;
+								json.t.gameAccountInfos.forEach(function(obj){
+									if(obj.gameId==gametype){
+										isBind=true;
+										$("#areaName").text("区服："+obj.areaName);
+										$("#gameRank").text("段位："+obj.gameRank);
+									}
+								});
+								if(!isBind){
+									$("#areaName").text("区服：未绑定");
+									$("#gameRank").text("段位：未绑定");
+								}
+								}else{
+									$("#areaName").text("区服：未绑定");
+									$("#gameRank").text("段位：未绑定");
+								}
+						}else{
+							layer.msg(json.msg);
+						}
+					}
+				});
+		}
 	});
 });

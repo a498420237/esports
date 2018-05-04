@@ -2,6 +2,7 @@ define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
 		var troopsId;
 		var captainId;
+		var memberNew;
 		$(function(){
 			seniorLoad("teamInfoArea");
 			$("#backTeam").click(function() {
@@ -22,6 +23,9 @@ define(function(require, exports, module) {
 				}
 				  return false;
 			 });
+			$(".playapply").click(function() {
+				poprdsq();
+			});
 			//弹框
 			$(".table_head  .left label").click(function(){
 				var currency=$(this).attr("name");
@@ -33,6 +37,7 @@ define(function(require, exports, module) {
 
 						$("#teamInfo").show();
 						$(".historyTable").hide();
+						$(".playapply").show();
 						seniorLoad("teamInfoArea");
 					}else if("jd"==currency){
 						$("#wz").hide();
@@ -40,6 +45,7 @@ define(function(require, exports, module) {
 						$("#create").show();
 						$("#teamInfo").hide();
 						$(".historyTable").show();
+						$(".playapply").hide();
 						seniorLoad2("itemTemplate");
 					}
 					var ind=$(this).index();
@@ -51,6 +57,7 @@ define(function(require, exports, module) {
 		var isShow=true;
 		var isShow2=true;
 		var isShow3=true;
+		var isShow4=true;
 		function backTeam() {
 			var data={
 				"troopsId":troopsId,
@@ -65,12 +72,11 @@ define(function(require, exports, module) {
 					var data = json.code;
 					$(".exitzd").hide();
 					if("0"==data){
-
+						location.reload();
 					}else{
-						alert(json.msg);
+						layer.alert(json.msg);
 					}
-					exitzd
-					location.reload();
+
 				}
 			});
 		}
@@ -101,7 +107,22 @@ define(function(require, exports, module) {
 									list : data.troops
 								};
 								$(".mdat").html(data.newMsgCount);
+								var p = {
+									troopsId : data.troops[0].id
+								};
+								$.ajax({
+									url : "/user/myWarTeam/newMemberlist",
+									datatype : 'json',
+									type : "get",
+									data : p,
+									success : function(json) {
+										var d = json.t;
+										memberNew=d.result.length;
+										$(".news").html(memberNew);
+									}
+								});
 								troopsId=data.troops[0].id;
+								$("#tid").val(troopsId);
 								captainId =data.troops[0].captainId;
 								seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
 								renderHtml(data);
@@ -192,6 +213,34 @@ define(function(require, exports, module) {
 				});
 			}else{
 				//alert("你点的太快了");
+			}
+		}
+		function poprdsq() {
+			 isShow4=true;
+			if(isShow4){
+				isShow4=false;
+				$("#newMemberlist").paginator({
+					itemTemplateId : "teamnNewMember",
+					usepager:false,
+					useSeniorTemplate:true,
+					ajaxFuc : function(curentPage, renderHtml) {
+						var p2 = {
+							troopsId : troopsId
+						};
+						$.ajax({
+							url : "/user/myWarTeam/newMemberlist",
+							datatype : 'json',
+							type : "get",
+							data : p2,
+							success : function(json) {
+								var data = json.t;
+								renderHtml(data);
+								isShow4=true;
+								$(".poprdsq").fadeIn();
+							}
+						});
+					}
+				});
 			}
 		}
 	});

@@ -21,9 +21,8 @@
 				<div class="lt">
 					<ul>
 						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<!-- <li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li> -->
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
-						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
@@ -32,7 +31,7 @@
 				</div>
 				<div class="rt">
 					<div class="detail" id="block1" >
-						<img class="timg" src="${userinfo.t.imagePrefix}/aaa.png" onerror="this.src='/images/person_avant.png;this.onerror=null'" >
+						<img class="timg" src="${userinfo.t.imagePrefix}/aaa.png" onerror="this.src='/images/myavatpic.png;this.onerror=null'" >
 						<p class="name"><em>昵称：</em><span th:text="${userinfo.t.userName}"></span></p>
 						<p><em>性别：</em><span th:if="${userinfo.t.sex==1}">男</span><span th:if="${userinfo.t.sex==0}">女</span></p>
 						<p class="age"><em>年龄：</em><span th:text="${userinfo.t.age}"></span>岁</p>
@@ -44,9 +43,9 @@
 						<img class="timg" src="/images/person_avant.png">
 						<p class="name"><em>昵称：</em><input class="w155" type="text" id="userName" placeholder="请输入昵称" th:value="${userinfo.t.userName}"></p>
 						<div class="sex clearfix">
-							<em>性别：</em><form action=""> 
-					        <input type="radio" name="sex" id="sex1" value="1" th:value="${userinfo.t.sex}" >男  
-					        <input type="radio" name="sex" id="sex0" value="0" th:value="${userinfo.t.sex}">女   
+							<em>性别：</em><form id="form_sex"> 
+					        <input type="radio" name="sex" id="sex1" value="1" th:checked="${userinfo.t.sex==1}" >男  
+					        <input type="radio" name="sex" id="sex0" value="0" th:checked="${userinfo.t.sex==0}">女   
 					        </form>
 					        
 				        </div>
@@ -57,41 +56,34 @@
 					</div>
 					<div class="line"></div>
 					<div class="bind">
-						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><div class="btns" id="phone">修改手机</div></div>
-						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" th:text="${userinfo.t.emailBound}"></span></em><div class="btns" id="email">立即绑定</div></div>
+						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><!-- <div class="btns" id="phone">修改手机</div> --></div>
+						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" th:text="${userinfo.t.emailBound}"></span><span class="cl-fff" th:if="${userinfo.t.emailBound!='false'}" >未绑定</span></em><!-- <div class="btns" id="email">立即绑定</div> --></div>
 					</div>
 					<div class="line"></div>
 					<div class="up-img">
 						<p>精选照片：</p>
-						<div class="nr clearfix">
-							<div class="list left">
-								<div class="img"><img src="/images/person_photo.png"><div class="ic"><img src="images/person_close.png"></div></div>
+						<div class="nr clearfix" id="pictures_list">
+							<div class="list left" th:each="lm: ${userinfo.t.userPictures}">
+								<div class="img">
+								<img th:src="${lm.picture}" onerror="this.src='/images/person_photo.png;this.onerror=null'">
+									<div class="ic"><img src="/images/person_close.png" th:alt="${lm.id}"></div>
+								</div>
 							</div>
+							<form id="form-add">
 							<a href="javascript:;" class="file left">
-							    <input type="file" name="" id="">
-							</a>
+							    <input type="file" name="file" />
+							  
+							</a>   <input type="hidden" id="url" name="url" /> 
+							</form>
 						</div>	
-						<div class="save">保存</div>					
+						<div class="save" id="submitFile">保存</div>					
 					</div>
 					<div class="game">
 						<p>绑定游戏账号</p>
-						<div class="account">
-							<div class="ry">
-								<div class="info">
-									<div class="tit">王者荣耀</div>
-									<p>AMSsss</p>
-									<p>微信126区</p>
-									<p>荣耀王者</p>
-									<div class="set"></div>
-								</div>
-							</div>
-							<div class="qs">
-								<div class="info">
-									<div class="tit">绝地求生</div>
-									<div class="chain"></div>									
-								</div>
-								<div class="pro" id="bind">点击绑定账号</div>
-							</div>
+						<div class="account" >
+						<ul id="bind_access">
+							
+							</ul>
 						</div>
 					</div>
 					
@@ -117,7 +109,7 @@
 					<div class="dialog2">
 						<div class="cont2wrap">
 							<div class="pubclose">
-								<img src="images/closeico.png">
+								<img src="/images/closeico.png">
 							</div>
 						<div class="cont2">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
@@ -140,7 +132,7 @@
 						<div class="cont3">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
-								<img src="images/succes.png">
+								<img src="/images/succes.png">
 								<p>您的手机号绑定成功</p>
 							</div>	
 							<div class="tk-btn1" id="close">完成</div>					
@@ -158,33 +150,33 @@
 						<div class="cont">
 							<div class="tit">绑定游戏账号</div>
 							<div class="info"><span>游戏：</span>
-								<select>
-									<option>绝地求生</option>
+								<select id="gameSelect">
+									
 								</select>
 							</div>
 							<div class="info"><span>区服：</span>
-								<select>
-									<option>东南亚</option>
+								<select id="GameAreaSelect">
+									
 								</select>
 							</div>
-							<div class="info"><span>排名：</span>
-								<select>
-									<option>81</option>
+							 <div class="info"><span>排名：</span>
+								<select id="GameRanksSelect">
+									
 								</select>
-							</div>
+							</div> 
 							<div class="info"><span>昵称：</span>
-								<input type="text" placeholder="请输入游戏昵称">
+								<input type="text" id="gameNickname" placeholder="请输入游戏昵称">
 							</div>
 							<div class="upimg clearfix">
-								<p class="text-right">添加截图</p>
+								<!-- <p class="text-right">添加截图</p>
 								<a href="javascript:;" class="filed">
 								    <input type="file" name="" id="">
-								</a>
+								</a> -->
 								<div class="promt">游戏角色名称一经绑定将无法修改，如遇账号被绑定请联系客服</div>
 							</div>
 							<div class="btns clearfix">
 								<div class="cancel left">取消</div>
-								<div class="confirm right">确认</div>
+								<div id="bind_game_sumbit" class="confirm right">确认</div>
 							</div>
 						</div>
 					</div>
@@ -220,6 +212,9 @@
 		$(".dialog").fadeIn();
 	})
 	$(".cancel").on("click",function(){
+		$(".dialog").fadeOut();
+	})
+	$(".pubclose").on("click",function(){
 		$(".dialog").fadeOut();
 	})
 	$(document).mouseup(function(e){

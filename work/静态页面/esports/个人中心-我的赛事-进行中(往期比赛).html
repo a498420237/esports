@@ -1,367 +1,680 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>个人中心</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/personal.css">
-	<script src="js/jquery.1.11.3.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/personal.css">
+    <script src="js/jquery.1.11.3.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
-	<div class="topWrap">
-		<div class="topcenter">
-			<div class="logo">
-				<img src="images/tplogo.png">
-			</div>
-			<div class="nav">
-				<a class="current" href="#">首页<span>HOME</span></a>
-				<a href="#">赛事<span>COMPETITION</span></a>
-				<a href="#">资讯<span>MESSAGE</span></a>
-				<a href="#">直播<span>LIVE</span></a>
-				<a href="#">预测<span>FORECAST</span></a>
-				<a href="#">移动端<span>MOBILE</span></a>
-			</div>
-			<div class="loginr">
-				<a class="current" href="#">登录</a>
-				<a href="#">注册</a>
-			</div>
-		</div>
-	</div>
-	<div class="data">
-		<div class="content">
-			<div class="tit">个人中心</div>
-			<div class="cont">
-				<div class="lt">
-					<ul>
-						<li><a href="#"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a class="select"  href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
-						<li><a href="#"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
-						<li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
-						<li><a href="#"><div class="ic ic5"></div><span>货币兑换</span></a></li>
-						<li><a href="#"><div class="ic ic6"></div><span>消费记录</span></a></li>
-						<li><a href="#"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>
-						<li><a href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>				
-					</ul>
-				</div>
-				<div class="event my_match">
-					<div class="table_head overflow_hide color-glod">
-						<div class="left fl">
-							<label for="match1" class="active">进行中的比赛</label>
-							<label for="match2">往期比赛</label>
-						</div>
-						<div class="right fr">
-							<label class="active"><span>王者荣耀</span></label>
-							<label><span>绝地求生</span></label>
-						</div>
-					</div>
-					<div class="historyTable color-glod">
-						<div class="table_box show">
-							<div class="table_list">
-								<div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>
-								 <div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>
-								<div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>
-								<div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>
-								<div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>
-								<div class="list_item">
-									<div class="left">
-									   <span>MDL全球邀请赛</span>
-									</div>
-									<div class="leftBorder center text-center">
-										<span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
-										<span class="score font16"><i>1</i>:<b>2</b></span>
-										<span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
-										
-									</div>
-									<div class="leftBorder right">
-											提交结果(12:00)
-									</div>
-								</div>       
-							</div>					
-							<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
-							
-							
-							
-							
-						</div>
-						<div class="table_box">
-							<div class="table_list">
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod"><img src="images/rank1icon.png">冠军</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>	
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod"><img src="images/rank2icon.png">亚军</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>	
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod"><img src="images/rank3icon.png">季军</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>	
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod">第四名</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>	
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod">第五名</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>	
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod">第六名</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>		
-								<div class="list_item">
-									<div class="left max">
-									   <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
-									</div>
-									<div class="center text-center min">
-										<div class="first font14 color-glod">第七名</div>"
-									</div>
-									<a class="right max">
-											查看详情
-									</a>
-								</div>						
-							</div>
-							
-							
-							<div class="z_pager">
-            <ul id="pageContainer" class="pagination pagination-sm">
-              <li >
-                <a title="首页" href="">首页</a>
-              </li>
-              <li >
-                <a title="跳转到前一页" href="">上一页</a>
-              </li>
-              <li class="active">
-                <a title="当前页面是 1" href="">1</a>
-              </li>
-              <li >
-                <a title="转到页面 2" href="">2</a>
-              </li>
-              <li >
-                <a title="转到页面 3" href="">3</a>
-              </li>
-              <li >
-                <a title="转到页面 4" href="">4</a>
-              </li>
-              <li >
-                <a title="转到页面 5" href="">5</a>
-              </li>
-              <li >
-                <a title="转到页面 6" href="">6</a>
-              </li>
-              <li >
-                <a title="跳转到后一页" href="">下一页</a>
-              </li>
-              <li >
-                <a title="尾页" href="">尾页</a>
-              </li>
-            </ul>
-          </div>
-							
-							
-							
-							
-						</div>
+    <div class="topWrap">
+        <div class="topcenter">
+            <div class="logo">
+                <img src="images/tplogo.png">
+            </div>
+            <div class="nav">
+                <a class="current" href="#">首页<span>HOME</span></a>
+                <a href="#">赛事<span>COMPETITION</span></a>
+                <a href="#">资讯<span>MESSAGE</span></a>
+                <a href="#">直播<span>LIVE</span></a>
+                <a href="#">预测<span>FORECAST</span></a>
+                <a href="#">移动端<span>MOBILE</span></a>
+            </div>
+            <div class="loginr">
+                <a class="current" href="#">登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+    <div class="data">
+        <div class="content">
+            <div class="tit">个人中心</div>
+            <div class="cont">
+                <div class="lt">
+                    <ul>
+                        <li><a href="#"><div class="ic ic1"></div><span>我的资料</span></a></li>
+                        <li><a class="select" href="#"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+                        <li><a href="#"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+                        <li><a href="#"><div class="ic ic4"></div><span>兑换商城</span></a></li>
+                        <li><a href="#"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+                        <li><a href="#"><div class="ic ic6"></div><span>消费记录</span></a></li>
+                        <li><a href="#"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+                        <li><a href="#"><div class="ic ic8"></div><span>商城订单</span></a></li>
+                        <li><a href="#"><div class="ic ic9"></div><span>我的战队</span></a></li>
+                    </ul>
+                </div>
+                <div class="event my_match">
+                    <div class="table_head overflow_hide color-glod">
+                        <div class="left fl">
+                            <label for="match1" class="active">进行中的比赛</label>
+                            <label for="match2">往期比赛</label>
+                        </div>
+                        <div class="right fr">
+                            <label class="active"><span>王者荣耀</span></label>
+                            <label><span>绝地求生</span></label>
+                        </div>
+                    </div>
+                    <div class="historyTable color-glod">
+                        <div class="table_box show">
+                            <div class="table_list">
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
 
-						
-					</div>
-			
-					
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-	<div class="botwrap">
-		<div class="bottcon">
-			<div class="btnav">
-				<div class="dyl">
-					<a class="current" href="#">关于我们</a>
-					<a href="#">媒体报道</a>
-					<a href="#">投资方&顾问</a>
-				</div>
-				<div class="dyl">
-					<a href="#">工作机会</a>
-					<a href="#">网站条款</a>
-					<a href="#">新手指南</a>
-				</div>
-				<div class="dyl">
-					<a href="#">我们的公众号</a>
-				</div>
-			</div>
-			<div class="btlogo">
-				<img src="images/btlogo.png">
-			</div>
-		</div>
-		<div class="btsafetext">
-			<div class="textnav">
-				<a href="#">家长监护</a>|
-				<a href="#">防沉迷</a>|
-				<a href="#">交易纠纷处理</a>|
-				<a href="#">用户权益保障措施</a>
-			</div>
-			<p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
-			<p>指尖上行（北京）互动娱乐科技有限公司</p>
-		</div>
-	</div>
-        <script type="text/javascript" src="js/jquery.select.js"></script>
-        <script type="text/javascript">
-        $(".table_head  .left label").click(function(){
-			var ind=$(this).index();
-			$(this).addClass("active").siblings().removeClass("active");
-			$(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");			
-			
-		})
-		$(".table_head .right label").click(function(){
-			$(this).addClass("active").siblings().removeClass("active");			
-		});
-            $(function(){
-                $('select.select').select();
-            });
-        </script>
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>MDL全球邀请赛</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>JHGGFhf</i><img src="images/blueteam.png"></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img src="images/redteam.png"><i>LGD</i></span>
+
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                    <div class="list_itempop" style="display:none">
+                                        <div class="middle-box">
+                                            <div class="middle-inner">
+                                                <span>MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛MDL全球邀请赛</span>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <span>第1轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第2轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span>已提交</span>
+                                        </div>
+                                        <div class="right">
+                                            <span>第3轮</span>
+                                            <span class="leftP font14"><img src="images/blueteam.png"><i>JHGGFhf</i></span>
+
+                                            <span>B组</span>
+                                            <span>第20名</span>
+                                            <span class="rightd orand">已提交</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="z_pager">
+                                <ul id="pageContainer" class="pagination pagination-sm">
+                                    <li>
+                                        <a title="首页" href="">首页</a>
+                                    </li>
+                                    <li>
+                                        <a title="跳转到前一页" href="">上一页</a>
+                                    </li>
+                                    <li class="active">
+                                        <a title="当前页面是 1" href="">1</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 2" href="">2</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 3" href="">3</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 4" href="">4</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 5" href="">5</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 6" href="">6</a>
+                                    </li>
+                                    <li>
+                                        <a title="跳转到后一页" href="">下一页</a>
+                                    </li>
+                                    <li>
+                                        <a title="尾页" href="">尾页</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="table_box">
+                            <div class="table_list">
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod"><img src="images/rank1icon.png">冠军</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod"><img src="images/rank2icon.png">亚军</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod"><img src="images/rank3icon.png">季军</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod">第四名</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod">第五名</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod">第六名</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                                <div class="list_item">
+                                    <div class="left max">
+                                        <img src="images/myteam_run.png"><span>ESL ONE汉堡邀请赛</span>
+                                    </div>
+                                    <div class="center text-center min">
+                                        <div class="first font14 color-glod">第七名</div>"
+                                    </div>
+                                    <a class="right max">
+                                        查看详情
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="z_pager">
+                                <ul id="pageContainer" class="pagination pagination-sm">
+                                    <li>
+                                        <a title="首页" href="">首页</a>
+                                    </li>
+                                    <li>
+                                        <a title="跳转到前一页" href="">上一页</a>
+                                    </li>
+                                    <li class="active">
+                                        <a title="当前页面是 1" href="">1</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 2" href="">2</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 3" href="">3</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 4" href="">4</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 5" href="">5</a>
+                                    </li>
+                                    <li>
+                                        <a title="转到页面 6" href="">6</a>
+                                    </li>
+                                    <li>
+                                        <a title="跳转到后一页" href="">下一页</a>
+                                    </li>
+                                    <li>
+                                        <a title="尾页" href="">尾页</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="botwrap">
+        <div class="bottcon">
+            <div class="btnav">
+                <div class="dyl">
+                    <a class="current" href="#">关于我们</a>
+                    <a href="#">媒体报道</a>
+                    <a href="#">投资方&顾问</a>
+                </div>
+                <div class="dyl">
+                    <a href="#">工作机会</a>
+                    <a href="#">网站条款</a>
+                    <a href="#">新手指南</a>
+                </div>
+                <div class="dyl">
+                    <a href="#">我们的公众号</a>
+                </div>
+            </div>
+            <div class="btlogo">
+                <img src="images/btlogo.png">
+            </div>
+        </div>
+        <div class="btsafetext">
+            <div class="textnav">
+                <a href="#">家长监护</a>|
+                <a href="#">防沉迷</a>|
+                <a href="#">交易纠纷处理</a>|
+                <a href="#">用户权益保障措施</a>
+            </div>
+            <p>健康游戏忠告: 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+            <p>指尖上行（北京）互动娱乐科技有限公司</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.select.js"></script>
+    <script type="text/javascript">
+        $(".table_head  .left label").click(function () {
+            var ind = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");
+
+        })
+        $(".table_head .right label").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+        $(function () {
+            $('select.select').select();
+
+            $(".list_item_content .list_item").click(function () {
+
+                $(".list_item_content .list_itempop").hide();
+
+
+                $(this).next(".list_itempop").slideDown();
+
+
+
+            })
+        });
+    </script>
 </body>
 </html>

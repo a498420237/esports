@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 		//获取列表数据
 		function seniorLoad(){
 			
-			debugger;
+			
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 					var gameId=$("#gemelist_left_nav").children().find(".active").attr("name");
 					var data={
 							"offset" : curentPage,
-							"limit" : 5
+							"limit" : 4
 					};
 					if(gameId!="" && gameId!=0){
 						data.gameId=gameId;
@@ -28,9 +28,10 @@ define(function(require, exports, module) {
 						data : data,
 						success : function(json) {
 							var data = json.t;
-							debugger;
+							
 							renderHtml(data);
 							init();
+							shezhigusuan();
 							isShow=true;
 						}
 					});
@@ -126,7 +127,7 @@ define(function(require, exports, module) {
 										data.push(handicap.lotteryInfo);
 										var daa={ "total":10,"result":data};
 										var contenthtml=template("z_modelsTemplate", daa);
-										debugger;
+										
 										if(json.code==200){
 											
 											 layer.open({
@@ -141,17 +142,19 @@ define(function(require, exports, module) {
 										          });
 											 //弹出框选择操作效果
 										        $(".clickNumber").on("click",function() {
-										        	debugger;
 										          $(this).parents(".lump").find(".click").removeClass("normal");
 										          $(this).addClass("normal")
 										          $("#quizMoney").val($(this).text());
-										          $("#estimate").text($(this).text());
+										          shezhigusuan();
 										        });
 										        $(".clicktype").on("click",function() {
-										        	debugger;
 										          $(this).parents(".lump").find(".click").removeClass("normal");
-										          $(this).addClass("normal")
+										          $(this).addClass("normal");
+										          shezhigusuan();
 										        });
+										        $("#quizMoney").blur(function(){
+										        	 shezhigusuan();
+										        	});
 										        //关闭弹出层
 										        $('.confirm').on("click",function() {
 										        	
@@ -160,7 +163,11 @@ define(function(require, exports, module) {
 										        	var lotteryId=$("#lotteryId").val();
 										        	var roundId=$("#roundId").val();
 										        	var goldType=$("#goldType").val();
-										        	debugger;
+										        	
+										        	if(quizMoney=="" ||quizMoney==null){
+										        		layer.msg("请输入下注金额");
+										        		return;
+										        	}
 										        	var data={
 										        			"lottertType":1,
 										        			"lotteryId":lotteryId,
@@ -171,7 +178,7 @@ define(function(require, exports, module) {
 										        			"clientType":0,
 										        			"goldType":goldType
 										        	};
-										        	debugger;
+										        	
 										        	$.ajax({
 														url : "/user/BetOrder/saveBet",
 														datatype : 'json',
@@ -179,7 +186,7 @@ define(function(require, exports, module) {
 														data:data,
 														success : function(json) {
 															if(json.code==200){
-																alert("成功");
+																layer.msg("成功");
 															}else{
 																alert(json.msg);
 															}
@@ -203,5 +210,19 @@ define(function(require, exports, module) {
 		        });
 		       
 			}
+		
+		function shezhigusuan(){
+			var a= $("#quizMoney").val();
+	        var b=$("#redOdd").val();
+	        var b2=$("#blueOdd").val();
+	      	var quizTeamType=$("#quizTeamType").find("a.normal").attr("name");
+	      	if(a!=""){
+	      	var c=parseFloat(a)*parseFloat(b);
+	      	if(quizTeamType==1){
+	      		c=parseFloat(a)*parseFloat(b2);
+	      	}
+	          $("#estimate").text(c);
+	      	}
+		}
 	});
 });

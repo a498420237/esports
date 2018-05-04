@@ -6,14 +6,14 @@ define(function(require, exports, module) {
 		function seniorLoad(diamond){
 			if(isShow){
 				isShow=false;
-					debugger;
+					
 					$.ajax({
 						url : "/user/ConvertDiamondToGold/save",
 						datatype : 'json',
 						type : "GET",
 						data : {"diamond" : diamond},
 						success : function(json) {
-							debugger;
+							
 							//layer.msg(json.msg);
 							if(json.code==200){
 								layer.msg("兑换成功",function(){window.location.reload();});

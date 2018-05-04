@@ -25,7 +25,7 @@ public class UserHonorController extends BaseController {
 	
 	@RequestMapping(value="/user/UserHonor", method = RequestMethod.GET)
 	public ModelAndView forecast() {
-		ModelAndView view =new ModelAndView("user/UserHonor");
+		ModelAndView view =new ModelAndView("user/userHonor");
 		view.addObject("userinfo",JSON.parseObject(SessionUtil.getCurUser(),UserInfo.class));
 		return view;
 	}

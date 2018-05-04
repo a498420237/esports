@@ -29,7 +29,7 @@ public class PersonalWealthController extends BaseController {
 	
 	@RequestMapping(value="/user/PersonalWealth", method = RequestMethod.GET)
 	public ModelAndView forecast() {
-		ModelAndView view =new ModelAndView("user/PersonalWealth");
+		ModelAndView view =new ModelAndView("user/personalWealth");
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		return view;
 	}

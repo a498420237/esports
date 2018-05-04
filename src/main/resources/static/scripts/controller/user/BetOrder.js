@@ -21,14 +21,14 @@ define(function(require, exports, module) {
 							"offset" : curentPage,
 							"limit" : 3,"dateType":dateType
 					};
-			debugger;
+			
 					$.ajax({
 						url : "/user/BetOrder/list",
 						datatype : 'json',
 						type : "get",
 						data : data,
 						success : function(json) {
-							debugger;
+							
 							if(json.code==200){
 								var data = json.t;
 								if(typeof(data) == "undefined" ){
@@ -59,7 +59,7 @@ define(function(require, exports, module) {
 		
 		function init(){			//页面
 			 $(".select_ul").click(function() {
-				 debugger;
+				 
 				var currency=  $('.tab span.sel').attr("name");
 			     var dateId=$("select.select").val();
 			     seniorLoad(currency,dateId);
