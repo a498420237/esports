@@ -88,6 +88,33 @@ public class UserService extends BaseService{
 			return  jsonObject;
 		}
 	}
+
+	/**
+	 * 队长转移申请--短信验证码
+	 * @param mobile
+	 * @return
+	 */
+	public JSONObject sendMobileCodeByZydz(String mobile){
+		try {
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+			//requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+
+			MultiValueMap<String, Object> postParameters = new LinkedMultiValueMap<>();
+			postParameters.add("mobile", mobile);
+			postParameters.add("type", SendType.TRANSFERAPTAIN.getIndex());
+			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+
+			return restTemplate.postForObject(createUrl("/api/msg/sendMobileCode.json", null), httpEntity, JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("send mobile code to rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
+		}
+	}
 	/**
 	 * 发送邮箱验证码
 	 * @param email
