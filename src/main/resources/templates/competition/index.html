@@ -8,12 +8,10 @@
 <meta http-equiv="Content-Language" content="zh-CN">
 <meta name="Keywords" content="">
 <meta name="Description" content="">
-
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>	
 <link rel="stylesheet" type="text/css" href="/css/swiper.min.css"/>
 <link href="/css/main.css" rel="stylesheet">
-<link href="/css/ling.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/personal.css">
 <link rel="stylesheet" href="/css/page.css">
 <script src="/js/jquery.1.11.3.min.js"></script>
 <script>
@@ -34,15 +32,15 @@ window.onload = function(){
 	<div class="contwrap">
 		<div class="wid_1100 saishi_listPage ">
 			    <div class="saishi_nav font0 overflow_hide bg-black" id="competitionTab">
-			    	<div class="nav active" data-type="-1">
+			    	<div class="navz active" data-type="-1">
 			    		<p class="border"></p>
 			    		所有赛事
 			    	</div>
-			    	<div class="nav" data-type="1">
+			    	<div class="navz" data-type="1">
 			    		<p class="border"></p>
 			    		<img src="/images/news_gamepic01.png"/>王者荣耀
 			    	</div>
-			    	<div class="nav" data-type="2">
+			    	<div class="navz" data-type="2">
 			    		<p class="border"></p>
 			    		<img src="/images/news_gamepic02.png"/>绝地求生
 			    	</div>
@@ -89,18 +87,18 @@ window.onload = function(){
   		</a>
   	</textarea>
 </div>
-
+<script src="/layer/layer.js"></script>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script>
 	seajs.use('/scripts/controller/competition/index');
 	
     /*页面样式处理*/
-	$(".saishi_nav .nav").each(function(){
-		var num=$(".saishi_nav .nav").length;
+	$(".saishi_nav .navz").each(function(){
+		var num=$(".saishi_nav .navz").length;
 		$(this)[0].style.width=100/num+"%"	
 	})
-	$(".saishi_nav .nav").click(function(){
+	$(".saishi_nav .navz").click(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 	})
 	$(".fenye a").click(function(){

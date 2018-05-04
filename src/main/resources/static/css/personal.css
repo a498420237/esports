@@ -392,6 +392,10 @@ margin-left: -200px;
 }
 .data .detail .timg{
 	margin-bottom: 32px;
+	width: 65px;
+height: 65px;
+overflow: hidden;
+border-radius: 65px;
 }
 .data .detail p{
 	margin-bottom: 26px;

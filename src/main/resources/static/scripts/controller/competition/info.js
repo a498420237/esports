@@ -115,7 +115,7 @@ define(function(require, exports, module) {
 				}
 			});
 		}
-		
+		var isSubmit=true;
 		function pageInit(){
 			$("#againstInfoList").on("click", ".process_item", function(){
 				var num = $(this).data("num");
@@ -123,7 +123,75 @@ define(function(require, exports, module) {
 			});
 			
 			$("#enrollMatch").on("click", function(){//展示报名页面
-					$(".mengbanDiv").addClass("show");
+					//$(".mengbanDiv").addClass("show");
+				$.ajax({
+					url : "/isLoginOrUser",
+					datatype : 'json',
+					type : "get",
+					success : function(json) {
+						var userInfo=json.t;
+						debugger;
+						if(json.code==200){
+							var entryFeeType=$("#entryFeeType").text();//费用类型
+							var entryFee=$("#entryFee").val();
+							if(entryFeeType=="金币"){
+								if(parseInt(userInfo.gold)>=parseInt(entryFee)){
+									$("#gold_diamond").html("当前余额：("+userInfo.diamond+")金币");
+								}
+							}else{
+								if(parseInt(userInfo.diamond)>=parseInt(entryFee)){
+									$("#gold_diamond").html("当前余额：("+userInfo.diamond+")钻石");
+									$("#gold_diamond").next().remove();
+								}
+							}
+							/*$.ajax({
+								url : "/user/getUserBindGame",
+								datatype : 'json',
+								type : "GET",
+								success : function(json) {
+									if(json.code==200){
+											json.t.gameAccountInfos.forEach(function(obj){
+											var gameName=$("#gameId_"+obj.gameId).children().eq(0).html();
+											});
+
+									}else{
+										layer.msg(json.msg);
+									}
+								}
+							});*/
+							$(".mengbanDiv").addClass("show");
+							
+							$(".pay").on("click",function(){
+								var matchId=dataCenter.matchId;
+								if(isSubmit){
+									isSubmit=false;
+								
+								$.ajax({
+									url : "/competition/applyMatch",
+									datatype : 'json',
+									type : "GET",
+									data:{"matchId":matchId},
+									success : function(json) {
+										isSubmit=true;
+										if(json.code==200){
+											alert("报名成功",function(){
+												$(".mengbanDiv").removeClass("show");
+											});
+										}else{
+											alert(json.msg);
+											$(".mengbanDiv").removeClass("show");
+										}
+									}
+								});
+								}
+							});
+							}else{
+								layer.msg("登录之后才能报名",function(){
+									window.location.href="/login";
+								});
+							}
+						}
+				});
 			});
 			
 			$("#pageNav a:first").click();

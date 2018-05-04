@@ -1,5 +1,6 @@
 package cn.esports.controller.free;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.esports.controller.BaseController;
 import cn.esports.service.CompetitionService;
+import cn.esports.utils.SessionUtil;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -81,5 +83,18 @@ public class CompetitionController extends BaseController {
 	public JSONObject getAgainstInfo(@PathVariable Long matchId,
 			@RequestParam int num){
 		return competitionService.getAgainstPlan(matchId, num);
+	}
+	
+	/**
+	 * 对阵信息
+	 * @param matchId
+	 * @return
+	 */
+	@RequestMapping(value="/competition/applyMatch", method = RequestMethod.GET)
+	public JSONObject applyMatch(@RequestParam Integer matchId){
+		Map<String, String> uriVariables=new HashMap<String, String> ();
+		uriVariables.put("userId", String.valueOf(SessionUtil.getCurUid()));
+		uriVariables.put("matchId", String.valueOf(matchId));
+		return competitionService.applyMatch(uriVariables);
 	}
 }

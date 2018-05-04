@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	};
 	
 	function loadDatas(curentPage, renderHtml){
-		var gameType = $("#competitionTab .nav.active").data("type");
+		var gameType = $("#competitionTab .navz.active").data("type");
 		var statuType = $("#statusTab .active").data("type");
 		$.ajax({
 			url : "/competition/list",

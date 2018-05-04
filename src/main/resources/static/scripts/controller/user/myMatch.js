@@ -28,6 +28,7 @@ define(function(require, exports, module) {
 						type : "get",
 						data : data,
 						success : function(json) {
+							debugger;
 							var data = json.t;
 							var paramObj = {
 								total : data.total,

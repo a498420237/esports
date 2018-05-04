@@ -114,8 +114,11 @@ public class CompetitionService extends BaseService {
 		try {
 			return restTemplate.getForObject(createUrl(APPLY_MATCH, uriVariables),JSONObject.class);
 		} catch (RestClientException e) {
-			logger.error("call the forecast list from rest api occurred error,cause by:",e);
-			return null;
+			logger.error("call the applyMatch list from rest api occurred error,cause by:",e);
+			JSONObject jsonObject=new JSONObject();
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+			return  jsonObject;
 		}
 	}
 	

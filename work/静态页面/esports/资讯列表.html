@@ -43,15 +43,15 @@
 		<div class="wid_1100 saishi_listPage ">
 			    <div class="saishi_nav font0 overflow_hide bg-black text-left overflow_hide">
 			    	<div class="left_div text-center fl">
-			    			<div class="nav active">
+			    			<div class="navz active">
 					    		<p class="border"></p>
 					    		所有赛事
 					    	</div>
-					    	<div class="nav">
+					    	<div class="navz">
 					    		<p class="border"></p>
 					    		<img src="images/news_gamepic01.png"/>王者荣耀
 					    	</div>
-					    	<div class="nav">
+					    	<div class="navz">
 					    		<p class="border"></p>
 					    		<img src="images/news_gamepic02.png"/>绝地求生
 					    	</div>
@@ -218,11 +218,11 @@
 	<script src="js/swiper.min.js"></script>
 	<script src="js/con_js.6.23.js"></script>
 	<script>
-		$(".saishi_nav .nav").each(function(){
-			var num=$(".saishi_nav .nav").length;
+		$(".saishi_nav .navz").each(function(){
+			var num=$(".saishi_nav .navz").length;
 			$(this)[0].style.width=100/num+"%"	
 		})
-		$(".saishi_nav .nav").click(function(){
+		$(".saishi_nav .navz").click(function(){
 			
 			$(this).addClass("active").siblings().removeClass("active");
 		})

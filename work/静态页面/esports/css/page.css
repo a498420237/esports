@@ -203,10 +203,10 @@
 .wid_1100{width: 1100px;padding: 30px 0; margin: 0 auto;}
 .wid_1100 *{font-size: 14px;color:#efefef;}
 .saishi_nav{line-height: 60px; text-align: center;}
-.saishi_nav .nav{margin-top: 0;position: relative;font-size: 18px;cursor: pointer;}
-.saishi_nav .nav.active .border{ height: 5px;width: 100%;background-color: #ffc000;position: absolute;left:0px;top:0px}
-.saishi_nav .nav.active {color:#ffc000; background-color: #31363a;}
-.saishi_nav .nav img{height: 24px;display: inline-block;margin-right: 10px;}
+.saishi_nav .navz{margin-top: 0;position: relative;font-size: 16px;cursor: pointer;float: left;}
+.saishi_nav .navz.active .border{ height: 5px;width: 100%;background-color: #ffc000;position: absolute;left:0px;top:0px}
+.saishi_nav .navz.active {color:#ffc000; background-color: #31363a;}
+.saishi_nav .navz img{height: 24px;display: inline-block;margin-right: 10px;}
 .list_show{background-color: #31363a;}
 .status_chocie .choice_item{width: 25%; text-align: center; padding: 20px 0px; text-align: center;}
 .status_chocie .choice_item span{width: 80px; line-height: 35px; border:1px solid #848586; font-size: 16px;display: inline-block; border-radius: 6px;cursor: pointer;}
@@ -216,9 +216,9 @@
 .list_box .list_item .img{width: 235px;height: 140px;}
 .list_box .list_item .img img{display: block;width: 235px;height: 140px;}
 .list_box .list_item .item_detail{height: 140px; margin-left: 260px;position: relative;}
-.list_box .list_item .item_detail  h4{font-size: 20px;font-family: "黑体";line-height: 1; padding:5px 0;color: #fff;padding-top: 20px;}
+.list_box .list_item .item_detail  h4{font-size: 18px;font-family: "黑体";line-height: 1; padding:5px 0;color: #fff;padding-top: 20px;}
 .list_box .list_item .item_detail .detail_con{position: absolute;left:0px;top:24px; line-height: 30px; margin-top: 30px;}
-.list_box .list_item .item_detail .detail_con p{color:#ccc; font-size: 14px;}
+.list_box .list_item .item_detail .detail_con p{color:#ccc; font-size: 12px;}
 .list_box .list_item .item_detail .detail_con p span{color:#ccc;    width: 200px; display: block;float: left;}
 .list_box .list_item .item_detail .detail_con p span.marg{margin-left: 50px;}
 .list_box .list_item .item_detail .detail_con p span i{margin-left: 10px;color:#ccc}
@@ -235,14 +235,15 @@
 .saishi_nav .search_div .search_input button{padding: 0px 10px;vertical-align: top;display: inline-block;background-color: transparent;border: none;line-height: normal;vertical-align: middle;}
 
 .list_box .list_item .item_detail .detail_con p.dc{color:#dddcdc}
-.item_detail .date{ position: absolute;width: 100%;bottom: 10px;color:#999;overflow: hidden;line-height: normal;}
+.item_detail .date{ position: absolute;width: 100%;bottom: 10px;color:#999;overflow: hidden;line-height: normal; font-size: 10px;}
+.item_detail .date span{font-size: 12px; color: #999999;}
 .item_detail .date em img{margin-right: 10px;display: inline-block;vertical-align: middle;}
 .edit_box p{text-indent: 2em;line-height: 40px;color:#dddcdc; margin-bottom: 15px;font-size: 16px;}
 .edit_box p img:only-child{width:80% ;display: block;margin: 0 auto;}
 .edit_box p img{width:80% ;display: block;margin: 0 auto;}
 .share_div{padding: 50px 0;}
 .share_div i{margin: 0px 15px;cursor: pointer;}
-
+.item_detail .date em i{font-size: 12px; color: #999999;}
 .down_load{height: 750px; background-color: #1a1a1a;position: relative;}
 
 .erweima_box h4{margin-top: 30px;color:#fff; font-size: 24px;}

@@ -49,11 +49,11 @@ define(function (require, exports, module) {
                             // var width = Math.round(1 / data.total * 10000) / 100.00 + "%";
                             // $("#title_list .nav").css("width", width);
 
-                            $(".saishi_nav .nav").each(function () {
-                                var num = $(".saishi_nav .nav").length;
+                            $(".saishi_nav .navz").each(function () {
+                                var num = $(".saishi_nav .navz").length;
                                 $(this)[0].style.width = 100 / num + "%"
                             })
-                            $(".saishi_nav .nav").click(function () {
+                            $(".saishi_nav .navz").click(function () {
 
                                 $(this).addClass("active").siblings().removeClass("active");
                                 var channelId = $(this).attr("value");

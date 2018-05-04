@@ -187,17 +187,18 @@
 					<span class="fl">赛区</span><p class="fr">$serverType$</p>
 				</div>
 				<div class="pay_con">
-					<span class="fl">报名费</span><p class="fr">$entryFee$ $entryFeeType$</p>
+					<span class="fl">报名费</span><p class="fr">$entryFee$ <span id="entryFeeType">$entryFeeType$</span><input type="hidden" id="entryFee" value="$entryFee$" ></p>
 				</div>
+				<!-- <div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
+					<span class="fl" id="gameAccess"><img src="/images/gantanhao1.png"/>没有绑定该游戏账号</span>
+					<a class="fr" id="gameaccess_btn" href="/user/index">立即绑定</a>
+				</div> -->
 				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
-					<span class="fl"><img src="/images/gantanhao1.png"/>没有绑定该游戏账号</span>
-					<a class="fr" href="javascript">立即绑定</a>
-				</div>
-				<div class="alertCon m-b-15 l-h-40 font12 overflow_hide">
-					<span class="fl"><img src="/images/gantanhao1.png"/>钻石/金币不足</span>
-					<a class="fr color-red" href="javascript" >立即充值</a>
+					<span class="fl" id="gold_diamond"><img src="/images/gantanhao1.png"/>钻石/金币不足</span>
+					<a class="fr color-red" id="golddiamond_btn" href="javascript:void(0);" >立即充值</a>
 				</div>
 				<div class="pay_do ">
+				<input type="hidden" id="matchId" value="$entryFee$" >
 					<span class="cancel fl">取消支付</span>
 					<a class="pay fr">支付</a>
 				</div>

@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
 
+import cn.esports.config.BaseConfig;
 import cn.esports.service.UserService;
 import cn.esports.utils.SessionUtil;
 
@@ -39,6 +40,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		String code = new String(ch);
 		
 		String tokenStr= userService.getToken(mobile, code);
+		//String tokenStr= "F61604A9164AEB77442920D37634E3A623F9BC11";
 		if (StringUtils.isEmpty(tokenStr)) {
 			return null;
 		}

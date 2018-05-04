@@ -49,6 +49,7 @@ public class UserInfo {
          * status : 1
          * mobile : 13428899017
          * mobileBound : true
+         * email
          * emailBound : false
          * signature : 我就是我是颜色不一样的烟火
          * area : 广州地区
@@ -73,6 +74,7 @@ public class UserInfo {
         private int status;
         private String mobile;
         private boolean mobileBound;
+        private String email;
         private boolean emailBound;
         private String signature;
         private String area;
@@ -264,7 +266,15 @@ public class UserInfo {
             this.userPictures = userPictures;
         }
 
-        public static class UserPicturesBean {
+        public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public static class UserPicturesBean {
             /**
              * id : 1
              * uid : 132
