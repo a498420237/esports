@@ -63,7 +63,7 @@ define(function(require, exports, module) {
 		data : {
 			"mobile" : mobile
 		},success:function(obj){
-			debugger;
+			
 			if(obj==null){
 				layer.msg("远程接口调用失败");
 			}else{

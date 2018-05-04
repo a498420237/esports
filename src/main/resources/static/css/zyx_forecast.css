@@ -22,9 +22,7 @@
 
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{    z-index: 3;
-	color: #fff;
-	cursor: default;background-color:none;border:none;}
+
 .z_forecast_nav ul li a{
   display: block;
   text-align: center;
@@ -176,7 +174,7 @@
 	color:#999;
 }
 .cred{
-	color:#f96c70;
+	color:#fa2c3b;
 }
 .cgreen1{
 	color:#459c49
@@ -201,7 +199,7 @@
 }
 /*弹出框*/
 .z_models{
-	
+	display: none;
 }
 .z_models,.layui-layer-content{
 
@@ -275,7 +273,7 @@
 	color:#fff;
 }
 .lump input[type=button]{
-	background-color: #f96c70;
+	background-color: #fa2c3b;
 	color:#fff;
 	border:0;
 	outline: 0;
@@ -515,7 +513,7 @@ margin-right: -240px;
 margin-top: -240px;}
 
 .search_div{width: 35%;text-align: right;padding-right: 20px;line-height: 60px;float: right;  }
-.search_div .search_input input{vertical-align: middle;width: 266px;background-color: transparent;outline: none;border:none;line-height: 40px; height:40px;display: inline-block;vertical-align: middle; padding-left: 10px; }
+.search_div .search_input input{vertical-align: middle;width: 266px;color:#efefef; background-color: transparent;outline: none;border:none;line-height: 40px; height:40px;display: inline-block;vertical-align: middle; padding-left: 10px; }
 .search_div .search_input{border:2px solid #5d6870; overflow: hidden;display: inline-block;vertical-align: middle;outline: none;line-height: normal;border-radius: 4px; overflow: hidden;background-color: #494e54; margin-top: 6px;}
 .search_div .search_input button{padding: 0px 10px;vertical-align: top;display: inline-block;background-color: transparent;border: none;line-height: normal;vertical-align: middle;}
 

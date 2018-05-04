@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>预测列表</title>
-   
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/zyx_forecast.css">
- <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+
 </head>
 <script>
 window.onload = function(){
@@ -132,11 +132,13 @@ window.onload = function(){
                   <div class="flex1">
                     <h1>{{if ($value.status==0)}}
                     	竞猜中
-                    		{{else if(($value.status==1))}}
-                    		赛事中
-                    			{{else if(($value.status==2))}}
-                    			已结束
-                    			
+                    		{{else if(($value.status==2))}}
+                    		流盘
+                    			{{else if(($value.status==3))}}
+                    			竞猜结束
+                    				{{else if(($value.status==4))}}
+                    			投注结束
+                    				
                     		{{else}}
                     		未知状态_{{$value.status}}
                     		
@@ -159,11 +161,11 @@ window.onload = function(){
                      </div>
                     <div class="flex1">
                      
-                      {{if ($value.status==0)}}
+                      {{if ($value.status==1)}}
                     	 <h1 class="cgreen">{{$value.handicapType}}</h1><small>竞猜中</small>
-                    		{{else if($value.status==2)}}
+                    		{{else if($value.status==5)}}
                     		 <h1 class="cgreen">{{$value.handicapType}}</h1><small>流盘</small>
-                    		{{else if($value.status==3)}}
+                    		{{else if($value.status==4)}}
                     		 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
                     		 {{else}}
                     		  <h1 class="c999">{{$value.handicapType}}</h1><small>未知状态_{{$value.status}}</small>

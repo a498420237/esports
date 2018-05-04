@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 		//获取列表数据
 		function seniorLoad(){
 			
-			debugger;
+			
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -28,7 +28,7 @@ define(function(require, exports, module) {
 						data : data,
 						success : function(json) {
 							var data = json.t;
-							debugger;
+							
 							renderHtml(data);
 							init();
 							shezhigusuan();
@@ -127,7 +127,7 @@ define(function(require, exports, module) {
 										data.push(handicap.lotteryInfo);
 										var daa={ "total":10,"result":data};
 										var contenthtml=template("z_modelsTemplate", daa);
-										debugger;
+										
 										if(json.code==200){
 											
 											 layer.open({
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
 										        	var lotteryId=$("#lotteryId").val();
 										        	var roundId=$("#roundId").val();
 										        	var goldType=$("#goldType").val();
-										        	debugger;
+										        	
 										        	if(quizMoney=="" ||quizMoney==null){
 										        		layer.msg("请输入下注金额");
 										        		return;
@@ -178,7 +178,7 @@ define(function(require, exports, module) {
 										        			"clientType":0,
 										        			"goldType":goldType
 										        	};
-										        	debugger;
+										        	
 										        	$.ajax({
 														url : "/user/BetOrder/saveBet",
 														datatype : 'json',

@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 		// 绑定获取验证码事件
 		var bindGetCodeEvent = function() {
 			$("#getCodeBtn").click(function() {
-				//debugger;
+				//
 				var mobile = $("#phoneInput").val();
 				if (mobile == "") {
 					alert("请输入手机号");
@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 					data : {
 						"mobile" : mobile
 					},success:function(obj){
-						debugger;
+						
 						if(obj==null){
 							alert("远程接口调用失败");
 						}else{
@@ -53,7 +53,7 @@ define(function(require, exports, module) {
 						"mobile" : mobile,
 						"code" : code
 					},success:function(obj){
-						debugger;
+						
 						if(obj==null){
 							alert("远程接口调用失败");
 						}else{

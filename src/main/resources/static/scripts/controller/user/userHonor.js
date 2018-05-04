@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 							"offset" : curentPage,
 							"limit" : 5,"gameType":gametype
 					};
-					debugger;
+					
 					$.ajax({
 						url : "/user/UserHonor/list",
 						datatype : 'json',
@@ -71,7 +71,7 @@ define(function(require, exports, module) {
 					type : "GET",
 					success : function(json) {
 						if(json.code==200){
-							debugger;
+							
 							if(json.t.gameAccountInfos.length>0){
 								var isBind=false;
 								json.t.gameAccountInfos.forEach(function(obj){

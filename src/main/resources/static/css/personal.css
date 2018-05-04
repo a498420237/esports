@@ -7,23 +7,41 @@
 .table_head .right label.active{border-color:#ffc000;color:#ffc000} 
 .table_box{display: none;color: #ccc;}
 .table_box.show{display: block;} 
-.list_item { overflow: hidden;border-bottom: 1px solid #454c55;padding: 10px 0;line-height: 35px; height: 35px;height: 58px;}
-.list_item  .left{line-height: 1; ;vertical-align: top;float: left;padding: 0px 32px; font-size: 14px;width: 193px; display:table-cell;}
+.list_item { overflow: hidden;line-height: 35px; margin: 11px 18px; background: #2e3035; padding-top: 14px; padding-bottom:14px; }
+.list_item  .left{vertical-align: top;float: left;margin: 0px 16px; font-size: 12px;width: 193px; display:table-cell;}
 .list_item  .left span.max{display: inline-block;width: 200px;}
-.list_item  .center{vertical-align: top;;width: 353px;float: left;}
-.list_item  .right{vertical-align: top;float:left; text-align: center;}
-.list_item .leftBorder{border-left: 1px solid #454c55;}
-.list_item  .center .leftP i{display: inline-block;padding-right: 25px;}
-.list_item  .center .rightP i{display: inline-block;padding-left: 25px;}
-.list_item  .center .score{display: inline-block;width: 100px;}
+.list_item  .center{vertical-align: top;float: left;}
+.list_item .leftBorder img{max-width: 30px;position: relative;top: -10px;}
+.list_item  .center .leftP {width: 30px;}
+.list_item  .center .rightP{width: 30px;}
+.list_item  .center .leftP i{display: inline-block;padding-right: 25px; width: 80px; font-size: 12px; max-height: 50px; line-height: 25px;  overflow: hidden;}
+.list_item  .center .rightP i{display: inline-block;padding-left: 10px; width: 80px;font-size: 12px; max-height: 50px; overflow: hidden;line-height:25px;}
+.list_item  .center .score{display: inline-block;width: 100px;position: relative;top: -8px; line-height: 25px; max-width: 50px; margin:auto 10px;}
+.list_item  .center .score i{line-height: 25px;}
 .list_item  .center .score b{color:#ffc000}
 .list_item  .center .score *{padding: 0px 5px;}
-.list_item  .right{text-align: center;font-size: 14px; color:#ffc000;width: 200px;}
-.list_item  .center.min {width: 248px;}
+.rightd{text-align: center;font-size: 12px; color:#ffc000;width: 110px;float: right; text-align: left; margin-right: 10px;margin-left: 10px;}
+.list_item  .center .min {width: 248px;}
 .list_item  .max{width: 250px!important;}
 
+
+.list_itempop{background: #2e3035; overflow: hidden; margin:auto 18px; min-height: 200px;}
+.middle-box{display: table;min-height: 200px; height: 200px;width:214px;margin-right: 16px; position:relative; float: left;}
+.middle-inner{display: table-cell; vertical-align:middle; *position:absolute; *top:50%; *left:50%; width:100%; text-align:left; padding-left: 18px;}
+.list_itempop .right span:nth-child(1){float: left;color: #efefef; margin:18px auto;  font-size: 12px; display: block;margin-right: 10px;width: 50px; text-align: left; line-height: 30px; }
+.list_itempop .right span:nth-child(2){float: left;width: 160px; margin:18px auto;  }
+.list_itempop .right span:nth-child(2) img{margin-left: 20px; margin-right: 10px; float: left;}
+.list_itempop  .leftP i{display: block;float: left;   padding-right: 25px; width: 100px; font-size: 12px; max-height: 50px; line-height: 25px;  overflow: hidden;}
+.list_itempop .right span:nth-child(3){float: left;width: 60px; margin:18px 2px;  }
+.list_itempop .right span:nth-child(4){float: left;width: 60px; margin:18px 2px;  }
+.list_itempop .right span:nth-child(5){float: left;width: 60px; margin:18px 2px;  margin-left: 16px; }
+.orand{font-size: 12px; color:#ffc000;}
+.greyd{text-align: center;font-size: 12px; color:#999999;width: 110px;float: right; text-align: left; margin-right: 10px;margin-left: 10px;}
+.list_itempop .right{float: left;}
+
+
 .list_item  .left img{display: inline-block;vertical-align: middle;margin-right: 10px;}
-.list_item  .left span{display: inline-block;max-width: 220px;line-height: 35px;white-space: normal;vertical-align: middle;max-height: 36px; }
+.list_item  .left span{display: inline-block;max-width: 220px;line-height: 25px;white-space: normal;vertical-align: middle;max-height: 50px; overflow: hidden; }
 .list_item  .left.max{white-space: nowrap;}
 
 .list_item  .center .first img{ margin-right: 10px;display: inline-block;vertical-align: middle;}
@@ -1824,7 +1842,7 @@ margin-left: -280px;}
 
 .team .block1 i{width: 50px;height: 50px; overflow: hidden; display: block;margin-left: 50px;}
 .team .block1 i img{width: 100%;}
-.team .block2 p{height: 26px; overflow: hidden;}
+.team .block2 p{height: 26px; overflow: hidden;color:#ffffff; }
 
 
 

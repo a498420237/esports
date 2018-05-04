@@ -26,6 +26,8 @@ public class CompetitionService extends BaseService {
 	private static final String LIST_URL = "/match/findMatchListByApp.json";
 	private static final String INFO_URL = "/match/findMatchInfoByApp.json";
 	private static final String GAINST_PLAN_URL = "/match/findAgainstPlanByApp.json";
+	private static final String APPLY_MATCH = "/match/applyMatch.json";
+	
 	
 	/**
 	 * 获取赛事列表
@@ -96,6 +98,21 @@ public class CompetitionService extends BaseService {
 			
 			Object competition = result.get("t");
 			return competition;
+		} catch (RestClientException e) {
+			logger.error("call the forecast list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
+	
+	/**
+	 * 报名赛事
+	 * @param matchId
+	 * @param num  轮次号
+	 * @return
+	 */
+	public JSONObject applyMatch(Map<String, String> uriVariables) {
+		try {
+			return restTemplate.getForObject(createUrl(APPLY_MATCH, uriVariables),JSONObject.class);
 		} catch (RestClientException e) {
 			logger.error("call the forecast list from rest api occurred error,cause by:",e);
 			return null;

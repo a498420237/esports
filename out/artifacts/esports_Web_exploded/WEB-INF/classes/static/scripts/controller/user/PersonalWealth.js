@@ -57,10 +57,10 @@ define(function(require, exports, module) {
 			     seniorLoad(currency,0);
 			   });
 			 $("#dataId").on("click",function() {
-				 debugger;
+				 
 				varcurrency=  $('.tab span.sel').attr("name");
 			     var dateId=$(this).val();
-			     debugger;
+			     
 			     seniorLoad(currency,dateId);
 			   });
 			}

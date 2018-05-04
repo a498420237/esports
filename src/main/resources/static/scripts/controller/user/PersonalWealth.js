@@ -28,7 +28,7 @@ define(function(require, exports, module) {
 						type : "get",
 						data : data,
 						success : function(json) {
-							debugger;
+							
 							var data = json.t;
 							var paramObj = {
 								total : data.total,
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
 			     seniorLoad(currency,0);
 			   });
 			 $(".select_ul").click(function() {
-				 debugger;
+				 
 				var currency=  $('.tab span.sel').attr("name");
 			     var dateId=$("select.select").val();
 			     seniorLoad(currency,dateId);

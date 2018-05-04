@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                             })
 
                             // $('.nav').on("click", function () {
-                            //     debugger;
+                            //     
                             //     $(".nav").attr("class", "nav active");
                             // });
                         }

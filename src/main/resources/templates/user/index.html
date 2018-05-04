@@ -21,7 +21,7 @@
 				<div class="lt">
 					<ul>
 						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<!-- <li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li> -->
 						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
@@ -31,7 +31,7 @@
 				</div>
 				<div class="rt">
 					<div class="detail" id="block1" >
-						<img class="timg" src="${userinfo.t.imagePrefix}/aaa.png" onerror="this.src='/images/person_avant.png;this.onerror=null'" >
+						<img class="timg" src="${userinfo.t.imagePrefix}/aaa.png" onerror="this.src='/images/myavatpic.png;this.onerror=null'" >
 						<p class="name"><em>昵称：</em><span th:text="${userinfo.t.userName}"></span></p>
 						<p><em>性别：</em><span th:if="${userinfo.t.sex==1}">男</span><span th:if="${userinfo.t.sex==0}">女</span></p>
 						<p class="age"><em>年龄：</em><span th:text="${userinfo.t.age}"></span>岁</p>
@@ -56,8 +56,8 @@
 					</div>
 					<div class="line"></div>
 					<div class="bind">
-						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><div class="btns" id="phone">修改手机</div></div>
-						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" th:text="${userinfo.t.emailBound}"></span></em><div class="btns" id="email">立即绑定</div></div>
+						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><!-- <div class="btns" id="phone">修改手机</div> --></div>
+						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" th:text="${userinfo.t.emailBound}"></span><span class="cl-fff" th:if="${userinfo.t.emailBound!='false'}" >未绑定</span></em><!-- <div class="btns" id="email">立即绑定</div> --></div>
 					</div>
 					<div class="line"></div>
 					<div class="up-img">
@@ -109,7 +109,7 @@
 					<div class="dialog2">
 						<div class="cont2wrap">
 							<div class="pubclose">
-								<img src="images/closeico.png">
+								<img src="/images/closeico.png">
 							</div>
 						<div class="cont2">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
@@ -133,7 +133,7 @@
 						<div class="cont3">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
-								<img src="images/succes.png">
+								<img src="/images/succes.png">
 								<p>您的手机号绑定成功</p>
 							</div>	
 							<div class="tk-btn1" id="close">完成</div>					
@@ -169,10 +169,10 @@
 								<input type="text" id="gameNickname" placeholder="请输入游戏昵称">
 							</div>
 							<div class="upimg clearfix">
-								<p class="text-right">添加截图</p>
+								<!-- <p class="text-right">添加截图</p>
 								<a href="javascript:;" class="filed">
 								    <input type="file" name="" id="">
-								</a>
+								</a> -->
 								<div class="promt">游戏角色名称一经绑定将无法修改，如遇账号被绑定请联系客服</div>
 							</div>
 							<div class="btns clearfix">

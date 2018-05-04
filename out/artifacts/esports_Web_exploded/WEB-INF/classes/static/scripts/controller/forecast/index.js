@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 		var isShow=true;
 		//获取列表数据
 		function seniorLoad(gameId){
-			debugger;
+			
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({

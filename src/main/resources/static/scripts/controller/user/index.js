@@ -24,7 +24,7 @@ define(function(require, exports, module) {
 						type : "GET",
 						data : data,
 						success : function(json) {
-							debugger;
+							
 							if(json.code==200){
 								
 								layer.msg("修改成功",function(){
@@ -62,7 +62,7 @@ define(function(require, exports, module) {
 		        },
 		        error: function (returndata) {
 		           //请求异常的回调
-		        	alert("失败aaa");
+		        	alert("网络访问失败，请稍后重试!");
 		           // modals.warn("网络访问失败，请稍后重试!");
 		        }
 		    });
@@ -89,7 +89,7 @@ define(function(require, exports, module) {
 			$("#pictures_list .ic").on("click",function(){
 				if(window.confirm('你确定要删除吗？')){
 					var pid=$(this).find("img").attr("alt");
-					debugger;
+					
 					$.ajax({
 						url : "/user/delUserPicture",
 						datatype : 'json',
@@ -126,7 +126,7 @@ define(function(require, exports, module) {
 									+"<div class=\"info\" >"
 									+"	<div class=\"tit\">$gameName$</div>"
 									+"	"
-									+"</div><div class=\"pro bind\" >点击绑定账号</div>"
+									+"</div><div class=\"pro bindGame\" >点击绑定账号</div>"
 									+"</div></li>"
 									$("#gameSelect").empty();
 									$("#gameSelect").append("<option value='0'>请选择</option>");
@@ -168,7 +168,7 @@ define(function(require, exports, module) {
 						        			"role":role,
 						        			"printscreen":printscreen
 						        	};
-						        	debugger;
+						        	
 						        	$.ajax({
 										url : "/user/UserBindgameAccess",
 										datatype : 'json',
@@ -211,12 +211,12 @@ define(function(require, exports, module) {
 											$("#gameId_"+obj.gameId).children().eq(0).html(gameName+"<p>"+obj.role+"</p><p>"+obj.areaName+"</p><p>"+obj.gameRank+"</p>"+Exist);
 										});
 	
-									$(".bind").on("click",function(){
+									$(".bindGame").on("click",function(){
 										var game_id
 										$(".dialog").fadeIn();
 									})
 									$("#gameSelect").on("change",function(){
-										debugger;
+										
 										var gameId=$(this).val();
 										if(gameId==0){
 											

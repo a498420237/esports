@@ -39,7 +39,7 @@ define(function(require, exports, module) {
 				"statuType" : statuType*/
 			},
 			success : function(json) {
-				debugger;
+				
 				if(json.code==200){
 				var data = json.t;
 				var results = data.result;

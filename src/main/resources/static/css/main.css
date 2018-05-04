@@ -1252,15 +1252,17 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{backg
 .nav a span{font-size: 8px;display: block;text-align: center;}
 .nav .current{color: #ffc000;}
 .nav a:hover{color:#ffc000; text-decoration: none;	}
-.loginr{float: right;text-align: right; width:200px;margin-top: 32px;}
+.loginr{float: right;text-align: right; width:220px;margin-top: 32px;}
+.loginr .yh{width: 110px;float: left; margin-top:-8px; margin-right:6px;background:#2e3035;}
+.loginr .yh >a:hover{background:#2e3035; }
+.loginr .yh img{vertical-align: middle;display: inline-block;width: 30px;  height: 30px;}
+.loginr .yh .yhusername{vertical-align: middle;display: inline-block;width: 70px;  height: 30px; line-height: 30px;}
 .loginr .current{background: #fa4a4a; }
-.loginr a{float: right; text-align: center;padding: 1px 4px;font-size:11px;background: #434343; border-radius: 2px; margin-right: 14px;}
-.loginr a:hover{background: #fa4a4a; color: #fff;}
-.loginr .yhm img{position: relative; right: 10px; top:13px;}
+.loginr> a{float: right; text-align: center;padding: 1px 4px;font-size:11px;background: #434343; border-radius: 2px; margin-right: 14px;}
+.loginr> a:hover{background: #fa4a4a; color: #fff;}
+
 .contwrap{background: url(../images/home_bg.jpg) #1f1f1e no-repeat ;min-height: 1000px;min-width: 1100px; width: 100%; background-size: 100%;}
-.loginr .yhm{background: #2e3035; position: relative;top:-22px;}
-.loginr p{display: block;width: 110px;float: left;}
-.loginr p a:hover{background:#2e3035; }
+
 .botwrap{width: 100%;background: #2e3035; min-width: 1100px;}
 .botwrap .bottcon{border-bottom: 1px solid #363635;max-width: 1100px;margin:0 auto;margin-bottom:20px;padding-top: 58px; padding-bottom: 20px; overflow:hidden;;}
 .btnav{width: 600px; float: left; color: #cccccc;}
