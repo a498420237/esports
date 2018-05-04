@@ -134,7 +134,7 @@ public class UserService extends BaseService{
 			postParameters.add("type", type);
 			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
 			
-			return restTemplate.postForObject(createUrl("/api/msg/sendMobileCode.json", null), httpEntity, JSONObject.class);
+			return restTemplate.postForObject(createUrl("api/msg/sendEmailCode.json", null), httpEntity, JSONObject.class);
 		} catch (RestClientException e) {
 			logger.error("send mobile code to rest api occurred error,cause by:",e);
 			JSONObject jsonObject=new JSONObject();

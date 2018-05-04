@@ -9,6 +9,7 @@ define(function(require, exports, module) {
 			init();
             bindGetCodeEvent();
             getEmailCode();
+            getOldEmailCode();
             emailComplete();
 		});
 		
@@ -300,16 +301,41 @@ define(function(require, exports, module) {
             });
         }
 
+        // 获取邮箱验证码
+        function getOldEmailCode() {
+            $("#oldEmailCodeBtn").click(function() {
+                var email = $("#oldEmailInput").val();
+
+                if (email == "") {
+                    layer.msg("请输入邮箱");
+                    return;
+                }
+                if(!isEmailAvaliable(email)){
+                    layer.msg("请输入正确的邮箱");
+                    return;
+                }
+                curCount = count;
+                $(this).off("click");
+                $(this).removeAttr("class","bg-red");
+                $(this).attr("class","bg-999");
+                $(this).text("倒计时" + curCount + "秒");
+                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                debugger;
+                sendEmail(email);
+            });
+        }
+
         //发送验证码
         function sendEmail(email){
             $.ajax({
-                url : "user/sendEmailCode",
+                url : "/user/sendEmailCode",
                 datatype : 'json',
                 type : "post",
                 data : {
                     "email" : email,
                     "type": "bindEmail"
                 },success:function(obj){
+
                     if(obj==null){
                         layer.msg("远程接口调用失败");
                     }else{
@@ -326,32 +352,47 @@ define(function(require, exports, module) {
         function emailComplete() {
             $("#emailCompelete").click(function() {
                 var email = $("#emailInput").val();
-                if (email == "") {
+                var oldEmail = $("#oldEmailInput").val();
+                if (email == "" || oldEmail == "") {
                     layer.msg("请输入邮箱");
                     return;
                 }
-                if(!isEmailAvaliable(mobile)){
+                if(!isEmailAvaliable(email) || !isEmailAvaliable(oldEmail)){
                     layer.msg("请输入正确的邮箱");
                     return;
                 }
 
                 var emailCode = $("#emailCode").val();
+                var oldEmailCode = $("#oldEmailCode").val();
+
+                if (emailCode == "" || oldEmailCode == "") {
+                    layer.msg("请输入验证码");
+                    return;
+                }
 
                 $.ajax({
-                    url : "user/bindEmail",
+                    url : "/user/bindEmail",
                     datatype : 'json',
                     type : "post",
                     data : {
                         "email" : email,
                         "code": emailCode,
-                        "type": "1",
-                        "oldAccount": "",
-                        "verifyCode": ""
+                        "type": "2",
+                        "oldAccount": oldEmail,
+                        "verifyCode": oldEmailCode
                     },success:function(obj){
                         if(obj.code==200){
                             layer.msg("邮箱绑定成功");
+
+                            // $(".dialog3").fadeIn();
+                            $(".dialog4").fadeOut();
+                            $(".dialog2").fadeOut();
+                            $(".dialog1").fadeOut();
+
+
                         }else{
-                            layer.msg("邮箱绑定失败请重试！");
+                            // layer.msg("邮箱绑定失败请重试！");
+                            layer.msg(obj.msg);
                         }
                     }
                 });

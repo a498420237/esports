@@ -45,9 +45,7 @@ public class UserController {
 		return userService.BindMobile(uriVariables);
 	}
 
-
-
-    @RequestMapping(value = "user/sendEmailCode", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/sendEmailCode", method = RequestMethod.POST)
     public JSONObject sendMobileCode(String email,String type) {
         return userService.sendEmailCode(email, type);
     }
