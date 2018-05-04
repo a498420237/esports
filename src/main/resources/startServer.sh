@@ -1,8 +1,6 @@
 #!/bin/sh
-#
-# Start/Stop the web-demo server.
-#
 
+SERVER_NAME="FastGateProxy"
 SERVER_PID_DIR="./logs"
 SERVER_LOG="${SERVER_PID_DIR}/server.out"
 SERVER_PID="${SERVER_PID_DIR}/server.pid"
@@ -37,7 +35,7 @@ waitForPid () {
   while [ 1 -eq 1 ]; do
     PIDCHECK=`kill -0 ${MTRPID} 2> /dev/null`
     if [ $? -eq 1 ]; then
-      echo "web-demo server PID ${MTRPID} exited"
+      echo "${SERVER_NAME} server PID ${MTRPID} exited"
       return 1
     fi
  	echo "waitForPid: PID ${MTRPID} still alive" 
@@ -49,7 +47,7 @@ waitForPid () {
     fi
   done
 
-  echo "web-demo server PID ${MTRPID} did not exit."
+  echo "${SERVER_NAME} PID ${MTRPID} did not exit."
   return 0;
 }
 
@@ -69,7 +67,7 @@ doStopSignal () {
   if [ -f "${SERVER_PID}" ] ; then
     MTRPID=`cat ${SERVER_PID} | tr -d ' '`
     if [ "x${MTRPID}" = "x" ] ; then
-      echo "web-demo pid file was empty: ${SERVER_PID}"
+      echo "${SERVER_NAME} pid file was empty: ${SERVER_PID}"
       exit 127
     fi
     kill -${SIGNAME} ${MTRPID} 2> /dev/null
@@ -80,7 +78,7 @@ doStopSignal () {
     fi
     rm -f ${SERVER_PID}
   else 
-    echo "web-demo server not running (no pid file found: ${SERVER_PID})"
+    echo "${SERVER_NAME} not running (no pid file found: ${SERVER_PID})"
   fi
 }
 
@@ -95,7 +93,7 @@ if [ -f "${SERVER_PID}" ] ; then
       echo "Removing stale pid file ${SERVER_PID}"
       rm -f ${SERVER_PID}
     else 
-      echo "web-demo server is already running (pid ${MTRPID})."
+      echo "${SERVER_NAME} is already running (pid ${MTRPID})."
       exit 0
     fi
   fi
@@ -105,7 +103,7 @@ fi
 JAVA_OPTS=`loadJavaOpts`
 
 # Start the server
-echo "Booting the web-demo server (Using JAVA_OPTS=${JAVA_OPTS})..."
+echo "Booting the ${SERVER_NAME} (Using JAVA_OPTS=${JAVA_OPTS})..."
 
 java ${JAVA_OPTS} -cp ${CLASSPATH} cn.esports.EsportsApplication > ${SERVER_LOG} 2>&1 &
 
@@ -116,14 +114,14 @@ java ${JAVA_OPTS} -cp ${CLASSPATH} cn.esports.EsportsApplication > ${SERVER_LOG}
 
 case "$1" in
   start)
-    echo "Starting web-demo server..."
+    echo "Starting ${SERVER_NAME}..."
     doStart
-    echo "web-demo server booted."
+    echo "${SERVER_NAME} server booted."
     ;;
   stop)
-    echo "Stopping mde-mos server..."
+    echo "Stopping ${SERVER_NAME} server..."
     doStop
-    echo "web-demo server is stopped."
+    echo "${SERVER_NAME} server is stopped."
     ;;
   *)
     # Print help, don't advertise halt, it's nasty

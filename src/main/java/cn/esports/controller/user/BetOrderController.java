@@ -28,7 +28,7 @@ public class BetOrderController extends BaseController {
 	
 	@RequestMapping(value="/user/BetOrder", method = RequestMethod.GET)
 	public ModelAndView forecast() {
-		ModelAndView view =new ModelAndView("user/BetOrder");
+		ModelAndView view =new ModelAndView("user/betOrder");
 		//view.addObject("userLogin", fService.GetForecastList(1, 15));
 		return view;
 	}

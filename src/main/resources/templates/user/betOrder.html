@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 	<meta charset="UTF-8">
 	<title>个人中心-我的竞猜</title>
-<head th:include="/include :: user_header"></head>
+<head th:include="include :: user_header"></head>
 <body>
-	<div class="topWrap"><div th:include="/include :: topWrap" ></div></div>
+	<div class="topWrap"><div th:include="include :: topWrap" ></div></div>
 	<div class="data">
 		<div class="content">
 			<div class="tit">个人中心</div>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 
-	<div class="botwrap"><div th:include="/include :: botwrap"></div></div>
+	<div class="botwrap"><div th:include="include :: botwrap"></div></div>
 	
 		<textarea id="itemTemplate"  style="display:none;">
 	{{each result}}

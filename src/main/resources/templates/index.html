@@ -212,7 +212,7 @@
 	<!-- 尾部 -->
 	<div class="botwrap" th:include="/include :: botwrap"></div>
 	
-<textarea id="liveitemTemplate">
+<textarea id="liveitemTemplate" style="display:none;">
 	{{each list}}
 	<li>
 		<a href="/live/detail/{{$value.id}}"><img src="{{$value.liveImg}}" style=" width:170px; heigth:95px; " onerror="this.src='images/home_vediopic.png;this.onerror=null'">
@@ -225,7 +225,7 @@
 	</li>
 	{{/each}}
 </textarea>
-<textarea id="forcastTemplate">
+<textarea id="forcastTemplate" style="display:none;">
 	{{each list}}
 	<li>
 		<p>
@@ -266,11 +266,11 @@
 </textarea>
 
 
-<textarea id="matchTemplate">
+<textarea id="matchTemplate" style="display:none;">
 {{each list}}
  <tr>
     <td>
-       <a href="/competition/info/$matchId$"><img src="{{$value.matchPic}}" onerror="this.src='/images/home_compepic.png;this.onerror=null'" weight="108px" height="64px"></a> 
+       <a href="/competition/infoIndex/{{$value.id}}?totalPrize=300&prizeType=钻石&totalMumber=0&endTime="><img src="{{$value.matchPic}}" onerror="this.src='/images/home_compepic.png;this.onerror=null'" weight="108px" height="64px"></a> 
         <div class="matcon">
             <h4>{{$value.matchName}}</h4> 
             <p>{{$value.totalMumber}}人已报名</p>
