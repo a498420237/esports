@@ -44,6 +44,15 @@ public class UserController {
 		uriVariables.put("type", userInfo.getT().isMobileBound()==true?"2":"1");
 		return userService.BindMobile(uriVariables);
 	}
+
+
+
+    @RequestMapping(value = "user/sendEmailCode", method = RequestMethod.POST)
+    public JSONObject sendMobileCode(String email,String type) {
+        return userService.sendEmailCode(email, type);
+    }
+
+
 	@RequestMapping(value = "/user/bindEmail", method = RequestMethod.POST)
 	public JSONObject bindEmail(@RequestParam Map<String, String> uriVariables) {
 		UserInfo userInfo=JSONObject.parseObject(SessionUtil.getCurUser(),UserInfo.class);

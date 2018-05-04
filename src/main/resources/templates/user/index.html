@@ -104,8 +104,8 @@
 						<div class="cont1">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
-								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入手机号"></div>
-								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
+								<div class="input1"><input id="phoneInput" style="width: 100%;" type="text" placeholder="请输入手机号"></div>
+								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right" id="getCodeBtn">获取验证码</span></div>
 								<div class="tk-btn clearfix">
 									<div class="left" id="phone-can">返回</div><div class="right complete">完成</div>
 								</div>
@@ -122,12 +122,11 @@
 						<div class="cont2">
 							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
 							<div class="box">
-								<div class="input1"><input style="width: 100%;" type="text" placeholder="请输入邮箱"></div>
-								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right">获取验证码</span></div>
+								<div class="input1"><input id="emailInput" style="width: 100%;" type="text" placeholder="请输入邮箱"></div>
+								<div class="input2"><input id="emailCode" style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right" id="emailCodeBtn">获取验证码</span></div>
 								<div class="tk-btn clearfix">
-									<div class="left" id="phone-can">上一步</div><div class="right complete">完成</div>
+									<div class="right complete" id="emailCompelete">完成</div>
 								</div>
-								<div class="tk-btn1 complete">完成</div>
 							</div>	
 							</div>					
 						</div>
@@ -233,7 +232,7 @@
     $("#phone").on("click",function(){
 		$(".dialog1").fadeIn();
 	})
-	$(".phone-can").on("click",function(){
+	$("#phone-can").on("click",function(){
 		$(".dialog1").fadeOut();
 	})
 	$(document).mouseup(function(e){
@@ -246,7 +245,7 @@
     $("#email").on("click",function(){
 		$(".dialog2").fadeIn();
 	})
-	$(".phone-can").on("click",function(){
+	$("#phone-can").on("click",function(){
 		$(".dialog2").fadeOut();
 	})
 	$(document).mouseup(function(e){
