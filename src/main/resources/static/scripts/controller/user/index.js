@@ -4,7 +4,6 @@ define(function(require, exports, module) {
         var InterValObj; //timer变量，控制时间
         var count = 90; //间隔函数，1秒执行
         var curCount;//当前剩余秒数
-
 		$(function(){
 			init();
             bindGetCodeEvent();
@@ -15,18 +14,53 @@ define(function(require, exports, module) {
 		
 		//获取列表数据
 		function saveInfo(){
-			var sex=0;
+			//var formData = new FormData($("#form_userinfo"));
+			var formData = new FormData();
 			sex= $("input[name='sex']:checked").val();
-			var sex2=$("input[name='sex'][type='radio']:checked").val();
-				var data={
+			 var formData = new FormData();
+            formData.append("file", document.getElementById("myprefixfile").files[0]);
+            formData.append("userName", $("#userName").val());
+            formData.append("sex", sex);
+            formData.append("age", $("#age").val());
+            formData.append("signature", $("#signature").val());
+            formData.append("area", $("#area").val());
+            formData.append("avatar", "");
+		    $.ajax({
+		        //接口地址
+		        url: '/user/saveInfo' ,
+		        type: 'POST',
+		        data: formData,
+		        //async: false,
+		        //cache: false,
+		        contentType: false,
+		        processData: false,
+		        success: function (data) {
+		            //成功的回调
+		            if(data.code == 200){
+		            	layer.msg("保存成功",function(){
+							window.location.reload();
+						});
+		            }else{
+		            	layer.msg("保存失败："+json.msg);
+		            }
+		        },
+		        error: function (returndata) {
+		           //请求异常的回调
+		        	alert("网络访问失败，请稍后重试!");
+		        }
+		    });
+			//var sex=0;
+			//sex= $("input[name='sex']:checked").val();
+				/*var data={
 						"userName":$("#userName").val(),
 						"sex":sex,
 						"age":$("#age").val(),
 						"signature":$("#signature").val(),
 						"area":$("#area").val(),
-						"avatar":''
-				};
-					$.ajax({
+						"avatar":myprefix
+				};*/
+			
+					/*$.ajax({
 						url : "/user/saveInfo",
 						datatype : 'json',
 						type : "GET",
@@ -43,17 +77,16 @@ define(function(require, exports, module) {
 								layer.msg(json.msg);
 							}
 						}
-					});
+					});*/
 		}
 		
 		
-		
+	
 		function submitFile(){
-
 			var formData = new FormData($("#form-add")[0]);
 		    $.ajax({
 		        //接口地址
-		        url: '/user/submit' ,
+		        url: '/user/PicturesSubmit' ,
 		        type: 'POST',
 		        data: formData,
 		        async: false,
@@ -63,17 +96,29 @@ define(function(require, exports, module) {
 		        success: function (data) {
 		            //成功的回调
 		            if(data.code == 200){
-		            	alert("保存成功");		
+		            	layer.msg("保存成功:"+data.msg,{time:8*1000},function(){
+							window.location.reload();
+						});
 		            }else{
-		            	alert("保存失败："+data.msg);
+		            	layer.msg("保存失败："+data.msg);
 		            }
 		        },
 		        error: function (returndata) {
 		           //请求异常的回调
 		        	alert("网络访问失败，请稍后重试!");
-		           // modals.warn("网络访问失败，请稍后重试!");
 		        }
 		    });
+		}
+		function showImages(file,preview){
+			var reader  = new FileReader();
+			  reader.onloadend = function () {
+				  preview.attr("src",reader.result);
+			  }
+			  if (file) {
+				  reader.readAsDataURL(file);
+			  } else {
+				  preview.src="" ;
+			  }
 		}
 		function init(){
 			//编辑
@@ -87,15 +132,63 @@ define(function(require, exports, module) {
 					$("#block2").fadeIn();
 				}, 300);
 			})
+			$("#userPictures").on("change",function(){
+				var files= document.querySelector('input[name="adduserPicturesfile"]').files;
+				$(".newImages").remove();
+				debugger;
+				imageData = new FormData();
+				for(var i=0;i<files.length;i++){
+					
+					var file=files[i];
+					var imgId=file.name.substr(0,file.name.lastIndexOf(".")).toLowerCase()+"_"+i;
+					var addtemhtml="<div class=\"list left newImages\">"
+						+"<div  class=\"img\">"
+						+"<img id='"+imgId+"' src='' style=\"width:126px; height:126px;\" alt='"+imgId+"' />"
+						//+"<div class=\"ic tempic\"><img src=\"/images/person_close.png\"></div>"
+						+"</div>"
+						
+						+"</div>";
+					$(this).parent().parent().before(addtemhtml);
+					
+					var preview=$("#"+imgId);
+					showImages(file,preview);
+					
+				}
+				//$(this).parent().hide();
+				  $("#pictures_list .tempic").on("click",function(){
+					  var tempImg=$(this).parent().parent();
+					  debugger;
+					  if(window.confirm('你确定要删除吗？')){
+						  tempImg.remove();
+					  }
+				  });
+			});
 			$("#submitFile").on("click",function(){
-				/*if($("#url").val()==""){
-					alert("请选择图片");
-					return ;
-				}*/
+				var file=$("#userPictures").val();
+				if(file=="" || file.name==""){
+					layer.msg("请选择图片");
+					return;
+				}
+				if(!isFileType(file)){
+					layer.msg("图像的的类型必须(.jpg|.jpeg|.gif|.png)后缀");
+					return;
+				}
 				submitFile();
 			});
+			$("#myprefix").on("click",function(){
+				var ie=navigator.appName=="Microsoft Internet Explorer" ? true : false; 
+				if(ie){ 
+				document.getElementById("myprefixfile").click(); 
+				}else{
+				var a=document.createEvent("MouseEvents");//FF的处理 
+				a.initEvent("click", true, true);  
+				document.getElementById("myprefixfile").dispatchEvent(a); 
+				} 
+			});
+			
 			$("#pictures_list .ic").on("click",function(){
 				if(window.confirm('你确定要删除吗？')){
+					 var Img=$(this).parent().parent();
 					var pid=$(this).find("img").attr("alt");
 					
 					$.ajax({
@@ -106,7 +199,7 @@ define(function(require, exports, module) {
 						success : function(json) {
 							if(json.code==200){
 								layer.msg("删除成功",function(){
-									window.location.reload();
+									Img.remove();
 								});
 							}else{
 								layer.msg("删除失败："+json.msg);
@@ -229,7 +322,10 @@ define(function(require, exports, module) {
 										if(gameId==0){
 											
 										}else{
-										GameArea(gameId);}
+											
+											//	GameArea(gameId);
+											
+										}
 									})
 									
 								}else{
@@ -499,6 +595,17 @@ define(function(require, exports, module) {
             } else {
                 return true;
             }
+        }
+        //判断文件类型
+        function isFileType(filename){
+        var type=(filename.substr(filename.lastIndexOf("."))).toLowerCase();
+        if(type!=".jpg"&&type!=".gif"&&type!=".jpeg"&& type!=".png"){
+        //alert("您上传图片的类型不符合(.jpg|.jpeg|.gif|.png)！");
+        return false;
+        }
+        else{
+        	return true;
+        }
         }
 
     });

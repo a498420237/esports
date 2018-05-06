@@ -1,6 +1,8 @@
 package cn.esports.service;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,14 @@ import cn.esports.utils.SessionUtil;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 
 @Component
 public class UserService extends BaseService{
@@ -209,8 +219,26 @@ public class UserService extends BaseService{
 	 * @param mobile
 	 * @return
 	 */
-	public JSONObject saveUserInfo(Map<String, String> uriVariables){
+	public JSONObject saveUserInfo(Map<String, String> uriVariables,byte[] inputStream){
 		try {
+			if(inputStream!=null) {
+			 Configuration cfg = new Configuration(Zone.zone0());//构造一个带指定Zone对象的配置类
+	         UploadManager uploadManager = new UploadManager(cfg);
+	         Auth auth = Auth.create(qiniuConfig.getAccessKey(), qiniuConfig.getSecretKey());
+	         String upToken = auth.uploadToken(qiniuConfig.getBucket());
+	         String key = null;
+	         try {
+	        	
+	        	 key=uriVariables.get("avatar");
+	             byte[] bytes = inputStream;
+	             ByteArrayInputStream byteInputStream=new ByteArrayInputStream(bytes);
+	             Response response = uploadManager.put(byteInputStream,key,upToken,null, null);
+	             //解析上传成功的结果
+	             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}}
+			
 			HttpHeaders requestHeaders = new HttpHeaders();
 			String tokenStr=SessionUtil.getCurToken();
 			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
@@ -288,35 +316,81 @@ public class UserService extends BaseService{
 	 * @param mobile
 	 * @return
 	 */
-	public JSONObject addUserPicture( String url, MultipartFile file){
+	public JSONObject addUserPicture(List<MultipartFile> files){
+		JSONObject jsonObject=new JSONObject();
 		try {
-			HttpHeaders requestHeaders = new HttpHeaders();
-			requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
-			requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
-			requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
-			requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
-			Map<String, String> uriVariables =new HashMap<String, String>();
-			try {
-				uriVariables.put("url", file.getBytes().toString());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
-			HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
-			JSONObject resp= restTemplate.postForObject(createUrl("/api/user/userPicture.json", null), httpEntity, JSONObject.class);
-			if(resp.get("code").toString().equals("200")){
-				String load= getUserInfo(SessionUtil.getCurToken());
-				SessionUtil.setCurUser(load,SessionUtil.getCurToken());
-			}
-			return resp;
+			
+			int allCount=files.size();
+			int okCount=0; //成功数量
+			int failCount=0; //失败数量
+	         Configuration cfg = new Configuration(Zone.zone0());//构造一个带指定Zone对象的配置类
+	         UploadManager uploadManager = new UploadManager(cfg);
+	         Auth auth = Auth.create(qiniuConfig.getAccessKey(), qiniuConfig.getSecretKey());
+	         String upToken = auth.uploadToken(qiniuConfig.getBucket());
+	         String key = null;
+	         String mobile="";
+	         MultipartFile file = null; 
+	         String ErrorMsg="";
+	         for (int i = 0; i < files.size(); ++i) {      
+	             file = files.get(i);      
+	             if (!file.isEmpty()) {      
+	                 try {  
+	                	 mobile=SessionUtil.getCurMobile().replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+	                	 key=mobile+"_"+ System.currentTimeMillis()+"_"+file.getOriginalFilename();
+	                     byte[] bytes = file.getBytes();
+	                     ByteArrayInputStream byteInputStream=new ByteArrayInputStream(bytes);
+	                     Response response = uploadManager.put(byteInputStream,key,upToken,null, null);
+	                     //解析上传成功的结果
+	                     DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+	                     JSONObject resp= addPictures(key);
+	                     if("200".equals(resp.get("code").toString())) {
+	                    	 okCount++;
+	                     }else {
+	                    	 failCount++;
+	                    	 ErrorMsg=resp.get("msg").toString();
+	                     }
+	                    
+	                 }catch (Exception e) {
+						// TODO: handle exception
+	                	 failCount++;
+					}
+	             }
+	         }
+	        jsonObject.put("code", 200);
+			jsonObject.put("msg", "总上传数量："+allCount+"张, 其中成功："+okCount +"张 , 失败："+failCount+"张 "+ErrorMsg);
 		} catch (RestClientException e) {
 			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
-			JSONObject jsonObject=new JSONObject();
 			jsonObject.put("code", 100);
 			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
-			return  jsonObject;
 		}
+		return  jsonObject;
+	}
+	
+	public JSONObject addPictures(String fileName) {
+		JSONObject jsonObject=new JSONObject();
+		try {
+			
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.add("TAP-CLIENT-TYPE", "0"); // 0web前端 （2：安卓 3：iOS）
+		requestHeaders.add("TAP-CLIENT-VERSION", "0.001"); // 客户端版本
+		requestHeaders.add("TAP-CLIENT-TOKEN",SessionUtil.getCurToken()); // 客户端版本
+		requestHeaders.add("Content-Type", "application/x-www-form-urlencoded");
+		Map<String, String> uriVariables =new HashMap<String, String>();
+		uriVariables.put("url", fileName);
+		MultiValueMap<String, Object> postParameters = getPostParameters(uriVariables);
+		HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(postParameters, requestHeaders);
+		JSONObject resp= restTemplate.postForObject(createUrl("/api/user/userPicture.json", null), httpEntity, JSONObject.class);
+		if(resp.get("code").toString().equals("200")){
+			String load= getUserInfo(SessionUtil.getCurToken());
+			SessionUtil.setCurUser(load,SessionUtil.getCurToken());
+		}
+		return resp;
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+		}
+		return  jsonObject;
 	}
 	/**
 	 * 删除用户图片

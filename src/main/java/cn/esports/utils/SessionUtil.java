@@ -59,6 +59,14 @@ public class SessionUtil {
 	public static String getCurToken() {
 		return (String) SecurityUtils.getSubject().getSession(true).getAttribute(Constants.KEY_TOKEN);
 	}
+	/**
+	 * 获取登陆的用户手机号
+	 * @return
+	 */
+	public static String getCurMobile() {
+		UserInfo userInfo=JSONObject.parseObject(getCurUser(),UserInfo.class);
+		return userInfo.getT().getMobile();
+	}
 	public static int getCurUid() {
 		UserInfo userInfo=JSONObject.parseObject(getCurUser(),UserInfo.class);
 		return userInfo.getT().getId();

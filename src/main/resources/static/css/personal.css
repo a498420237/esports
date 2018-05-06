@@ -162,7 +162,7 @@
 	width: 20px;
 	height: 21px;
 	background: url(../images/person_iconall.png) no-repeat;
-	background-position: -35px -127px;
+	background-position: -36px -127px;
 	margin-left: 29px;
 	margin-right: 19px;
 }
@@ -209,6 +209,15 @@
 	margin-left: 29px;
 	margin-right: 19px;
 }
+.data .lt li .select  .ic6{
+	width: 20px;
+	height: 21px;
+	background: url(../images/person_iconall.png) no-repeat;
+	background-position: -36px -319px;
+	margin-left: 29px;
+	margin-right: 19px;
+}
+
 .data .lt li .select .ic7{
 	width: 23px;
 	height: 23px;
@@ -542,6 +551,8 @@ border-radius: 65px;
 .data .up-img .list .img{
 	width: 126px;
 	height: 126px;
+	margin-bottom: 30px;
+	float: left;
 }
 .data .up-img .img{
 	position: relative;

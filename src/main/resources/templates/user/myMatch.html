@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>个人中心-我的赛事</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/personal.css">
 	<link rel="stylesheet" href="/css/zyx_forecast.css">
-	<link rel="stylesheet"	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous" />
 	<script src="/js/jquery.1.11.3.min.js"></script>
 	<script src="/js/bootstrap.min.js" ></script></head>
 <body>
@@ -20,7 +20,7 @@
 			<div class="lt">
 				<ul>
 					<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<!-- <li><a href="/user/myMatch"  class="select"><div class="ic ic2"></div><span>我的赛事</span></a></li> -->
+						<li><a href="/user/myMatch"  class="select"><div class="ic ic2"></div><span>我的赛事</span></a></li>
 						<li><a href="/user/BetOrder"><div class="ic ic3"></div><span>我的竞猜</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
@@ -28,20 +28,26 @@
 						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>
 				</ul>
 			</div>
-			<div class="record">
+			<div class="event my_match">
 				<div class="table_head overflow_hide color-glod">
 					<div class="left fl">
 						<label for="match1" class="active">进行中的比赛</label>
-						<label for="match2">往期比赛</label>
+					<!-- 	<label for="match2">往期比赛</label> -->
 					</div>
-					<div class="right fr">
+					<!-- <div class="right fr">
 						<label class="active"><span>王者荣耀</span></label>
 						<label><span>绝地求生</span></label>
-					</div>
+					</div> -->
 				</div>
-				<div class="list" id="list_content">
-
-				</div>
+	
+					<div class="historyTable color-glod">
+                        <div class="table_box show">
+                            <div class="table_list"  id="list_content">
+                            
+                            </div>
+                            </div>
+                     </div>       
+                            
 				<div class="z_pager">
 					<ul id="pageContainer"></ul>
 				</div>
@@ -55,14 +61,23 @@
 </div>
 <textarea id="itemTemplate"  style="display:none;">
 	{{each result}}
-	<p class="clearfix"><span class="time">{{$value.createTime | dateAprFmt}}</span><span>{{$value.detailtype}}</span>
+	<div class="list_item_content">
+                                    <div class="list_item">
+                                        <div class="left">
+                                            <span>{{$value.matchName}}</span>
+                                        </div>
+                                        <div class="leftBorder center text-center">
+                                            <span class="leftP font14"><i>{{$value.leftName}}</i><img src="{{$value.rightPic}}"  onerror="this.src='/images/redteam.png;this.onerror=null'" ></span>
+                                            <span class="score font16"><i>1</i>:<b>2</b></span>
+                                            <span class="rightP font14"><img  src="{{$value.rightPic}}" onerror="this.src='/images/blueteam.png;this.onerror=null'"><i>{{$value.rightName}}</i></span>
 
-	{{if ($value.operationType==0 || $value.operationType==1)}}
-	<em class="blue">{{$value.value}} 金币</em>
-	{{else if(($value.operationType==3 || $value.operationType==4))}}
-	<em class="blue">{{$value.value}} 钻石</em>
-	{{/if}}
-	</p>
+                                        </div>
+                                        <div class="orand rightd">
+                                            提交结果(12:00)
+                                        </div>
+                                    </div>
+                                 
+                                </div>
 	{{/each}}
 	</textarea>
 <script  src="/vendor/sea/sea.js"></script>

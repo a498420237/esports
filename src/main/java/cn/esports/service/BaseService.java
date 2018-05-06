@@ -8,6 +8,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import cn.esports.config.BaseConfig;
+import cn.esports.config.QiniuConfig;
 
 /**
  * 
@@ -35,6 +36,9 @@ public class BaseService {
 
 	@Autowired
 	protected BaseConfig baseConfig;
+	
+	@Autowired
+	protected QiniuConfig qiniuConfig;
 
 	@Autowired
 	protected RestTemplate restTemplate;

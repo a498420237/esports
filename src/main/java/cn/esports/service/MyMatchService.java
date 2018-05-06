@@ -38,7 +38,7 @@ public class MyMatchService extends BaseService {
 			uriVariables.put("userId",String.valueOf(SessionUtil.getCurUid()));
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
 			//ResponseEntity<String> resp = restTemplate.exchange(createUrl(list_url,uriVariables) ,HttpMethod.GET,r, String.class);
-			return restTemplate.patchForObject(createUrl(list_url,uriVariables),r, JSONObject.class);
+			return restTemplate.postForObject(createUrl(list_url,uriVariables),r, JSONObject.class);
 			//return JSONObject.parseObject(resp.getBody());
 		} catch (RestClientException e) {
 			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);

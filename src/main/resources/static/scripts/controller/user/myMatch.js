@@ -30,11 +30,6 @@ define(function(require, exports, module) {
 						success : function(json) {
 							debugger;
 							var data = json.t;
-							var paramObj = {
-								total : data.total,
-								page : data.offset,
-								list : data.result
-							};
 							renderHtml(data);
 							isShow=true;
 						}

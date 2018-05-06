@@ -13,8 +13,16 @@ httpClient:
     connectTimeout:20000
     readTimeout:30000
 baseConfig: 
-      httpUrl: http://39.106.145.173:8087
-      httpMethod: get
-      httpResultType: JSON
-      token: A7CF1A60E28D595A72F1AD4D4FD1EC0C8C5EAF8B
-      uid: 138
+    httpUrl: http://39.106.145.173:8087
+    httpMethod: get
+    httpResultType: JSON
+    token: A7CF1A60E28D595A72F1AD4D4FD1EC0C8C5EAF8B
+    uid: 138
+qiniuConfig:
+    accessKey: tsJPdXNcyL27-kDnuL55bk2-EnX5mi1Bokbr7E-R
+    secretKey: fYAuU0DtUCQv23JiIp1x0_uBaPc99MW6XY3MFu0e
+    bucket: tapup
+multipart:  
+   enabled: true  
+   max-file-size: 5mb  
+   max-request-size: 10mb  
