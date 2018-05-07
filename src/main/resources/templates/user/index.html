@@ -60,9 +60,9 @@
 					<div class="line"></div>
 					<div class="bind">
 						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><!-- <div class="btns" id="phone">修改手机</div> --></div>
-						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound=='false'}" th:text="${userinfo.t.email}"></span>
-                            <div class="btns" th:unless="${userinfo.t.emailBound=='false'}" id="changeEmail">邮箱变更</div>
-                            <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" >未绑定
+						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:if="${userinfo.t.emailBound==true}" th:text="${userinfo.t.email}"></span>
+                            <div class="btns" th:if="${userinfo.t.emailBound==true}" id="changeEmail">邮箱变更</div>
+                            <span class="cl-fff" th:if="${userinfo.t.emailBound!=true}">未绑定
                                 <div class="btns" id="bindEmail">立即绑定</div></span></em>
                         </div>
 					</div>

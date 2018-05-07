@@ -379,7 +379,6 @@ define(function(require, exports, module) {
             // 绑定新邮箱
             $("#bindEmailCodeBtn").click(function() {
                 var email = $("#bindEmailInput").val();
-
                 if (email == "") {
                     layer.msg("请输入邮箱");
                     return;
@@ -437,7 +436,7 @@ define(function(require, exports, module) {
                         if(obj.code==200){
                             layer.msg("验证码发送成功");
                         }else{
-                            layer.msg("验证码发送失败请重试！");
+                            layer.msg(obj.msg);
                         }
                     }
                 }
@@ -447,7 +446,7 @@ define(function(require, exports, module) {
         function emailComplete() {
             // 绑定邮箱
             $("#bindEmailCompelete").click(function() {
-                var email = $("#emailInput").val();
+                var email = $("#bindEmailInput").val();
                 if (email == "") {
                     layer.msg("请输入邮箱");
                     return;
@@ -457,7 +456,7 @@ define(function(require, exports, module) {
                     return;
                 }
 
-                var emailCode = $("#emailCode").val();
+                var emailCode = $("#bindEmailCode").val();
 
                 if (emailCode == "") {
                     layer.msg("请输入验证码");
@@ -470,9 +469,7 @@ define(function(require, exports, module) {
                     type : "post",
                     data : {
                         "email" : email,
-                        "code": emailCode,
-                        "oldAccount": oldEmail,
-                        "verifyCode": oldEmailCode
+                        "code": emailCode
                     },success:function(obj){
                         if(obj.code==200){
                             layer.msg("邮箱绑定成功");
