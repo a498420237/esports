@@ -22,7 +22,7 @@
       <div class="loginr">
       
       <a  href="/loginOut" th:unless="${userinfo.t==null}">登出</a>
-      <a class="current" href="#" th:unless="${userinfo.t==null}">充值</a>
+      <a class="current" href="/user/pay" th:unless="${userinfo.t==null}">充值</a>
       <a class="yh" href="/user/index" th:unless="${userinfo.t==null}"><img src="/images/myavatpic.png" /><span class="yhusername" th:text="${userinfo.t.userName}"></span></a>
       <a class="current" id="logi" href="/login" th:unless="${userinfo.t!=null}">登录</a> 
       </div>
