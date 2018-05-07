@@ -26,6 +26,70 @@ define(function(require, exports, module) {
 			$(".playapply").click(function() {
 				poprdsq();
 			});
+            $("#updateImg").click(function(){
+               /* var files= document.querySelector('input[name="updateImg"]').files;
+                $(".newImages").remove();
+                var imageData = new FormData();
+                for(var i=0;i<files.length;i++){
+                    var file=files[i];
+                    var imgId=file.name.substr(0,file.name.lastIndexOf(".")).toLowerCase()+"_"+i;*/
+                    submitFile();
+
+               // }
+            });
+            function submitFile(){
+                var formData = new FormData($("#form-add")[0]);
+                $.ajax({
+                    //接口地址
+                    url: '/user/addTeamImg' ,
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        //成功的回调
+                        if(data.code == 200){
+                            /*layer.msg("保存成功:"+data.msg,{time:8*1000},function(){
+                                window.location.reload();
+                            });*/
+                            layer.alert(data.msg);
+                        }else{
+                            layer.msg("保存失败："+data.msg);
+                        }
+                    },
+                    error: function (returndata) {
+                        //请求异常的回调
+                        alert("网络访问失败，请稍后重试!");
+                    }
+                });
+            };
+            function showImages(file,preview){
+                var reader  = new FileReader();
+                reader.onloadend = function () {
+                    preview.attr("src",reader.result);
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src="" ;
+                }
+
+            }
+			//图片的提交校验方法
+           /* $("#updateImg").on("click",function(){
+                var file=$("#userPictures").val();
+                if(file=="" || file.name==""){
+                    layer.msg("请选择图片");
+                    return;
+                }
+                if(!isFileType(file)){
+                    layer.msg("图像的的类型必须(.jpg|.jpeg|.gif|.png)后缀");
+                    return;
+                }
+                submitFile();
+            });*/
 			//弹框
 			$(".table_head  .left label").click(function(){
 				var currency=$(this).attr("name");

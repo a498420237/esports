@@ -2,6 +2,13 @@ package cn.esports.service;
 
 import cn.esports.utils.SessionUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -12,8 +19,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -298,5 +308,48 @@ public class MyWarteamService extends BaseService {
 			logger.error("call the getPersonalWealthInfo list from rest api occurred error,cause by:",e);
 			return null;
 		}
+	}
+
+	public JSONObject addTeamImg(List<MultipartFile> files){
+		JSONObject jsonObject=new JSONObject();
+		try {
+
+			int allCount=files.size();
+			int okCount=0; //成功数量
+			int failCount=0; //失败数量
+			Configuration cfg = new Configuration(Zone.zone0());//构造一个带指定Zone对象的配置类
+			UploadManager uploadManager = new UploadManager(cfg);
+			Auth auth = Auth.create(qiniuConfig.getAccessKey(), qiniuConfig.getSecretKey());
+			String upToken = auth.uploadToken(qiniuConfig.getBucket());
+			String key = null;
+			String mobile="";
+			MultipartFile file = null;
+			String ErrorMsg="";
+			DefaultPutRet putRet=null;
+			for (int i = 0; i < files.size(); ++i) {
+				file = files.get(i);
+				if (!file.isEmpty()) {
+					try {
+						mobile=SessionUtil.getCurMobile().replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+						key=mobile+"_"+ System.currentTimeMillis()+"_"+file.getOriginalFilename();
+						byte[] bytes = file.getBytes();
+						ByteArrayInputStream byteInputStream=new ByteArrayInputStream(bytes);
+						Response response = uploadManager.put(byteInputStream,key,upToken,null, null);
+						//解析上传成功的结果
+						putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+					}catch (Exception e) {
+						// TODO: handle exception
+						failCount++;
+					}
+				}
+			}
+			jsonObject.put("code", 200);
+			jsonObject.put("msg", putRet.key);
+		} catch (RestClientException e) {
+			logger.error("saveUserInfo to rest api occurred error,cause by:",e);
+			jsonObject.put("code", 100);
+			jsonObject.put("msg", "调用远程接口发生错误，请检联系管理员");
+		}
+		return  jsonObject;
 	}
 }
