@@ -18,24 +18,32 @@ define(function(require, exports, module) {
 			}
 		}
 	}
-	
-	$(function(){
-		
-	});
-	
-	/*function loadMatchList(gameType,statuType){
-		var statuType = $("#gemelist").find("a .active").data("type");
-		if(gameType!=''){
-			$("#gameType").val(gameType);
-		}
-		
-	}*/
-	
-	
 
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService' ], function($,
 			pagePlugin, util) {
-		
+		// Banner列表
+		$("#banner_content").paginator({
+			itemTemplateId : 'bannerTemplate',
+			pageNavId : '',
+			usepager : false,
+			useSeniorTemplate : true,
+			ajaxFuc : function(curentPage, renderHtml) {
+				$.ajax({
+					url : "/getbanner",
+					datatype : 'json',
+					type : "get",
+					data : {
+						"offset" : 0,
+						"limit" : 5,
+						"module":15
+					},
+					success : function(json) {
+						var data = json.t;
+						renderHtml(data);
+					}
+				});
+			}
+		});
 		// 资讯内容列表
 		$("#info_content").paginator({
 			itemTemplateId : 'infoTemplate',
@@ -49,7 +57,7 @@ define(function(require, exports, module) {
 					type : "get",
 					data : {
 						"offset" : 0,
-						"limit" : 4
+						"limit" : 5
 					},
 					success : function(json) {
 						var data = json.t;

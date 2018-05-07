@@ -258,11 +258,11 @@ label.footer input:checked~*:last-child{color:inherit}
 .bg-666{background-color: #666666;!important}
 .bg-999{background-color: #999999;!important}
 .bg-eee{background-color: #EEEEEE;!important}
+.color-green
 
 
 
-
-.bg-red{background-color: #FF0000;!important}
+.bg-red{background-color: #fa2c3b;!important}
 .bg-orange{background-color: #f8b03f;!important}
 .bg-yellow{background-color: #f5bc24;!important}
 .bg-green{background-color: #008000 !important;}
@@ -285,17 +285,22 @@ label.footer input:checked~*:last-child{color:inherit}
 .color-parent{color:inherit}
 
 
-.color-red{color: #FF0000;!important}
-.color-orange{color: #f8b03f;!important}
+.color-red{color: #FF0000 !important;}
+.color-orange{color: #f8b03f !important;}
 .color-yellow{color: #f5bc24 !important;}
 .color-green{color: #008000 !important;}
 .color-lightgreen{color: #90EE90 !important;}
 .color-blue{color: #0a669b !important;}
 .color-gray{color: #999999 !important;}
 
+.col-blue{color: #68c5d9 !important;}
+.col-green{color: #4cc262 !important;}
+.col-red{color: #f96c70 !important;}
+
+
 
 .font0{font-size: 0px!important;}
-.font0>*{ font-size: initial;display: inline-block;}
+.font0>*{ font-size:initial;display: inline-block;}
 .font10{font-size: 10px!important;}
 .font12{font-size: 12px!important;}
 .font14{font-size: 14px!important;}
@@ -1255,9 +1260,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{backg
 .nav .current{color: #ffc000;}
 .nav a:hover{color:#ffc000; text-decoration: none;	}
 .loginr{float: right;text-align: right; width:240px;margin-top: 28px;}
-.loginr .yh{width: 130px;float: left; margin-top:-8px; margin-right:6px;background:#2e3035; height: 30px; overflow: hidden;}
+.loginr .yh{width: 130px;float: left; margin-top:-8px; margin-right:6px;background:#2e3035; height: 30px; }
 .loginr .yh >a:hover{background:#2e3035;  }
-.loginr .yh img{vertical-align: middle;display: inline-block;width: 30px;  height: 30px;margin-right: 6px;}
+.loginr .yh img{vertical-align: middle;display: inline-block;width: 30px;  height: 30px;margin-right: 6px;border-radius: 30px;overflow: hidden;}
 .loginr .yh .yhusername{vertical-align: middle;display: inline-block;width: 70px;  height: 30px; line-height: 30px;}
 .loginr .current{background: #fa4a4a; }
 .loginr .yh:hover{background:#2e3035; }

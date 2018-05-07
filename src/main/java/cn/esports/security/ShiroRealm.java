@@ -40,7 +40,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		String code = new String(ch);
 		
 		//String tokenStr= userService.getToken(mobile, code);
-		String tokenStr= "F61604A9164AEB77442920D37634E3A623F9BC11"; //13428899017
+		String tokenStr= "DFF08A1BD593A8E01A51867CB9ACB0BBCBDA44D3"; //13428899017
 		//String tokenStr= "18A8E062099EEE9EC65A860EE7F37B23AAE07974"; //13642640726
 		//String tokenStr="4496A19A5F7521B0EE68EAC004B4D345FB2D9DA8";
 		//String tokenStr="A7CF1A60E28D595A72F1AD4D4FD1EC0C8C5EAF8B";

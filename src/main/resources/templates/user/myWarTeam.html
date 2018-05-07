@@ -10,6 +10,14 @@
 	<script src="/js/jquery.1.11.3.min.js"></script>
 	<script src="/js/bootstrap.min.js" ></script>
 </head>
+<script>
+window.onload = function(){
+	$(".lt li a").each(function(){
+		$(this).removeAttr('class');
+	});
+	$(".lt li a").eq(5).attr("class","select");
+}
+</script>
 <body>
 <div class="topWrap">
 	<div th:include="/include :: topWrap" ></div>
@@ -18,7 +26,8 @@
 	<div class="content">
 		<div class="tit">个人中心</div>
 		<div class="cont">
-			<div class="lt">
+		<div th:replace="/include :: ltc" ></div>
+			<!-- <div class="lt">
 				<ul>
 				<li><a href="/user/index"><div class="ic ic1"></div><span>我的资料</span></a></li>
 						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
@@ -28,7 +37,7 @@
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
 						<li><a  href="/user/myWarTeam" class="select"><div class="ic ic9"></div><span>我的战队</span></a></li>
 				</ul>
-			</div>
+			</div> -->
 			<div class="record">
 				<div class="list" id="competitionList">
 

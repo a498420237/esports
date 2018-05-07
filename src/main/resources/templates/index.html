@@ -24,7 +24,7 @@
 				<div class="main_visual">
                
 					<div class="main_image">
-					<ul>					
+					<ul id="banner_content">					
 						<li><img src="images/banner01.jpg"></li>
 						<li><img src="images/banner01.jpg"></li>
 						<li><img src="images/banner01.jpg"></li>
@@ -211,7 +211,12 @@
 
 	<!-- 尾部 -->
 	<div class="botwrap" th:include="/include :: botwrap"></div>
+	<textarea id="bannerTemplate" style="display:none;">
 	
+	{{each result}}
+	<li><img  src="{{$value.pictureUrl}}" onerror="this.src='images/banner01.jpg;this.onerror=null'"></li>
+	{{/each}}
+	</textarea>
 <textarea id="liveitemTemplate" style="display:none;">
 	{{each list}}
 	<li>

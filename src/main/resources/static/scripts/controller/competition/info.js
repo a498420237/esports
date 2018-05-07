@@ -177,6 +177,7 @@ define(function(require, exports, module) {
 											alert("报名成功",function(){
 												$(".mengbanDiv").removeClass("show");
 											});
+											$(".mengbanDiv").removeClass("show");
 										}else{
 											alert(json.msg);
 											$(".mengbanDiv").removeClass("show");

@@ -21,7 +21,14 @@ import cn.esports.utils.SessionUtil;
 public class ForecastService extends BaseService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ForecastService.class);
-
+	public JSONObject getBanner(Map<String, String> uriVariables) {
+		try {
+			return restTemplate.getForObject(createUrl("/app/findBannerListForApp.json", uriVariables),JSONObject.class);
+		} catch (RestClientException e) {
+			logger.error("call the forecast list from rest api occurred error,cause by:",e);
+			return null;
+		}
+	}
 	public JSONObject getForecastList(Map<String, String> uriVariables) {
 		try {
 			return restTemplate.getForObject(createUrl("/quiz/list.json", uriVariables),JSONObject.class);

@@ -59,7 +59,16 @@ public class IndexController extends BaseController {
 	}
 	@Autowired
 	private LiveStreamRoomService liveStreamRoomService;
-	
+	/**
+	 * Banner列表
+	 * @param uriVariables
+	 * @return
+	 */
+	@RequestMapping(value="/getbanner", method = RequestMethod.GET)
+	public JSONObject getbanner(@RequestParam Map<String, String> uriVariables){
+		JSONObject json= forecastService.getBanner(uriVariables);
+		return json;
+	}
 	/**
 	 * 赛事列表
 	 * @param uriVariables

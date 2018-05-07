@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <body>
 <div th:fragment="topWrap">
 	 <div class="topcenter">
       <div class="logo">
@@ -15,7 +16,7 @@
         <a href="/message/index">资讯<span>MESSAGE</span></a>
         <a href="/live/index">直播<span>LIVE</span></a>
         <a href="/forecast/index">预测<span>FORECAST</span></a>
-        <a href="#">游戏中心<span>GAME CENTER</span></a>
+        <a href="javascript:alert('暂未开放');" >游戏中心<span>GAME CENTER</span></a>
         <a href="/download/index">移动端<span>MOBILE</span></a>
 		<a href="#">家长监护<span>CUSTODY</span></a>
       </div>
@@ -28,17 +29,29 @@
       </div>
     </div>
 </div>
-
+<div th:fragment="ltc">
+<div class="lt">
+					<ul>
+						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
+						<!--  <li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li> -->
+						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的预测</span></a></li>
+						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
+						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
+						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
+						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>				
+					</ul>
+				</div>
+</div>
 <div th:fragment="botwrap">
 <div class="bottcon">
       <div class="btnav">
         <div class="dyl">
           <a class="current" href="/infos/aboutUs">关于我们</a>
-          <a href="#">媒体报道</a>
-          <a href="#">投资方&顾问</a>
+         <!--  <a href="#">媒体报道</a>
+          <a href="#">投资方&顾问</a> -->
         </div>
         <div class="dyl">
-          <a href="#">工作机会</a>
+        <!--   <a href="#">工作机会</a> -->
           <a href="#">网站条款</a>
           <a href="#">新手指南</a>
         </div>
@@ -69,5 +82,5 @@
 	<script src="/js/jquery.1.11.3.min.js"></script>
 	<script src="/js/bootstrap.min.js" ></script>
 </div>
-</body>
-</html>
+ </body>
+</html> 

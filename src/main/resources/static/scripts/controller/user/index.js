@@ -27,7 +27,7 @@ define(function(require, exports, module) {
             formData.append("avatar", "");
 		    $.ajax({
 		        //接口地址
-		        url: '/user/saveInfo' ,
+		        url: '/user/saveInfo',
 		        type: 'POST',
 		        data: formData,
 		        //async: false,

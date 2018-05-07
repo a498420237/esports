@@ -23,6 +23,8 @@
 }
 
 
+.pubclose{display: none;}
+
 .z_forecast_nav ul li a{
   display: block;
   text-align: center;
@@ -258,6 +260,7 @@
 	display: block;
 	box-sizing: border-box;
 	cursor: pointer;
+	color: #ffffff;
 }
 .lump input[type=text]{
 	background-color: transparent;

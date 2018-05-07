@@ -18,17 +18,19 @@
 		<div class="content">
 			<div class="tit">个人中心</div>
 			<div class="cont">
-				<div class="lt">
+			<div th:replace="/include :: ltc" ></div>
+			
+				<!-- <div class="lt">
 					<ul>
 						<li><a href="/user/index" class="select"><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<!--  <li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li> -->
-						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
+						 <li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
+						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的预测</span></a></li>
 						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
 						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
 						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
 						<li><a  href="/user/myWarTeam"><div class="ic ic9"></div><span>我的战队</span></a></li>				
 					</ul>
-				</div>
+				</div> -->
 				<div class="rt">
 					<div class="detail" id="block1" >
 						<img class="timg" th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${userinfo.t.avatar}}" onerror="this.src='/images/myavatpic.png;this.onerror=null'" >
@@ -72,7 +74,7 @@
 						<div class="nr clearfix" id="pictures_list" >
 							<div class="list left" th:each="lm: ${userinfo.t.userPictures}" >
 								<div class="img">
-								<img th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${lm.picture}}" style="width:126px; height:126px;" onerror="this.src='/images/person_photo.png;this.onerror=null'">
+								<img th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${lm.picture}}"  onerror="this.src='/images/person_photo.png;this.onerror=null'">
 									<div class="ic"><img src="/images/person_close.png" th:alt="${lm.id}"></div>
 								</div>
 							</div>
