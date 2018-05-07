@@ -60,7 +60,11 @@
 					<div class="line"></div>
 					<div class="bind">
 						<div class="ln"><em>绑定手机：<span class="cl-fff" th:unless="${userinfo.t.mobile==''}"  th:text="${userinfo.t.mobile}"></span></em><!-- <div class="btns" id="phone">修改手机</div> --></div>
-						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound=='false'}" th:text="${userinfo.t.email}"></span><span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" >未绑定</span></em><!-- <div class="btns" id="email">立即绑定</div> --></div>
+						<div class="ln"><em>绑定邮箱： <span class="cl-fff" th:unless="${userinfo.t.emailBound=='false'}" th:text="${userinfo.t.email}"></span>
+                            <div class="btns" th:unless="${userinfo.t.emailBound=='false'}" id="changeEmail">邮箱变更</div>
+                            <span class="cl-fff" th:unless="${userinfo.t.emailBound!='false'}" >未绑定
+                                <div class="btns" id="bindEmail">立即绑定</div></span></em>
+                        </div>
 					</div>
 					<div class="line"></div>
 					<div class="up-img">
@@ -110,26 +114,29 @@
 						</div>
 					</div>
 					</div>
-					<!--绑定邮箱-->
-					<div class="dialog2" id="bindEmail1">
-						<div class="cont2wrap">
-							<div class="pubclose">
-								<img src="/images/closeico.png">
-							</div>
-						<div class="cont2">
-							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
-							<div class="box">
-								<div class="input1"><input id="emailInput" style="width: 100%;" type="text" placeholder="请输入邮箱"></div>
-								<div class="input2"><input id="emailCode" style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right" id="emailCodeBtn">获取验证码</span></div>
-								<div class="tk-btn clearfix">
-									<div class="right" id="nextEmail">下一步</div>
-								</div>
-							</div>
-							</div>
-						</div>
-					</div>
 
-                    <div class="dialog2" id="bindEmail2">
+					<!--绑定邮箱-->
+                    <div class="dialog2" id="bindEmailDialog">
+                        <div class="cont2wrap">
+                            <div class="pubclose">
+                                <img src="/images/closeico.png">
+                            </div>
+                            <div class="cont2">
+                                <div class="tk-logo"><img src="/images/loginlogo.png"></div>
+                                <div class="box">
+                                    <div class="input1"><input id="bindEmailInput" style="width: 100%;" type="text" placeholder="请输入绑定邮箱"></div>
+                                    <div class="input2"><input id="bindEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
+                                        <span class="code right" id="bindEmailCodeBtn">获取验证码</span></div>
+                                    <div class="tk-btn clearfix">
+                                        <div class="right" id="bindEmailCompelete">完成</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--绑定邮箱-->
+                    <div class="dialog2" id="changeEmailDialog1">
                         <div class="cont2wrap">
                             <div class="pubclose">
                                 <img src="/images/closeico.png">
@@ -138,10 +145,30 @@
                                 <div class="tk-logo"><img src="/images/loginlogo.png"></div>
                                 <div class="box">
                                     <div class="input1"><input id="oldEmailInput" style="width: 100%;" type="text" placeholder="请输入原绑定邮箱"></div>
-                                    <div class="input2"><input id="oldEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right" id="oldEmailCodeBtn">获取验证码</span></div>
+                                    <div class="input2"><input id="oldEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
+                                        <span class="code right" id="oldEmailCodeBtn">获取验证码</span></div>
+                                    <div class="tk-btn clearfix">
+                                        <div class="right" id="nextEmail">下一步</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dialog2" id="changeEmailDialog2">
+                        <div class="cont2wrap">
+                            <div class="pubclose">
+                                <img src="/images/closeico.png">
+                            </div>
+                            <div class="cont2">
+                                <div class="tk-logo"><img src="/images/loginlogo.png"></div>
+                                <div class="box">
+                                    <div class="input1"><input id="newEmailInput" style="width: 100%;" type="text" placeholder="请输入新绑定邮箱"></div>
+                                    <div class="input2"><input id="newEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
+                                        <span class="code right" id="newEmailCodeBtn">获取验证码</span></div>
                                     <div class="tk-btn clearfix">
                                         <div class="right" id="preEmail">上一步</div>
-                                        <div class="right" id="emailCompelete">完成</div>
+                                        <div class="right" id="changeEmailCompelete">完成</div>
                                     </div>
                                 </div>
                             </div>
@@ -266,18 +293,21 @@
         }
     });
     //邮箱
-    $("#email").on("click",function(){
-		$("#bindEmail1").fadeIn();
+    $("#bindEmail").on("click",function(){
+		$("#bindEmailDialog").fadeIn();
 	})
+    $("#changeEmail").on("click",function(){
+        $("#changeEmailDialog1").fadeIn();
+    })
 
     $("#nextEmail").on("click", function(){
-        $("#bindEmail1").fadeOut();
-        $("#bindEmail2").fadeIn();
+        $("#changeEmailDialog1").fadeOut();
+        $("#changeEmailDialog2").fadeIn();
     })
 
     $("#preEmail").on("click", function(){
-        $("#bindEmail2").fadeOut();
-        $("#bindEmail1").fadeIn();
+        $("#changeEmailDialog2").fadeOut();
+        $("#changeEmailDialog1").fadeIn();
     })
 
 	$("#phone-can").on("click",function(){

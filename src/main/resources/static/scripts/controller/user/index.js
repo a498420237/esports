@@ -8,8 +8,8 @@ define(function(require, exports, module) {
 			init();
             bindGetCodeEvent();
             getEmailCode();
-            getOldEmailCode();
             emailComplete();
+            changeEmailComplete();
 		});
 		
 		//获取列表数据
@@ -376,8 +376,9 @@ define(function(require, exports, module) {
 
         // 获取邮箱验证码
         function getEmailCode() {
-            $("#emailCodeBtn").click(function() {
-                var email = $("#emailInput").val();
+            // 绑定新邮箱
+            $("#bindEmailCodeBtn").click(function() {
+                var email = $("#bindEmailInput").val();
 
                 if (email == "") {
                     layer.msg("请输入邮箱");
@@ -387,21 +388,12 @@ define(function(require, exports, module) {
                     layer.msg("请输入正确的邮箱");
                     return;
                 }
-                curCount = count;
-                $(this).off("click");
-                $(this).removeAttr("class","bg-red");
-                $(this).attr("class","bg-999");
-                $(this).text("倒计时" + curCount + "秒");
-                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-                sendEmail(email);
+                sendEmail(email, "bindEmail");
             });
-        }
 
-        // 获取邮箱验证码
-        function getOldEmailCode() {
+            // 邮箱变更
             $("#oldEmailCodeBtn").click(function() {
                 var email = $("#oldEmailInput").val();
-
                 if (email == "") {
                     layer.msg("请输入邮箱");
                     return;
@@ -410,26 +402,33 @@ define(function(require, exports, module) {
                     layer.msg("请输入正确的邮箱");
                     return;
                 }
-                curCount = count;
-                $(this).off("click");
-                $(this).removeAttr("class","bg-red");
-                $(this).attr("class","bg-999");
-                $(this).text("倒计时" + curCount + "秒");
-                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-                debugger;
-                sendEmail(email);
+                sendEmail(email, "resetBindEamil");
             });
+
+            $("#newEmailCodeBtn").click(function() {
+                var email = $("#newEmailInput").val();
+                if (email == "") {
+                    layer.msg("请输入邮箱");
+                    return;
+                }
+                if(!isEmailAvaliable(email)){
+                    layer.msg("请输入正确的邮箱");
+                    return;
+                }
+                sendEmail(email, "bindEmail");
+            });
+
         }
 
         //发送验证码
-        function sendEmail(email){
+        function sendEmail(email, type){
             $.ajax({
                 url : "/user/sendEmailCode",
                 datatype : 'json',
                 type : "post",
                 data : {
                     "email" : email,
-                    "type": "bindEmail"
+                    "type": type
                 },success:function(obj){
 
                     if(obj==null){
@@ -446,22 +445,21 @@ define(function(require, exports, module) {
         }
 
         function emailComplete() {
-            $("#emailCompelete").click(function() {
+            // 绑定邮箱
+            $("#bindEmailCompelete").click(function() {
                 var email = $("#emailInput").val();
-                var oldEmail = $("#oldEmailInput").val();
-                if (email == "" || oldEmail == "") {
+                if (email == "") {
                     layer.msg("请输入邮箱");
                     return;
                 }
-                if(!isEmailAvaliable(email) || !isEmailAvaliable(oldEmail)){
+                if(!isEmailAvaliable(email)){
                     layer.msg("请输入正确的邮箱");
                     return;
                 }
 
                 var emailCode = $("#emailCode").val();
-                var oldEmailCode = $("#oldEmailCode").val();
 
-                if (emailCode == "" || oldEmailCode == "") {
+                if (emailCode == "") {
                     layer.msg("请输入验证码");
                     return;
                 }
@@ -473,7 +471,6 @@ define(function(require, exports, module) {
                     data : {
                         "email" : email,
                         "code": emailCode,
-                        "type": "2",
                         "oldAccount": oldEmail,
                         "verifyCode": oldEmailCode
                     },success:function(obj){
@@ -486,6 +483,54 @@ define(function(require, exports, module) {
                             $(".dialog1").fadeOut();
 
 
+                        }else{
+                            // layer.msg("邮箱绑定失败请重试！");
+                            layer.msg(obj.msg);
+                        }
+                    }
+                });
+            });
+        }
+
+        function changeEmailComplete() {
+            // 绑定邮箱
+            $("#changeEmailCompelete").click(function() {
+                var oldEmail = $("#oldEmailInput").val();
+                var newEmail = $("#newEmailInput").val();
+                if (oldEmail == "" || newEmail == "") {
+                    layer.msg("请输入邮箱");
+                    return;
+                }
+                if(!isEmailAvaliable(oldEmail) || !isEmailAvaliable(newEmail)){
+                    layer.msg("请输入正确的邮箱");
+                    return;
+                }
+
+                var oldEmailCode = $("#oldEmailCode").val();
+                var newEmailCode = $("#newEmailCode").val();
+
+                if (oldEmailCode == "" || newEmailCode=="") {
+                    layer.msg("请输入验证码");
+                    return;
+                }
+
+                $.ajax({
+                    url : "/user/bindEmail",
+                    datatype : 'json',
+                    type : "post",
+                    data : {
+                        "email" : newEmail,
+                        "code": newEmailCode,
+                        "oldAccount": oldEmail,
+                        "verifyCode": oldEmailCode
+                    },success:function(obj){
+                        $(".dialog4").fadeOut();
+                        $(".dialog2").fadeOut();
+                        $(".dialog1").fadeOut();
+
+                        debugger;
+                        if(obj.code==200){
+                            layer.msg("邮箱绑定成功");
                         }else{
                             // layer.msg("邮箱绑定失败请重试！");
                             layer.msg(obj.msg);
