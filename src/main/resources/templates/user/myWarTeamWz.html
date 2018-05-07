@@ -39,9 +39,11 @@
 
 							<div class="upimg">
 								<span>上传战队图片</span>
-								<a href="javascript:;" class="file right">
-									<input type="file" name="" id="">
-								</a>
+								<form id="form-add" method="POST" enctype="multipart/form-data">
+									<a href="javascript:;" class="file right" id="showImg">
+										<input type="file" name="" id="updateImg" name="updateImg" multiple="multiple" accept="image/*">
+									</a>
+								</form>
 							</div>
 							<div class="info1">
 								<p class="clearfix"><span>所属游戏</span>
