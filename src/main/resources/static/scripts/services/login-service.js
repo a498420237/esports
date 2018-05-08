@@ -46,12 +46,12 @@ define(function (require, exports, module) {
                     return;
                 }
 
-                sendsms(mobile);
+                sendsms(this,mobile);
             });
         };
 
         //发送验证码
-        function sendsms(mobile) {
+        function sendsms(dom,mobile) {
             $.ajax({
                 url: "/sendMobileCode",
                 datatype: 'json',
@@ -65,12 +65,11 @@ define(function (require, exports, module) {
                     } else {
                         if (obj.code == 200) {
                             layer.msg("验证码发送成功");
-
                             curCount = count;
-                            $(this).off("click");
-                            $(this).removeAttr("class", "bg-red");
-                            $(this).attr("class", "bg-999");
-                            $(this).text("倒计时" + curCount + "秒");
+                            $(dom).off("click");
+                            $(dom).removeAttr("class", "bg-red");
+                            $(dom).attr("class", "bg-999");
+                            $(dom).text("倒计时" + curCount + "秒");
                             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
                         } else {
