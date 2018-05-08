@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
 
-        var titleDesc = {
+       /* var titleDesc = {
             xx : {
                 "关于我们": "About US",
                 "媒体报道": "Media Report",
@@ -22,6 +22,6 @@ define(function(require, exports, module) {
             $(this).addClass("active");
             $(".rt .head p").text(titleDesc.xx[$(this).text()]);
             $("#title").text($(this).text());
-        });
+        });*/
     });
 });

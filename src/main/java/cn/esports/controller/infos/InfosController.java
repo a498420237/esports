@@ -20,5 +20,23 @@ public class InfosController extends BaseController {
         ModelAndView view = new ModelAndView("infos/index");
         return view;
     }
+    
+    @RequestMapping(value = "infos/websitetrms", method = RequestMethod.GET)
+    public ModelAndView websitetrms(){
+        ModelAndView view = new ModelAndView("infos/websitetrms");
+        return view;
+    }
+    
+    @RequestMapping(value = "infos/beginner", method = RequestMethod.GET)
+    public ModelAndView beginner(){
+        ModelAndView view = new ModelAndView("infos/beginner");
+        return view;
+    }
+    
+    @RequestMapping(value = "infos/officialaccounts", method = RequestMethod.GET)
+    public ModelAndView officialaccounts(){
+        ModelAndView view = new ModelAndView("infos/officialaccounts");
+        return view;
+    }
 
 }
