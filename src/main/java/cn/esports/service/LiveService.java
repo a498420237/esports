@@ -24,7 +24,7 @@ public class LiveService extends BaseService {
     public static final String LIVE_LIST = "live/list.json";
     public static final String LIVE_DETAIL = "live/liveInfo.json";
     //    public static final String LIVE_GAME_LIST = "quiz/gameInfo/list.json";
-    public static final String LIVE_GAME_LIST = "app/findInfoChannelNameForApp.json"; //  用来测试的
+    public static final String LIVE_GAME_LIST = "quiz/gameInfo/list.json"; //  用来测试的
 
 
     /**

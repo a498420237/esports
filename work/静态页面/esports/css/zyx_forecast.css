@@ -23,6 +23,10 @@
 }
 
 
+
+
+.z_container_content .swiper-slide img{width: 100%;}
+
 .pubclose{display: none;}
 
 .z_forecast_nav ul li a{

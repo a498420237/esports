@@ -5,10 +5,10 @@
     <title>视频直播</title>
   
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/zyx_forecast.css">
     <link rel="stylesheet" href="/css/idangerous.swiper2.7.6.css">
     <link rel="stylesheet" href="/css/swiper.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/zyx_forecast.css">
 </head>
 <script>
     window.onload = function(){
@@ -29,7 +29,7 @@
         <div class="z_container_content">
             <!-- 幻灯片 -->
             <div class="swiper-container">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" id="banner_content">
                     <div class="swiper-slide"><img src="/images/video_banner.png" alt=""></div>
                     <div class="swiper-slide"><img src="/images/video_banner.png" alt=""></div>
                 </div>
@@ -59,7 +59,16 @@
 
 <!-- 尾部 -->
 <div class="botwrap" th:include="/include :: botwrap"></div>
-
+<textarea id="bannerTemplate" style="display:none;">
+	{{if (result.length==0)}}
+	 <a href="javascript:void(0)" ><div class="swiper-slide"><img src="/images/video_banner.png" alt=""></div></a>
+     <a href="javascript:void(0)" >  <div class="swiper-slide"><img src="/images/video_banner.png" alt=""></div></a>
+	{{else}}
+	{{each result}}
+	 <a href="{{$value.linkAddr}}" ><div class="swiper-slide"><img  src="{{$value.pictureUrl}}" onerror="this.src='/images/video_banner.png;this.onerror=null'"></div></a>
+	{{/each}}
+	{{/if}}
+	</textarea>
 <div style="display: none;">
     <!-- 直播列表模板 -->
     <textarea id="liveList_template">
@@ -83,8 +92,8 @@
 
 <textarea id="titleTemplate" style="display:none;">
      <span class="active center"><img src="/images/news_gamepic01.png" alt="">全部直播</span>
-    {{each result }}
-     <span><img src="/images/news_gamepic01.png" alt="{{$value.id}}">{{$value.channelName}}</span>
+    {{each gameList }}
+     <span><img src="/images/news_gamepic01.png" alt="{{$value.id}}">{{$value.name}}</span>
     {{/each}}
      <div class="search_div">
                 <div class="search_input">

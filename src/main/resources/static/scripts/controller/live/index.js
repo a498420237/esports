@@ -2,7 +2,30 @@ define(function (require, exports, module) {
 
     seajs.use(['jquery', 'pagePlugin', 'utilService', 'template'], function ($, pagePlugin, util, template) {
 
-       
+    	// Banner列表
+		$("#banner_content").paginator({
+			itemTemplateId : 'bannerTemplate',
+			pageNavId : '',
+			usepager : false,
+			useSeniorTemplate : true,
+			ajaxFuc : function(curentPage, renderHtml) {
+				$.ajax({
+					url : "/getbanner",
+					datatype : 'json',
+					type : "get",
+					data : {
+						"offset" : 0,
+						"limit" : 5,
+						"module":20
+					},
+					success : function(json) {
+						debugger;
+						var data = json.t;
+						renderHtml(data);
+					}
+				});
+			}
+		});
 
         function getLiveList(){
         	 var gameId = "";
@@ -61,7 +84,7 @@ define(function (require, exports, module) {
                     datatype: 'json',
                     type: "get",
                     data: {
-                        "limit": 3
+                        "applySite": 2
                     },
                     success: function (json) {
                         var data = json.t;

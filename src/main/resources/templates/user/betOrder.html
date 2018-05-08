@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 	<meta charset="UTF-8">
-	<title>个人中心-我的竞猜</title>
+	<title>个人中心-我的预测</title>
 <head th:include="include :: user_header"></head>
 <script>
 window.onload = function(){
@@ -58,11 +58,11 @@ window.onload = function(){
 							 	<div class="period1">
 									<div class="number left">
  				{{if ($value.goldType==0)}}
-                    	  <img src="/images/home_money.png" alt=""> 金币竞猜
+                    	  <img src="/images/home_money.png" alt=""> 金币预测
                     		{{else }}
-                    		  <img src="/images/dimandicon.png" alt="">钻石竞猜
+                    		  <img src="/images/dimandicon.png" alt="">钻石预测
                     		{{/if}}
-<span>竞猜单号：{{$value.quizNumber}}</span></div>
+<span>预测单号：{{$value.quizNumber}}</span></div>
 									<div class="time right">{{$value.createDate  | dateFmt}}</div>
 							 	</div>
 							 	<div class="period2">
@@ -96,17 +96,17 @@ window.onload = function(){
 										
 										
 										{{if($value.cbResult==1)}}
-										<p class="col-red">成功</p>
+										<p class="">成功</p>
 										{{else if($value.cbResult==2)}}
-										<p class="col-red">成功</p>
+										<p class="">成功</p>
 										{{else if($value.cbResult==3)}}
-											<p class="col-green">流盘</p>
+											<p class="">流盘</p>
 											{{else if($value.cbResult==4)}}
-											<p class="col-red">赢半</p>
+											<p class="">赢半</p>
 												{{else if($value.cbResult==5)}}
-												<p class="col-green">输半</p>
+												<p class="">输半</p>
 													{{else}}
-										<p class="col-blue">未结算</p>
+										<p class="">未结算</p>
 										{{/if}}
 										
 									</div>

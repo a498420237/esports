@@ -1475,12 +1475,17 @@ font-size: 14px;
 }
 #tab2 .captain img{
 	margin:0;
+	
 }
 #tab2 .captain{
 	border:2px solid #edce9c;
 	position: relative;
 	margin:23px 25px 0 16px;
-	border-radius: 50%;
+	    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    overflow: hidden;
+}
 }
 #tab2 .captain::before{
 	content: '';

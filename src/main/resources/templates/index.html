@@ -211,12 +211,14 @@
 
 	<!-- 尾部 -->
 	<div class="botwrap" th:include="/include :: botwrap"></div>
-	<textarea id="bannerTemplate" style="display:none;">
+	
+<textarea id="bannerTemplate" style="display:none;">
 	
 	{{each result}}
 	<li><img  src="{{$value.pictureUrl}}" onerror="this.src='images/banner01.jpg;this.onerror=null'"></li>
 	{{/each}}
 	</textarea>
+
 <textarea id="liveitemTemplate" style="display:none;">
 	{{each list}}
 	<li>
@@ -230,6 +232,7 @@
 	</li>
 	{{/each}}
 </textarea>
+
 <textarea id="forcastTemplate" style="display:none;">
 	{{each list}}
 	<li>
@@ -270,7 +273,6 @@
 	{{/each}}
 </textarea>
 
-
 <textarea id="matchTemplate" style="display:none;">
 {{each list}}
  <tr>
@@ -303,7 +305,6 @@
 {{/each}}
 </textarea>
 
-
 <textarea id="infoTemplate" style="display:none;">
 	{{each list}}
 		<a href="/message/messageDetail/{{$value.id}}">
@@ -327,7 +328,6 @@
 		</dl>
 	{{/each}}
 </textarea>
-
 
 <textarea id="gameListTemplate" style="display:none;">
  	<li ><a href="javascript:void(0)" name="$id$">$name$</a></li>
