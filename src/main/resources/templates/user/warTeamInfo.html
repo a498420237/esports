@@ -140,14 +140,9 @@ window.onload = function(){
 	<textarea id="teamMember"  style="display:none;">
 	{{each result}}
 						<div class="players clearfix">
-						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}"></div>
 						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
 						<div class="area">
-										<!--{{if ($value.serverType==1 )}}
-	                                        <span>手游区</span>
-	                                    {{else if(($value.gameType==2))}}
-	                                        <span>微信区</span>
-	                                    {{/if}}-->
 							 <span>{{$value.serverType}}</span>
 						</div>
 						<div class="dan">{{$value.level}}</div>
@@ -160,6 +155,7 @@ window.onload = function(){
 </div>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
+<script  type="text/javascript" src="/layer/layer.js"></script>
 <script type="text/javascript">
 	seajs.use('/scripts/controller/user/warTeamInfo');
 </script>
@@ -192,11 +188,11 @@ window.onload = function(){
 				success : function(json) {
 					var data = json.code;
 					if("0"==data){
-						alert(json.msg);
+                        layer.msg(json.msg);
 					}else{
-						alert(json.msg);
+                        layer.msg(json.msg);
 					}
-					location.reload();
+					//location.reload();
 				}
 			});
 		}

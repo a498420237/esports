@@ -53,14 +53,14 @@ public class MyWarTeamController extends BaseController {
 						view=new ModelAndView("user/myWarTeamWz");
 					}else {
 						//2 绝地求生
-						//view=new ModelAndView("user/myWarTeamJd");
-						view=new ModelAndView("user/myWarTeamWz");
+						view=new ModelAndView("user/myWarTeamJd");
+						//view=new ModelAndView("user/myWarTeamWz");
 					}
 
 				}else{
 					//都有
-					//view=new ModelAndView("user/myWarTeam");
-					view=new ModelAndView("user/myWarTeamWz");
+					view=new ModelAndView("user/myWarTeam");
+					//view=new ModelAndView("user/myWarTeamWz");
 				}
 			}
 		}
