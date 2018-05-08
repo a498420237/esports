@@ -164,11 +164,6 @@ $("#exitzdd").click(function(){
 		});
 
 
-	//充值弹框
-$(".btncre").click(function(){
-			$(".popmoney").fadeIn();			
-
-		});	
 	$(".close").click(function(){
 	
 			$(".popmoney").hide();			

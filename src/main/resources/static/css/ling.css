@@ -173,6 +173,7 @@
 .crecont ul {width:433px;float: right;}
 .crecont ul li {width: 105px;margin-bottom: 38px; height:28px;padding:15px 10px; float:left;text-align: center; color: #777777; border: 1px solid #777777;margin-right: 16px;}
 .crecont ul li:hover{color: #ffc000; border: 1px solid #ffc000;cursor: pointer;}
+.crecont ul li.active{color: #ffc000; border: 1px solid #ffc000;cursor: pointer;}
 .crecont > span{color: #999999; font-size: 16px;float: left; line-height: 36px;}
 .crecont ul li >span{font-size: 10px;display: block;clear: both;}
 .contwrapc{background: url(../images/home_bg.jpg) #1f1f1e no-repeat ; background-size: 100%; padding-top: 30px; padding-bottom: 30px;}
@@ -183,6 +184,7 @@
 .czfs ul {width:433px;}
 .czfs > ul li {width: 125px;margin-bottom: 38px; position: relative; height:40px;line-height: 40px; float:left;text-align: center; color: #777777; border: 1px solid #777777;margin-right: 16px;}
 .czfs ul li:hover{color: #ffc000; border: 1px solid #ffc000; cursor: pointer;}
+.czfs ul li.active{color: #ffc000; border: 1px solid #ffc000; cursor: pointer;}
 .czfs ul li img{position: relative; top:5px; margin-right: 10px;float: left;margin-left: 16px;}
 
 .czfs > ul li >span{display: block;float: left; line-height: 40px; height: 40px;}
