@@ -249,22 +249,22 @@ label.footer input:checked~*:last-child{color:inherit}
 .inputSearch[val] input{background-image: url(../img/slice/fangdajing1.png);background-repeat: no-repeat;background-position: 0.1rem center;background-size: auto 0.3rem;}
 
 /*字体和背景颜色库*/
-.bg-fff{background-color: #fff;!important}
-.bg-f1{background-color: #f1f1f1;!important}
-.bg-f7{background-color: #F7F7F7;!important}
-.bg-000{background-color: #000000;!important}
-.bg-333{background-color: #333333;!important}
-.bg-ddd{background-color: #DDDDDD;!important}
-.bg-666{background-color: #666666;!important}
-.bg-999{background-color: #999999;!important}
-.bg-eee{background-color: #EEEEEE;!important}
+.bg-fff{background-color: #fff!important;}
+.bg-f1{background-color: #f1f1f1!important;}
+.bg-f7{background-color: #F7F7F7!important;}
+.bg-000{background-color: #000000!important;}
+.bg-333{background-color: #333333!important;}
+.bg-ddd{background-color: #DDDDDD!important;}
+.bg-666{background-color: #666666!important;}
+.bg-999{background-color: #999999!important;}
+.bg-eee{background-color: #EEEEEE!important;}
 .color-green
 
 
 
-.bg-red{background-color: #fa2c3b;!important}
-.bg-orange{background-color: #f8b03f;!important}
-.bg-yellow{background-color: #f5bc24;!important}
+.bg-red{background-color: #fa2c3b !important;}
+.bg-orange{background-color: #f8b03f!important;}
+.bg-yellow{background-color: #f5bc24!important;}
 .bg-green{background-color: #008000 !important;}
 .bg-lightgreen{background-color: #90EE90 !important;}
 .bg-blue{background-color: #0a669b !important;}

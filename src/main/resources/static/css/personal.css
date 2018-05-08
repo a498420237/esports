@@ -1163,7 +1163,7 @@ color: #ffc000;
 .team .dialog .cont{
 width: 100%;
 height: 500px;
-overflow-y: scroll;
+overflow-y: auto;
 
 }
 .team .dialog .upimg{
@@ -1881,9 +1881,36 @@ max-height: 50px; z-index: 99; border-radius: 30px;position: absolute; top: 6px;
 
 .messd i{color: #ccc; font-size: 16px; }
 .messd i span{color:#fa4a4a;font-size: 16px;margin-left: 4px;}
-.playerwr{width: 750px; height: 600px; border-radius: 10px; position: absolute;left: 50%; margin-left: -360px; top: 50%;margin-top:-325px; background: #31363a;}
-.playerwrap{width: 100%;overflow-y: scroll;width: 750px; height: 600px; border-radius: 10px;
+.playerwr{width: 750px; height: 600px; border-radius: 10px; position: absolute;left: 50%; margin-left: -375px; top: 50%;margin-top:-300px; background: #31363a;}
+.playerwrap{width: 100%;overflow-y: auto;width: 750px; height: 600px; border-radius: 10px;
 	font-size: 14px;}
+
+
+
+.playerwrap::-webkit-scrollbar {
+            width:10px;
+            height:10px;
+        }
+       .playerwrap::-webkit-scrollbar-button    {
+            background-color:#31363a;
+        }
+       .playerwrap::-webkit-scrollbar-track     {
+            background:#31363a;
+        }
+       .playerwrap::-webkit-scrollbar-track-piece {
+           
+        }
+       .playerwrap::-webkit-scrollbar-thumb{
+            background:#5d5f62;
+            border-radius:4px;
+        }
+       .playerwrap::-webkit-scrollbar-corner {
+            background:#31363a;
+        }
+       .playerwrap::-webkit-scrollbar-resizer  {
+            background:#31363a;
+        }
+
 .playerwrap .players{
 
 	border-bottom: 1px solid #3d4246;

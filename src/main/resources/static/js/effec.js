@@ -184,28 +184,7 @@ $("#exitzdd").click(function(){
 		});
 
 
-//登录弹框
-		$("#logi").click(function(){
-	
-			$(".poplogind").fadeIn(2000);			
 
-		});	
-	$(".pubclose").click(function(){
-	
-			$(".poplogind").fadeOut(2000);			
-
-		});
-
-	$("#logi").click(function(){
-	
-			$(".poplogin").fadeIn();			
-
-		});	
-	$(".pubclose").click(function(){
-	
-			$(".poplogin").fadeOut();			
-
-		});
 
 
 	$("#clcma").click(function(){

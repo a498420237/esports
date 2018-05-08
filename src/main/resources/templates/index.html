@@ -14,7 +14,33 @@
 <link th:href="@{/css/ling.css}" rel="stylesheet">
 </head>
 <body>
-	<div class="topWrap"><div th:include="/include :: topWrap"></div></div>
+	<div class="topWrap">
+	 <div class="topcenter">
+      <div class="logo">
+       <h3><img src="/images/tplogo.png"></h3>
+				<div class="logrigh">
+					适龄提示：适合18岁以上使用
+				</div>
+      </div>
+      <div class="nav">
+       <a class="current" href="/">首页<span>HOME</span></a>
+        <a href="/competition/index">赛事<span>COMPETITION</span></a>
+        <a href="/message/index">资讯<span>MESSAGE</span></a>
+        <a href="/live/index">直播<span>LIVE</span></a>
+        <a href="/forecast/index">预测<span>FORECAST</span></a>
+        <a href="javascript:layer.msg('暂未开放');" >游戏中心<span>GAME CENTER</span></a>
+        <a href="/download/index">移动端<span>MOBILE</span></a>
+		<a href="javascript:layer.msg('暂未开放',time:2000);" >家长监护<span>CUSTODY</span></a>
+      </div>
+      <div class="loginr">
+      
+      <a  href="/loginOut" th:unless="${userinfo.t==null}">登出</a>
+      <a class="current" href="/user/pay" th:unless="${userinfo.t==null}">充值</a>
+      <a class="yh" href="/user/index" th:unless="${userinfo.t==null}"><img src="/images/myavatpic.png" /><span class="yhusername" th:text="${userinfo.t.userName}"></span></a>
+      <a class="current" id="logi" href="/login" th:unless="${userinfo.t!=null}">登录</a> 
+      </div>
+    </div>
+	</div>
 
 
 	<div class="contwrap">
