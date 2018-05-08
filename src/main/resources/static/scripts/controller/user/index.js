@@ -37,9 +37,11 @@ define(function(require, exports, module) {
 		        success: function (data) {
 		            //成功的回调
 		            if(data.code == 200){
-		            	layer.msg("保存成功",function(){
-							window.location.reload();
+		            	layer.msg("保存成功请刷新界面",function(){
+		            		
+		            		window.location.reload();
 						});
+		            	
 		            }else{
 		            	layer.msg("保存失败："+json.msg);
 		            }
@@ -184,6 +186,20 @@ define(function(require, exports, module) {
 				a.initEvent("click", true, true);  
 				document.getElementById("myprefixfile").dispatchEvent(a); 
 				} 
+			});
+			
+			
+			//点击个人图像选择图像触发
+			$("#myprefixfile").on("change",function(){
+				var files= document.querySelector('input[name="myprefixfile"]').files;
+				
+				debugger;
+			
+				for(var i=0;i<files.length;i++){
+					var file=files[i];
+					var preview=$(".myavatar");
+					showImages(file,preview);
+				}
 			});
 			
 			$("#pictures_list .ic").on("click",function(){

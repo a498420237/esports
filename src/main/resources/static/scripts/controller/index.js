@@ -24,8 +24,8 @@ define(function(require, exports, module) {
 		
 		$(function(){
 			//登录弹框
-			/*$("#logi").click(function(){
-		
+			$("#logi").click(function(){
+		debugger;
 				$(".poplogind").fadeIn(2000);			
 
 			});	
@@ -33,14 +33,14 @@ define(function(require, exports, module) {
 		
 				$(".poplogind").fadeOut(2000);			
 
-			});*/
+			});
 
 		/*$("#logi").click(function(){
 		
 				$(".poplogin").fadeIn();			
 
-			});	*/
-		/*$(".pubclose").click(function(){
+			});	
+		$(".pubclose").click(function(){
 		
 				$(".poplogin").fadeOut();			
 

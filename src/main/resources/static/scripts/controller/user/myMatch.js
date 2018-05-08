@@ -3,13 +3,12 @@ define(function(require, exports, module) {
 		
 		$(function(){
 			init();
-			seniorLoad(0,0);
+			seniorLoad();
 		});
 		
 		var isShow=true;
-		//获取列表数据
-		function seniorLoad(currency,dateId){
-
+		//获取正在进行中
+		function seniorLoad(){
 			if(isShow){
 				isShow=false;
 			$("#list_content").paginator({
@@ -20,7 +19,7 @@ define(function(require, exports, module) {
 				ajaxFuc : function(curentPage, renderHtml) {
 					var data={
 							"offset" : curentPage,
-							"limit" : 15,currency:dateId,dateId:dateId
+							"limit" : 5
 					};
 					$.ajax({
 						url : "/user/myMatch/list",
@@ -28,36 +27,90 @@ define(function(require, exports, module) {
 						type : "get",
 						data : data,
 						success : function(json) {
-							debugger;
 							var data = json.t;
-							renderHtml(data);
+							if (typeof(data) == "undefined"){ 
+								//alert("undefined"); 
+									$("#list_content").html("暂无进行中赛事数据");
+								}else{
+									if(data.result.length==0){
+										$("#list_content").html("暂无历史赛季数据");
+									}else{
+										renderHtml(data);
+									}
+								}
 							isShow=true;
 						}
 					});
 				}
 			});
 			}else{
-				//alert("你点的太快了");
+				layer.msg("页面正在加载中。。。");
 			}
 		}
-		
-		function init(){			//页面
-			 $('.tab span').on("click",function() {
-			     $('.tab span').removeClass("sel");
-			     $(this).addClass("sel");
-			     var currency=$(this).attr("name");
-			     
-			     var dateId=$("select.select").val();
-			     
-			     seniorLoad(currency,0);
-			   });
-			 $("#dataId").on("click",function() {
-				 
-				varcurrency=  $('.tab span.sel').attr("name");
-			     var dateId=$(this).val();
-			     
-			     seniorLoad(currency,dateId);
-			   });
+		//获取历史赛事
+		function oldLoad(currency,dateId){
+			if(isShow){
+				isShow=false;
+			$("#list_content").paginator({
+				itemTemplateId : 'itemTemplate',
+				pageNavId : 'pageContainer',
+				usepager:true,
+				useSeniorTemplate:true,
+				ajaxFuc : function(curentPage, renderHtml) {
+					var data={
+							"offset" : curentPage,
+							"limit" : 5
+					};
+					$.ajax({
+						url : "/user/myMatch/oldlist",
+						datatype : 'json',
+						type : "get",
+						data : data,
+						success : function(json) {
+							var data = json.t;
+							debugger;
+							if (typeof(data) == "undefined"){ 
+									
+
+									$("#list_content").html("暂无历史赛季数据");
+								}else{
+									if(data.result.length==0){
+										$("#list_content").html("暂无历史赛季数据");
+									}else{
+										renderHtml(data);
+									}
+									
+								}
+							isShow=true;
+						}
+					});
+				}
+			});
+			}else{
+				layer.msg("页面正在加载中。。。");
 			}
+		}
+		function init(){		
+			$(".table_head  .left label").on("click",function(){
+				var ind=$(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");
+				if(ind==0){
+					seniorLoad();
+				}else{
+					oldLoad();
+				}
+				
+			});
+			$(".table_head .right label").on("click",function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				debugger;
+				
+			});
+			
+			
+		}
+			
+			
 	});
 });

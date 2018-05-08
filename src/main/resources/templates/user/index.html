@@ -33,8 +33,8 @@
 				</div> -->
 				<div class="rt">
 					<div class="detail" id="block1" >
-						<img class="timg" th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${userinfo.t.avatar}}" onerror="this.src='/images/myavatpic.png;this.onerror=null'" >
-						<p class="name"><em>昵称：</em><span th:text="${userinfo.t.userName}"></span></p>
+						<img class="timg myavatar" th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${userinfo.t.avatar}}" onerror="this.src='/images/myavatpic.png;this.onerror=null'" >
+						<p class="name"><em>昵称：</em><span  th:text="${userinfo.t.userName}"></span></p>
 						<p><em>性别：</em><span th:if="${userinfo.t.sex==1}">男</span><span th:if="${userinfo.t.sex==0}">女</span></p>
 						<p class="age"><em>年龄：</em><span th:text="${userinfo.t.age}"></span>岁</p>
 						<p class="address"><em>所在地：</em><span th:text="${userinfo.t.area}"></span></p>
@@ -44,7 +44,7 @@
 					<div class="detail" id="block2" style="display: none;">
 					<form id="form_userinfo" encType="multipart/form-data"  method="post"> 
 						<input type="file" id="myprefixfile" name="myprefixfile" style="display:none;"  />
-						<img id="myprefix" class="timg" th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${userinfo.t.avatar}}" onerror="this.src='/images/myavatpic.png;this.onerror=null'" />
+						<img id="myprefix" class="timg myavatar" th:src="@{'http://p22o6bknk.bkt.clouddn.com/'+${userinfo.t.avatar}}" onerror="this.src='/images/myavatpic.png;this.onerror=null'" />
 						<p class="name"><em>昵称：</em><input class="w155" type="text" id="userName" placeholder="请输入昵称" th:value="${userinfo.t.userName}"></p>
 						<div class="sex clearfix">
 							<em>性别：</em>

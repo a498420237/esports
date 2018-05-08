@@ -35,6 +35,10 @@ public class MyMatchController extends BaseController {
 	public JSONObject getList(@RequestParam Map<String, String> uriVariables){
 		return myMatchService.getMyMatchList("",uriVariables);
 	}
+	@RequestMapping(value="/user/myMatch/oldlist")
+	public JSONObject getOldList(@RequestParam Map<String, String> uriVariables){
+		return myMatchService.getMyMatchOldList("",uriVariables);
+	}
 	@RequestMapping(value="/user/myMatch/info", method = RequestMethod.GET)
 	public JSONObject getInfo(@RequestParam Map<String, String> uriVariables){
 		return myMatchService.getMyMatchInfo("",uriVariables);

@@ -14,7 +14,7 @@ window.onload = function(){
 	$(".lt li a").each(function(){
 		$(this).removeAttr('class');
 	});
-	$(".lt li a").eq(0).attr("class","select");
+	$(".lt li a").eq(1).attr("class","select");
 }
 </script>
 <body>
@@ -41,12 +41,12 @@ window.onload = function(){
 				<div class="table_head overflow_hide color-glod">
 					<div class="left fl">
 						<label for="match1" class="active">进行中的比赛</label>
-					<!-- 	<label for="match2">往期比赛</label> -->
+					 	<label for="match2">往期比赛</label> 
 					</div>
-					<!-- <div class="right fr">
+					<!--  <div class="right fr">
 						<label class="active"><span>王者荣耀</span></label>
 						<label><span>绝地求生</span></label>
-					</div> -->
+					</div>  -->
 				</div>
 	
 					<div class="historyTable color-glod">
@@ -96,15 +96,7 @@ window.onload = function(){
 </script>
 <script type="text/javascript" src="/js/jquery.select.js"></script>
 <script type="text/javascript">
-	$(".table_head  .left label").click(function(){
-		var ind=$(this).index();
-		$(this).addClass("active").siblings().removeClass("active");
-		$(".historyTable .table_box ").eq(ind).addClass("show").siblings().removeClass("show");
-
-	})
-	$(".table_head .right label").click(function(){
-		$(this).addClass("active").siblings().removeClass("active");
-	});
+	
 	$(function(){
 		$('select.select').select();
 	});

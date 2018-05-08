@@ -131,17 +131,13 @@ window.onload = function(){
                     <span class="imgT"> {{$value.redTeam}}</span></div>
                   <div class="flex1">
                     <h1>{{if ($value.status==0)}}
-                    	竞猜中
+                    	预测中
+                    	{{else if(($value.status==1))}}
+                    	赛事中
                     		{{else if(($value.status==2))}}
-                    		流盘
-                    			{{else if(($value.status==3))}}
-                    			竞猜结束
-                    				{{else if(($value.status==4))}}
-                    			投注结束
-                    				
+                    		已结束	
                     		{{else}}
-                    		未知状态_{{$value.status}}
-                    		
+                    		未知-状态:{{$value.status}}
                     	{{/if}}
                     </h1>
                     <small>{{$value.nowTime | dateFmt}}</small></div>
@@ -153,7 +149,7 @@ window.onload = function(){
                 {{each $value.handicapListInfos}}
                   <li>
                      <div class="flex1 text-left relative">
-                    {{if($value.status==2 || $value.status==3 || $value.status==4)}}
+                    {{if($value.status!=0 )}}
                    			<a href="javascript:void(0)" class="text noClick" > 赔率：{{$value.redOdd}}</a>
                     {{else}}
                     <a href="javascript:void(0)" class="text odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.redOdd}}</a>
@@ -161,18 +157,20 @@ window.onload = function(){
                      </div>
                     <div class="flex1">
                      
-                      {{if ($value.status==1)}}
-                    	 <h1 class="cgreen">{{$value.handicapType}}</h1><small>竞猜中</small>
-                    		{{else if($value.status==5)}}
-                    		 <h1 class="cgreen">{{$value.handicapType}}</h1><small>流盘</small>
+                      {{if ($value.status==3)}}
+                    	 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
+                    	 {{else if($value.status==0)}}
+                    	  <h1 class="c999">{{$value.handicapType}}</h1><small>预测中</small>
+                    		{{else if($value.status==2)}}
+                    		 <h1 class="c999">{{$value.handicapType}}</h1><small>流盘</small>
                     		{{else if($value.status==4)}}
-                    		 <h1 class="c999">{{$value.handicapType}}</h1><small>已结算</small>
+                    		 <h1 class="c999">{{$value.handicapType}}</h1><small>赛事中</small>
                     		 {{else}}
-                    		  <h1 class="c999">{{$value.handicapType}}</h1><small>未知状态_{{$value.status}}</small>
+                    		  <h1 class="red">{{$value.handicapType}}</h1><small>未知-状态:{{$value.status}}</small>
                     	{{/if}}
                     	</div>
                     <div class="flex1 relative text-left">
-                     {{if($value.status==2 || $value.status==3 || $value.status==4)}}
+                     {{if($value.status!=0  )}}
                    		<span class="text text-left noClick">赔率：{{$value.blueOdd}}</span>
                     {{else}}
                     <span class="text text-left odds" name="{{$value.lotteryId}}_{{$value.handicapId}}">赔率：{{$value.blueOdd}}</span>
