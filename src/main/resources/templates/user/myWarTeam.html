@@ -20,6 +20,7 @@
 <div class="topWrap">
 	<div th:include="/include :: topWrap" ></div>
 	<input type="hidden" val="" id="tid"/>;
+	<input type="hidden" val="" id="tid2"/>;
 </div>
 <div class="data">
 	<div class="content">
@@ -100,12 +101,15 @@
 						<label name="jd">绝地求生大逃杀</label>
 					</div>
 					<div class="right fr messd">
-						<label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>
+						<!--<label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>-->
 						<i class="playapply" style="cursor:pointer;">入队申请<span class="news"></span></i>
 						<div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
 					</div>
 				</div>
 				<div class="list my" id="teamInfo" style="display:block;">
+
+				</div>
+				<div class="list my" id="teamInfo2" style="display:none;">
 
 				</div>
 				<div  style="display: block;" id="wz">
@@ -138,11 +142,35 @@
 						</div>
 					</div>
 				</div>
-				<div class="historyTable">
-					<div class="list" id="teamList">
+
+				<div  style="display: none;" id="jd">
+					<div class="table_box show">
+						<ul class="tabs clearfix" style="display: block;">
+							<li class="active"><a href="#tab4">战队荣誉</a></li>
+							<li><a href="#tab5">战队成员</a></li>
+							<li><a href="#tab6">历史赛事</a></li>
+						</ul>
 					</div>
-					<div class="z_pager">
-						<ul id="pageContainer"></ul>
+					<div id="tab4" class="tab_content" style="display: block; ">
+						<div id="tabNo4">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer4"></ul>
+						</div>
+					</div>
+					<div id="tab5" class="tab_content" style="display: none; ">
+						<div id="tabNo5">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer5"></ul>
+						</div>
+					</div>
+					<div id="tab6" class="tab_content" style="display: none; ">
+						<div id="tabNo6">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer6"></ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -201,7 +229,7 @@
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 					</div>
-					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
+					<div id="exitzdd2" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
 		{{/if}}
     {{/each}}
 	</textarea>
@@ -228,11 +256,31 @@
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 					</div>
-					<div id="exitzdd" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
+					<div id="exitzdd3" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
 		{{/if}}
     {{/each}}
 	</textarea>
 	<textarea id="teamHonor"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 46px;height: 49px;"></i>
+							<span class="text">{{$value.matchName}}</span>
+							<em>
+								{{if ($value.ranking == "冠军")}}
+	                                        <img src="/images/rank1icon.png" alt="">冠军
+	                            {{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank2icon.png" alt="">亚军
+								{{else if($value.ranking == "亚军")}}
+	                                        <img src="/images/rank3icon.png" alt="">亚军
+								{{else}}
+	                                        {{$value.ranking}}
+	                             {{/if}}
+
+							</em>
+						</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamHonorjd"  style="display:none;">
 	{{each result}}
 						<div class="saishi">
 							<i><img src="{{$value.matchPic}}" style="width: 46px;height: 49px;"></i>
@@ -261,7 +309,41 @@
 						</div>
     {{/each}}
 	</textarea>
+	<textarea id="teamHistoryjd"  style="display:none;">
+	{{each result}}
+						<div class="saishi">
+							<i><img src="{{$value.matchPic}}" style="width: 103px;height: 26px;">
+							</i>
+							<span class="text">{{$value.matchName}}</span>
+						</div>
+    {{/each}}
+	</textarea>
 	<textarea id="teamMember"  style="display:none;">
+	{{each result}}
+						<div class="players clearfix">
+						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+						<div class="area">
+										<!--{{if ($value.serverType==1 )}}
+	                                        <span>手游区</span>
+	                                    {{else if(($value.gameType==2))}}
+	                                        <span>微信区</span>
+	                                    {{/if}}-->
+							 <span>{{$value.serverType}}</span>
+						</div>
+						<div class="dan">{{$value.level}}</div>
+							{{if ($value.userId == captainId)}}
+	                                        <div class="position">队长</div>
+							{{else if(($value.userId != captainId))}}
+							<div class="zd-btncz">
+											<a href="javascript:;" onclick="delMember({{$value.userId}})">踢出队员</a>
+											<a href="javascript:;" onclick="zyDz()">转移队长</a>
+										</div>
+							{{/if}}
+					</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamMemberjd"  style="display:none;">
 	{{each result}}
 						<div class="players clearfix">
 						<div class="captain"><img src="{{$value.headUrl}}"></div>
@@ -350,7 +432,7 @@
 <script src="/scripts/config/seajs-config.js"></script>
 <script  type="text/javascript" src="/layer/layer.js"></script>
 <script type="text/javascript">
-    seajs.use('/scripts/controller/user/myWarTeamWz');
+    seajs.use('/scripts/controller/user/myWarTeam');
 </script>
 <script type="text/javascript" src="/js/jquery.select.js"></script>
 <script type="text/javascript">

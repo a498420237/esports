@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
     seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
         var troopsId;
+        var troopsId2;
         var captainId;
         var memberNew;
         $(function(){
@@ -15,11 +16,17 @@ define(function(require, exports, module) {
                 var activeTab = $(this).find("a").attr("href");
                 $(activeTab).fadeIn();
                 if("#tab1" == activeTab){
-                    seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+                    seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
                 }else if("#tab2" == activeTab){
-                    seniorLoad3("tabNo2","teamMember","pageContainer2",-1,"/user/myWarTeam/teamMemberList");
+                    seniorLoad3("tabNo2","teamMember","pageContainer2",-1,"/user/myWarTeam/teamMemberList",troopsId);
                 }else if("#tab3" == activeTab){
-                    seniorLoad3("tabNo3","teamHistory","pageContainer3",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+                    seniorLoad3("tabNo3","teamHistory","pageContainer3",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
+                }else if("#tab4" == activeTab){
+                    seniorLoad3("tabNo4","teamHonorjd","pageContainer4",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId2);
+                }else if("#tab5" == activeTab){
+                    seniorLoad3("tabNo5","teamMemberjd","pageContainer5",-1,"/user/myWarTeam/teamMemberList",troopsId2);
+                }else if("#tab6" == activeTab){
+                    seniorLoad3("tabNo6","teamHistoryjd","pageContainer6",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId2);
                 }
                 return false;
             });
@@ -71,35 +78,24 @@ define(function(require, exports, module) {
                 }
 
             }
-            //图片的提交校验方法
-            /* $("#updateImg").on("click",function(){
-                 var file=$("#userPictures").val();
-                 if(file=="" || file.name==""){
-                     layer.msg("请选择图片");
-                     return;
-                 }
-                 if(!isFileType(file)){
-                     layer.msg("图像的的类型必须(.jpg|.jpeg|.gif|.png)后缀");
-                     return;
-                 }
-                 submitFile();
-             });*/
             //弹框
             $(".table_head  .left label").click(function(){
                 var currency=$(this).attr("name");
                 var className=$(this).attr("class");
                 if("active"!=className ){
-                    $("#create").hide();
-                    $("#wz").show();
 
                     $("#teamInfo").show();
                     $(".historyTable").hide();
                     $(".playapply").show();
                     if("wz" ==currency){
+                        $("#wz").show();
+                        $("#jd").hide();
                     	$("#teamInfo").show();
                         $("#teamInfo2").hide();
                         seniorLoad("teamInfoArea");
                     }else if("jd"==currency){
+                        $("#wz").hide();
+                        $("#jd").show();
                         $("#teamInfo").hide();
                         $("#teamInfo2").show();
                         seniorLoadJd("teamInfoArea2");
@@ -179,9 +175,11 @@ define(function(require, exports, module) {
                                     }
                                 });
                                 troopsId=data.troops[0].id;
+                                troopsId2=data.troops[1].id;
                                 $("#tid").val(troopsId);
+                                $("#tid2").val(troopsId2);
                                 captainId =data.troops[0].captainId;
-                                seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+                                seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
                                 renderHtml(data);
                                 isShow=true;
                             }
@@ -195,7 +193,7 @@ define(function(require, exports, module) {
         function seniorLoadJd(tempId){
             if(isShowjd){
                 isShowjd=false;
-                $("#teamInfo").paginator({
+                $("#teamInfo2").paginator({
                     itemTemplateId : tempId,
                     usepager:false,
                     useSeniorTemplate:true,
@@ -235,7 +233,7 @@ define(function(require, exports, module) {
                                 troopsId=data.troops[0].id;
                                 $("#tid").val(troopsId);
                                 captainId =data.troops[0].captainId;
-                                seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList");
+                                seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
                                 renderHtml(data);
                                 isShowjd=true;
                             }
@@ -246,44 +244,7 @@ define(function(require, exports, module) {
                 //alert("你点的太快了");
             }
         }
-        function seniorLoad2(tempId){
-            if(isShow2){
-                isShow2=false;
-                $("#teamList").paginator({
-                    itemTemplateId : tempId,
-                    pageNavId : 'pageContainer',
-                    usepager:true,
-                    useSeniorTemplate:true,
-                    ajaxFuc : function(curentPage, renderHtml) {
-                        var data={
-                            "offset" : curentPage,
-                            "limit" : 5,
-                            "gameType":2
-                        };
-
-                        $.ajax({
-                            url : "/user/myWarTeam/nothingList",
-                            datatype : 'json',
-                            type : "get",
-                            data : data,
-                            success : function(json) {
-                                var data = json.t;
-                                var paramObj = {
-                                    total : data.total,
-                                    page : data.offset,
-                                    list : data.result
-                                };
-                                renderHtml(data);
-                                isShow2=true;
-                            }
-                        });
-                    }
-                });
-            }else{
-                //alert("你点的太快了");
-            }
-        }
-        function seniorLoad3(tabNo1,tempId,page,type,url){
+        function seniorLoad3(tabNo1,tempId,page,type,url,tid){
             if(isShow3){
                 isShow3=false;
                 $("#"+tabNo1).paginator({
@@ -295,7 +256,7 @@ define(function(require, exports, module) {
                         var data={
                             "offset" : curentPage,
                             "limit" : 5,
-                            "troopsId":troopsId,
+                            "troopsId":tid,
                             "operation":type
                         };
 
