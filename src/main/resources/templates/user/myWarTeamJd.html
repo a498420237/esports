@@ -25,18 +25,7 @@ window.onload = function(){
 	<div class="content">
 		<div class="tit">个人中心</div>
 		<div class="cont">
-		<div th:replace="/include :: ltc" ></div>
-			<!-- <div class="lt">
-				<ul>
-					<li><a href="/user/index" ><div class="ic ic1"></div><span>我的资料</span></a></li>
-						<li><a href="/user/myMatch"><div class="ic ic2"></div><span>我的赛事</span></a></li>
-						<li><a href="/user/BetOrder" ><div class="ic ic3"></div><span>我的竞猜</span></a></li>
-						<li><a href="/user/ConvertDiamondToGold"><div class="ic ic5"></div><span>货币兑换</span></a></li>
-						<li><a href="/user/PersonalWealth"><div class="ic ic6"></div><span>消费记录</span></a></li>
-						<li><a href="/user/UserHonor"><div class="ic ic7"></div><span>个人荣誉</span></a></li>
-						<li><a  href="/user/myWarTeam"  class="select"><div class="ic ic9"></div><span>我的战队</span></a></li>
-				</ul>
-			</div> -->
+			<div th:replace="/include :: ltc" ></div>
 			<div class="team">
 				<!--创建战队-->
 				<div class="dialog" id="dialog1" style="display: none;">
@@ -48,11 +37,11 @@ window.onload = function(){
 							<input type="hidden" id="img" val=""/>
 							<div class="upimg">
 								<span>上传战队图片</span>
-									<a href="javascript:;" class="file right" id="showImg">
-										<form id="form-add" method="POST" enctype="multipart/form-data">
-											<input type="file" name="" id="updateImg" name="updateImg" multiple="multiple" accept="image/*">
-										</form>
-									</a>
+								<a href="javascript:;" class="file right" id="showImg">
+									<form id="form-add" method="POST" enctype="multipart/form-data">
+										<input type="file" name="" id="updateImg" name="updateImg" multiple="multiple" accept="image/*">
+									</form>
+								</a>
 							</div>
 							<div class="info1">
 								<p class="clearfix"><span>所属游戏</span>
@@ -106,56 +95,56 @@ window.onload = function(){
 				</div>
 
 				<div class="table_head overflow_hide color-glod">
-                    <div class="left fl">
-                        <label  class="active" name="wz">王者荣耀</label>
-                        <label name="jd">绝地求生大逃杀</label>
-                    </div>
-                        <div class="right fr messd">
-                            <label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>
-							<i class="playapply" style="cursor:pointer;">入队申请<span class="news"></span></i>
-                            <div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
-                        </div>
+					<div class="left fl">
+						<label  class="active" name="wz">王者荣耀</label>
+						<label name="jd">绝地求生大逃杀</label>
+					</div>
+					<div class="right fr messd">
+						<label id="create" class="active" style="display: none;" onclick="createTeam1()"><span>创建战队</span></label>
+						<i class="playapply" style="cursor:pointer;">入队申请<span class="news"></span></i>
+						<div class="messa"><i> <img src="/images/messico.png"> </i><span class="mdat"></span></div>
+					</div>
 				</div>
-				<div class="list my" id="teamInfo">
+				<div class="historyTable">
+					<div class="list" id="teamList">
+					</div>
+					<div class="z_pager">
+						<ul id="pageContainer"></ul>
+					</div>
+				</div>
+				<div class="list my" id="teamInfo" style="display: none;">
 
 				</div>
-            <div  style="display: block;" id="wz">
-				<div class="table_box show">
-					<ul class="tabs clearfix" style="display: block;">
-						<li class="active"><a href="#tab1">战队荣誉</a></li>
-						<li><a href="#tab2">战队成员</a></li>
-						<li><a href="#tab3">历史赛事</a></li>
-					</ul>
+				<div  style="display: none;" id="jd">
+					<div class="table_box show">
+						<ul class="tabs clearfix" style="display: block;">
+							<li class="active"><a href="#tab1">战队荣誉</a></li>
+							<li><a href="#tab2">战队成员</a></li>
+							<li><a href="#tab3">历史赛事</a></li>
+						</ul>
+					</div>
+					<div id="tab1" class="tab_content" style="display: block; ">
+						<div id="tabNo1">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer1"></ul>
+						</div>
+					</div>
+					<div id="tab2" class="tab_content" style="display: none; ">
+						<div id="tabNo2">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer2"></ul>
+						</div>
+					</div>
+					<div id="tab3" class="tab_content" style="display: none; ">
+						<div id="tabNo3">
+						</div>
+						<div class="z_pager">
+							<ul id="pageContainer3"></ul>
+						</div>
+					</div>
 				</div>
-				<div id="tab1" class="tab_content" style="display: block; ">
-					<div id="tabNo1">
-					</div>
-					<div class="z_pager">
-						<ul id="pageContainer1"></ul>
-					</div>
-				</div>
-				<div id="tab2" class="tab_content" style="display: none; ">
-					<div id="tabNo2">
-					</div>
-					<div class="z_pager">
-						<ul id="pageContainer2"></ul>
-					</div>
-				</div>
-				<div id="tab3" class="tab_content" style="display: none; ">
-					<div id="tabNo3">
-					</div>
-					<div class="z_pager">
-						<ul id="pageContainer3"></ul>
-					</div>
-				</div>
-			</div>
-			<div class="historyTable">
-				<div class="list" id="teamList">
-				</div>
-                <div class="z_pager">
-                    <ul id="pageContainer"></ul>
-                </div>
-            </div>
 			</div>
 		</div>
 	</div>
@@ -164,7 +153,7 @@ window.onload = function(){
 	<div th:include="/include :: botwrap"></div>
 	<textarea id="teamInfoArea"  style="display:none;">
 	{{each troops}}
-		  {{if ($value.gameType==1 )}}
+		  {{if ($value.gameType==2 )}}
 						<div class="block1">
 						<img src="{{$value.troopsUrl}}" style="width: 46px;height: 49px;">
 						<p>{{$value.troopsName}}</p>
@@ -264,7 +253,7 @@ window.onload = function(){
 							{{if ($value.userId == captainId)}}
 	                                        <div class="position">队长</div>
 							{{else if(($value.userId != captainId))}}
-							<div class="zd-btncz">
+							<div class="zd-btncz" style="width: inherit;">
 											<a href="javascript:;" onclick="delMember({{$value.userId}})">踢出队员</a>
 											<a href="javascript:;" onclick="zyDz()">转移队长</a>
 										</div>
@@ -283,7 +272,7 @@ window.onload = function(){
 	                                        <span>{{$value.serverType}}</span>
 	                                    </div>
 				<div class="dan">{{$value.level}}</div>
-				<div class="zd-btncz">
+				<div class="zd-btncz" style="width: inherit;">
 										{{if ($value.status==0 )}}
 	                                       <a class="tcdz" onclick="editSQ({{$value.userId}},0)" style="cursor:pointer;">接受</a>
 											<a class="zydz" href="editSQ({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
@@ -336,248 +325,248 @@ window.onload = function(){
 <script src="/scripts/config/seajs-config.js"></script>
 <script  type="text/javascript" src="/layer/layer.js"></script>
 <script type="text/javascript">
-	seajs.use('/scripts/controller/user/myWarTeamJd');
+    seajs.use('/scripts/controller/user/myWarTeamJd');
 </script>
 <script type="text/javascript" src="/js/jquery.select.js"></script>
 <script type="text/javascript">
-	$(".historyTable").hide();
-	$(".tab_content").hide();
-	$(".tab_content:first").show();
-	$(".fenye a").click(function(){
+    $(".historyTable").show();
+    $(".tab_content").hide();
+    $(".tab_content:first").show();
+    $(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
-	function createTeam1() {
-		$("#dialog1").fadeIn();
-	}
-	function zyDz(){
-		$("#dialog2").fadeIn();
-	}
+    function createTeam1() {
+        $("#dialog1").fadeIn();
+    }
+    function zyDz(){
+        $("#dialog2").fadeIn();
+    }
 
-	function goMsg(){
-		var tid=$("#tid").val();
-		var code=$("#code2").val();
-		var phone =$("#phoneInput2").val();
-		$.ajax({
-			url : "/user/myWarTeam/zydz",
-			datatype : 'json',
-			type : "get",
-			data : {"code" : code,"troopsId" : tid,"mobile":phone},
-			success : function(json) {
-				var data = json.msg;
-				layer.alert(data, {
-							title: data,
-							btn: ['确定']
-						},
-						function (index, item) {
-							location.reload();
-						});
-			}
-		});
-	}
-	function createTeam() {
-		var troopsName=$("#troopsName").val();
-		var gameType=$("#gameType").val();
-		var serverType=$("#serverType").val();
-		var captainId="";
-		var code=$("#code").val();
-		var phone =$("#phoneInput").val();
-		$.ajax({
-			url : "/user/myWarTeam/editTeam",
-			datatype : 'json',
-			type : "get",
-			data : {"troopsName" : troopsName,"gameType" : gameType,"serverType" : serverType,"code":code,"phone":phone},
-			success : function(json) {
-				var data = json.msg;
-				layer.alert(data, {
-							title: data,
-							btn: ['确定']
-						},
-						function (index, item) {
-							location.reload();
-						});
-			}
-		});
-	}
-	function tuchuTeam() {
-		$(".exitzd").fadeIn();
-	}
-	function closeWin(wid) {
-		//$("."+wid).fadeOut();
-		$("."+wid).hide();
-	}
-	function goTeamInfo(id) {
-		var curWwwPath = window.document.location.href;
-		//获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
-		var pathName = window.document.location.pathname;
-		var pos = curWwwPath.indexOf(pathName);
-		window.location.href=window.document.location.href.substring(0, pos)+'/user/warTeamInfo?id='+id;
-	}
-	// 绑定获取验证码事件
-	var InterValObj; //timer变量，控制时间
-	var count = 90; //间隔函数，1秒执行
-	//var curCount;//当前剩余秒数
-	function getCode() {
-		var mobile = $("#phoneInput").val();
-		if (mobile == "") {
-			layer.msg("请输入手机号");
-			return;
-		}
-		if(!isPoneAvailable(mobile)){
-			layer.msg("请输入正确的手机号");
-			return;
-		}
-		//curCount = count;
-		$(this).off("click");
-		$(this).removeAttr("class","bg-red");
-		$(this).attr("class","bg-999");
-		//$(this).text("倒计时" + curCount + "秒");
-		//InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-		sendsms(mobile);
-	};
-	//发送验证码
-	function sendsms(mobile){
-		$.ajax({
-			url : "/sendMobileCodeByCreatTeam",
-			datatype : 'json',
-			type : "post",
-			data : {
-				"mobile" : mobile
-			},success:function(obj){
-				if(obj==null){
-					layer.msg("远程接口调用失败");
-				}else{
-					if(obj.code==200){
-						layer.msg("验证码发送成功");
-					}else{
-						layer.msg("验证码发送失败请重试！");
-					}
-				}
-			}
-		});
-	}
+    function goMsg(){
+        var tid=$("#tid").val();
+        var code=$("#code2").val();
+        var phone =$("#phoneInput2").val();
+        $.ajax({
+            url : "/user/myWarTeam/zydz",
+            datatype : 'json',
+            type : "get",
+            data : {"code" : code,"troopsId" : tid,"mobile":phone},
+            success : function(json) {
+                var data = json.msg;
+                layer.alert(data, {
+                        title: data,
+                        btn: ['确定']
+                    },
+                    function (index, item) {
+                        location.reload();
+                    });
+            }
+        });
+    }
+    function createTeam() {
+        var troopsName=$("#troopsName").val();
+        var gameType=$("#gameType").val();
+        var serverType=$("#serverType").val();
+        var captainId="";
+        var code=$("#code").val();
+        var phone =$("#phoneInput").val();
+        $.ajax({
+            url : "/user/myWarTeam/editTeam",
+            datatype : 'json',
+            type : "get",
+            data : {"troopsName" : troopsName,"gameType" : gameType,"serverType" : serverType,"code":code,"phone":phone},
+            success : function(json) {
+                var data = json.msg;
+                layer.alert(data, {
+                        title: data,
+                        btn: ['确定']
+                    },
+                    function (index, item) {
+                        location.reload();
+                    });
+            }
+        });
+    }
+    function tuchuTeam() {
+        $(".exitzd").fadeIn();
+    }
+    function closeWin(wid) {
+        //$("."+wid).fadeOut();
+        $("."+wid).hide();
+    }
+    function goTeamInfo(id) {
+        var curWwwPath = window.document.location.href;
+        //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        window.location.href=window.document.location.href.substring(0, pos)+'/user/warTeamInfo?id='+id;
+    }
+    // 绑定获取验证码事件
+    var InterValObj; //timer变量，控制时间
+    var count = 90; //间隔函数，1秒执行
+    //var curCount;//当前剩余秒数
+    function getCode() {
+        var mobile = $("#phoneInput").val();
+        if (mobile == "") {
+            layer.msg("请输入手机号");
+            return;
+        }
+        if(!isPoneAvailable(mobile)){
+            layer.msg("请输入正确的手机号");
+            return;
+        }
+        //curCount = count;
+        $(this).off("click");
+        $(this).removeAttr("class","bg-red");
+        $(this).attr("class","bg-999");
+        //$(this).text("倒计时" + curCount + "秒");
+        //InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        sendsms(mobile);
+    };
+    //发送验证码
+    function sendsms(mobile){
+        $.ajax({
+            url : "/sendMobileCodeByCreatTeam",
+            datatype : 'json',
+            type : "post",
+            data : {
+                "mobile" : mobile
+            },success:function(obj){
+                if(obj==null){
+                    layer.msg("远程接口调用失败");
+                }else{
+                    if(obj.code==200){
+                        layer.msg("验证码发送成功");
+                    }else{
+                        layer.msg("验证码发送失败请重试！");
+                    }
+                }
+            }
+        });
+    }
 
-	function getCode2() {
-		var mobile = $("#phoneInput2").val();
-		if (mobile == "") {
-			layer.msg("请输入手机号");
-			return;
-		}
-		if(!isPoneAvailable(mobile)){
-			layer.msg("请输入正确的手机号");
-			return;
-		}
-		//curCount = count;
-		$(this).off("click");
-		$(this).removeAttr("class","bg-red");
-		$(this).attr("class","bg-999");
-		//$(this).text("倒计时" + curCount + "秒");
-		//InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-		sendsms2(mobile);
-	};
-	//发送验证码
-	function sendsms2(mobile){
-		$.ajax({
-			url : "/sendMobileCodeByZydz",
-			datatype : 'json',
-			type : "post",
-			data : {
-				"mobile" : mobile
-			},success:function(obj){
-				if(obj==null){
-					layer.msg("远程接口调用失败");
-				}else{
-					if(obj.code==200){
-						layer.msg("验证码发送成功");
-					}else{
-						layer.msg("验证码发送失败请重试！");
-					}
-				}
-			}
-		});
-	}
+    function getCode2() {
+        var mobile = $("#phoneInput2").val();
+        if (mobile == "") {
+            layer.msg("请输入手机号");
+            return;
+        }
+        if(!isPoneAvailable(mobile)){
+            layer.msg("请输入正确的手机号");
+            return;
+        }
+        //curCount = count;
+        $(this).off("click");
+        $(this).removeAttr("class","bg-red");
+        $(this).attr("class","bg-999");
+        //$(this).text("倒计时" + curCount + "秒");
+        //InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        sendsms2(mobile);
+    };
+    //发送验证码
+    function sendsms2(mobile){
+        $.ajax({
+            url : "/sendMobileCodeByZydz",
+            datatype : 'json',
+            type : "post",
+            data : {
+                "mobile" : mobile
+            },success:function(obj){
+                if(obj==null){
+                    layer.msg("远程接口调用失败");
+                }else{
+                    if(obj.code==200){
+                        layer.msg("验证码发送成功");
+                    }else{
+                        layer.msg("验证码发送失败请重试！");
+                    }
+                }
+            }
+        });
+    }
 
-	//timer处理函数
-	function SetRemainTime() {
-		if (curCount == 0) {
-			window.clearInterval(InterValObj);//停止计时器
-			$("#getCodeBtn").on("click",function(){
-				var mobile = $("#phoneInput").val();
-				if (mobile == "") {
-					layer.msg("请输入手机号");
-					return;
-				}
-				if(!isPoneAvailable(mobile)){
-					layer.msg("请输入正确的手机号");return;}
-				curCount = count;
-				//设置button效果，开始计时
-				$(this).off("click");
-				$(this).removeAttr("class","bg-red");
-				$(this).attr("class","bg-999");
-				$(this).text("倒计时" + curCount + "秒");
-				InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-				sendsms(mobile);
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#getCodeBtn").on("click",function(){
+                var mobile = $("#phoneInput").val();
+                if (mobile == "") {
+                    layer.msg("请输入手机号");
+                    return;
+                }
+                if(!isPoneAvailable(mobile)){
+                    layer.msg("请输入正确的手机号");return;}
+                curCount = count;
+                //设置button效果，开始计时
+                $(this).off("click");
+                $(this).removeAttr("class","bg-red");
+                $(this).attr("class","bg-999");
+                $(this).text("倒计时" + curCount + "秒");
+                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                sendsms(mobile);
 
-			});
-			$("#getCodeBtn").removeAttr("class","bg-999");
-			$("#getCodeBtn").attr("class","bg-red");
-			$("#getCodeBtn").text("发送验证码");
+            });
+            $("#getCodeBtn").removeAttr("class","bg-999");
+            $("#getCodeBtn").attr("class","bg-red");
+            $("#getCodeBtn").text("发送验证码");
 
-		}
-		else {
-			curCount--;
-			$("#getCodeBtn").text("倒计时" + curCount + "秒");
-		}
-	}
+        }
+        else {
+            curCount--;
+            $("#getCodeBtn").text("倒计时" + curCount + "秒");
+        }
+    }
 
-	//验证手机号码
-	function isPoneAvailable(poneInput) {
-		var myreg=/^1[3|4|5|8][0-9]\d{4,8}$/;
-		if (!myreg.test(poneInput)) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+    //验证手机号码
+    function isPoneAvailable(poneInput) {
+        var myreg=/^1[3|4|5|8][0-9]\d{4,8}$/;
+        if (!myreg.test(poneInput)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-	function editSQ(id,type) {
-		var tid=$("#tid").val();
-		$.ajax({
-			url : "/user/myWarTeam/operationTeam",
-			datatype : 'json',
-			type : "get",
-			data : {
-				"userId" : id,
-				"operation":type,
-				"troopsId":tid
-			},success:function(json){
-				var data = json.code;
-				$(".exitzd").hide();
-				if("0"==data){
+    function editSQ(id,type) {
+        var tid=$("#tid").val();
+        $.ajax({
+            url : "/user/myWarTeam/operationTeam",
+            datatype : 'json',
+            type : "get",
+            data : {
+                "userId" : id,
+                "operation":type,
+                "troopsId":tid
+            },success:function(json){
+                var data = json.code;
+                $(".exitzd").hide();
+                if("0"==data){
 
-				}else{
-					layer.alert(json.msg);
-				}
-				location.reload();
-			}
-		});
-	}
+                }else{
+                    layer.alert(json.msg);
+                }
+                location.reload();
+            }
+        });
+    }
 
-	function delMember(id) {
-		var tid=$("#tid").val();
-		$.ajax({
-			url : "/user/myWarTeam/delMember",
-			datatype : 'json',
-			type : "get",
-			data : {
-				"userId" : id,
-				"troopsId":tid
-			},success:function(json){
-				var data = json.code;
-				layer.alert(json.msg);
-				location.reload();
-			}
-		});
-	}
+    function delMember(id) {
+        var tid=$("#tid").val();
+        $.ajax({
+            url : "/user/myWarTeam/delMember",
+            datatype : 'json',
+            type : "get",
+            data : {
+                "userId" : id,
+                "troopsId":tid
+            },success:function(json){
+                var data = json.code;
+                layer.alert(json.msg);
+                location.reload();
+            }
+        });
+    }
 </script>
 </body>
 </html>

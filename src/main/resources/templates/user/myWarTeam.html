@@ -9,6 +9,7 @@
 	<!-- <script src="/js/bootstrap.min.js" ></script> -->
 </head>
 <script>
+	var uid="";
     window.onload = function(){
         $(".lt li a").each(function(){
             $(this).removeAttr('class');
@@ -75,7 +76,7 @@
 					</div>
 				</div>
 
-				<!--转移队长-->
+				<!--转移队长wz-->
 				<div class="dialog" id="dialog2"style="display: none;">
 					<div class="contuwrap" >
 						<div class="pubclose">
@@ -90,6 +91,25 @@
 									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
 									<input type="text" placeholder="请输入验证码" id="code2"></p>
 								<div class="craat-btn" onclick="goMsg()" style="cursor:pointer;">发送</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--转移队长jd-->
+				<div class="dialog" id="dialog3"style="display: none;">
+					<div class="contuwrap" >
+						<div class="pubclose">
+							<img src="/images/closeico.png" onclick="closeWin2('dialog3')">
+						</div>
+						<div class="cont">
+
+							<div class="info1">
+								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号" id="phoneInput3"></p>
+								<p class="clearfix"><span>输入验证码 </span>
+									<span class="access" style="cursor:pointer;" onclick="getCode3()">获取</span>
+									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
+									<input type="text" placeholder="请输入验证码" id="code3"></p>
+								<div class="craat-btn" onclick="goMsg2()" style="cursor:pointer;">发送</div>
 							</div>
 						</div>
 					</div>
@@ -308,9 +328,9 @@
 							{{if ($value.userId == captainId)}}
 	                                        <div class="position">队长</div>
 							{{else if(($value.userId != captainId))}}
-							<div class="zd-btncz">
+							<div class="zd-btncz" style="width: inherit;">
 											<a href="javascript:;" onclick="delMember({{$value.userId}})">踢出队员</a>
-											<a href="javascript:;" onclick="zyDz()">转移队长</a>
+											<a href="javascript:;" onclick="zyDz({{$value.userId}})">转移队长</a>
 										</div>
 							{{/if}}
 					</div>
@@ -328,9 +348,9 @@
 							{{if ($value.userId == captainId)}}
 	                                        <div class="position">队长</div>
 							{{else if(($value.userId != captainId))}}
-							<div class="zd-btncz">
-											<a href="javascript:;" onclick="delMember({{$value.userId}})">踢出队员</a>
-											<a href="javascript:;" onclick="zyDz()">转移队长</a>
+							<div class="zd-btncz" style="width: inherit;">
+											<a href="javascript:;" onclick="delMember2({{$value.userId}})">踢出队员</a>
+											<a href="javascript:;" onclick="zyDz({{$value.userId}})">转移队长</a>
 										</div>
 							{{/if}}
 					</div>
@@ -341,16 +361,39 @@
 		<div class="players clearfix">
 
 
-				<div class="captain"><img src="{{$value.headUrl}}"></div>
+				<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}" style="width: 65px;height: 65px;"></div>
 				<div class="id"><p class="name">APP ID：{{$value.id}}</p><p>游戏ID：{{$value.nickName}}</p></div>
 				<div class="area">
 	                                        <span>{{$value.serverType}}</span>
 	                                    </div>
 				<div class="dan">{{$value.level}}</div>
-				<div class="zd-btncz">
+				<div class="zd-btncz" style="width: inherit;">
 										{{if ($value.status==0 )}}
 	                                       <a class="tcdz" onclick="editSQ({{$value.userId}},0)" style="cursor:pointer;">接受</a>
 											<a class="zydz" href="editSQ({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
+	                                    {{else if(($value.status!=0))}}
+	                                    {{/if}}
+
+
+				</div>
+			</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamnNewMember2"  style="display:none;">
+	{{each result}}
+		<div class="players clearfix">
+
+
+				<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}" style="width: 65px;height: 65px;"></div>
+				<div class="id"><p class="name">APP ID：{{$value.id}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+				<div class="area">
+	                                        <span>{{$value.serverType}}</span>
+	                                    </div>
+				<div class="dan">{{$value.level}}</div>
+				<div class="zd-btncz" style="width: inherit;">
+										{{if ($value.status==0 )}}
+	                                       <a class="tcdz" onclick="editSQ2({{$value.userId}},0)" style="cursor:pointer;">接受</a>
+											<a class="zydz" href="editSQ2({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
 	                                    {{else if(($value.status!=0))}}
 	                                    {{/if}}
 
@@ -430,7 +473,8 @@
     function createTeam1() {
         $("#dialog1").fadeIn();
     }
-    function zyDz(){
+    function zyDz(id){
+        uid=id;
         $("#dialog2").fadeIn();
     }
 
@@ -442,7 +486,29 @@
             url : "/user/myWarTeam/zydz",
             datatype : 'json',
             type : "get",
-            data : {"code" : code,"troopsId" : tid,"mobile":phone},
+            data : {"code" : code,"troopsId" : tid,"mobile":phone,"newCaptainId":uid},
+            success : function(json) {
+                var data = json.msg;
+                layer.alert(data, {
+                        title: data,
+                        btn: ['确定']
+                    },
+                    function (index, item) {
+                        location.reload();
+                    });
+            }
+        });
+    }
+    function goMsg2(){
+        alert(uid);
+        var tid=$("#tid2").val();
+        var code=$("#code3").val();
+        var phone =$("#phoneInput3").val();
+        $.ajax({
+            url : "/user/myWarTeam/zydz",
+            datatype : 'json',
+            type : "get",
+            data : {"code" : code,"troopsId" : tid,"mobile":phone,"newCaptainId":uid},
             success : function(json) {
                 var data = json.msg;
                 layer.alert(data, {
@@ -563,6 +629,24 @@
         //InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
         sendsms2(mobile);
     };
+    function getCode3() {
+        var mobile = $("#phoneInput3").val();
+        if (mobile == "") {
+            layer.msg("请输入手机号");
+            return;
+        }
+        if(!isPoneAvailable(mobile)){
+            layer.msg("请输入正确的手机号");
+            return;
+        }
+        //curCount = count;
+        $(this).off("click");
+        $(this).removeAttr("class","bg-red");
+        $(this).attr("class","bg-999");
+        //$(this).text("倒计时" + curCount + "秒");
+        //InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        sendsms2(mobile);
+    };
     //发送验证码
     function sendsms2(mobile){
         $.ajax({
@@ -642,11 +726,32 @@
                 var data = json.code;
                 $(".exitzd").hide();
                 if("0"==data){
-
+                    layer.msg(json.msg);
                 }else{
-                    layer.alert(json.msg);
+                    layer.msg(json.msg);
                 }
                 location.reload();
+            }
+        });
+    }
+    function editSQ2(id,type) {
+        var tid=$("#tid2").val();
+        $.ajax({
+            url : "/user/myWarTeam/operationTeam",
+            datatype : 'json',
+            type : "get",
+            data : {
+                "userId" : id,
+                "operation":type,
+                "troopsId":tid
+            },success:function(json){
+                var data = json.code;
+                $(".exitzd").hide();
+                if("0"==data){
+                    layer.msg(json.msg);
+                }else{
+                    layer.msg(json.msg);
+                }
             }
         });
     }
@@ -662,8 +767,22 @@
                 "troopsId":tid
             },success:function(json){
                 var data = json.code;
-                layer.alert(json.msg);
-                location.reload();
+                layer.msg(json.msg);
+            }
+        });
+    }
+    function delMember2(id) {
+        var tid=$("#tid2").val();
+        $.ajax({
+            url : "/user/myWarTeam/delMember",
+            datatype : 'json',
+            type : "get",
+            data : {
+                "userId" : id,
+                "troopsId":tid
+            },success:function(json){
+                var data = json.code;
+                layer.msg(json.msg);
             }
         });
     }
