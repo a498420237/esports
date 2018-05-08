@@ -5,6 +5,7 @@ define(function(require, exports, module) {
         var captainId;
         var captainId2;
         var memberNew;
+        var flag=0;
         $(function(){
             seniorLoad("teamInfoArea");
             $("#backTeam").click(function() {
@@ -92,12 +93,14 @@ define(function(require, exports, module) {
                     $(".historyTable").hide();
                     $(".playapply").show();
                     if("wz" ==currency){
+                        flag=0;
                         $("#wz").show();
                         $("#jd").hide();
                     	$("#teamInfo").show();
                         $("#teamInfo2").hide();
                         seniorLoad("teamInfoArea");
                     }else if("jd"==currency){
+                        flag=1;
                         $("#wz").hide();
                         $("#jd").show();
                         $("#teamInfo").hide();
@@ -244,7 +247,7 @@ define(function(require, exports, module) {
                                 };
                                 $(".mdat").html(data.newMsgCount);
                                 var p = {
-                                    troopsId : data.troops[0].id
+                                    troopsId : data.troops[1].id
                                 };
                                 $.ajax({
                                     url : "/user/myWarTeam/newMemberlist",
@@ -320,16 +323,24 @@ define(function(require, exports, module) {
             }
         }
         function poprdsq() {
+            var tid=troopsId;
+            var itemId="teamnNewMember";
+            if(flag==0){
+            }else if(flag ==1){
+                tid =troopsId2;
+                itemId="teamnNewMember2";
+            }
+
             isShow4=true;
             if(isShow4){
                 isShow4=false;
                 $("#newMemberlist").paginator({
-                    itemTemplateId : "teamnNewMember",
+                    itemTemplateId : itemId,
                     usepager:false,
                     useSeniorTemplate:true,
                     ajaxFuc : function(curentPage, renderHtml) {
                         var p2 = {
-                            troopsId : troopsId
+                            troopsId : tid
                         };
                         $.ajax({
                             url : "/user/myWarTeam/newMemberlist",

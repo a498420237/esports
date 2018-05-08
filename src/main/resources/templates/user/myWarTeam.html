@@ -341,7 +341,7 @@
 		<div class="players clearfix">
 
 
-				<div class="captain"><img src="{{$value.headUrl}}"></div>
+				<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}" style="width: 65px;height: 65px;"></div>
 				<div class="id"><p class="name">APP ID：{{$value.id}}</p><p>游戏ID：{{$value.nickName}}</p></div>
 				<div class="area">
 	                                        <span>{{$value.serverType}}</span>
@@ -351,6 +351,29 @@
 										{{if ($value.status==0 )}}
 	                                       <a class="tcdz" onclick="editSQ({{$value.userId}},0)" style="cursor:pointer;">接受</a>
 											<a class="zydz" href="editSQ({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
+	                                    {{else if(($value.status!=0))}}
+	                                    {{/if}}
+
+
+				</div>
+			</div>
+    {{/each}}
+	</textarea>
+	<textarea id="teamnNewMember2"  style="display:none;">
+	{{each result}}
+		<div class="players clearfix">
+
+
+				<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}" style="width: 65px;height: 65px;"></div>
+				<div class="id"><p class="name">APP ID：{{$value.id}}</p><p>游戏ID：{{$value.nickName}}</p></div>
+				<div class="area">
+	                                        <span>{{$value.serverType}}</span>
+	                                    </div>
+				<div class="dan">{{$value.level}}</div>
+				<div class="zd-btncz">
+										{{if ($value.status==0 )}}
+	                                       <a class="tcdz" onclick="editSQ2({{$value.userId}},0)" style="cursor:pointer;">接受</a>
+											<a class="zydz" href="editSQ2({{$value.userId}},1)" style="cursor:pointer;">拒绝</a>
 	                                    {{else if(($value.status!=0))}}
 	                                    {{/if}}
 
@@ -642,11 +665,32 @@
                 var data = json.code;
                 $(".exitzd").hide();
                 if("0"==data){
-
+                    layer.msg(json.msg);
                 }else{
-                    layer.alert(json.msg);
+                    layer.msg(json.msg);
                 }
                 location.reload();
+            }
+        });
+    }
+    function editSQ2(id,type) {
+        var tid=$("#tid2").val();
+        $.ajax({
+            url : "/user/myWarTeam/operationTeam",
+            datatype : 'json',
+            type : "get",
+            data : {
+                "userId" : id,
+                "operation":type,
+                "troopsId":tid
+            },success:function(json){
+                var data = json.code;
+                $(".exitzd").hide();
+                if("0"==data){
+                    layer.msg(json.msg);
+                }else{
+                    layer.msg(json.msg);
+                }
             }
         });
     }
