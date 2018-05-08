@@ -3,6 +3,7 @@ define(function(require, exports, module) {
         var troopsId;
         var troopsId2;
         var captainId;
+        var captainId2;
         var memberNew;
         $(function(){
             seniorLoad("teamInfoArea");
@@ -179,6 +180,7 @@ define(function(require, exports, module) {
                                 $("#tid").val(troopsId);
                                 $("#tid2").val(troopsId2);
                                 captainId =data.troops[0].captainId;
+                                captainId2 =data.troops[1].captainId;
                                 seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
                                 renderHtml(data);
                                 isShow=true;
@@ -233,6 +235,7 @@ define(function(require, exports, module) {
                                 troopsId=data.troops[0].id;
                                 $("#tid").val(troopsId);
                                 captainId =data.troops[0].captainId;
+                                captainId2 =data.troops[1].captainId;
                                 seniorLoad3("tabNo1","teamHonor","pageContainer1",-1,"/user/myWarTeam/teamHonorOrHistoryList",troopsId);
                                 renderHtml(data);
                                 isShowjd=true;
@@ -272,8 +275,12 @@ define(function(require, exports, module) {
                                     page : data.offset,
                                     list : data.result
                                 };
-                                if("tabNo2"==tabNo1){
-                                    data.page["captainId"] = captainId;
+                                if("tabNo2"==tabNo1 || "tabNo5" ==tabNo1){
+                                    if("tabNo2"==tabNo1){
+                                        data.page["captainId"] = captainId;
+                                    }else if("tabNo5"==tabNo1){
+                                        data.page["captainId"] = captainId2;
+                                    }
                                     renderHtml(data.page);
                                 }else{
                                     renderHtml(data);

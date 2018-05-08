@@ -321,7 +321,7 @@
 	<textarea id="teamMember"  style="display:none;">
 	{{each result}}
 						<div class="players clearfix">
-						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}"></div>
 						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
 						<div class="area">
 										<!--{{if ($value.serverType==1 )}}
@@ -346,14 +346,9 @@
 	<textarea id="teamMemberjd"  style="display:none;">
 	{{each result}}
 						<div class="players clearfix">
-						<div class="captain"><img src="{{$value.headUrl}}"></div>
+						<div class="captain"><img src="http://p22o6bknk.bkt.clouddn.com/{{$value.headUrl}}"></div>
 						<div class="id"><p class="name">APP ID：{{$value.idCard}}</p><p>游戏ID：{{$value.nickName}}</p></div>
 						<div class="area">
-										<!--{{if ($value.serverType==1 )}}
-	                                        <span>手游区</span>
-	                                    {{else if(($value.gameType==2))}}
-	                                        <span>微信区</span>
-	                                    {{/if}}-->
 							 <span>{{$value.serverType}}</span>
 						</div>
 						<div class="dan">{{$value.level}}</div>

@@ -968,7 +968,7 @@ text-align: center;
 margin-left:10px;
 }
 
-.quiz  .select_ul li,,.record .select_ul li{
+.quiz  .select_ul li,.record .select_ul li{
 line-height: 36px;
 text-indent: 10px;
 }
@@ -1453,6 +1453,11 @@ font-size: 14px;
 	color: #acacac;
 	margin-right:23px;
 }
+#tab6 .saishi a,#tab1 .saishi a{
+	float: right;
+	color: #acacac;
+	margin-right:23px;
+}
 #tab2 .players{
 	background: #393f46;
 	height: 117px;
@@ -1486,7 +1491,6 @@ font-size: 14px;
     border-radius: 70px;
     overflow: hidden;
 }
-}
 #tab2 .captain::before{
 	content: '';
 	width: 26px;
@@ -1519,6 +1523,77 @@ overflow: hidden;
 	width: 175px;
 }
 #tab2 .position{
+	margin-top: 41px;
+	color: #62ccdf;
+	font-size: 14px;
+}
+
+
+#tab5 .players{
+	background: #393f46;
+	height: 117px;
+	margin:9px 32px 18px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 7px;
+}
+#tab5{
+	padding-top: 55px;
+	font-size: 14px;
+}
+#tab5 .players div{
+	float: left;
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;
+
+}
+#tab5 img{
+	margin:23px 25px 0 16px;
+}
+#tab5 .captain img{
+	margin:0;
+
+}
+#tab5 .captain{
+	border:2px solid #edce9c;
+	position: relative;
+	margin:23px 25px 0 16px;
+	width: 70px;
+	height: 70px;
+	border-radius: 70px;
+	overflow: hidden;
+}
+#tab5 .captain::before{
+	content: '';
+	width: 26px;
+	height: 22px;
+	position: absolute;
+	right: -4px;
+	top: -10px;
+	background: url(../images/royalicon.png) no-repeat;
+	background-size:cover;
+}
+#tab5 .id{
+	margin-top: 24px;
+	width: 180px;
+	margin-right: 30px;
+	line-height: 26px;
+	height: 80px;
+	overflow: hidden;
+}
+#tab5 .name{
+	margin-bottom:8px;
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;  display:block;
+
+}
+#tab5 .area{
+	margin-top: 41px;
+	width: 120px;
+}
+#tab5 .dan{
+	margin-top: 41px;
+	width: 175px;
+}
+#tab5 .position{
 	margin-top: 41px;
 	color: #62ccdf;
 	font-size: 14px;
