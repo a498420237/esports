@@ -10,6 +10,9 @@ define(function(require, exports, module) {
             $("#backTeam").click(function() {
                 backTeam();
             });
+            $("#backTeam2").click(function() {
+                backTeam2();
+            });
             $("ul.tabs li").click(function() {
                 $("ul.tabs li").removeClass("active");
                 $(this).addClass("active");
@@ -128,7 +131,29 @@ define(function(require, exports, module) {
                     if("0"==data){
                         location.reload();
                     }else{
-                        layer.alert(json.msg);
+                        layer.msg(json.msg);
+                    }
+
+                }
+            });
+        }
+        function backTeam2() {
+            var data={
+                "troopsId":troopsId2,
+            };
+            //退出战队
+            $.ajax({
+                url : "/user/myWarTeam/backTeam",
+                datatype : 'json',
+                type : "get",
+                data : data,
+                success : function(json) {
+                    var data = json.code;
+                    $(".exitzd").hide();
+                    if("0"==data){
+                        location.reload();
+                    }else{
+                        layer.msg(json.msg);
                     }
 
                 }

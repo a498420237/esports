@@ -229,34 +229,7 @@
 	                                    {{/if}}
                                         <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
 					</div>
-					<div id="exitzdd2" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
-		{{/if}}
-    {{/each}}
-	</textarea>
-	<textarea id="itemTemplate"  style="display:none;">
-	{{each troops}}
-		  {{if ($value.gameType==2 )}}
-						<div class="block1">
-						<img src="{{$value.troopsUrl}}" style="width: 46px;height: 49px;">
-						<p>{{$value.troopsName}}</p>
-					</div>
-					<div class="block2">
-						<p>{{$value.troopsManifesto}}</p>
-						<div class="info">
-                                        {{if ($value.gameType==1 )}}
-	                                        <span>王者荣耀</span>
-	                                    {{else if(($value.gameType==2))}}
-	                                        <span>绝地求生</span>
-	                                    {{/if}}
-
-                                        {{if ($value.serverType==1 )}}
-	                                        <span>手游区</span>
-	                                    {{else if(($value.gameType==2))}}
-	                                        <span>微信区</span>
-	                                    {{/if}}
-                                        <span>{{$value.troopsNumbers}}/{{$value.troopsNumberLimit}}</span></div>
-					</div>
-					<div id="exitzdd3" class="zd-btn" onclick="tuchuTeam()" style="cursor:pointer;">退出战队</div>
+					<div id="exitzdd2" class="zd-btn" onclick="tuchuTeam2()" style="cursor:pointer;">退出战队</div>
 		{{/if}}
     {{/each}}
 	</textarea>
@@ -387,25 +360,42 @@
     {{/each}}
 	</textarea>
 </div>
-<!--我的战队-队员推出战队弹窗-->
-<div class="exitzd" style="display: none;">
+<!--我的战队-队员推出战队弹窗wz-->
+<div class="exitzd" style="display: none;" id="exitzd">
 	<div class="blacbg">
 	</div>
 	<div class="alwr">
 		<div class="pubclose">
-			<img src="/images/closeico.png" onclick="closeWin('exitzd')">
+			<img src="/images/closeico.png" onclick="closeWin2('exitzd')">
 		</div>
 		<div class="credwrap">
 			<h3>确定退出战队？
 			</h3>
 			<p>
-				<a href="javascript:;" onclick="closeWin('exitzd')">取消</a>
+				<a href="javascript:;" onclick="closeWin2('exitzd')">取消</a>
 				<a href="javascript:;" id="backTeam">确定</a>
 			</p>
 		</div>
 	</div>
 </div>
-
+<!--我的战队-队员推出战队弹窗jd-->
+<div class="exitzd" style="display: none;" id="exitzd2">
+	<div class="blacbg">
+	</div>
+	<div class="alwr">
+		<div class="pubclose">
+			<img src="/images/closeico.png" onclick="closeWin2('exitzd2')">
+		</div>
+		<div class="credwrap">
+			<h3>确定退出战队？
+			</h3>
+			<p>
+				<a href="javascript:;" onclick="closeWin2('exitzd2')">取消</a>
+				<a href="javascript:;" id="backTeam2">确定</a>
+			</p>
+		</div>
+	</div>
+</div>
 <!--我的战队入队申请-->
 <div class="poprdsq">
 	<div class="blacbg">
@@ -490,12 +480,20 @@
         });
     }
     function tuchuTeam() {
-        $(".exitzd").fadeIn();
+        $("#exitzd").fadeIn();
+    }
+    function tuchuTeam2() {
+        $("#exitzd2").fadeIn();
     }
     function closeWin(wid) {
         //$("."+wid).fadeOut();
         $("."+wid).hide();
     }
+    function closeWin2(wid) {
+        //$("."+wid).fadeOut();
+        $("#"+wid).hide();
+    }
+
     function goTeamInfo(id) {
         var curWwwPath = window.document.location.href;
         //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
