@@ -188,7 +188,7 @@ define(function(require, exports, module) {
                                     page : data.offset,
                                     list : data.troops
                                 };
-                                $(".mdat").html(data.newMsgCount);
+                                //$(".mdat").html(data.newMsgCount);
                                 var p = {
                                     troopsId : data.troops[0].id
                                 };
@@ -245,7 +245,7 @@ define(function(require, exports, module) {
                                     page : data.offset,
                                     list : data.troops
                                 };
-                                $(".mdat").html(data.newMsgCount);
+                                //$(".mdat").html(data.newMsgCount);
                                 var p = {
                                     troopsId : data.troops[1].id
                                 };

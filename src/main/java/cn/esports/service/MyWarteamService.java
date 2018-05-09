@@ -299,9 +299,9 @@ public class MyWarteamService extends BaseService {
 			/*for (Map.Entry<String, String> entry : uriVariables.entrySet()) {
 				postParameters.add(entry.getKey(), entry.getValue());
 			}*/
-			uriVariables.put("newCaptainId", SessionUtil.getCurUid()+"");
+			//uriVariables.put("newCaptainId", SessionUtil.getCurUid()+"");
 			HttpEntity<MultiValueMap<String, Object>> r = new HttpEntity<>(postParameters, requestHeaders);
-			ResponseEntity<String> resp = restTemplate.exchange(createUrl(zyzd_url,uriVariables) ,HttpMethod.GET,r, String.class);
+			ResponseEntity<String> resp = restTemplate.exchange(createUrl(zyzd_url,uriVariables) ,HttpMethod.POST,r, String.class);
 
 			return JSONObject.parseObject(resp.getBody());
 		} catch (RestClientException e) {
