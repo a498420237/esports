@@ -38,7 +38,6 @@ define(function(require, exports, module) {
 		            //成功的回调
 		            if(data.code == 200){
 		            	layer.msg("保存成功请刷新界面",function(){
-		            		
 		            		window.location.reload();
 						});
 		            	
@@ -51,35 +50,6 @@ define(function(require, exports, module) {
 		        	alert("网络访问失败，请稍后重试!");
 		        }
 		    });
-			//var sex=0;
-			//sex= $("input[name='sex']:checked").val();
-				/*var data={
-						"userName":$("#userName").val(),
-						"sex":sex,
-						"age":$("#age").val(),
-						"signature":$("#signature").val(),
-						"area":$("#area").val(),
-						"avatar":myprefix
-				};*/
-			
-					/*$.ajax({
-						url : "/user/saveInfo",
-						datatype : 'json',
-						type : "GET",
-						data : data,
-						success : function(json) {
-							
-							if(json.code==200){
-								
-								layer.msg("修改成功",function(){
-									window.location.reload();
-								});
-								
-							}else{
-								layer.msg(json.msg);
-							}
-						}
-					});*/
 		}
 		
 		

@@ -1,12 +1,8 @@
 define(function(require, exports, module) {
 	seajs.use([ 'jquery', 'pagePlugin', 'utilService','template'], function($,pagePlugin, util,template) {
-		var isShow=true;
+		
 		//获取列表数据
 		function seniorLoad(){
-			
-			
-			if(isShow){
-				isShow=false;
 			$("#list_content").paginator({
 				itemTemplateId : 'itemTemplate',
 				pageNavId : 'pageContainer',
@@ -27,19 +23,17 @@ define(function(require, exports, module) {
 						type : "get",
 						data : data,
 						success : function(json) {
-							var data = json.t;
 							
+							var data = json.t;
 							renderHtml(data);
 							init();
 							shezhigusuan();
-							isShow=true;
+							$("#loadingdiv").val("1");
 						}
 					});
 				}
 			});
-			}else{
-				//alert("你点的太快了");
-			}
+		
 		}
 		
 		//获取游戏类型
@@ -54,6 +48,7 @@ define(function(require, exports, module) {
 					type : "get",
 					data : {"applySite" : 1,},
 					success : function(json) {
+						
 						if(json.code==200){
 							var data=json.t;
 							var all={ id:0,name:"全部游戏",shortName:""};
@@ -62,9 +57,9 @@ define(function(require, exports, module) {
 									list : data.gameList
 								};
 								renderHtml(paramObj);
-								$("#gemelist_left_nav").children().eq(0).find("a").attr("class","active");
+								$("#gemelist_left_nav").children().eq(1).find("a").attr("class","active");
 								
-								seniorLoad();
+								seniorLoad(1);
 								init();
 					    	}else{
 					    		alert(json.msg);
@@ -76,10 +71,17 @@ define(function(require, exports, module) {
 
 		
 		function init(){			//页面
-			 $('.z_forecast_nav li a').on("click",function() {
+			 $('.z_forecast_nav li a').unbind("click").on("click",function() {
+				// event.stopPropagation();
 			     $('.z_forecast_nav li a').removeClass("active");
 			     $(this).addClass("active");
-			     seniorLoad();
+			     if($("#loadingdiv").val()=="1"){
+			    	 $("#loadingdiv").val("0");
+			    	 seniorLoad(); }
+			     else{
+			    	layer.msg("数据正在加载中。。。")
+			     }
+			    
 			   });
 			   $('.z_list_con').on("click",function() {
 			     var _this = $(this);
