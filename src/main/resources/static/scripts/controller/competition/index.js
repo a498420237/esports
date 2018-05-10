@@ -11,7 +11,11 @@ define(function(require, exports, module) {
 	
 	function loadDatas(curentPage, renderHtml){
 		var gameType = $("#competitionTab .navz.active").data("type");
+		
 		var statuType = $("#statusTab .active").data("type");
+		if (typeof(statuType) == "undefined"){ 
+			statuType=-1;
+		}
 		$.ajax({
 			url : "/competition/list",
 			datatype : 'json',
@@ -25,20 +29,22 @@ define(function(require, exports, module) {
 			success : function(json) {
 				var data = json.t;
 				var results = data.result;
+				if(results!=null && results.length>0){
 				for(var index in results){
 					var r = results[index];							
 					r.matchStatusClass = competitionUtil.matchStatusClass[r.matchStatus];
 					r.startTime = r.startTime == undefined ? "" :new Date(r.startTime).format("yyyy-MM-dd");
 					r.endTime = r.endTime == undefined ? "" : new Date(r.endTime).format("yyyy-MM-dd");
 				}
-
+				}
 				var paramObj = {
-					total : data.total,
-					page : data.page,
-					list : data.result,
-					offset : data.offset
-				};
+						total : data.total,
+						page : data.page,
+						list : data.result,
+						offset : data.offset
+					};
 				competitionUtil.renderHtml(paramObj);
+				
 			}
 		});
 	}

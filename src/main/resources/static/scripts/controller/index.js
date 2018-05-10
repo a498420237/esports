@@ -25,7 +25,6 @@ define(function(require, exports, module) {
 		$(function(){
 			//登录弹框
 			$("#logi").click(function(){
-		debugger;
 				$(".poplogind").fadeIn(2000);			
 
 			});	
@@ -34,18 +33,6 @@ define(function(require, exports, module) {
 				$(".poplogind").fadeOut(2000);			
 
 			});
-
-		/*$("#logi").click(function(){
-		
-				$(".poplogin").fadeIn();			
-
-			});	
-		$(".pubclose").click(function(){
-		
-				$(".poplogin").fadeOut();			
-
-			});*/
-			
 		})
 		
 		// Banner列表
@@ -146,6 +133,9 @@ define(function(require, exports, module) {
 					}
 				});
 		function loadmatch(gameType,statuType){
+			if (typeof(statuType) == "undefined" || statuType=="" ||statuType=="0"){ 
+				statuType=-1;
+			}
 			$("#matchList").paginator({
 				itemTemplateId : 'matchTemplate',
 				pageNavId : '',

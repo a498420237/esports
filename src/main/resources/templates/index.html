@@ -54,10 +54,7 @@
                
 					<div class="main_image">
 					<ul id="banner_content">					
-						<li><img src="images/banner01.jpg"></li>
-						<li><img src="images/banner01.jpg"></li>
-						<li><img src="images/banner01.jpg"></li>
-						<li><img src="images/banner01.jpg"></li>
+						
 					</ul>
 					<a href="javascript:;" id="btn_prev"></a>
 					<a href="javascript:;" id="btn_next"></a>
@@ -109,10 +106,9 @@
 				<div class="matchtit">
 					<h3 id="clcma">全部赛事 <img src="images/home_bottomarrow.png"></h3>
 					<ul class="popmatch">
-						<li  name="">全部赛事</li>
+						<li class="current" name="">全部赛事</li>
 						<li name="1">筹备中</li>
 						<li name="2">报名中</li>
-						<li class="current" name="5">准备中</li>
 						<li name="4">比赛中</li>
 						<li name="5">已结束</li>
 					</ul>
@@ -245,10 +241,13 @@
 	<div class="botwrap" th:include="/include :: botwrap"></div>
 	
 <textarea id="bannerTemplate" style="display:none;">
-	
+	{{if (result.length==0)}}
+	<li><img src="images/banner01.jpg"></li>
+	{{else}}
 	{{each result}}
 	<li><img  src="{{$value.pictureUrl}}" onerror="this.src='images/banner01.jpg;this.onerror=null'"></li>
 	{{/each}}
+	{{/if}}
 	</textarea>
 
 <textarea id="liveitemTemplate" style="display:none;">

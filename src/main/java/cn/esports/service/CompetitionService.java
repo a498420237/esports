@@ -12,6 +12,7 @@ import org.springframework.web.client.RestClientException;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 
 /**
  * 
@@ -47,29 +48,47 @@ public class CompetitionService extends BaseService {
 			String statuType = uriVariables.get("statuType");
 			uriVariables.put("limit", "5000");//调接口不分页  暂时设置为5000 后面改了接口是直接查接口的
 			
+			if("-1".equals(statuType)) {
+				uriVariables.remove("statuType");
+			}
+			if("-1".equals(gameType)) {
+				uriVariables.remove("gameType");
+			}
 			JSONObject  result = restTemplate.getForObject(createUrl(LIST_URL, uriVariables),JSONObject.class);
-			JSONObject t = result.getJSONObject(("t"));
-			JSONArray list = t.getJSONArray("result");
-			List<JSONObject> matchs = new ArrayList<JSONObject>();
-			for(int i=0; i<list.size();i++){
-				JSONObject o = list.getJSONObject(i);
-				if(matchGameType(gameType, o) && matchStatuType(statuType, o)){
-					matchs.add(o);
+			
+			JSONObject t = result.getJSONObject("t");
+			if(t!=null) {
+				JSONArray list = t.getJSONArray("result");
+				List<JSONObject> matchs = new ArrayList<JSONObject>();
+				for(int i=0; i<list.size();i++){
+					JSONObject o = list.getJSONObject(i);
+					if(matchGameType(gameType, o) && matchStatuType(statuType, o)){
+						matchs.add(o);
+					}
 				}
-			}
 
-			//分页
-			int start = offSet * limit;
-			if(start < 0 || start > matchs.size()){
-				start = 0;
+				//分页
+				int start = offSet * limit;
+				if(start < 0 || start > matchs.size()){
+					start = 0;
+				}
+				int toIndex = start + limit;
+				if(toIndex > matchs.size()){
+					toIndex = matchs.size();
+				}
+				List<JSONObject> subList = matchs.subList(start, toIndex);    
+				t.put("result", subList); //将筛选过的重新设置到result列表中
+				return result;
+			}else {
+				JSONObject r=new JSONObject();
+				r.put("total", 0);
+				r.put("limit", 0);
+				r.put("result", new ArrayList<JsonObject>());
+				r.put("offset", 0);
+				result.put("t", r);
+				return result;
 			}
-			int toIndex = start + limit;
-			if(toIndex > matchs.size()){
-				toIndex = matchs.size();
-			}
-			List<JSONObject> subList = matchs.subList(start, toIndex);    
-			t.put("result", subList); //将筛选过的重新设置到result列表中
-			return result;
+			
 		} catch (RestClientException e) {
 			logger.error("call the forecast list from rest api occurred error,cause by:",e);
 			return null;
@@ -77,8 +96,12 @@ public class CompetitionService extends BaseService {
 	}
 	
 	private boolean matchStatuType(String statuType, JSONObject o) {
-		String matchStatus = o.getString("matchStatus") ;
-		return statuType.equals(matchStatus);
+		if("-1".equals(statuType)) {
+			return true;
+		}else {
+			String matchStatus = o.getString("matchStatus") ;
+			return statuType.equals(matchStatus);
+		}
 	}
 
 	private boolean matchGameType(String gameType, JSONObject o) {

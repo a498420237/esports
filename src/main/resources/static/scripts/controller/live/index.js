@@ -19,7 +19,6 @@ define(function (require, exports, module) {
 						"module":20
 					},
 					success : function(json) {
-						debugger;
 						var data = json.t;
 						renderHtml(data);
 					}
