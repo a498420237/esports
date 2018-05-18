@@ -94,10 +94,8 @@ $(function() {
 //我的战队-转移队长的弹窗
 $(".zydz").click(function(){
 			$(".exitzydz").fadeIn();			
-
 		});	
 	$(".pubclose").click(function(){
-	
 			$(".exitzydz").hide();			
 
 		});
@@ -106,10 +104,8 @@ $(".zydz").click(function(){
 //我的战队-队长踢出战队成员的弹窗
 $(".tcdz").click(function(){
 			$(".exittcdz").fadeIn();			
-
 		});	
 	$(".pubclose").click(function(){
-	
 			$(".exittcdz").hide();			
 
 		});
@@ -122,10 +118,8 @@ $(".tcdz").click(function(){
 //我的战队-身份验证
 $("").click(function(){
 			$(".popsfyz").fadeIn();			
-
 		});	
 	$(".pubclose").click(function(){
-	
 			$(".popsfyz").hide();			
 
 		});
@@ -136,10 +130,8 @@ $("").click(function(){
 //我的战队-入队申请
 $(".team .playapply").click(function(){
 			$(".poprdsq").fadeIn();
-
 		});
 	$(".pubclose").click(function(){
-
 			$(".poprdsq").fadeOut();
 
 		});

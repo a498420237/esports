@@ -407,6 +407,7 @@ define(function(require, exports, module) {
 
         //发送验证码
         function sendEmail(email, type){
+        	$('#bindEmailCodeBtn').css('background',"#ccc");
             $.ajax({
                 url : "/user/sendEmailCode",
                 datatype : 'json',
@@ -421,6 +422,7 @@ define(function(require, exports, module) {
                     }else{
                         if(obj.code==200){
                             layer.msg("验证码发送成功");
+                            $('#bindEmailCodeBtn').css('background','#fa2c3b');
                         }else{
                             layer.msg(obj.msg);
                         }
@@ -450,7 +452,7 @@ define(function(require, exports, module) {
                 }
 
                 $.ajax({
-                    url : "/user/bindEmail",
+                    url : "/user/bindEmail.json",
                     datatype : 'json',
                     type : "post",
                     data : {
@@ -459,13 +461,10 @@ define(function(require, exports, module) {
                     },success:function(obj){
                         if(obj.code==200){
                             layer.msg("邮箱绑定成功");
-
                             // $(".dialog3").fadeIn();
                             $(".dialog4").fadeOut();
                             $(".dialog2").fadeOut();
                             $(".dialog1").fadeOut();
-
-
                         }else{
                             // layer.msg("邮箱绑定失败请重试！");
                             layer.msg(obj.msg);

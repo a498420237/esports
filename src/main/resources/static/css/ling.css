@@ -1,17 +1,13 @@
 
 
 /* 首页 */
-.firwrap{min-width:1100px;width:1100px;overflow: hidden;margin:0 auto;padding-top:17px;position: relative;}
-.main_visual{max-width:716px; position: relative;}
-.main_image { height:394px;  overflow:hidden; margin:0 auto; position:relative}
-.main_image ul {width:9999px; height:394px; overflow:hidden; position:absolute; top:0; left:0}
-.main_image li {float:left; width:716px; height:394px;}
-.main_image li span {display:block; width:100%; height:394px}
-.main_image li a {display:block; width:100%; height:394px}
-.main_image li img{width: 716px;}
-#btn_prev,#btn_next{z-index:11111;position:absolute;display:block;width:73px!important;height:78px!important;top:50%;margin-top:-37px;display:none;}
-#btn_prev{background:url(../images/hover_left.png) no-repeat left top;left:0px;}
-#btn_next{background:url(../images/hover_right.png) no-repeat right top;right:0px;}
+.firwrap{min-width:1100px;width:1100px;margin:0 auto;padding-top:17px;position: relative;}
+.main_visuala{max-width:716px;height:394px;overflow:hidden;}
+.main_visuala img{width:100%;height:394px;}
+.swiper-button-next{background:url(../images/hover_left.png) no-repeat left top;}
+.swiper-button-prev{background:url(../images/hover_right.png) no-repeat right top;}
+
+
 
 
 .hotnew{width: 390px;  background-color: #31363a;height: 394px;overflow:hidden;float: right;position: absolute;top:17px; right: -6px;}
@@ -101,7 +97,7 @@
 .teamd > h3 span{font-size: 12px; font-family: arial; float: right;color: #cccccc;margin-right: 20px;}
 .main_image1 { width: 688px; height:329px;  overflow:hidden; margin:0 auto; position:relative}
 .main_image1 ul {width:9999px; height:394px; overflow:hidden; position:absolute; top:0; left:0}
-.main_image1 li {width:100%; height:394px; padding-left: 76px;}
+.main_image1 li {height:394px; padding:0 76px;}
 .main_image1 li span {display:block; width:100%; height:394px}
 .main_image1 li a {display:block; width:100%; height:394px}
 #btn_prev1,#btn_next1{z-index:11111;position:absolute;display:block;width:73px!important;height:78px!important;top:30%;margin-top:-37px;display:none;}

@@ -15,6 +15,8 @@
 <link th:href="@{favicon.ico}" mce_href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/ling.css}" rel="stylesheet">
+<link th:href="@{/css/swiper.min.css}" rel="stylesheet">
+<script type="text/javascript" src="js/swiper.min.js"></script>
 </head>
 <body>
 	<div class="topWrap">
@@ -50,16 +52,9 @@
 		<!-- 导航&新闻区 -->
 		<div class="firwrap">
 				<!-- banner start -->
-				<div class="main_visual">
-               
-					<div class="main_image">
-					<ul id="banner_content">					
-						
-					</ul>
-					<a href="javascript:;" id="btn_prev"></a>
-					<a href="javascript:;" id="btn_next"></a>
-					
-					</div>
+				<div class="main_visuala">
+					<div class="swiper-wrapper" id="banner_contenta"></div>
+					<div class="swiper-pagination" style="width:716px;"></div>
 				</div>
 				<!-- banner end -->
 			<div class="hotnew">
@@ -152,13 +147,7 @@
 						<div class="main_image1">
 						<ul>					
 							<li id="troopList1">
-								
 							</li>
-
-							<li id="troopList2">
-								
-							</li>
-
 						</ul>
 						<a href="javascript:;" id="btn_prev1"></a>
 						<a href="javascript:;" id="btn_next1"></a>
@@ -375,12 +364,20 @@
 <script type="text/javascript" src="js/jquery.1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
 <script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+
 <script type="text/javascript" src="js/effec.js"></script>
 <script  src="/vendor/sea/sea.js"></script>
 <script src="/scripts/config/seajs-config.js"></script>
 <script type="text/javascript">
 	seajs.use(['/scripts/controller/index','/scripts/controller/login/index']);
-	
+	var swiper = new Swiper('.main_visuala', {
+        pagination: {el:'.swiper-pagination',clickable: true,},
+        observer:true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        autoplay : true,    //可选选项，自动滑动
+        autoplayDisableOnInteraction : true
+    });
 	$(".popmatch li").click(function(){
 		$(this).addClass("current").siblings().removeClass("current");
 	})

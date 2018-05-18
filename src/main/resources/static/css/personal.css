@@ -324,7 +324,7 @@ margin-left: -200px;
 }  
   
   
-/*清除ie的默认选择框样式清除，隐藏下拉箭头*/  
+/*娓呴櫎ie鐨勯粯璁ら�夋嫨妗嗘牱寮忔竻闄わ紝闅愯棌涓嬫媺绠ご*/  
 .rt .dialog select::-ms-expand { display: none; }  
 .rt .dialog input{
 	width: 283px;
@@ -786,7 +786,7 @@ border-radius: 65px;
 .quiz .head .dropdown-menu{
 	margin-right:32px;
 }
-.sel_mask{                    /*将<a></a>相对定位*/
+.sel_mask{                    /*灏�<a></a>鐩稿瀹氫綅*/
     position:relative;
     width:84px;
     height:25px;
@@ -800,7 +800,7 @@ border-radius: 65px;
     margin-top:10px;
 }
 
-.sel_mask select{        /*以相同大小将<select></select>绝对定位*/
+.sel_mask select{        /*浠ョ浉鍚屽ぇ灏忓皢<select></select>缁濆瀹氫綅*/
     top:16px;
     left:0px;
     position:absolute;
@@ -818,7 +818,7 @@ border-radius: 65px;
 .sel_mask select option{
     color:#999;
 }
-.sel_mask span{     /*显示内容*/
+.sel_mask span{     /*鏄剧ず鍐呭*/
     position: absolute;
     top:3px;
     left:5px;
@@ -829,7 +829,7 @@ border-radius: 65px;
     text-overflow: ellipsis;
     white-space:nowrap;
 }
-.sel_mask img{          /*箭头图标*/
+.sel_mask img{          /*绠ご鍥炬爣*/
     display: inline-block;
     position: absolute;
     top:2px;
@@ -1160,6 +1160,16 @@ color: #ffc000;
 	z-index: 999;
 	display: none;
 }
+.team .dialoga{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+	z-index: 999;
+	display: none;
+}
 .team .dialog .cont{
 width: 100%;
 height: 500px;
@@ -1171,6 +1181,7 @@ overflow-y: auto;
 	padding: 0 50px 0 32px;
 	border-bottom: 11px solid #31363a;
 }
+.upimg{height:90px;line-height:90px}
 .team .file {
     position: relative;
     display: inline-block;
@@ -2013,13 +2024,13 @@ max-height: 50px; z-index: 99; border-radius: 30px;position: absolute; top: 6px;
 .contuwrap{width: 563px;
 background: #393f46;
 border-radius: 5px;
-height: 500px;
+height:700px;
 color: #fff;
 font-size: 15.6px;
 border-radius: 10px;
-top: 50%;
-margin-top: -250px;
-position: absolute;
+top: 10%;
+z-index:999;
+position: fixed;
 left: 50%;
 margin-left: -280px;}
 

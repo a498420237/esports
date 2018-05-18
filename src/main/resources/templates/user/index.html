@@ -105,7 +105,7 @@
 								<img src="/images/closeico.png">
 							</div>
 						<div class="cont1">
-							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
+							<div class="tk-logo"><img src="/images/tplogo.png"></div>
 							<div class="box">
 								<div class="input1"><input id="phoneInput" style="width: 100%;" type="text" placeholder="请输入手机号"></div>
 								<div class="input2"><input style="width: 140px;" type="text" placeholder="请输入验证码"><span class="code right" id="getCodeBtn">获取验证码</span></div>
@@ -124,19 +124,18 @@
                                 <img src="/images/closeico.png">
                             </div>
                             <div class="cont2">
-                                <div class="tk-logo"><img src="/images/loginlogo.png"></div>
+                                <div class="tk-logo"><img src="/images/tplogo.png"></div>
                                 <div class="box">
                                     <div class="input1"><input id="bindEmailInput" style="width: 100%;" type="text" placeholder="请输入绑定邮箱"></div>
                                     <div class="input2"><input id="bindEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
-                                        <span class="code right" id="bindEmailCodeBtn">获取验证码</span></div>
+                                        <input class="code right" type="button" style="border:0;outline:none;padding:0 9px;" id="bindEmailCodeBtn" value="获取验证码" /></div>
                                     <div class="tk-btn clearfix">
-                                        <div class="right" id="bindEmailCompelete">完成</div>
+                                        <div class="right" id="bindEmailCompelete" style="cursor:pointer;">完成</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!--绑定邮箱-->
                     <div class="dialog2" id="changeEmailDialog1">
                         <div class="cont2wrap">
@@ -144,7 +143,7 @@
                                 <img src="/images/closeico.png">
                             </div>
                             <div class="cont2">
-                                <div class="tk-logo"><img src="/images/loginlogo.png"></div>
+                                <div class="tk-logo"><img src="/images/tplogo.png"></div>
                                 <div class="box">
                                     <div class="input1"><input id="oldEmailInput" style="width: 100%;" type="text" placeholder="请输入原绑定邮箱"></div>
                                     <div class="input2"><input id="oldEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
@@ -163,7 +162,7 @@
                                 <img src="/images/closeico.png">
                             </div>
                             <div class="cont2">
-                                <div class="tk-logo"><img src="/images/loginlogo.png"></div>
+                                <div class="tk-logo"><img src="/images/tplogo.png"></div>
                                 <div class="box">
                                     <div class="input1"><input id="newEmailInput" style="width: 100%;" type="text" placeholder="请输入新绑定邮箱"></div>
                                     <div class="input2"><input id="newEmailCode" style="width: 140px;" type="text" placeholder="请输入验证码">
@@ -185,7 +184,7 @@
 									<img src="/images/closeico.png">
 								</div>
 						<div class="cont3">
-							<div class="tk-logo"><img src="/images/loginlogo.png"></div>
+							<div class="tk-logo"><img src="/images/tplogo.png"></div>
 							<div class="box">
 								<img src="/images/succes.png">
 								<p>您的手机号绑定成功</p>
@@ -259,6 +258,7 @@
 			$("#block1").fadeIn();
 		}, 300);
 	})
+	
 	$("#editor").on("click",function(){
 		$("#block1").fadeOut(300);
 		setTimeout(function() {

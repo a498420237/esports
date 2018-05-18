@@ -25,39 +25,60 @@ define(function(require, exports, module) {
 		$(function(){
 			//登录弹框
 			$("#logi").click(function(){
-				$(".poplogind").fadeIn(2000);			
+				$(".poplogind").show();			
 
 			});	
 		$(".pubclose").click(function(){
-		
-				$(".poplogind").fadeOut(2000);			
+				$(".poplogind").hide();			
 
 			});
 		})
 		
 		// Banner列表
-		$("#banner_content").paginator({
-			itemTemplateId : 'bannerTemplate',
-			pageNavId : '',
-			usepager : false,
-			useSeniorTemplate : true,
-			ajaxFuc : function(curentPage, renderHtml) {
-				$.ajax({
-					url : "/getbanner",
-					datatype : 'json',
-					type : "get",
-					data : {
-						"offset" : 0,
-						"limit" : 5,
-						"module":15
-					},
-					success : function(json) {
-						var data = json.t;
-						renderHtml(data);
-					}
-				});
+		$.ajax({
+			url : "/getbanner",
+			datatype : 'json',
+			type : "get",
+			data : {
+				"offset" : 0,
+				"limit" : 5,
+				"module":15
+			},
+			success : function(json) {
+				var data = json.t;
+				var items = data.result;
+				var showAddste = "";
+				$('#banner_contenta').empty();
+				for(var i=0;i<items.length;i++){
+					showAddste +="<div class='swiper-slide'><a href="+items[i].linkAddr+" target='_blank'><img src="+items[i].pictureUrl+" /></a></div>";
+				}
+				//console.log(showAddste)
+				$('#banner_contenta').append(showAddste);
 			}
 		});
+//		$("#banner_content").paginator({
+//			itemTemplateId : 'bannerTemplate',
+//			pageNavId : '',
+//			usepager : false,
+//			useSeniorTemplate : true,
+//			ajaxFuc : function(curentPage, renderHtml) {
+//				$.ajax({
+//					url : "/getbanner",
+//					datatype : 'json',
+//					type : "get",
+//					data : {
+//						"offset" : 0,
+//						"limit" : 5,
+//						"module":15
+//					},
+//					success : function(json) {
+//						console.log(json)
+//						var data = json.t;
+//						renderHtml(data);
+//					}
+//				});
+//			}
+//		});
 		// 资讯内容列表
 		$("#info_content").paginator({
 			itemTemplateId : 'infoTemplate',

@@ -38,46 +38,45 @@ window.onload = function(){
 			</div> -->
 			<div class="team">
 				<!--创建战队-->
-				<div class="dialog" style="display: none;">
-					<div class="contuwrap" >
-						<div class="pubclose">
-							<img src="/images/closeico.png" onclick="closeWin('')">
-						</div>
-						<div class="cont">
-
-							<div class="upimg">
-								<span>上传战队图片</span>
-								<a href="javascript:;" class="file right">
-									<input type="file" name="" id="">
+				<div class="dialoga" style="display:none;" onclick="closeWina()">
+				</div>
+				<div class="contuwrap" style="display:none;">
+					<div class="pubclose">
+						<img src="/images/closeico.png" onclick="closeWina()">
+					</div>
+					<div class="cont">
+						<div class="info1">
+							<p class="clearfix" style="padding-top:10px;padding-bottom:10px"><span>上传战队图片</span>
+								<a href="javascript:;" class="file right" style="margin:0;">
+									<input type="file" name="" id="up" />
+									<img id="ImgPr" src="" style="width:53px;height:53px;display:none;" />
 								</a>
-							</div>
-							<div class="info1">
-								<p class="clearfix"><span>所属游戏</span>
-									<select class="right" id="gameType">
-										<option value="1">王者荣耀</option>
-										<option value="2">绝地求生</option>
-									</select>
-								</p>
-								<p class="clearfix"><span>游戏区服</span>
-									<select class="right" id="serverType">
-										<option value="1">手游区</option>
-										<option value="2">微信区</option>
-									</select>
-								</p>
-								<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号" maxlength="6" id="troopsName"></p>
-								<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字" maxlength="25"></p>
-							</div>
-							<div class="info1">
-								<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
-								<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
-								<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号" id="phoneInput"></p>
-								<p class="clearfix"><span>输入验证码 </span>
-									<span class="access" style="cursor:pointer;" onclick="getCode()">获取</span>
-									<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
-									<input type="text" placeholder="请输入验证码" id="code"></p>
-								<div class="craat-btn" onclick="createTeam()" style="cursor:pointer;">创建战队</div>
-								<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
-							</div>
+							</p>
+							<p class="clearfix"><span>所属游戏</span>
+								<select class="right" id="gameType">
+									<option value="1">王者荣耀</option>
+									<option value="2">绝地求生</option>
+								</select>
+							</p>
+							<p class="clearfix"><span>游戏区服</span>
+								<select class="right" id="serverType">
+									<option value="1">手游区</option>
+									<option value="2">微信区</option>
+								</select>
+							</p>
+							<p class="clearfix"><span>战队名称</span><input type="text" placeholder="最多6个字且不支持符号" maxlength="6" id="troopsName"></p>
+							<p class="clearfix bor-botttom11"><span>战队宣言</span><input type="text" placeholder="最多25字" maxlength="25"></p>
+						</div>
+						<div class="info1">
+							<p class="clearfix"><span>真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+							<p class="clearfix"><span>身份证号</span><input type="text" placeholder="请输入身份证号"></p>
+							<p class="clearfix"><span>验证手机号</span><input type="text" placeholder="请输入手机号" id="phoneInput"></p>
+							<p class="clearfix"><span>输入验证码 </span>
+								<span class="access" style="cursor:pointer;" onclick="getCode()">获取</span>
+								<!--<span id="getCodeBtn" class="bg-red" style="cursor:pointer;">获取验证码</span>-->
+								<input type="text" placeholder="请输入验证码" id="code"></p>
+							<div class="craat-btn" onclick="createTeam()" style="cursor:pointer;">创建战队</div>
+							<div class="agreement">创建战队即代表同意<em>《创建战队协议》</em></div>
 						</div>
 					</div>
 				</div>
@@ -147,10 +146,29 @@ window.onload = function(){
     $(".fenye a").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
     })
+    $("#up").change(function() {
+        var $file = $(this);
+        var fileObj = $file[0];
+        var windowURL = window.URL || window.webkitURL;
+        var dataURL;
+        var $img = $("#ImgPr");
+        if(fileObj && fileObj.files && fileObj.files[0]){
+	        dataURL = windowURL.createObjectURL(fileObj.files[0]);
+	        $img.attr('src',dataURL);
+        }else{
+	        dataURL = $file.val();
+	        var imgObj = document.getElementById("ImgPr");
+	        imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+	        imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+        }
+        $img.show();
+    });
+    
     //弹框
     $("#create").on("click",function(){
-		$(".dialog").fadeIn();
-		$("html").css({overflow:"auto",height:"100%"})
+		$(".dialoga").show();
+		$("html").css({overflow:"auto",height:"100%"});
+		$(".contuwrap").show();
 /*		layer.open({
 			type: 1,
 			title: false,
@@ -200,8 +218,9 @@ window.onload = function(){
             $("html").css({overflow:"auto",height:"100%"})
         }
     });
-	function closeWin() {
-        $('.dialog').fadeOut();
+	function closeWina() {
+        $('.dialoga').hide();
+        $(".contuwrap").hide();
     }
 	// 绑定获取验证码事件
 	var InterValObj; //timer变量，控制时间
